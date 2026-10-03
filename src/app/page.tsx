@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "@/components/Header";
+import VideoScrollHero from "@/components/VideoScrollHero";
 import Hero from "@/components/Hero";
 import RealIngredients from "@/components/RealIngredients";
 import ProductAnatomy from "@/components/ProductAnatomy";
@@ -15,7 +16,10 @@ export default function Home() {
       {/* 1. Header / Navigation */}
       <Header />
 
-      {/* 2. Hero Section */}
+      {/* 2. Premiere 120-Frame Interactive Video Scroll Hero (First Section) */}
+      <VideoScrollHero />
+
+      {/* 3. Hero Section */}
       <Hero />
 
       {/* 3. Real Ingredients Section */}

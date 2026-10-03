@@ -20,37 +20,37 @@ export default function Flavours() {
       id: "matcha_green_tea",
       name: "Matcha Green Tea",
       category: "ASIAN INSPIRED",
-      image: "/images/tumu/flavour_v3_04_matcha_green_tea.png",
+      image: "/images/tumu/flavour_v2_04_matcha_green_tea.png",
     },
     {
       id: "vanilla",
       name: "Vanilla",
       category: "CLASSIC",
-      image: "/images/tumu/flavour_v3_02_vanilla.png",
+      image: "/images/tumu/flavour_v2_02_vanilla.png",
     },
     {
       id: "pistachio_crunch",
       name: "Pistachio Crunch",
       category: "SIGNATURE",
-      image: "/images/tumu/flavour_v3_08_pistachio_crunch.png",
+      image: "/images/tumu/flavour_v2_08_pistachio_crunch.png",
     },
     {
       id: "strawberry_bliss",
       name: "Strawberry Bliss",
       category: "FRUIT BLENDS",
-      image: "/images/tumu/flavour_v3_05_strawberry_bliss.png",
+      image: "/images/tumu/flavour_v2_new_strawberry.png",
     },
     {
       id: "dark_chocolate",
       name: "Dark Chocolate",
       category: "CLASSIC",
-      image: "/images/tumu/flavour_v3_01_dark_chocolate.png",
+      image: "/images/tumu/flavour_v2_01_dark_chocolate.png",
     },
     {
       id: "tiramisu_indulgence",
       name: "Tiramisu Indulgence",
       category: "SIGNATURE",
-      image: "/images/tumu/flavour_v3_07_tiramisu_indulgence.png",
+      image: "/images/tumu/flavour_v2_07_tiramisu_indulgence.png",
     },
     {
       id: "mango_infusion",
@@ -59,10 +59,10 @@ export default function Flavours() {
       image: "/images/tumu/flavour_v2_new_mango.png",
     },
     {
-      id: "biscoff_delight",
-      name: "Lotus Biscoff",
+      id: "cafe_latte",
+      name: "Cafe Latte",
       category: "SIGNATURE",
-      image: "/images/tumu/flavour_v3_03_lotus_biscoff.png",
+      image: "/images/tumu/flavour_v2_new_latte.png",
     },
   ];
 
