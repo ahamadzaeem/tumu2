@@ -38,7 +38,7 @@ export default function Flavours() {
       id: "strawberry_bliss",
       name: "Strawberry Bliss",
       category: "FRUIT BLENDS",
-      image: "/images/tumu/flavour_v2_new_strawberry.png",
+      image: "/images/tumu/flavour_v3_05_strawberry_bliss.png",
     },
     {
       id: "dark_chocolate",
@@ -59,10 +59,10 @@ export default function Flavours() {
       image: "/images/tumu/flavour_v2_new_mango.png",
     },
     {
-      id: "cafe_latte",
-      name: "Cafe Latte",
+      id: "biscoff_delight",
+      name: "Lotus Biscoff",
       category: "SIGNATURE",
-      image: "/images/tumu/flavour_v2_new_latte.png",
+      image: "/images/tumu/flavour_v3_03_lotus_biscoff.png",
     },
   ];
 
