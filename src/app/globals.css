@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #F8F4EC;
+  --pink: #DB3E59;
+  --pink-soft: #F7B7C6;
+  --blue: #4694C6;
+  --cyan: #5CBEB3;
+  --navy: #162B3A;
+  --teal: #4DB6AC;
+  --white: #FFFFFF;
+  --background: var(--cream);
+  --foreground: var(--navy);
+}
+
+@theme {
+  --color-cream: #F8F4EC;
+  --color-tumu-pink: #DB3E59;
+  --color-tumu-pink-soft: #F7B7C6;
+  --color-tumu-blue: #4694C6;
+  --color-tumu-cyan: #5CBEB3;
+  --color-tumu-navy: #162B3A;
+  --color-tumu-teal: #4DB6AC;
+
+  --font-sans: var(--font-opensans), "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-titan), "Helvetica Neue", Arial, sans-serif;
+  --font-subhead: var(--font-sughoiy), "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--navy);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: normal; /* Titan One is naturally heavy, don't double-bold */
+}
+
+.font-subhead {
+  font-family: var(--font-subhead);
+}
+
+/* Custom stripe patterns */
+.stripe-pink {
+  background: repeating-linear-gradient(
+    90deg,
+    #DB3E59,
+    #DB3E59 6px,
+    transparent 6px,
+    transparent 13px
+  );
+}
+
+.stripe-blue {
+  background: repeating-linear-gradient(
+    90deg,
+    #4694C6,
+    #4694C6 6px,
+    transparent 6px,
+    transparent 13px
+  );
+}
+
+.stripe-cyan {
+  background: repeating-linear-gradient(
+    90deg,
+    #5CBEB3,
+    #5CBEB3 6px,
+    transparent 6px,
+    transparent 13px
+  );
+}
+
+.stripe-blue-diag {
+  background: repeating-linear-gradient(
+    45deg,
+    #4694C6,
+    #4694C6 6px,
+    transparent 6px,
+    transparent 13px
+  );
+}
+
+.stripe-cyan-diag {
+  background: repeating-linear-gradient(
+    45deg,
+    #5CBEB3,
+    #5CBEB3 6px,
+    transparent 6px,
+    transparent 13px
+  );
+}
+
+/* Hide scrollbar for clean horizontal carousel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
