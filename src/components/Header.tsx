@@ -23,13 +23,13 @@ export default function Header() {
         <div className="w-full max-w-[1024px] mx-auto px-4 md:px-6 flex items-center justify-between">
           
           {/* Brand Logo (Far Left) */}
-          <Link href="/" className="flex flex-col items-start group overflow-hidden">
+          <Link href="/" className="flex items-center group">
             <Image
               src="/images/tumu-logo-final.png"
               alt="TUMU Crisp & Cream Logo"
               width={240}
               height={300}
-              className="object-contain w-14 sm:w-16 h-auto"
+              className="object-contain h-10 sm:h-11 w-auto"
               priority
             />
           </Link>
