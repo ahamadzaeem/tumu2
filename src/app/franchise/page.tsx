@@ -225,56 +225,56 @@ export default function FranchisePage() {
               A unique, premium, and highly craveable dessert experience inspired by Japan — now ready to grow with partners like you.
             </p>
 
-            {/* 2x2 Feature Grid (Compact 2-column layout to fit inside off-white area) */}
-            <div className="grid grid-cols-2 gap-x-4 gap-y-6 w-full">
+            {/* 2x2 Feature Grid (With Pristine White Backdrop Cards for 100% Legibility) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4.5 w-full">
               {/* Feature 1 */}
-              <div className="flex flex-col items-start">
-                <div className="w-9 h-9 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2">
-                  <Gem className="w-4 h-4 stroke-[2]" />
+              <div className="flex flex-col items-start bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-md border border-black/5 transition-transform hover:-translate-y-1">
+                <div className="w-10 h-10 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2.5 shrink-0">
+                  <Gem className="w-5 h-5 stroke-[2.2]" />
                 </div>
                 <h3 className="text-xs sm:text-sm font-black text-[#162B3A] uppercase mb-1">
                   Unique Product
                 </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/75 leading-tight">
+                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/80 leading-snug">
                   A distinctive dessert concept.
                 </p>
               </div>
 
               {/* Feature 2 */}
-              <div className="flex flex-col items-start">
-                <div className="w-9 h-9 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2">
-                  <Heart className="w-4 h-4 stroke-[2]" />
+              <div className="flex flex-col items-start bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-md border border-black/5 transition-transform hover:-translate-y-1">
+                <div className="w-10 h-10 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2.5 shrink-0">
+                  <Heart className="w-5 h-5 stroke-[2.2]" />
                 </div>
                 <h3 className="text-xs sm:text-sm font-black text-[#162B3A] uppercase mb-1">
                   Proven Concept
                 </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/75 leading-tight">
+                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/80 leading-snug">
                   Built around a memorable product experience.
                 </p>
               </div>
 
               {/* Feature 3 */}
-              <div className="flex flex-col items-start">
-                <div className="w-9 h-9 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2">
-                  <TrendingUp className="w-4 h-4 stroke-[2]" />
+              <div className="flex flex-col items-start bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-md border border-black/5 transition-transform hover:-translate-y-1">
+                <div className="w-10 h-10 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2.5 shrink-0">
+                  <TrendingUp className="w-5 h-5 stroke-[2.2]" />
                 </div>
                 <h3 className="text-xs sm:text-sm font-black text-[#162B3A] uppercase mb-1">
                   Growing Demand
                 </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/75 leading-tight">
+                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/80 leading-snug">
                   Designed for today&apos;s grab-and-go audience.
                 </p>
               </div>
 
               {/* Feature 4 */}
-              <div className="flex flex-col items-start">
-                <div className="w-9 h-9 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2">
-                  <Store className="w-4 h-4 stroke-[2]" />
+              <div className="flex flex-col items-start bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-md border border-black/5 transition-transform hover:-translate-y-1">
+                <div className="w-10 h-10 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2.5 shrink-0">
+                  <Store className="w-5 h-5 stroke-[2.2]" />
                 </div>
                 <h3 className="text-xs sm:text-sm font-black text-[#162B3A] uppercase mb-1">
                   Strong Brand Identity
                 </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/75 leading-tight">
+                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/80 leading-snug">
                   Japanese-inspired, instantly recognizable.
                 </p>
               </div>
