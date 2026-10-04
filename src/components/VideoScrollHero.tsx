@@ -236,14 +236,14 @@ export default function VideoScrollHero() {
                   {activeCheckpoint.subtitle}
                 </span>
 
-                {/* 2. Main Headline in 2 lines ending with period */}
-                <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] text-[#162B3A] mb-6">
+                {/* 2. Main Headline in 2 lines in primary brand color */}
+                <h1 className={`text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-6 ${activeCheckpoint.textColor}`}>
                   <span className="block">{activeCheckpoint.titleLine1}</span>
                   <span className="block">{activeCheckpoint.titleLine2}</span>
                 </h1>
 
-                {/* 3. Description text */}
-                <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg leading-relaxed max-w-[420px] mb-8">
+                {/* 3. Description subtext in white */}
+                <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[440px] mb-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
                   {activeCheckpoint.description}
                 </p>
 
