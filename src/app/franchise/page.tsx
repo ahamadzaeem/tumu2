@@ -73,7 +73,7 @@ export default function FranchisePage() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-[340px] sm:max-w-[380px] lg:max-w-[400px] flex flex-col items-start"
+            className="max-w-[340px] sm:max-w-[380px] lg:max-w-[400px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
           >
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
               FRANCHISE WITH TUMU
@@ -87,7 +87,7 @@ export default function FranchisePage() {
               </span>
             </h1>
 
-            <p className="text-[#162B3A] max-sm:text-white max-sm:drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] font-semibold text-sm sm:text-base leading-relaxed max-w-[340px] sm:max-w-[370px] mb-8">
+            <p className="text-[#162B3A] font-semibold text-sm sm:text-base leading-relaxed max-w-[340px] sm:max-w-[370px] mb-8">
               Bring Japan&apos;s loved dessert experience to your city. Simple operations, high margins, and a brand people remember.
             </p>
 
@@ -206,7 +206,7 @@ export default function FranchisePage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-[340px] sm:max-w-[360px] lg:max-w-[380px] flex flex-col items-start"
+            className="max-w-[340px] sm:max-w-[360px] lg:max-w-[380px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
           >
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
               WHY TUMU
@@ -221,7 +221,7 @@ export default function FranchisePage() {
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-4" />
 
-            <p className="text-[#162B3A] max-sm:text-white max-sm:drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] font-semibold text-xs sm:text-sm leading-relaxed max-w-[350px] mb-8">
+            <p className="text-[#162B3A] font-semibold text-xs sm:text-sm leading-relaxed max-w-[350px] mb-8">
               A unique, premium, and highly craveable dessert experience inspired by Japan — now ready to grow with partners like you.
             </p>
 
