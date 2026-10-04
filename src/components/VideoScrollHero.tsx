@@ -242,8 +242,8 @@ export default function VideoScrollHero() {
                   <span className="block">{activeCheckpoint.titleLine2}</span>
                 </h1>
 
-                {/* 3. Description subtext in white */}
-                <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[440px] mb-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                {/* 3. Description subtext in black/dark navy */}
+                <p className="text-[#162B3A] font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[440px] mb-8">
                   {activeCheckpoint.description}
                 </p>
 
