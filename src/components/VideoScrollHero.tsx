@@ -232,7 +232,7 @@ export default function VideoScrollHero() {
                 className="flex flex-col items-start"
               >
                 {/* 1. Subtitle Category Tag */}
-                <span className={`font-black text-xs sm:text-sm uppercase tracking-[0.18em] mb-3 ${activeCheckpoint.textColor}`}>
+                <span className="font-black text-xs sm:text-sm uppercase tracking-[0.18em] mb-3 text-[#162B3A]">
                   {activeCheckpoint.subtitle}
                 </span>
 
