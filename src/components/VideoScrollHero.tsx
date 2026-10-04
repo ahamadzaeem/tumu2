@@ -16,7 +16,7 @@ const CHECKPOINTS = [
     titleLine2: "CRUNCH.",
     description: "Every TUMU starts with our signature golden pastry dough, baked to crisp perfection.",
     btnText: "Discover the process",
-    textColor: "text-[#5CBEB3]"
+    textColor: "text-[#DB3E59]"
   },
   {
     start: 0.25,
@@ -36,7 +36,7 @@ const CHECKPOINTS = [
     titleLine2: "BALANCE.",
     description: "The irresistible contrast of warm, golden outer crunch and cool, silky cream inside.",
     btnText: "Our flavours",
-    textColor: "text-[#4694C6]"
+    textColor: "text-[#DB3E59]"
   },
   {
     start: 0.75,
