@@ -47,7 +47,7 @@ export default function StoryPage() {
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-5 sm:mb-6" />
 
-            <p className="text-white sm:text-[#162B3A]/85 font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] sm:drop-shadow-none">
+            <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] sm:drop-shadow-md">
               To turn a timeless pastry into a new kind of experience — crisp on the outside, creamy on the inside, and unforgettable with every bite.
             </p>
           </motion.div>
@@ -91,7 +91,7 @@ export default function StoryPage() {
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-5 sm:mb-6" />
 
-            <p className="text-white sm:text-[#162B3A] font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] sm:drop-shadow-none">
+            <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] sm:drop-shadow-md">
               We take inspiration from classic choux pastry and reimagine it with modern flavours, creative textures, and a relentless focus on quality. Every TUMU is freshly baked, filled to order, and made to bring a little happiness to your day.
             </p>
           </motion.div>
@@ -134,7 +134,7 @@ export default function StoryPage() {
 
             <div className="w-12 h-1 bg-[#E52D50] mb-5 sm:mb-6" />
 
-            <p className="text-white sm:text-[#162B3A] font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] sm:drop-shadow-none">
+            <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] sm:drop-shadow-md">
               Rooted in Japanese craft and attention to detail, TUMU brings a taste of Japan to your everyday moments — crispy, creamy, and full of joy.
             </p>
           </motion.div>
