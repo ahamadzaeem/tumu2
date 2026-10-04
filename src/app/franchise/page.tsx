@@ -87,7 +87,7 @@ export default function FranchisePage() {
               </span>
             </h1>
 
-            <p className="text-[#162B3A]/85 font-semibold text-sm sm:text-base leading-relaxed max-w-[340px] sm:max-w-[370px] mb-8">
+            <p className="text-[#162B3A] max-sm:text-white max-sm:drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] font-semibold text-sm sm:text-base leading-relaxed max-w-[340px] sm:max-w-[370px] mb-8">
               Bring Japan&apos;s loved dessert experience to your city. Simple operations, high margins, and a brand people remember.
             </p>
 
@@ -221,7 +221,7 @@ export default function FranchisePage() {
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-4" />
 
-            <p className="text-[#162B3A]/85 font-semibold text-xs sm:text-sm leading-relaxed max-w-[350px] mb-8">
+            <p className="text-[#162B3A] max-sm:text-white max-sm:drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] font-semibold text-xs sm:text-sm leading-relaxed max-w-[350px] mb-8">
               A unique, premium, and highly craveable dessert experience inspired by Japan — now ready to grow with partners like you.
             </p>
 
