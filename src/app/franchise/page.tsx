@@ -111,9 +111,9 @@ export default function FranchisePage() {
             <div className="w-12 h-1 bg-[#DB3E59] mt-4" />
           </div>
 
-          {/* 2x2 Grid Layout (2X Larger Image Scale) */}
+          {/* 8-Card Grid Layout featuring BOTH original renders and new storefronts */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
-            {/* Image 1 */}
+            {/* Image 1: Original Gallery 1 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +122,7 @@ export default function FranchisePage() {
               className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <Image
-                src="/images/tumu/franchise_new_1.jpg"
+                src="/images/tumu/franchise_gallery_1.jpg"
                 alt="TUMU Kiosk Store Render Front View"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -130,7 +130,7 @@ export default function FranchisePage() {
               />
             </motion.div>
 
-            {/* Image 2 */}
+            {/* Image 2: Original Gallery 2 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -139,7 +139,7 @@ export default function FranchisePage() {
               className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <Image
-                src="/images/tumu/franchise_new_2.jpg"
+                src="/images/tumu/franchise_gallery_2.jpg"
                 alt="TUMU Kiosk Side View"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -147,7 +147,7 @@ export default function FranchisePage() {
               />
             </motion.div>
 
-            {/* Image 3 */}
+            {/* Image 3: Original Gallery 3 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -156,7 +156,7 @@ export default function FranchisePage() {
               className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <Image
-                src="/images/tumu/franchise_new_3.jpg"
+                src="/images/tumu/franchise_gallery_3.jpg"
                 alt="TUMU Kiosk Mall Layout"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -164,7 +164,7 @@ export default function FranchisePage() {
               />
             </motion.div>
 
-            {/* Image 4 */}
+            {/* Image 4: Original Gallery 4 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -173,8 +173,76 @@ export default function FranchisePage() {
               className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <Image
-                src="/images/tumu/franchise_new_4.jpg"
+                src="/images/tumu/franchise_gallery_4.jpg"
                 alt="TUMU Neon Branding Close-up"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                unoptimized
+              />
+            </motion.div>
+
+            {/* Image 5: New Store 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <Image
+                src="/images/tumu/franchise_new_1.jpg"
+                alt="TUMU Storefront 1"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                unoptimized
+              />
+            </motion.div>
+
+            {/* Image 6: New Store 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <Image
+                src="/images/tumu/franchise_new_2.jpg"
+                alt="TUMU Storefront 2"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                unoptimized
+              />
+            </motion.div>
+
+            {/* Image 7: New Store 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <Image
+                src="/images/tumu/franchise_new_3.jpg"
+                alt="TUMU Storefront 3"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                unoptimized
+              />
+            </motion.div>
+
+            {/* Image 8: New Store 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <Image
+                src="/images/tumu/franchise_new_4.jpg"
+                alt="TUMU Storefront 4"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 unoptimized
