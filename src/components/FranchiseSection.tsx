@@ -57,16 +57,42 @@ export default function FranchiseSection() {
         </div>
       </div>
 
-      {/* Right Side Visual (60% desktop) */}
-      <div className="w-full lg:w-[60%] relative flex items-center justify-center bg-white">
-        <Image
-          src="/images/tumu/franchise_storefront_1_fixed_more.jpg"
-          alt="TUMU Architectural Franchise Storefront"
-          width={1200}
-          height={1200}
-          className="w-full h-auto object-contain"
-          priority
-        />
+      {/* Right Side Visual (60% desktop) - 2x2 Grid of Storefronts */}
+      <div className="w-full lg:w-[60%] relative flex items-center justify-center bg-[#F8F4EC] p-6 sm:p-10 lg:p-12 z-20">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 w-full max-w-[680px]">
+          <div className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-black/10 group">
+            <Image
+              src="/images/tumu/franchise_new_1.jpg"
+              alt="TUMU Franchise Storefront 1"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          <div className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-black/10 group">
+            <Image
+              src="/images/tumu/franchise_new_2.jpg"
+              alt="TUMU Franchise Storefront 2"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          <div className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-black/10 group">
+            <Image
+              src="/images/tumu/franchise_new_3.jpg"
+              alt="TUMU Franchise Storefront 3"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          <div className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-black/10 group">
+            <Image
+              src="/images/tumu/franchise_new_4.jpg"
+              alt="TUMU Franchise Storefront 4"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

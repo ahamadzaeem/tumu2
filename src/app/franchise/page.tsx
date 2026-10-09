@@ -124,7 +124,7 @@ export default function FranchisePage() {
               className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <Image
-                src="/images/tumu/franchise_gallery_1.jpg"
+                src="/images/tumu/franchise_new_1.jpg"
                 alt="TUMU Kiosk Store Render Front View"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -141,7 +141,7 @@ export default function FranchisePage() {
               className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <Image
-                src="/images/tumu/franchise_gallery_2.jpg"
+                src="/images/tumu/franchise_new_2.jpg"
                 alt="TUMU Kiosk Side View"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -158,7 +158,7 @@ export default function FranchisePage() {
               className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <Image
-                src="/images/tumu/franchise_gallery_3.jpg"
+                src="/images/tumu/franchise_new_3.jpg"
                 alt="TUMU Kiosk Mall Layout"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -175,7 +175,7 @@ export default function FranchisePage() {
               className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <Image
-                src="/images/tumu/franchise_gallery_4.jpg"
+                src="/images/tumu/franchise_new_4.jpg"
                 alt="TUMU Neon Branding Close-up"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
