@@ -83,7 +83,7 @@ export default function Flavours() {
   };
 
   return (
-    <section id="flavours" className="relative w-full bg-[#50B8B1] py-20 overflow-hidden">
+    <section id="flavours" className="relative w-full bg-[#50B8B1] pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-20">
         
         {/* Section Header */}
