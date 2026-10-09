@@ -83,36 +83,36 @@ export default function Flavours() {
   };
 
   return (
-    <section id="flavours" className="relative w-full bg-[#FFB6C1] py-20 overflow-hidden">
+    <section id="flavours" className="relative w-full bg-[#5CBEB3] py-20 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-20">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
           <div>
-            <span className="text-[#1A2E44] text-sm tracking-[0.2em] uppercase font-semibold block mb-4">
+            <span className="text-[#DB3E59] text-sm tracking-[0.2em] uppercase font-bold block mb-4">
               FLAVOURS
             </span>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading tracking-tight leading-[1.1] uppercase text-[#5CBEB3]">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading tracking-tight leading-[1.1] uppercase text-[#DB3E59]">
               <span className="block">A FLAVOUR</span>
               <span className="block">FOR EVERY MOOD</span>
             </h2>
           </div>
 
           <div className="flex flex-col md:items-end gap-6 max-w-sm">
-            <p className="text-[#1A2E44]/80 text-sm font-medium leading-relaxed md:text-right">
+            <p className="text-[#162B3A] text-sm font-semibold leading-relaxed md:text-right">
               From timeless classics to bold Japanese-inspired creations, each TUMU is made to delight.
             </p>
             {/* Nav Arrows */}
             <div className="flex items-center gap-3">
               <button 
                 onClick={() => handleScroll("left")}
-                className="w-10 h-10 rounded-full border border-[#1A2E44]/20 flex items-center justify-center text-[#1A2E44] hover:bg-[#1A2E44] hover:text-white transition-colors"
+                className="w-10 h-10 rounded-full border border-[#162B3A]/20 flex items-center justify-center text-[#162B3A] hover:bg-[#DB3E59] hover:text-white hover:border-[#DB3E59] transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => handleScroll("right")}
-                className="w-10 h-10 rounded-full border border-[#1A2E44]/20 flex items-center justify-center text-[#1A2E44] hover:bg-[#1A2E44] hover:text-white transition-colors"
+                className="w-10 h-10 rounded-full border border-[#162B3A]/20 flex items-center justify-center text-[#162B3A] hover:bg-[#DB3E59] hover:text-white hover:border-[#DB3E59] transition-colors"
               >
                 <ArrowRight className="w-5 h-5" />
               </button>
@@ -130,8 +130,8 @@ export default function Flavours() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-6 py-2 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 shrink-0 ${
                   isActive
-                    ? "bg-white text-[#1A2E44] shadow-sm"
-                    : "text-[#1A2E44]/70 hover:text-[#1A2E44]"
+                    ? "bg-[#DB3E59] text-white shadow-md"
+                    : "bg-white/40 text-[#162B3A] hover:bg-white/70"
                 }`}
               >
                 {cat}
@@ -162,7 +162,7 @@ export default function Flavours() {
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#1A2E44] font-bold text-center text-sm sm:text-base leading-tight px-2">
+              <h3 className="text-[#162B3A] font-bold text-center text-sm sm:text-base leading-tight px-2">
                 {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
