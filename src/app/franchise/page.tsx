@@ -23,12 +23,11 @@ export default function FranchisePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    contactPerson: "",
+    company: "",
+    contactNumber: "",
     email: "",
-    phone: "",
-    city: "",
-    investment: "$50k - $100k",
-    message: ""
+    comments: ""
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,12 +37,11 @@ export default function FranchisePage() {
       setSubmitted(false);
       setModalOpen(false);
       setFormData({
-        name: "",
+        contactPerson: "",
+        company: "",
+        contactNumber: "",
         email: "",
-        phone: "",
-        city: "",
-        investment: "$50k - $100k",
-        message: ""
+        comments: ""
       });
     }, 3000);
   };
@@ -607,98 +605,74 @@ export default function FranchisePage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                  <div className="flex flex-col items-start mb-2">
-                    <span className="text-xs font-black uppercase tracking-widest text-[#DB3E59] mb-1">
-                      PARTNERSHIP ENQUIRY
-                    </span>
-                    <h3 className="text-2xl sm:text-3xl font-black text-[#162B3A] uppercase">
-                      Apply For Franchise
-                    </h3>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
+                  <div className="text-center mb-2">
+                    <p className="text-sm font-semibold text-[#162B3A]/80 leading-relaxed max-w-md mx-auto">
+                      Fill in the inquiry form and someone from our franchise department will get in touch with you.
+                    </p>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#162B3A] uppercase mb-1">Full Name</label>
+                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Contact Person</label>
                     <input
                       type="text"
                       required
-                      placeholder="Jane Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-black/10 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A]"
+                      value={formData.contactPerson}
+                      onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-full bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all"
                     />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-[#162B3A] uppercase mb-1">Email Address</label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="jane@example.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-white border border-black/10 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-[#162B3A] uppercase mb-1">Phone Number</label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+1 (555) 000-0000"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-white border border-black/10 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A]"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-[#162B3A] uppercase mb-1">Target City / Region</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Tokyo, Japan"
-                        value={formData.city}
-                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-white border border-black/10 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A]"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-[#162B3A] uppercase mb-1">Investment Budget</label>
-                      <select
-                        value={formData.investment}
-                        onChange={(e) => setFormData({ ...formData, investment: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-white border border-black/10 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A]"
-                      >
-                        <option value="$50k - $100k">$50k - $100k</option>
-                        <option value="$100k - $250k">$100k - $250k</option>
-                        <option value="$250k+">$250k+</option>
-                      </select>
-                    </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#162B3A] uppercase mb-1">Additional Message</label>
-                    <textarea
-                      rows={3}
-                      placeholder="Tell us about your background and location proposal..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-black/10 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] resize-none"
+                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Company / Organization</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-full bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all"
                     />
                   </div>
 
-                  <div className="pt-2 flex justify-end">
+                  <div>
+                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Contact Number</label>
+                    <input
+                      type="tel"
+                      required
+                      value={formData.contactNumber}
+                      onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-full bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Email address</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-full bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Comments</label>
+                    <textarea
+                      rows={3}
+                      required
+                      value={formData.comments}
+                      onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-2xl bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm resize-none transition-all"
+                    />
+                  </div>
+
+                  <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-4 rounded-xl bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-sm uppercase tracking-wide transition-all shadow-md active:scale-95"
+                      className="w-full py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-sm uppercase tracking-wide transition-all shadow-md active:scale-95"
                     >
-                      Submit Franchise Enquiry
+                      Submit Inquiry
                     </button>
                   </div>
                 </form>
