@@ -145,26 +145,26 @@ export default function Flavours() {
         {/* Product Carousel */}
         <div
           ref={scrollRef}
-          className="flex gap-3 sm:gap-4 lg:gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-10 pt-6 items-end justify-start lg:justify-between"
+          className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto no-scrollbar scroll-smooth pb-12 pt-6 items-end justify-start lg:justify-between"
         >
           {filteredFlavours.map((item) => (
             <div
               key={item.id}
-              className="relative shrink-0 flex flex-col items-center group cursor-pointer w-[95px] sm:w-[125px] lg:w-[145px]"
+              className="relative shrink-0 flex flex-col items-center group cursor-pointer w-[120px] sm:w-[155px] lg:w-[180px]"
             >
               {/* Product Image */}
-              <div className="relative w-full h-[220px] sm:h-[270px] lg:h-[310px] mb-4 flex justify-center">
+              <div className="relative w-full h-[275px] sm:h-[340px] lg:h-[390px] mb-5 flex justify-center">
                 <Image
                   src={item.image}
                   alt={item.name}
                   fill
-                  className="object-contain object-center drop-shadow-[0_12px_20px_rgba(0,0,0,0.18)] transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
-                  sizes="(max-width: 640px) 120px, (max-width: 1024px) 180px, 220px"
+                  className="object-contain object-center drop-shadow-[0_16px_24px_rgba(0,0,0,0.2)] transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
+                  sizes="(max-width: 640px) 150px, (max-width: 1024px) 220px, 280px"
                 />
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#162B3A] font-black text-center text-xs sm:text-sm leading-tight px-1 group-hover:text-[#DB3E59] transition-colors">
+              <h3 className="text-[#162B3A] font-black text-center text-sm sm:text-base lg:text-lg leading-tight px-1 group-hover:text-[#DB3E59] transition-colors">
                 {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
