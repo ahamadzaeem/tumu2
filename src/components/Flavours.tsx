@@ -158,7 +158,7 @@ export default function Flavours() {
                   src={item.image}
                   alt={item.name}
                   fill
-                  className="object-cover object-center drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
+                  className="object-contain object-center drop-shadow-[0_12px_20px_rgba(0,0,0,0.18)] transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
                   sizes="(max-width: 640px) 140px, (max-width: 1024px) 200px, 280px"
                 />
               </div>
