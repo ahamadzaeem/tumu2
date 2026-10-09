@@ -83,7 +83,7 @@ export default function Flavours() {
   };
 
   return (
-    <section id="flavours" className="relative w-full bg-[#5CBEB3] py-20 overflow-hidden">
+    <section id="flavours" className="relative w-full bg-[#50B8B1] py-20 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-20">
         
         {/* Section Header */}
@@ -106,13 +106,15 @@ export default function Flavours() {
             <div className="flex items-center gap-3">
               <button 
                 onClick={() => handleScroll("left")}
-                className="w-10 h-10 rounded-full border border-[#162B3A]/20 flex items-center justify-center text-[#162B3A] hover:bg-[#DB3E59] hover:text-white hover:border-[#DB3E59] transition-colors"
+                className="w-10 h-10 rounded-full border border-[#DB3E59]/40 flex items-center justify-center text-[#DB3E59] hover:bg-[#DB3E59] hover:text-white transition-colors"
+                aria-label="Previous flavours"
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => handleScroll("right")}
-                className="w-10 h-10 rounded-full border border-[#162B3A]/20 flex items-center justify-center text-[#162B3A] hover:bg-[#DB3E59] hover:text-white hover:border-[#DB3E59] transition-colors"
+                className="w-10 h-10 rounded-full border border-[#DB3E59]/40 flex items-center justify-center text-[#DB3E59] hover:bg-[#DB3E59] hover:text-white transition-colors"
+                aria-label="Next flavours"
               >
                 <ArrowRight className="w-5 h-5" />
               </button>
@@ -121,17 +123,17 @@ export default function Flavours() {
         </div>
 
         {/* Filter Bar */}
-        <div className="flex items-center gap-8 overflow-x-auto no-scrollbar mb-16 pb-2">
+        <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar mb-16 pb-2">
           {categories.map((cat) => {
             const isActive = activeCategory === cat;
             return (
                <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 shrink-0 ${
+                className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-black tracking-wider uppercase transition-all duration-300 shrink-0 ${
                   isActive
                     ? "bg-[#DB3E59] text-white shadow-md"
-                    : "bg-white/40 text-[#162B3A] hover:bg-white/70"
+                    : "bg-white/30 text-[#162B3A] hover:bg-white/60 hover:text-[#DB3E59]"
                 }`}
               >
                 {cat}
@@ -162,7 +164,7 @@ export default function Flavours() {
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#162B3A] font-bold text-center text-sm sm:text-base leading-tight px-2">
+              <h3 className="text-[#162B3A] font-extrabold text-center text-sm sm:text-base leading-tight px-2 group-hover:text-[#DB3E59] transition-colors">
                 {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
