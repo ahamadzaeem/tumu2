@@ -115,11 +115,11 @@ export default function FlavorsPage() {
           {FLAVORS.map((flavor) => (
             <div 
               key={flavor.id} 
-              className={`group relative ${flavor.color} rounded-[120px] p-8 pb-16 pt-32 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 flex flex-col items-center text-center border-none mt-24`}
+              className={`group relative ${flavor.color} rounded-[120px] p-8 pb-16 pt-36 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 flex flex-col items-center text-center border-none mt-36`}
             >
               {/* Product Image popping out of the card */}
-              <div className="absolute -top-32 w-full flex justify-center h-[280px] z-20">
-                <div className="relative w-[140px] h-full">
+              <div className="absolute -top-44 w-full flex justify-center h-[420px] sm:h-[480px] z-20">
+                <div className="relative w-[220px] sm:w-[260px] h-full">
                   <Image 
                     src={flavor.image} 
                     alt={flavor.name}
@@ -129,7 +129,7 @@ export default function FlavorsPage() {
                 </div>
               </div>
               
-              <div className="relative z-10 mt-20 flex flex-col items-center">
+              <div className="relative z-10 mt-36 flex flex-col items-center">
                 <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-6 ${flavor.tagBg} ${flavor.tagText}`}>
                   {flavor.tag}
                 </span>
