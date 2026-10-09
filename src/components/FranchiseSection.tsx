@@ -60,10 +60,10 @@ export default function FranchiseSection() {
       {/* Right Side Visual (60% desktop) - Single Storefront Image */}
       <div className="w-full lg:w-[60%] relative flex items-center justify-center bg-white z-20">
         <Image
-          src="/images/tumu/franchise_storefront_1_fixed_more.jpg"
+          src="/images/tumu/franchise_kiosk_cyan.jpg"
           alt="TUMU Architectural Franchise Storefront"
-          width={1200}
-          height={1200}
+          width={1536}
+          height={1024}
           className="w-full h-auto object-contain"
           priority
         />
