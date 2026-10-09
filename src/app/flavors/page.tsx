@@ -124,7 +124,7 @@ export default function FlavorsPage() {
                     src={flavor.image} 
                     alt={flavor.name}
                     fill
-                    className="object-cover object-center drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
+                    className="object-contain object-center drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
               </div>
