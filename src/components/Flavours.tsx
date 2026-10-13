@@ -1,79 +1,39 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-
-interface Flavour {
-  id: string;
-  name: string;
-  category: string;
-  image: string;
-}
+import { fetchFlavors, Flavor, DEFAULT_FLAVORS } from "@/lib/supabase";
 
 export default function Flavours() {
+  const [flavours, setFlavours] = useState<Flavor[]>(DEFAULT_FLAVORS);
   const [activeCategory, setActiveCategory] = useState<string>("ALL");
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const flavours: Flavour[] = [
-    {
-      id: "matcha_green_tea",
-      name: "Matcha Green Tea",
-      category: "ASIAN INSPIRED",
-      image: "/images/tumu/flavour_v3_04_matcha_green_tea.png",
-    },
-    {
-      id: "vanilla",
-      name: "Vanilla",
-      category: "CLASSIC",
-      image: "/images/tumu/flavour_v3_02_vanilla.png",
-    },
-    {
-      id: "pistachio_crunch",
-      name: "Pistachio Crunch",
-      category: "SIGNATURE",
-      image: "/images/tumu/flavour_v3_08_pistachio_crunch.png",
-    },
-    {
-      id: "strawberry_bliss",
-      name: "Strawberry Bliss",
-      category: "FRUIT BLENDS",
-      image: "/images/tumu/flavour_v3_05_strawberry_bliss.png",
-    },
-    {
-      id: "dark_chocolate",
-      name: "Dark Chocolate",
-      category: "CLASSIC",
-      image: "/images/tumu/flavour_v3_01_dark_chocolate.png",
-    },
-    {
-      id: "tiramisu_indulgence",
-      name: "Tiramisu Indulgence",
-      category: "SIGNATURE",
-      image: "/images/tumu/flavour_v3_07_tiramisu_indulgence.png",
-    },
-    {
-      id: "mango_infusion",
-      name: "Mango Infusion",
-      category: "FRUIT BLENDS",
-      image: "/images/tumu/flavour_v2_new_mango.png",
-    },
-    {
-      id: "lotus_biscoff",
-      name: "Lotus Biscoff",
-      category: "SIGNATURE",
-      image: "/images/tumu/flavour_v3_03_lotus_biscoff.png",
-    },
-  ];
+  useEffect(() => {
+    let isMounted = true;
+    async function loadFlavors() {
+      const data = await fetchFlavors();
+      if (isMounted && data && data.length > 0) {
+        setFlavours(data);
+      }
+    }
+    loadFlavors();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
-  const categories = ["ALL", "CLASSIC", "SIGNATURE", "ASIAN INSPIRED", "FRUIT BLENDS"];
+  // Compute dynamic categories based on loaded flavors
+  const distinctCategories = Array.from(
+    new Set(flavours.map((f) => f.category).filter(Boolean))
+  );
+  const categories = ["ALL", ...distinctCategories];
 
   const filteredFlavours =
     activeCategory === "ALL"
       ? flavours
-      : flavours.filter(
-          (f) => f.category === activeCategory
-        );
+      : flavours.filter((f) => f.category === activeCategory);
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollRef.current) {

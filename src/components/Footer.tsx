@@ -62,7 +62,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#stores" className="hover:text-[#DB3E59] transition-colors">
+                <Link href="/find-us" className="hover:text-[#DB3E59] transition-colors">
                   Where to Buy
                 </Link>
               </li>

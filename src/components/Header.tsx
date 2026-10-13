@@ -22,6 +22,7 @@ export default function Header() {
     { label: "Story", href: "/story" },
     { label: "Franchise", href: "/franchise" },
     { label: "Flavors", href: "/flavors" },
+    { label: "Find Us", href: "/find-us" },
     { label: "Events", href: "/catering" },
     { label: "Contact", href: "/contact" },
   ];
