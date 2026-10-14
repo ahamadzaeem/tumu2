@@ -34,7 +34,9 @@ export interface StoreLocation {
   country?: string;
   phone?: string;
   opening_hours?: string;
+  hours?: string;
   google_maps_url: string;
+  map_embed_url?: string;
   latitude?: number;
   longitude?: number;
   image?: string;
