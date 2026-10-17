@@ -214,49 +214,67 @@ export default function VideoScrollHero() {
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
 
-        {/* Very Light Subtle Soft Gradient Overlay (Left to Center) */}
-        <div className="absolute inset-y-0 left-0 w-full md:w-[52%] bg-gradient-to-r from-[#F8F4EC]/75 via-[#F8F4EC]/35 to-transparent z-10 pointer-events-none" />
+        {/* Subtle Ambient Vignette (very soft, preserves video clarity) */}
+        <div className="absolute inset-0 bg-radial-gradient pointer-events-none z-10 opacity-30" />
 
-        {/* Floating Checkpoint UI (Matched exact design from reference image) */}
-        <div className="relative z-30 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex items-center justify-between pointer-events-none">
-          
-          <div className="max-w-[560px]">
-            {/* Dynamic Text Checkpoint Box */}
+        {/* Floating Checkpoint Card - Positioned cleanly in bottom-left corner */}
+        <div className="absolute inset-x-0 bottom-8 sm:bottom-10 lg:bottom-12 z-30 pointer-events-none">
+          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex flex-col items-start justify-end">
+            
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCheckpointIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="flex flex-col items-start"
+                initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -15, scale: 0.98 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="pointer-events-auto bg-[#FAF4E7]/94 backdrop-blur-xl border border-white/90 rounded-[26px] sm:rounded-[30px] p-5 sm:p-6 shadow-[0_16px_40px_rgba(22,43,58,0.12)] max-w-[330px] sm:max-w-[365px] flex flex-col items-start"
               >
-                {/* 1. Subtitle Category Tag */}
-                <span className="font-black text-xs sm:text-sm uppercase tracking-[0.18em] mb-3 text-[#162B3A]">
-                  {activeCheckpoint.subtitle}
-                </span>
+                {/* Checkpoint Step Indicator & Category */}
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-black tracking-widest text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full uppercase">
+                    0{activeCheckpointIndex + 1} / 04
+                  </span>
+                  <span className="font-black text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#162B3A]/70">
+                    {activeCheckpoint.subtitle}
+                  </span>
+                </div>
 
-                {/* 2. Main Headline in 2 lines in primary brand color */}
-                <h1 className={`text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-6 ${activeCheckpoint.textColor}`}>
+                {/* Main Headline */}
+                <h2 className={`text-xl sm:text-2xl lg:text-[26px] font-black uppercase tracking-tight leading-[1] mb-2.5 ${activeCheckpoint.textColor}`}>
                   <span className="block">{activeCheckpoint.titleLine1}</span>
                   <span className="block">{activeCheckpoint.titleLine2}</span>
-                </h1>
+                </h2>
 
-                {/* 3. Description subtext in black/dark navy */}
-                <p className="text-[#162B3A] font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[440px] mb-8">
+                {/* Description subtext */}
+                <p className="text-[#162B3A]/85 font-semibold text-xs sm:text-[13px] leading-relaxed mb-4">
                   {activeCheckpoint.description}
                 </p>
 
-                {/* 4. Pink Pill Button */}
-                <div className="pointer-events-auto">
-                  <PillButton variant="pink" showArrow>
+                {/* Compact Pill Button & Step Indicators */}
+                <div className="w-full flex items-center justify-between gap-3 pt-3 border-t border-[#162B3A]/10">
+                  <PillButton variant="pink" showArrow className="!h-[38px] !px-4 !text-xs font-black">
                     {activeCheckpoint.btnText}
                   </PillButton>
+
+                  {/* 4 Mini Progress Dots */}
+                  <div className="flex items-center gap-1.5">
+                    {CHECKPOINTS.map((_, idx) => (
+                      <div
+                        key={idx}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          idx === activeCheckpointIndex
+                            ? "w-5 bg-[#DB3E59]"
+                            : "w-1.5 bg-[#162B3A]/20"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
-          </div>
 
+          </div>
         </div>
 
         {/* Bottom Scroll Cue */}
