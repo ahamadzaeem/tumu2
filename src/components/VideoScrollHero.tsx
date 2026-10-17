@@ -217,8 +217,8 @@ export default function VideoScrollHero() {
         {/* Subtle Ambient Vignette (very soft, preserves video clarity) */}
         <div className="absolute inset-0 bg-radial-gradient pointer-events-none z-10 opacity-30" />
 
-        {/* Floating Checkpoint Card - Positioned cleanly in bottom-left corner */}
-        <div className="absolute inset-x-0 bottom-8 sm:bottom-10 lg:bottom-12 z-30 pointer-events-none">
+        {/* Floating Checkpoint - Apple-style Liquid Glass Capsule (Organic, Non-Boxy) */}
+        <div className="absolute inset-x-0 bottom-7 sm:bottom-9 lg:bottom-11 z-30 pointer-events-none">
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex flex-col items-start justify-end">
             
             <AnimatePresence mode="wait">
@@ -228,44 +228,47 @@ export default function VideoScrollHero() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -15, scale: 0.98 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="pointer-events-auto bg-[#FAF4E7]/94 backdrop-blur-xl border border-white/90 rounded-[26px] sm:rounded-[30px] p-5 sm:p-6 shadow-[0_16px_40px_rgba(22,43,58,0.12)] max-w-[330px] sm:max-w-[365px] flex flex-col items-start"
+                className="pointer-events-auto relative overflow-hidden backdrop-blur-2xl backdrop-saturate-150 bg-gradient-to-b from-white/45 via-white/25 to-white/15 border border-white/50 border-t-white/85 border-l-white/65 rounded-[36px] sm:rounded-[42px] p-5 sm:p-6 shadow-[0_24px_48px_-12px_rgba(22,43,58,0.12),inset_0_1.5px_2px_0_rgba(255,255,255,0.95),inset_0_-1px_2px_0_rgba(22,43,58,0.04)] max-w-[325px] sm:max-w-[360px] flex flex-col items-start"
               >
-                {/* Checkpoint Step Indicator & Category */}
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[10px] font-black tracking-widest text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full uppercase">
+                {/* Specular Liquid Glare Accent (Subtle top glow) */}
+                <div className="absolute -top-12 -left-12 w-32 h-32 bg-white/40 rounded-full blur-2xl pointer-events-none" />
+
+                {/* Checkpoint Step Indicator & Category - Liquid Glass Mini Pill */}
+                <div className="flex items-center gap-2 mb-2 relative z-10">
+                  <span className="text-[10px] font-black tracking-widest text-[#DB3E59] bg-white/60 backdrop-blur-md border border-white/70 px-2.5 py-0.5 rounded-full uppercase shadow-xs">
                     0{activeCheckpointIndex + 1} / 04
                   </span>
-                  <span className="font-black text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#162B3A]/70">
+                  <span className="font-black text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#162B3A]/75">
                     {activeCheckpoint.subtitle}
                   </span>
                 </div>
 
                 {/* Main Headline */}
-                <h2 className={`text-xl sm:text-2xl lg:text-[26px] font-black uppercase tracking-tight leading-[1] mb-2.5 ${activeCheckpoint.textColor}`}>
+                <h2 className={`text-xl sm:text-2xl lg:text-[25px] font-black uppercase tracking-tight leading-[1] mb-2.5 relative z-10 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] ${activeCheckpoint.textColor}`}>
                   <span className="block">{activeCheckpoint.titleLine1}</span>
                   <span className="block">{activeCheckpoint.titleLine2}</span>
                 </h2>
 
                 {/* Description subtext */}
-                <p className="text-[#162B3A]/85 font-semibold text-xs sm:text-[13px] leading-relaxed mb-4">
+                <p className="text-[#162B3A]/85 font-semibold text-xs sm:text-[13px] leading-relaxed mb-4 relative z-10">
                   {activeCheckpoint.description}
                 </p>
 
                 {/* Compact Pill Button & Step Indicators */}
-                <div className="w-full flex items-center justify-between gap-3 pt-3 border-t border-[#162B3A]/10">
-                  <PillButton variant="pink" showArrow className="!h-[38px] !px-4 !text-xs font-black">
+                <div className="w-full flex items-center justify-between gap-3 pt-3 border-t border-white/40 relative z-10">
+                  <PillButton variant="pink" showArrow className="!h-[38px] !px-4 !text-xs font-black shadow-md hover:shadow-lg">
                     {activeCheckpoint.btnText}
                   </PillButton>
 
-                  {/* 4 Mini Progress Dots */}
-                  <div className="flex items-center gap-1.5">
+                  {/* 4 Mini Progress Dots inside glass capsule */}
+                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-white/50">
                     {CHECKPOINTS.map((_, idx) => (
                       <div
                         key={idx}
                         className={`h-1.5 rounded-full transition-all duration-300 ${
                           idx === activeCheckpointIndex
-                            ? "w-5 bg-[#DB3E59]"
-                            : "w-1.5 bg-[#162B3A]/20"
+                            ? "w-4 bg-[#DB3E59]"
+                            : "w-1.5 bg-[#162B3A]/25"
                         }`}
                       />
                     ))}
