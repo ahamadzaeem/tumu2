@@ -22,11 +22,11 @@ export default function PillButton({
     "inline-flex items-center justify-center gap-2 h-[48px] px-7 rounded-full font-bold text-sm tracking-wide transition-all duration-200 active:scale-95 cursor-pointer shadow-sm hover:shadow-md";
 
   const variantStyles = {
-    pink: "bg-[#DB3E59] text-white hover:bg-[#D81F51]",
-    white: "bg-white text-[#162B3A] hover:bg-[#F0EBE1]",
-    cyan: "bg-[#5CBEB3] text-white hover:bg-[#2AA0BC]",
+    pink: "bg-[#DD4561] text-white hover:bg-[#C9334F]",
+    white: "bg-white text-[#162B3A] hover:bg-[#FAF4E7] border border-black/5",
+    cyan: "bg-[#4398CB] text-white hover:bg-[#3488BA]",
     outline:
-      "border-2 border-[#162B3A] text-[#162B3A] hover:bg-[#162B3A] hover:text-white",
+      "border-2 border-[#4398CB] text-[#162B3A] bg-white/70 backdrop-blur-sm hover:bg-[#4398CB] hover:text-white",
   };
 
   return (

@@ -213,30 +213,30 @@ export default function VideoScrollHero() {
             <div className="max-w-[460px] sm:max-w-[500px] flex flex-col items-start">
               
               {/* Creative Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-black/5 shadow-xs mb-4">
-                <span className="w-2 h-2 rounded-full bg-[#DB3E59] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-black/5 shadow-xs mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#DD4561] animate-pulse" />
                 <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#162B3A]">
                   CRAFTED IN JAPAN &bull; 職人の手作り
                 </span>
               </div>
 
-              {/* Bold Editorial Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black uppercase tracking-tight leading-[0.92] mb-5">
-                <span className="block text-[#162B3A]">A CRISP CRUST.</span>
-                <span className="block text-[#DB3E59]">
-                  A VELVET HEART<span className="text-[#DB3E59]">.</span>
+              {/* Bold Editorial Headline - Using Exact TUMU Logo Colors */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black uppercase tracking-tight leading-[0.92] mb-5 drop-shadow-[0_2px_10px_rgba(255,255,255,0.7)]">
+                <span className="block text-[#4398CB]">A CRISP CRUST.</span>
+                <span className="block text-[#DD4561]">
+                  A VELVET HEART<span className="text-[#DD4561]">.</span>
                 </span>
               </h1>
 
-              {/* Signature Pink Accent Bar */}
-              <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
+              {/* Signature Cyan to Pink Gradient Accent Bar */}
+              <div className="w-14 h-1.5 rounded-full bg-gradient-to-r from-[#4398CB] to-[#DD4561] mb-5" />
 
               {/* Evocative Subtitle */}
-              <p className="text-[#162B3A]/85 font-semibold text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-[420px] mb-8">
+              <p className="text-[#162B3A]/90 font-semibold text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-[420px] mb-8 drop-shadow-xs">
                 Japan&apos;s iconic choux pastry sticks, baked to golden caramelized crunch and filled cold to order with luscious artisanal cream.
               </p>
 
-              {/* Action Buttons */}
+              {/* Action Buttons - Brand Pink and Cyan Duo */}
               <div className="flex flex-wrap items-center gap-4">
                 <a href="#flavours">
                   <PillButton variant="pink" showArrow>
@@ -244,16 +244,16 @@ export default function VideoScrollHero() {
                   </PillButton>
                 </a>
                 <Link href="/find-us">
-                  <PillButton variant="outline" showArrow>
+                  <PillButton variant="cyan" showArrow>
                     Find a Store
                   </PillButton>
                 </Link>
               </div>
 
               {/* Creative Scroll Prompt */}
-              <div className="flex items-center gap-2.5 mt-8 text-xs font-bold uppercase tracking-wider text-[#162B3A]/60">
+              <div className="flex items-center gap-2.5 mt-8 text-xs font-bold uppercase tracking-wider text-[#162B3A]/70">
                 <span>Scroll down to crack the crust</span>
-                <span className="text-[#DB3E59] text-base animate-bounce">&darr;</span>
+                <span className="text-[#DD4561] text-base animate-bounce">&darr;</span>
               </div>
 
             </div>
@@ -282,21 +282,21 @@ export default function VideoScrollHero() {
           <div className="w-full max-w-[820px] mx-auto flex flex-col items-center text-center">
             
             {/* Climax Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-white/60 shadow-md mb-5">
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#DB3E59]">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-white/60 shadow-md mb-5">
+              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#DD4561]">
                 THE TUMU MOMENT &bull; 至福のひとくち
               </span>
             </div>
 
             {/* Grand Climax Headline */}
             <h2 className="text-4xl sm:text-6xl lg:text-[68px] font-black uppercase tracking-tight leading-[0.92] mb-5 drop-shadow-[0_2px_12px_rgba(255,255,255,0.7)]">
-              <span className="block text-[#162B3A]">EVERY BITE,</span>
-              <span className="block text-[#DB3E59]">
-                PURE HAPPINESS<span className="text-[#DB3E59]">.</span>
+              <span className="block text-[#4398CB]">EVERY BITE,</span>
+              <span className="block text-[#DD4561]">
+                PURE HAPPINESS<span className="text-[#DD4561]">.</span>
               </span>
             </h2>
 
-            <div className="w-14 h-1 bg-[#DB3E59] mb-5" />
+            <div className="w-16 h-1.5 rounded-full bg-gradient-to-r from-[#4398CB] to-[#DD4561] mb-5" />
 
             {/* Narrative Subtitle */}
             <p className="text-[#162B3A] font-bold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[560px] mb-8 drop-shadow-sm">
