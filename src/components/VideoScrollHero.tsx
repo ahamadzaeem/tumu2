@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import PillButton from "./PillButton";
 
-const TOTAL_FRAMES = 240;
+const TOTAL_FRAMES = 120;
 
 export default function VideoScrollHero() {
   const containerRef = useRef<HTMLDivElement>(null);
