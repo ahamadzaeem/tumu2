@@ -5,26 +5,39 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import PillButton from "./PillButton";
 
-const TOTAL_FRAMES = 120;
+const TOTAL_FRAMES = 240;
 
 export default function VideoScrollHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const lastFrameIndexRef = useRef<number>(-1);
+  const rafIdRef = useRef<number | null>(null);
+
+  const dimensionsRef = useRef({
+    width: 0,
+    height: 0,
+    drawW: 0,
+    drawH: 0,
+    offsetX: 0,
+    offsetY: 0,
+  });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const springConfig = { stiffness: 100, damping: 24, mass: 0.5 };
+  // ─── CREAMY SPRING PHYSICS ───
+  // Lower stiffness + balanced damping + slight inertia creates a velvety, buttery scroll feel
+  const springConfig = { stiffness: 45, damping: 18, mass: 0.6, restDelta: 0.0001 };
   const smoothProgress = useSpring(scrollYProgress, springConfig);
 
   const renderFrameRef = useRef<(progressVal: number) => void>(() => {});
 
   // ─── STORYTELLING TRANSITIONS ───
-  // 1. Initial text on the left: visible at frame 0, smoothly fades out as user scrolls
+  // 1. Initial text: visible at frame 0, smoothly fades out as user scrolls
   const initialOpacity = useTransform(smoothProgress, [0, 0.08, 0.14], [1, 0.9, 0]);
   const initialY = useTransform(smoothProgress, [0, 0.14], [0, -30]);
   const initialPointerEvents = useTransform(smoothProgress, (val) =>
@@ -33,7 +46,7 @@ export default function VideoScrollHero() {
 
   // 2. Middle section (0.14 to 0.80): ABSOLUTELY NO TEXT — pure cinematic video!
 
-  // 3. Last frame reveal (0.80 to 1.0): climax text & small CTA reveal over the frame
+  // 3. Last frame reveal (0.80 to 1.0): climax text & CTA reveal over the frame
   const finalOpacity = useTransform(smoothProgress, [0.78, 0.88, 1.0], [0, 1, 1]);
   const finalY = useTransform(smoothProgress, [0.78, 0.88], [35, 0]);
   const finalScale = useTransform(smoothProgress, [0.78, 0.88], [0.95, 1]);
@@ -50,20 +63,68 @@ export default function VideoScrollHero() {
   // Bottom scroll cue fades out quickly as user starts scrolling
   const scrollCueOpacity = useTransform(smoothProgress, [0, 0.06], [0.8, 0]);
 
-  // Render current frame on canvas
+  // Pre-calculate and cache canvas dimensions to avoid GPU context reset during scroll
+  const updateDimensions = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.min(typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1, 2);
+    const bufferW = Math.round(rect.width * dpr);
+    const bufferH = Math.round(rect.height * dpr);
+
+    if (canvas.width !== bufferW || canvas.height !== bufferH) {
+      canvas.width = bufferW;
+      canvas.height = bufferH;
+    }
+
+    // 16:9 1080p source aspect ratio
+    const imgAspect = 16 / 9;
+    const canvasAspect = bufferW / (bufferH || 1);
+
+    let drawW = bufferW;
+    let drawH = bufferH;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    if (canvasAspect > imgAspect) {
+      drawH = Math.round(bufferW / imgAspect);
+      offsetY = Math.round((bufferH - drawH) / 2);
+    } else {
+      drawW = Math.round(bufferH * imgAspect);
+      offsetX = Math.round((bufferW - drawW) / 2);
+    }
+
+    dimensionsRef.current = {
+      width: bufferW,
+      height: bufferH,
+      drawW,
+      drawH,
+      offsetX,
+      offsetY,
+    };
+
+    lastFrameIndexRef.current = -1;
+  };
+
+  // Ultra-fast renderFrame: zero context reconfiguration, nearest-frame fallback
   const renderFrame = (progressVal: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
     const safeProgress = isNaN(progressVal) ? 0 : Math.min(1, Math.max(0, progressVal));
     const frameIndex = Math.min(
       TOTAL_FRAMES - 1,
-      Math.max(0, Math.floor(safeProgress * TOTAL_FRAMES))
+      Math.max(0, Math.floor(safeProgress * (TOTAL_FRAMES - 1)))
     );
 
-    // Get current frame image or fallback to nearest loaded image
+    // Skip redundant draw if frame hasn't changed
+    if (frameIndex === lastFrameIndexRef.current && lastFrameIndexRef.current !== -1) {
+      return;
+    }
+
     let img = imagesRef.current[frameIndex];
     if (!img || !img.complete || img.naturalWidth === 0) {
       for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
@@ -81,83 +142,66 @@ export default function VideoScrollHero() {
     }
 
     if (img && (img.complete || img.naturalWidth > 0)) {
-      const width = canvas.clientWidth || (typeof window !== "undefined" ? window.innerWidth : 1440);
-      const height = canvas.clientHeight || (typeof window !== "undefined" ? window.innerHeight : 900);
-
-      if (width > 0 && height > 0) {
-        if (canvas.width !== width || canvas.height !== height) {
-          canvas.width = width;
-          canvas.height = height;
-        }
-
-        const imgWidth = img.naturalWidth || img.width;
-        const imgHeight = img.naturalHeight || img.height;
-
-        if (imgWidth > 0 && imgHeight > 0) {
-          const imgAspect = imgWidth / imgHeight;
-          const canvasAspect = width / height;
-
-          let drawW = width;
-          let drawH = height;
-          let offsetX = 0;
-          let offsetY = 0;
-
-          if (canvasAspect > imgAspect) {
-            drawH = width / imgAspect;
-            offsetY = (height - drawH) / 2;
-          } else {
-            drawW = height * imgAspect;
-            offsetX = (width - drawW) / 2;
-          }
-
-          ctx.clearRect(0, 0, width, height);
-          ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
-        }
+      const { width, height, drawW, drawH, offsetX, offsetY } = dimensionsRef.current;
+      if (width > 0 && height > 0 && drawW > 0 && drawH > 0) {
+        ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
+        lastFrameIndexRef.current = frameIndex;
       }
     }
   };
 
   renderFrameRef.current = renderFrame;
 
-  // Preload all 120 frames & render frame 0 immediately upon load
+  // Progressive preloading of all 240 frames
   useEffect(() => {
     let loadedCount = 0;
     const loadedImages: HTMLImageElement[] = new Array(TOTAL_FRAMES);
     imagesRef.current = loadedImages;
 
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
+    // Load order: Priority 1: frame 0, Priority 2: every 4th frame, Priority 3: remaining frames
+    const order: number[] = [0];
+    for (let i = 4; i < TOTAL_FRAMES; i += 4) {
+      order.push(i);
+    }
+    for (let i = 1; i < TOTAL_FRAMES; i++) {
+      if (i % 4 !== 0) {
+        order.push(i);
+      }
+    }
+
+    order.forEach((i) => {
       const img = new Image();
       loadedImages[i] = img;
       const frameNum = String(i).padStart(3, "0");
 
       img.onload = () => {
         loadedCount++;
-        renderFrameRef.current(smoothProgress.get() || 0);
+        // As soon as frame 0 or initial frames load, trigger draw
+        if (i === 0 || loadedCount === 1) {
+          renderFrameRef.current(smoothProgress.get() || 0);
+        }
         if (loadedCount === TOTAL_FRAMES) {
           setImagesLoaded(true);
         }
       };
 
       img.src = `/images/tumu/scroll-frames/frame_${frameNum}.jpg`;
-    }
+    });
   }, []);
 
-  // Re-render frame whenever imagesLoaded changes
+  // Update canvas on smooth scroll progress and window resize
   useEffect(() => {
-    renderFrame(smoothProgress.get() || 0);
-  }, [imagesLoaded]);
-
-  // Update canvas on scroll and window resize
-  useEffect(() => {
-    const handleScroll = (val: number) => {
-      renderFrame(val);
-    };
+    updateDimensions();
 
     const unsubscribe = smoothProgress.on("change", (val) => {
-      handleScroll(val);
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = requestAnimationFrame(() => {
+        renderFrame(val);
+      });
     });
 
     const handleResize = () => {
+      updateDimensions();
       renderFrame(smoothProgress.get() || 0);
     };
 
@@ -169,15 +213,15 @@ export default function VideoScrollHero() {
 
     return () => {
       unsubscribe();
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
       if (typeof window !== "undefined") {
         window.removeEventListener("resize", handleResize);
       }
     };
-  }, [smoothProgress]);
-
+  }, [imagesLoaded]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[450vh] bg-[#F8F4EC]">
+    <section ref={containerRef} className="relative w-full h-[500vh] bg-[#F8F4EC]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
         {/* Canvas Background Video Frame Sequence */}
