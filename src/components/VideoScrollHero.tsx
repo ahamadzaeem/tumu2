@@ -205,7 +205,7 @@ export default function VideoScrollHero() {
             <div className="max-w-[460px] sm:max-w-[500px] flex flex-col items-start">
               
               {/* Bold Editorial Headline - Using Exact TUMU Logo Colors */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black uppercase tracking-tight leading-[0.92] mb-5 drop-shadow-[0_2px_10px_rgba(255,255,255,0.7)]">
+              <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black uppercase tracking-tight leading-[0.92] mb-5">
                 <span className="block text-[#4398CB]">A CRISP CRUST.</span>
                 <span className="block text-[#DD4561]">
                   A VELVET HEART<span className="text-[#DD4561]">.</span>
@@ -216,7 +216,7 @@ export default function VideoScrollHero() {
               <div className="w-14 h-1.5 rounded-full bg-gradient-to-r from-[#4398CB] to-[#DD4561] mb-5" />
 
               {/* Evocative Subtitle */}
-              <p className="text-[#162B3A]/90 font-semibold text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-[420px] mb-8 drop-shadow-xs">
+              <p className="text-[#162B3A]/90 font-semibold text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-[420px] mb-8">
                 Japan&apos;s iconic choux pastry sticks, baked to golden caramelized crunch and filled cold to order with luscious artisanal cream.
               </p>
 
@@ -266,7 +266,7 @@ export default function VideoScrollHero() {
           <div className="w-full max-w-[820px] mx-auto flex flex-col items-center text-center">
 
             {/* Grand Climax Headline */}
-            <h2 className="text-4xl sm:text-6xl lg:text-[68px] font-black uppercase tracking-tight leading-[0.92] mb-5 drop-shadow-[0_2px_12px_rgba(255,255,255,0.7)]">
+            <h2 className="text-4xl sm:text-6xl lg:text-[68px] font-black uppercase tracking-tight leading-[0.92] mb-5">
               <span className="block text-[#4398CB]">EVERY BITE,</span>
               <span className="block text-[#DD4561]">
                 PURE HAPPINESS<span className="text-[#DD4561]">.</span>
@@ -276,7 +276,7 @@ export default function VideoScrollHero() {
             <div className="w-16 h-1.5 rounded-full bg-gradient-to-r from-[#4398CB] to-[#DD4561] mb-5" />
 
             {/* Narrative Subtitle */}
-            <p className="text-[#162B3A] font-bold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[560px] mb-8 drop-shadow-sm">
+            <p className="text-[#162B3A] font-bold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[560px] mb-8">
               Baked fresh throughout the day and filled cold right in front of you. Never pre-filled, always extraordinary.
             </p>
 
