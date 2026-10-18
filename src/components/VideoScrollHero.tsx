@@ -202,10 +202,10 @@ export default function VideoScrollHero() {
           className="absolute inset-0 z-30 flex items-center pt-16 sm:pt-20"
         >
           <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
-            <div className="max-w-[540px] sm:max-w-[620px] flex flex-col items-start">
+            <div className="max-w-[620px] lg:max-w-[680px] flex flex-col items-start">
               
-              {/* Bold Editorial Headline - Sughoiy Brand Font with Enhanced Visibility */}
-              <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] font-normal uppercase tracking-tight leading-[0.92] mb-7 drop-shadow-[0_4px_16px_rgba(22,43,58,0.22)]">
+              {/* Bold Editorial Headline - Titan One Font with Enhanced Visibility */}
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[62px] xl:text-[68px] font-normal uppercase tracking-tight leading-[0.95] mb-7 drop-shadow-[0_4px_16px_rgba(22,43,58,0.22)]">
                 <span className="block text-[#318EC7]">A CRISP CRUST.</span>
                 <span className="block text-[#DE3558]">
                   A VELVET HEART<span className="text-[#DE3558]">.</span>
@@ -224,12 +224,6 @@ export default function VideoScrollHero() {
                     Find a Store
                   </PillButton>
                 </Link>
-              </div>
-
-              {/* Creative Scroll Prompt */}
-              <div className="flex items-center gap-2 mt-7 text-xs font-bold uppercase tracking-wider text-[#162B3A]/70">
-                <span>Scroll down to crack the crust</span>
-                <span className="text-[#DE3558] text-sm animate-bounce">&darr;</span>
               </div>
 
             </div>
@@ -257,8 +251,8 @@ export default function VideoScrollHero() {
         >
           <div className="w-full max-w-[880px] mx-auto flex flex-col items-center text-center">
 
-            {/* Grand Climax Headline - Sughoiy Brand Font with Enhanced Visibility */}
-            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[80px] xl:text-[90px] font-normal uppercase tracking-tight leading-[0.92] mb-8 drop-shadow-[0_4px_24px_rgba(22,43,58,0.28)]">
+            {/* Grand Climax Headline - Titan One Font with Enhanced Visibility */}
+            <h2 className="font-heading text-4xl sm:text-6xl lg:text-[70px] xl:text-[78px] font-normal uppercase tracking-tight leading-[0.95] mb-8 drop-shadow-[0_4px_24px_rgba(22,43,58,0.28)]">
               <span className="block text-[#318EC7]">EVERY BITE,</span>
               <span className="block text-[#DE3558]">
                 PURE HAPPINESS<span className="text-[#DE3558]">.</span>
