@@ -63,8 +63,8 @@ export default function ProductAnatomy() {
       opacity: opacityCrunch,
       yPos: yCrunch,
       lineScale: lineCrunch,
-      color: "text-[#5CBEB3]", // Cyan
-      lineBg: "bg-[#5CBEB3]"
+      color: "text-[#318EC7]", // Brand Cyan
+      lineBg: "bg-[#318EC7]"
     },
     {
       num: "02",
@@ -73,8 +73,8 @@ export default function ProductAnatomy() {
       opacity: opacityCream,
       yPos: yCream,
       lineScale: lineCream,
-      color: "text-[#DB3E59]", // Pink
-      lineBg: "bg-[#DB3E59]"
+      color: "text-[#DE3558]", // Brand Pink
+      lineBg: "bg-[#DE3558]"
     },
   ];
 
@@ -102,8 +102,8 @@ export default function ProductAnatomy() {
               style={{ opacity: feature.opacity, y: feature.yPos }}
               className="absolute top-1/2 -translate-y-1/2 w-full flex flex-col"
             >
-              {/* Massive Background Number */}
-              <div className={`absolute -left-6 -top-16 lg:-left-12 lg:-top-24 text-[140px] lg:text-[180px] font-black opacity-20 ${feature.color} select-none pointer-events-none leading-none tracking-tighter mix-blend-multiply`}>
+              {/* Massive Background Number - Enhanced Visibility */}
+              <div className={`absolute -left-6 -top-16 lg:-left-12 lg:-top-24 text-[140px] lg:text-[180px] font-heading font-normal opacity-50 sm:opacity-60 ${feature.color} select-none pointer-events-none leading-none tracking-tight`}>
                 {feature.num}
               </div>
               
