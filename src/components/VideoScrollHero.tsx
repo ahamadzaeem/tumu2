@@ -190,7 +190,7 @@ export default function VideoScrollHero() {
         />
 
         {/* ════════════════════════════════════════════════════════════════
-            PHASE 1: CREATIVE INITIAL TEXT (LEFT SIDE - BEFORE SCROLLING)
+            PHASE 1: CREATIVE INITIAL TEXT (CENTERED - BEFORE SCROLLING)
             Fades out smoothly as the user begins scrolling.
            ════════════════════════════════════════════════════════════════ */}
         <motion.div
@@ -199,34 +199,32 @@ export default function VideoScrollHero() {
             y: initialY,
             pointerEvents: initialPointerEvents as any,
           }}
-          className="absolute inset-0 z-30 flex items-center pt-16 sm:pt-20"
+          className="absolute inset-0 z-30 flex items-center justify-center p-6 pt-16 sm:pt-20"
         >
-          <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
-            <div className="max-w-[620px] lg:max-w-[680px] flex flex-col items-start">
-              
-              {/* Bold Editorial Headline - Titan One Font with Enhanced Visibility */}
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-[62px] xl:text-[68px] font-normal uppercase tracking-tight leading-[0.95] mb-7 drop-shadow-[0_4px_16px_rgba(22,43,58,0.22)]">
-                <span className="block text-[#318EC7]">A CRISP CRUST.</span>
-                <span className="block text-[#DE3558]">
-                  A VELVET HEART<span className="text-[#DE3558]">.</span>
-                </span>
-              </h1>
+          <div className="w-full max-w-[900px] mx-auto flex flex-col items-center text-center">
+            
+            {/* Bold Editorial Headline - Titan One Font Centered */}
+            <h1 className="font-heading text-4xl sm:text-6xl lg:text-[70px] xl:text-[78px] font-normal uppercase tracking-tight leading-[0.95] mb-8 drop-shadow-[0_4px_24px_rgba(22,43,58,0.26)]">
+              <span className="block text-[#318EC7]">A CRISP CRUST.</span>
+              <span className="block text-[#DE3558]">
+                A VELVET HEART<span className="text-[#DE3558]">.</span>
+              </span>
+            </h1>
 
-              {/* Action Buttons - Brand Pink and Cyan Duo */}
-              <div className="flex flex-wrap items-center gap-4">
-                <a href="#flavours">
-                  <PillButton variant="pink" showArrow>
-                    Explore Our Flavours
-                  </PillButton>
-                </a>
-                <Link href="/find-us">
-                  <PillButton variant="cyan" showArrow>
-                    Find a Store
-                  </PillButton>
-                </Link>
-              </div>
-
+            {/* Action Buttons - Brand Pink and Cyan Duo Centered */}
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <a href="#flavours">
+                <PillButton variant="pink" showArrow>
+                  Explore Our Flavours
+                </PillButton>
+              </a>
+              <Link href="/find-us">
+                <PillButton variant="cyan" showArrow>
+                  Find a Store
+                </PillButton>
+              </Link>
             </div>
+
           </div>
         </motion.div>
 
