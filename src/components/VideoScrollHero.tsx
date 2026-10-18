@@ -202,23 +202,15 @@ export default function VideoScrollHero() {
           className="absolute inset-0 z-30 flex items-center pt-16 sm:pt-20"
         >
           <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
-            <div className="max-w-[460px] sm:max-w-[500px] flex flex-col items-start">
+            <div className="max-w-[540px] sm:max-w-[620px] flex flex-col items-start">
               
-              {/* Bold Editorial Headline - Using Exact TUMU Logo Colors */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black uppercase tracking-tight leading-[0.92] mb-5">
-                <span className="block text-[#4398CB]">A CRISP CRUST.</span>
-                <span className="block text-[#DD4561]">
-                  A VELVET HEART<span className="text-[#DD4561]">.</span>
+              {/* Bold Editorial Headline - Sughoiy Brand Font with Enhanced Visibility */}
+              <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] font-normal uppercase tracking-tight leading-[0.92] mb-7 drop-shadow-[0_4px_16px_rgba(22,43,58,0.22)]">
+                <span className="block text-[#318EC7]">A CRISP CRUST.</span>
+                <span className="block text-[#DE3558]">
+                  A VELVET HEART<span className="text-[#DE3558]">.</span>
                 </span>
               </h1>
-
-              {/* Signature Cyan to Pink Gradient Accent Bar */}
-              <div className="w-14 h-1.5 rounded-full bg-gradient-to-r from-[#4398CB] to-[#DD4561] mb-5" />
-
-              {/* Evocative Subtitle */}
-              <p className="text-[#162B3A]/90 font-semibold text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-[420px] mb-8">
-                Japan&apos;s iconic choux pastry sticks, baked to golden caramelized crunch and filled cold to order with luscious artisanal cream.
-              </p>
 
               {/* Action Buttons - Brand Pink and Cyan Duo */}
               <div className="flex flex-wrap items-center gap-4">
@@ -235,9 +227,9 @@ export default function VideoScrollHero() {
               </div>
 
               {/* Creative Scroll Prompt */}
-              <div className="flex items-center gap-2.5 mt-8 text-xs font-bold uppercase tracking-wider text-[#162B3A]/70">
+              <div className="flex items-center gap-2 mt-7 text-xs font-bold uppercase tracking-wider text-[#162B3A]/70">
                 <span>Scroll down to crack the crust</span>
-                <span className="text-[#DD4561] text-base animate-bounce">&darr;</span>
+                <span className="text-[#DE3558] text-sm animate-bounce">&darr;</span>
               </div>
 
             </div>
@@ -263,25 +255,18 @@ export default function VideoScrollHero() {
           }}
           className="absolute inset-0 z-30 flex items-center justify-center p-6"
         >
-          <div className="w-full max-w-[820px] mx-auto flex flex-col items-center text-center">
+          <div className="w-full max-w-[880px] mx-auto flex flex-col items-center text-center">
 
-            {/* Grand Climax Headline */}
-            <h2 className="text-4xl sm:text-6xl lg:text-[68px] font-black uppercase tracking-tight leading-[0.92] mb-5">
-              <span className="block text-[#4398CB]">EVERY BITE,</span>
-              <span className="block text-[#DD4561]">
-                PURE HAPPINESS<span className="text-[#DD4561]">.</span>
+            {/* Grand Climax Headline - Sughoiy Brand Font with Enhanced Visibility */}
+            <h2 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[80px] xl:text-[90px] font-normal uppercase tracking-tight leading-[0.92] mb-8 drop-shadow-[0_4px_24px_rgba(22,43,58,0.28)]">
+              <span className="block text-[#318EC7]">EVERY BITE,</span>
+              <span className="block text-[#DE3558]">
+                PURE HAPPINESS<span className="text-[#DE3558]">.</span>
               </span>
             </h2>
 
-            <div className="w-16 h-1.5 rounded-full bg-gradient-to-r from-[#4398CB] to-[#DD4561] mb-5" />
-
-            {/* Narrative Subtitle */}
-            <p className="text-[#162B3A] font-bold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[560px] mb-8">
-              Baked fresh throughout the day and filled cold right in front of you. Never pre-filled, always extraordinary.
-            </p>
-
             {/* Small CTAs */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <a href="#flavours">
                 <PillButton variant="pink" showArrow>
                   Explore Our Flavours
