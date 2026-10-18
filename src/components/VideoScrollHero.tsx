@@ -172,14 +172,6 @@ export default function VideoScrollHero() {
     };
   }, [smoothProgress]);
 
-  const scrollToNext = () => {
-    const nextSection = document.getElementById("story-hero") || containerRef.current?.nextElementSibling;
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.scrollBy({ top: window.innerHeight * 1.5, behavior: "smooth" });
-    }
-  };
 
   return (
     <section ref={containerRef} className="relative w-full h-[450vh] bg-[#F8F4EC]">
@@ -212,14 +204,6 @@ export default function VideoScrollHero() {
           <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
             <div className="max-w-[460px] sm:max-w-[500px] flex flex-col items-start">
               
-              {/* Creative Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-black/5 shadow-xs mb-4">
-                <span className="w-2 h-2 rounded-full bg-[#DD4561] animate-pulse" />
-                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#162B3A]">
-                  CRAFTED IN JAPAN &bull; 職人の手作り
-                </span>
-              </div>
-
               {/* Bold Editorial Headline - Using Exact TUMU Logo Colors */}
               <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black uppercase tracking-tight leading-[0.92] mb-5 drop-shadow-[0_2px_10px_rgba(255,255,255,0.7)]">
                 <span className="block text-[#4398CB]">A CRISP CRUST.</span>
@@ -240,7 +224,7 @@ export default function VideoScrollHero() {
               <div className="flex flex-wrap items-center gap-4">
                 <a href="#flavours">
                   <PillButton variant="pink" showArrow>
-                    Explore Flavors
+                    Explore Our Flavours
                   </PillButton>
                 </a>
                 <Link href="/find-us">
@@ -280,13 +264,6 @@ export default function VideoScrollHero() {
           className="absolute inset-0 z-30 flex items-center justify-center p-6"
         >
           <div className="w-full max-w-[820px] mx-auto flex flex-col items-center text-center">
-            
-            {/* Climax Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-white/60 shadow-md mb-5">
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#DD4561]">
-                THE TUMU MOMENT &bull; 至福のひとくち
-              </span>
-            </div>
 
             {/* Grand Climax Headline */}
             <h2 className="text-4xl sm:text-6xl lg:text-[68px] font-black uppercase tracking-tight leading-[0.92] mb-5 drop-shadow-[0_2px_12px_rgba(255,255,255,0.7)]">
@@ -307,7 +284,7 @@ export default function VideoScrollHero() {
             <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
               <a href="#flavours">
                 <PillButton variant="pink" showArrow>
-                  Taste Our 8 Flavors
+                  Explore Our Flavours
                 </PillButton>
               </a>
               <Link href="/find-us">
@@ -315,12 +292,6 @@ export default function VideoScrollHero() {
                   Visit a Store
                 </PillButton>
               </Link>
-              <button
-                onClick={scrollToNext}
-                className="px-6 py-3 rounded-full bg-white/80 hover:bg-white text-[#162B3A] font-bold text-xs uppercase tracking-wider backdrop-blur-md border border-black/5 transition-all shadow-sm"
-              >
-                Continue Story &darr;
-              </button>
             </div>
 
           </div>
