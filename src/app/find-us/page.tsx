@@ -14,11 +14,9 @@ import {
   Phone,
   Navigation,
   ExternalLink,
-  Search,
   Sparkles,
   Store,
   Compass,
-  ArrowUpRight,
   CheckCircle2,
   Coffee,
   Flame,
@@ -27,8 +25,6 @@ import {
 
 export default function FindUsPage() {
   const [locations, setLocations] = useState<StoreLocation[]>(DEFAULT_LOCATIONS);
-  const [selectedCity, setSelectedCity] = useState<string>("ALL");
-  const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeLocationId, setActiveLocationId] = useState<string>(DEFAULT_LOCATIONS[0].id);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -53,20 +49,8 @@ export default function FindUsPage() {
     };
   }, []);
 
-  const cities = ["ALL", ...Array.from(new Set(locations.map((loc) => loc.city).filter(Boolean)))];
-
-  const filteredLocations = locations.filter((loc) => {
-    const matchesCity = selectedCity === "ALL" || loc.city.toLowerCase() === selectedCity.toLowerCase();
-    const matchesSearch =
-      searchQuery === "" ||
-      loc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      loc.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      loc.city.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCity && matchesSearch;
-  });
-
   const activeLocation =
-    locations.find((l) => l.id === activeLocationId) || filteredLocations[0] || locations[0];
+    locations.find((l) => l.id === activeLocationId) || locations[0];
 
   const scrollToLocator = () => {
     const el = document.getElementById("store-locator-section");
@@ -129,34 +113,6 @@ export default function FindUsPage() {
                 </PillButton>
               </Link>
             </div>
-
-            {/* Quick Metrics Strip */}
-            <div className="grid grid-cols-3 gap-6 sm:gap-8 pt-10 mt-10 border-t border-[#162B3A]/10 w-full max-w-[480px]">
-              <div>
-                <span className="block text-2xl sm:text-3xl font-black text-[#162B3A] tracking-tight">
-                  {locations.length}
-                </span>
-                <span className="text-xs uppercase font-bold tracking-wider text-[#162B3A]/60">
-                  Global Stores
-                </span>
-              </div>
-              <div>
-                <span className="block text-2xl sm:text-3xl font-black text-[#DB3E59] tracking-tight">
-                  100%
-                </span>
-                <span className="text-xs uppercase font-bold tracking-wider text-[#162B3A]/60">
-                  Piped Fresh
-                </span>
-              </div>
-              <div>
-                <span className="block text-2xl sm:text-3xl font-black text-[#162B3A] tracking-tight">
-                  Google
-                </span>
-                <span className="text-xs uppercase font-bold tracking-wider text-[#162B3A]/60">
-                  Live Navigation
-                </span>
-              </div>
-            </div>
           </motion.div>
 
           {/* Right Column: Hero Store Composition */}
@@ -175,27 +131,6 @@ export default function FindUsPage() {
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#162B3A]/70 via-transparent to-black/10" />
-
-              {/* Floating Pill Badge */}
-              <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg flex items-center justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-xs font-black uppercase tracking-wider text-emerald-700">
-                      Now Serving Fresh
-                    </span>
-                  </div>
-                  <h2 className="text-base sm:text-lg font-black text-[#162B3A]">
-                    Shibuya &bull; Ginza &bull; Singapore &bull; Dubai
-                  </h2>
-                </div>
-                <button
-                  onClick={scrollToLocator}
-                  className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-[#DB3E59] text-white hover:scale-105 transition-all shadow-md"
-                >
-                  <ArrowUpRight className="w-5 h-5" />
-                </button>
-              </div>
             </div>
           </motion.div>
 
@@ -220,46 +155,6 @@ export default function FindUsPage() {
             </p>
           </div>
 
-          {/* Filter & Search Bar */}
-          <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-10 pb-6 border-b border-[#162B3A]/10">
-            {/* City Filter Pills */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              {cities.map((city) => (
-                <button
-                  key={city}
-                  onClick={() => setSelectedCity(city)}
-                  className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-black tracking-wider uppercase transition-all duration-300 ${
-                    selectedCity.toLowerCase() === city.toLowerCase()
-                      ? "bg-[#DB3E59] text-white shadow-md scale-105"
-                      : "bg-white/85 text-[#162B3A] hover:bg-white hover:text-[#DB3E59] border border-black/5"
-                  }`}
-                >
-                  {city}
-                </button>
-              ))}
-            </div>
-
-            {/* Search Input */}
-            <div className="relative w-full lg:w-96">
-              <Search className="w-4 h-4 text-[#162B3A]/40 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                type="text"
-                placeholder="Search store name, street, or city..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 rounded-full bg-white border border-[#162B3A]/10 text-sm font-semibold text-[#162B3A] placeholder-[#162B3A]/40 focus:outline-none focus:border-[#DB3E59] shadow-sm transition-all"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#162B3A]/50 hover:text-[#DB3E59]"
-                >
-                  Clear
-                </button>
-              )}
-            </div>
-          </div>
-
           {/* Two Column Layout: Store List (Left) & Google Maps View (Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             
@@ -267,21 +162,20 @@ export default function FindUsPage() {
             <div className="lg:col-span-5 flex flex-col gap-4 max-h-[820px] overflow-y-auto pr-2 no-scrollbar">
               <div className="flex items-center justify-between px-2 mb-1">
                 <span className="text-xs font-black uppercase tracking-wider text-[#162B3A]/60">
-                  {filteredLocations.length} {filteredLocations.length === 1 ? "Outlet" : "Outlets"} Available
+                  {locations.length} {locations.length === 1 ? "Outlet" : "Outlets"} Available
                 </span>
                 <span className="text-xs font-semibold text-[#DB3E59]">
                   Tap a store to view map
                 </span>
               </div>
 
-              {filteredLocations.length === 0 ? (
+              {locations.length === 0 ? (
                 <div className="p-10 text-center bg-white rounded-3xl border border-black/5 text-[#162B3A]/70 font-semibold shadow-sm">
                   <Store className="w-10 h-10 text-[#DB3E59] mx-auto mb-3 opacity-60" />
-                  <p className="text-base font-bold text-[#162B3A] mb-1">No outlets match your search</p>
-                  <p className="text-xs text-[#162B3A]/60">Try searching for &quot;Tokyo&quot;, &quot;Singapore&quot;, or clearing the filter.</p>
+                  <p className="text-base font-bold text-[#162B3A] mb-1">No outlets available</p>
                 </div>
               ) : (
-                filteredLocations.map((loc) => {
+                locations.map((loc) => {
                   const isSelected = activeLocation?.id === loc.id;
                   return (
                     <motion.div

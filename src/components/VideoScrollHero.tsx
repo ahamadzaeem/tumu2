@@ -1,61 +1,17 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import Link from "next/link";
 import PillButton from "./PillButton";
 
 const TOTAL_FRAMES = 120;
-
-const CHECKPOINTS = [
-  {
-    start: 0,
-    end: 0.25,
-    subtitle: "THE ART OF CRAFTSMANSHIP",
-    titleLine1: "FRESHLY BAKED",
-    titleLine2: "CRUNCH.",
-    description: "Every TUMU starts with our signature golden pastry dough, baked to crisp perfection.",
-    btnText: "Discover the process",
-    textColor: "text-[#DB3E59]"
-  },
-  {
-    start: 0.25,
-    end: 0.50,
-    subtitle: "SIGNATURE FILLING",
-    titleLine1: "VELVETY CREAM",
-    titleLine2: "INJECTION.",
-    description: "Generously injected with ultra-smooth, chilled artisanal cream from top to bottom.",
-    btnText: "Taste the cream",
-    textColor: "text-[#DB3E59]"
-  },
-  {
-    start: 0.50,
-    end: 0.75,
-    subtitle: "PERFECT HARMONY",
-    titleLine1: "CRISP & CREAM",
-    titleLine2: "BALANCE.",
-    description: "The irresistible contrast of warm, golden outer crunch and cool, silky cream inside.",
-    btnText: "Our flavours",
-    textColor: "text-[#DB3E59]"
-  },
-  {
-    start: 0.75,
-    end: 1.0,
-    subtitle: "PURE HAPPINESS",
-    titleLine1: "DISCOVER YOUR",
-    titleLine2: "TUMU.",
-    description: "Handcrafted daily for an unforgettable dessert experience in every bite.",
-    btnText: "Find a store",
-    textColor: "text-[#DB3E59]"
-  }
-];
 
 export default function VideoScrollHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [activeCheckpointIndex, setActiveCheckpointIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -66,6 +22,30 @@ export default function VideoScrollHero() {
   const smoothProgress = useSpring(scrollYProgress, springConfig);
 
   const renderFrameRef = useRef<(progressVal: number) => void>(() => {});
+
+  // ─── STORYTELLING TRANSITIONS ───
+  // 1. Initial text on the left: visible at frame 0, smoothly fades out as user scrolls
+  const initialOpacity = useTransform(smoothProgress, [0, 0.08, 0.14], [1, 0.9, 0]);
+  const initialY = useTransform(smoothProgress, [0, 0.14], [0, -30]);
+  const initialPointerEvents = useTransform(smoothProgress, (val) =>
+    val < 0.12 ? "auto" : "none"
+  );
+
+  // 2. Middle section (0.14 to 0.80): ABSOLUTELY NO TEXT — pure cinematic video!
+
+  // 3. Last frame reveal (0.80 to 1.0): climax text & small CTA reveal over the frame
+  const finalOpacity = useTransform(smoothProgress, [0.78, 0.88, 1.0], [0, 1, 1]);
+  const finalY = useTransform(smoothProgress, [0.78, 0.88], [35, 0]);
+  const finalScale = useTransform(smoothProgress, [0.78, 0.88], [0.95, 1]);
+  const finalPointerEvents = useTransform(smoothProgress, (val) =>
+    val > 0.8 ? "auto" : "none"
+  );
+
+  // Soft ambient overlay for the final climax reveal so text pops while video remains visible
+  const finalBackdropOpacity = useTransform(smoothProgress, [0.78, 0.88], [0, 0.35]);
+
+  // Bottom scroll cue fades out quickly as user starts scrolling
+  const scrollCueOpacity = useTransform(smoothProgress, [0, 0.06], [0.8, 0]);
 
   // Render current frame on canvas
   const renderFrame = (progressVal: number) => {
@@ -140,7 +120,6 @@ export default function VideoScrollHero() {
   useEffect(() => {
     let loadedCount = 0;
     const loadedImages: HTMLImageElement[] = new Array(TOTAL_FRAMES);
-    // Assign imagesRef immediately BEFORE setting src or load handlers
     imagesRef.current = loadedImages;
 
     for (let i = 0; i < TOTAL_FRAMES; i++) {
@@ -150,7 +129,6 @@ export default function VideoScrollHero() {
 
       img.onload = () => {
         loadedCount++;
-        // Render immediately as soon as frame 0 or any early frame finishes loading
         renderFrameRef.current(smoothProgress.get() || 0);
         if (loadedCount === TOTAL_FRAMES) {
           setImagesLoaded(true);
@@ -170,13 +148,6 @@ export default function VideoScrollHero() {
   useEffect(() => {
     const handleScroll = (val: number) => {
       renderFrame(val);
-
-      const currentIdx = CHECKPOINTS.findIndex(
-        (cp) => val >= cp.start && val <= cp.end
-      );
-      if (currentIdx !== -1 && currentIdx !== activeCheckpointIndex) {
-        setActiveCheckpointIndex(currentIdx);
-      }
     };
 
     const unsubscribe = smoothProgress.on("change", (val) => {
@@ -191,7 +162,6 @@ export default function VideoScrollHero() {
       window.addEventListener("resize", handleResize);
     }
 
-    // Initial render attempt
     renderFrame(smoothProgress.get() || 0);
 
     return () => {
@@ -200,12 +170,19 @@ export default function VideoScrollHero() {
         window.removeEventListener("resize", handleResize);
       }
     };
-  }, [smoothProgress, activeCheckpointIndex]);
+  }, [smoothProgress]);
 
-  const activeCheckpoint = CHECKPOINTS[activeCheckpointIndex] || CHECKPOINTS[0];
+  const scrollToNext = () => {
+    const nextSection = document.getElementById("story-hero") || containerRef.current?.nextElementSibling;
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollBy({ top: window.innerHeight * 1.5, behavior: "smooth" });
+    }
+  };
 
   return (
-    <section ref={containerRef} className="relative w-full h-[500vh] bg-[#F8F4EC]">
+    <section ref={containerRef} className="relative w-full h-[450vh] bg-[#F8F4EC]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
         {/* Canvas Background Video Frame Sequence */}
@@ -214,83 +191,157 @@ export default function VideoScrollHero() {
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
 
-        {/* Subtle Ambient Vignette (very soft, preserves video clarity) */}
-        <div className="absolute inset-0 bg-radial-gradient pointer-events-none z-10 opacity-30" />
+        {/* Ambient Climax Backdrop (Fades in at the last frame to ensure text pop) */}
+        <motion.div
+          style={{ opacity: finalBackdropOpacity }}
+          className="absolute inset-0 bg-[#162B3A] pointer-events-none z-10"
+        />
 
-        {/* Floating Checkpoint - Apple-style Liquid Glass Capsule (Organic, Non-Boxy) */}
-        <div className="absolute inset-x-0 bottom-7 sm:bottom-9 lg:bottom-11 z-30 pointer-events-none">
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex flex-col items-start justify-end">
-            
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCheckpointIndex}
-                initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -15, scale: 0.98 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="pointer-events-auto relative overflow-hidden backdrop-blur-2xl backdrop-saturate-150 bg-gradient-to-b from-white/45 via-white/25 to-white/15 border border-white/50 border-t-white/85 border-l-white/65 rounded-[36px] sm:rounded-[42px] p-5 sm:p-6 shadow-[0_24px_48px_-12px_rgba(22,43,58,0.12),inset_0_1.5px_2px_0_rgba(255,255,255,0.95),inset_0_-1px_2px_0_rgba(22,43,58,0.04)] max-w-[325px] sm:max-w-[360px] flex flex-col items-start"
-              >
-                {/* Specular Liquid Glare Accent (Subtle top glow) */}
-                <div className="absolute -top-12 -left-12 w-32 h-32 bg-white/40 rounded-full blur-2xl pointer-events-none" />
+        {/* ════════════════════════════════════════════════════════════════
+            PHASE 1: CREATIVE INITIAL TEXT (LEFT SIDE - BEFORE SCROLLING)
+            Fades out smoothly as the user begins scrolling.
+           ════════════════════════════════════════════════════════════════ */}
+        <motion.div
+          style={{
+            opacity: initialOpacity,
+            y: initialY,
+            pointerEvents: initialPointerEvents as any,
+          }}
+          className="absolute inset-0 z-30 flex items-center pt-16 sm:pt-20"
+        >
+          <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
+            <div className="max-w-[460px] sm:max-w-[500px] flex flex-col items-start">
+              
+              {/* Creative Eyebrow Pill */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-black/5 shadow-xs mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#DB3E59] animate-pulse" />
+                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#162B3A]">
+                  CRAFTED IN JAPAN &bull; 職人の手作り
+                </span>
+              </div>
 
-                {/* Checkpoint Step Indicator & Category - Liquid Glass Mini Pill */}
-                <div className="flex items-center gap-2 mb-2 relative z-10">
-                  <span className="text-[10px] font-black tracking-widest text-[#DB3E59] bg-white/60 backdrop-blur-md border border-white/70 px-2.5 py-0.5 rounded-full uppercase shadow-xs">
-                    0{activeCheckpointIndex + 1} / 04
-                  </span>
-                  <span className="font-black text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-[#162B3A]/75">
-                    {activeCheckpoint.subtitle}
-                  </span>
-                </div>
+              {/* Bold Editorial Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black uppercase tracking-tight leading-[0.92] mb-5">
+                <span className="block text-[#162B3A]">A CRISP CRUST.</span>
+                <span className="block text-[#DB3E59]">
+                  A VELVET HEART<span className="text-[#DB3E59]">.</span>
+                </span>
+              </h1>
 
-                {/* Main Headline */}
-                <h2 className={`text-xl sm:text-2xl lg:text-[25px] font-black uppercase tracking-tight leading-[1] mb-2.5 relative z-10 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)] ${activeCheckpoint.textColor}`}>
-                  <span className="block">{activeCheckpoint.titleLine1}</span>
-                  <span className="block">{activeCheckpoint.titleLine2}</span>
-                </h2>
+              {/* Signature Pink Accent Bar */}
+              <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
 
-                {/* Description subtext */}
-                <p className="text-[#162B3A]/85 font-semibold text-xs sm:text-[13px] leading-relaxed mb-4 relative z-10">
-                  {activeCheckpoint.description}
-                </p>
+              {/* Evocative Subtitle */}
+              <p className="text-[#162B3A]/85 font-semibold text-sm sm:text-base lg:text-[17px] leading-relaxed max-w-[420px] mb-8">
+                Japan&apos;s iconic choux pastry sticks, baked to golden caramelized crunch and filled cold to order with luscious artisanal cream.
+              </p>
 
-                {/* Compact Pill Button & Step Indicators */}
-                <div className="w-full flex items-center justify-between gap-3 pt-3 border-t border-white/40 relative z-10">
-                  <PillButton variant="pink" showArrow className="!h-[38px] !px-4 !text-xs font-black shadow-md hover:shadow-lg">
-                    {activeCheckpoint.btnText}
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-4">
+                <a href="#flavours">
+                  <PillButton variant="pink" showArrow>
+                    Explore Flavors
                   </PillButton>
+                </a>
+                <Link href="/find-us">
+                  <PillButton variant="outline" showArrow>
+                    Find a Store
+                  </PillButton>
+                </Link>
+              </div>
 
-                  {/* 4 Mini Progress Dots inside glass capsule */}
-                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/40 backdrop-blur-sm border border-white/50">
-                    {CHECKPOINTS.map((_, idx) => (
-                      <div
-                        key={idx}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          idx === activeCheckpointIndex
-                            ? "w-4 bg-[#DB3E59]"
-                            : "w-1.5 bg-[#162B3A]/25"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+              {/* Creative Scroll Prompt */}
+              <div className="flex items-center gap-2.5 mt-8 text-xs font-bold uppercase tracking-wider text-[#162B3A]/60">
+                <span>Scroll down to crack the crust</span>
+                <span className="text-[#DB3E59] text-base animate-bounce">&darr;</span>
+              </div>
+
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ════════════════════════════════════════════════════════════════
+            PHASE 2: WHILE SCROLLING (FRAMES ~15 TO ~105)
+            NO TEXT, NOTHING!
+            Pure, unhindered, cinema-grade food animation.
+           ════════════════════════════════════════════════════════════════ */}
+
+        {/* ════════════════════════════════════════════════════════════════
+            PHASE 3: LAST FRAME REVEAL (CLIMAX TEXT & CTA)
+            Comes on the frame once the pastry is fully broken open.
+           ════════════════════════════════════════════════════════════════ */}
+        <motion.div
+          style={{
+            opacity: finalOpacity,
+            y: finalY,
+            scale: finalScale,
+            pointerEvents: finalPointerEvents as any,
+          }}
+          className="absolute inset-0 z-30 flex items-center justify-center p-6"
+        >
+          <div className="w-full max-w-[820px] mx-auto flex flex-col items-center text-center">
+            
+            {/* Climax Eyebrow Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-white/60 shadow-md mb-5">
+              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#DB3E59]">
+                THE TUMU MOMENT &bull; 至福のひとくち
+              </span>
+            </div>
+
+            {/* Grand Climax Headline */}
+            <h2 className="text-4xl sm:text-6xl lg:text-[68px] font-black uppercase tracking-tight leading-[0.92] mb-5 drop-shadow-[0_2px_12px_rgba(255,255,255,0.7)]">
+              <span className="block text-[#162B3A]">EVERY BITE,</span>
+              <span className="block text-[#DB3E59]">
+                PURE HAPPINESS<span className="text-[#DB3E59]">.</span>
+              </span>
+            </h2>
+
+            <div className="w-14 h-1 bg-[#DB3E59] mb-5" />
+
+            {/* Narrative Subtitle */}
+            <p className="text-[#162B3A] font-bold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[560px] mb-8 drop-shadow-sm">
+              Baked fresh throughout the day and filled cold right in front of you. Never pre-filled, always extraordinary.
+            </p>
+
+            {/* Small CTAs */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+              <a href="#flavours">
+                <PillButton variant="pink" showArrow>
+                  Taste Our 8 Flavors
+                </PillButton>
+              </a>
+              <Link href="/find-us">
+                <PillButton variant="white" showArrow>
+                  Visit a Store
+                </PillButton>
+              </Link>
+              <button
+                onClick={scrollToNext}
+                className="px-6 py-3 rounded-full bg-white/80 hover:bg-white text-[#162B3A] font-bold text-xs uppercase tracking-wider backdrop-blur-md border border-black/5 transition-all shadow-sm"
+              >
+                Continue Story &darr;
+              </button>
+            </div>
 
           </div>
-        </div>
+        </motion.div>
 
-        {/* Bottom Scroll Cue */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 opacity-75">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#162B3A]">Scroll to Explore</span>
-          <div className="w-5 h-9 rounded-full border-2 border-[#162B3A] flex justify-center p-1">
+        {/* Initial Scroll Cue (Only visible at the very beginning) */}
+        <motion.div
+          style={{ opacity: scrollCueOpacity }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none"
+        >
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#162B3A]/70">
+            Scroll to Explore
+          </span>
+          <div className="w-5 h-9 rounded-full border-2 border-[#162B3A]/60 flex justify-center p-1">
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              className="w-1.5 h-1.5 rounded-full bg-[#162B3A]"
+              className="w-1.5 h-1.5 rounded-full bg-[#DB3E59]"
             />
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>
