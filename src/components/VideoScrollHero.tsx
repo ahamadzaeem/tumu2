@@ -44,6 +44,9 @@ export default function VideoScrollHero() {
   // Soft ambient overlay for the final climax reveal so text pops while video remains visible
   const finalBackdropOpacity = useTransform(smoothProgress, [0.78, 0.88], [0, 0.35]);
 
+  // Subtle black overlay for 1st text part so text is more visible, smoothly fading out as user begins scrolling
+  const initialBackdropOpacity = useTransform(smoothProgress, [0, 0.08, 0.14], [0.22, 0.12, 0]);
+
   // Bottom scroll cue fades out quickly as user starts scrolling
   const scrollCueOpacity = useTransform(smoothProgress, [0, 0.06], [0.8, 0]);
 
@@ -181,6 +184,12 @@ export default function VideoScrollHero() {
         <canvas
           ref={canvasRef}
           className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+
+        {/* Subtle Initial Black Overlay (Makes 1st text part more visible, fades out smoothly on scroll) */}
+        <motion.div
+          style={{ opacity: initialBackdropOpacity }}
+          className="absolute inset-0 bg-black pointer-events-none z-10"
         />
 
         {/* Ambient Climax Backdrop (Fades in at the last frame to ensure text pop) */}
