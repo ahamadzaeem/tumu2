@@ -13,21 +13,18 @@ export default function StoryPage() {
       <Header />
 
       {/* ─── SECTION 1: A SIMPLE IDEA. ─── */}
-      <section className="relative w-full min-h-[640px] sm:h-[720px] lg:h-[820px] bg-[#FAF4E7] overflow-hidden flex items-center pt-20 sm:pt-16 lg:pt-20">
-        {/* Full-Bleed Section 1 Background Composition with responsive mobile focal point */}
+      <section className="relative w-full h-[620px] sm:h-[720px] lg:h-[820px] bg-[#FAF4E7] overflow-hidden flex items-center pt-16 lg:pt-20">
+        {/* Full-Bleed Section 1 Widescreen Background Composition */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
             src="/images/tumu/story_section_1.png"
             alt="A Simple Idea - TUMU Story"
             fill
-            className="object-cover object-[18%_center] sm:object-center"
+            className="object-cover object-center"
             priority
             unoptimized
           />
         </div>
-
-        {/* Soft mobile ambient gradient to ensure 100% text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF4E7]/95 via-[#FAF4E7]/60 to-transparent sm:hidden pointer-events-none z-[1]" />
 
         {/* Text Overlay (Left Aligned) */}
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
@@ -41,7 +38,7 @@ export default function StoryPage() {
               OUR STORY
             </span>
 
-            <h1 className="font-heading text-4xl sm:text-6xl lg:text-[72px] font-normal uppercase tracking-tight leading-[0.92] mb-5">
+            <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
               <span className="block text-[#162B3A]">A SIMPLE</span>
               <span className="block text-[#DB3E59]">
                 IDEA<span className="text-[#DB3E59]">.</span>
@@ -50,7 +47,7 @@ export default function StoryPage() {
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-5 sm:mb-6" />
 
-            <p className="text-[#162B3A]/95 font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px]">
+            <p className="text-[#162B3A] max-sm:text-white max-sm:drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px]">
               To turn a timeless pastry into a new kind of experience — crisp on the outside, creamy on the inside, and unforgettable with every bite.
             </p>
           </motion.div>
@@ -59,23 +56,20 @@ export default function StoryPage() {
 
 
       {/* ─── SECTION 2: TRADITION MEETS INNOVATION. ─── */}
-      <section className="relative w-full min-h-[640px] sm:h-[720px] lg:h-[820px] bg-[#79D2D9] overflow-hidden flex items-center py-12 sm:py-0">
-        {/* Full-Bleed Section 2 Background Composition with responsive mobile focal point */}
+      <section className="relative w-full h-[620px] sm:h-[720px] lg:h-[820px] bg-[#79D2D9] overflow-hidden flex items-center">
+        {/* Full-Bleed Section 2 Widescreen Background Composition */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
             src="/images/tumu/story_section_2.png"
             alt="Tradition Meets Innovation - TUMU Story"
             fill
-            className="object-cover object-[48%_center] sm:object-center"
+            className="object-cover object-center"
             priority
             unoptimized
           />
         </div>
 
-        {/* Soft mobile ambient gradient to ensure 100% text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#79D2D9]/90 via-[#79D2D9]/40 to-transparent sm:hidden pointer-events-none z-[1]" />
-
-        {/* Text Overlay (Right Aligned on desktop, left on mobile) */}
+        {/* Text Overlay (Right Aligned) */}
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex justify-end">
           <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -88,16 +82,16 @@ export default function StoryPage() {
               CRAFTED DIFFERENTLY
             </span>
 
-            <h2 className="font-heading text-4xl sm:text-6xl lg:text-[72px] font-normal uppercase tracking-tight leading-[0.92] mb-5">
+            <h2 className="text-5xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
               <span className="block text-[#162B3A]">TRADITION MEETS</span>
-              <span className="block text-white max-sm:text-[#DE3558]">
+              <span className="block text-white">
                 INNOVATION<span className="text-[#DB3E59]">.</span>
               </span>
             </h2>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-5 sm:mb-6" />
 
-            <p className="text-white max-sm:text-[#162B3A] font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px]">
+            <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px]">
               We take inspiration from classic choux pastry and reimagine it with modern flavours, creative textures, and a relentless focus on quality. Every TUMU is freshly baked, filled to order, and made to bring a little happiness to your day.
             </p>
           </motion.div>
@@ -106,21 +100,18 @@ export default function StoryPage() {
 
 
       {/* ─── SECTION 3: ALL THE WAY FROM JAPAN! ─── */}
-      <section className="relative w-full min-h-[640px] sm:h-[720px] lg:h-[820px] bg-[#FACDD1] overflow-hidden flex items-center py-12 sm:py-0">
-        {/* Full-Bleed Section 3 Background Composition with responsive mobile focal point */}
+      <section className="relative w-full h-[620px] sm:h-[720px] lg:h-[820px] bg-[#FACDD1] overflow-hidden flex items-center">
+        {/* Full-Bleed Section 3 Widescreen Background Composition */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
             src="/images/tumu/story_section_3.png"
             alt="All The Way From Japan - TUMU Story"
             fill
-            className="object-cover object-[18%_center] sm:object-center"
+            className="object-cover object-center"
             priority
             unoptimized
           />
         </div>
-
-        {/* Soft mobile ambient gradient to ensure 100% text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FACDD1]/85 via-[#FACDD1]/40 to-transparent sm:hidden pointer-events-none z-[1]" />
 
         {/* Text Overlay (Left Aligned) */}
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
@@ -135,7 +126,7 @@ export default function StoryPage() {
               ALL THE WAY FROM
             </span>
 
-            <h2 className="font-heading text-4xl sm:text-6xl lg:text-[72px] font-normal uppercase tracking-tight leading-[0.92] mb-5">
+            <h2 className="text-5xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
               <span className="block text-[#E52D50]">
                 JAPAN<span className="text-[#E52D50]">!</span>
               </span>
@@ -143,7 +134,7 @@ export default function StoryPage() {
 
             <div className="w-12 h-1 bg-[#E52D50] mb-5 sm:mb-6" />
 
-            <p className="text-[#162B3A] font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px]">
+            <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px]">
               Rooted in Japanese craft and attention to detail, TUMU brings a taste of Japan to your everyday moments — crispy, creamy, and full of joy.
             </p>
           </motion.div>
