@@ -113,7 +113,7 @@ export default function Header() {
                 What is TUMU
               </PillButton>
             </Link>
-            <Link href="/franchise" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/franchise#form" onClick={() => setMobileMenuOpen(false)}>
               <PillButton variant="cyan" showArrow className="w-full justify-center">
                 Franchise Now
               </PillButton>

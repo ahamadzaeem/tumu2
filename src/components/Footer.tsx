@@ -24,13 +24,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#162B3A]/10">
           {/* Brand Logo Column (3 cols) */}
           <div className="lg:col-span-3 flex flex-col items-start">
-            <Link href="/" className="flex flex-col items-start mb-4 overflow-hidden group">
+            <Link href="/" className="flex flex-col items-start mb-3 overflow-hidden group">
               <Image
                 src="/images/tumu-logo-final.png"
                 alt="TUMU Crisp & Cream Logo"
-                width={360}
-                height={450}
-                className="object-contain w-52 sm:w-64 h-auto mb-4 group-hover:scale-105 transition-transform duration-200"
+                width={200}
+                height={250}
+                className="object-contain h-[75px] sm:h-[85px] w-auto mb-3 group-hover:scale-105 transition-transform duration-200"
                 priority
               />
             </Link>
@@ -40,35 +40,40 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* EXPLORE (2 cols) */}
+          {/* EXPLORE (2 cols) - Exact pages from Nav Bar */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#162B3A] mb-4">
               EXPLORE
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm font-semibold text-[#162B3A]">
               <li>
-                <Link href="/flavors" className="hover:text-[#DB3E59] transition-colors">
-                  Flavours
-                </Link>
-              </li>
-              <li>
                 <Link href="/story" className="hover:text-[#DB3E59] transition-colors">
-                  Our Story
-                </Link>
-              </li>
-              <li>
-                <Link href="/franchise#process" className="hover:text-[#DB3E59] transition-colors">
-                  Process
-                </Link>
-              </li>
-              <li>
-                <Link href="/find-us" className="hover:text-[#DB3E59] transition-colors">
-                  Where to Buy
+                  Story
                 </Link>
               </li>
               <li>
                 <Link href="/franchise" className="hover:text-[#DB3E59] transition-colors">
                   Franchise
+                </Link>
+              </li>
+              <li>
+                <Link href="/flavors" className="hover:text-[#DB3E59] transition-colors">
+                  Flavors
+                </Link>
+              </li>
+              <li>
+                <Link href="/find-us" className="hover:text-[#DB3E59] transition-colors">
+                  Find Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/catering" className="hover:text-[#DB3E59] transition-colors">
+                  Events
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-[#DB3E59] transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
