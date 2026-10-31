@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import PillButton from "./PillButton";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,73 +31,72 @@ export default function Header() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 h-[92px] sm:h-[104px] flex items-center justify-center z-50 transition-all duration-300 border-b-0 overflow-visible ${
-          scrolled
-            ? "bg-white/85 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex items-center justify-between overflow-visible">
-          
-          {/* Brand Logo (Left Column - 100% Increased Size) */}
-          <div className="flex-1 flex items-center justify-start overflow-visible py-2">
-            <Link href="/" className="flex items-center group py-1 overflow-visible">
-              <Image
-                src="/images/tumu-logo-final.png"
-                alt="TUMU Crisp & Cream Logo"
-                width={280}
-                height={400}
-                className="object-contain h-[105px] sm:h-[118px] md:h-[128px] w-auto transition-transform duration-200 group-hover:scale-105 drop-shadow-sm"
-                priority
-              />
-            </Link>
-          </div>
+      <header className="fixed top-3 sm:top-5 left-0 right-0 z-50 pointer-events-none px-5 sm:px-8 lg:px-14 flex items-center justify-between">
+        
+        {/* ─── BRAND LOGO (OUTSIDE THE NAV BAR ON THE LEFT) ─── */}
+        <div className="pointer-events-auto flex items-center">
+          <Link href="/" className="group flex items-center transition-transform hover:scale-105 duration-200">
+            <Image
+              src="/images/tumu-logo-final.png"
+              alt="TUMU Crisp & Cream Logo"
+              width={260}
+              height={320}
+              className="object-contain h-[62px] sm:h-[72px] md:h-[78px] w-auto drop-shadow-md"
+              priority
+            />
+          </Link>
+        </div>
 
-          {/* Desktop Navigation (PERFECTLY CENTERED) */}
-          <nav className="hidden md:flex items-center justify-center gap-8 lg:gap-12">
-            {navItems.map((item) => (
+        {/* ─── FLOATING PILL NAV BAR (CENTERED ISLAND LIKE REFERENCE) ─── */}
+        <nav className="pointer-events-auto hidden md:flex items-center gap-6 lg:gap-8 bg-white/95 backdrop-blur-md px-6 lg:px-8 py-2.5 rounded-full shadow-[0_10px_35px_rgba(22,43,58,0.1)] border border-[#162B3A]/8 transition-all duration-300">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm sm:text-base font-bold text-[#162B3A] hover:text-[#DB3E59] transition-colors duration-200 tracking-wide"
+                className={`relative text-xs lg:text-[13px] font-black uppercase tracking-wider transition-colors duration-200 py-1 ${
+                  isActive ? "text-[#DB3E59]" : "text-[#162B3A] hover:text-[#DB3E59]"
+                }`}
               >
                 {item.label}
+                {isActive && (
+                  <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#DB3E59]" />
+                )}
               </Link>
-            ))}
-          </nav>
+            );
+          })}
 
-          {/* Right Column (Franchise Now CTA on Desktop / Mobile Toggle) */}
-          <div className="flex-1 flex items-center justify-end gap-4">
-            <div className="hidden md:flex items-center">
-              <Link
-                href="/franchise"
-                className="px-6 py-2.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs lg:text-sm font-black uppercase tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center gap-1.5"
-              >
-                <span>Franchise Now</span>
-                <span>→</span>
-              </Link>
-            </div>
-            {/* Hamburger Menu Toggle (Mobile Only) */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-[#162B3A] hover:text-[#DB3E59] focus:outline-none cursor-pointer transition-colors"
-              aria-label="Toggle navigation menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-7 h-7 stroke-[2.5]" />
-              ) : (
-                <Menu className="w-7 h-7 stroke-[2.5]" />
-              )}
-            </button>
-          </div>
+          {/* CTA Button Inside Floating Pill */}
+          <Link
+            href="/franchise"
+            className="ml-2 px-5 py-2.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs font-black uppercase tracking-wider transition-all shadow-sm hover:shadow active:scale-95 flex items-center gap-1.5"
+          >
+            <span>Franchise Now</span>
+            <span className="text-sm">→</span>
+          </Link>
+        </nav>
 
+        {/* ─── MOBILE HAMBURGER TOGGLE (RIGHT SIDE ON MOBILE) ─── */}
+        <div className="md:hidden pointer-events-auto">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-3 rounded-full bg-white/95 backdrop-blur-md shadow-[0_8px_25px_rgba(0,0,0,0.1)] border border-[#162B3A]/10 text-[#162B3A] hover:text-[#DB3E59] focus:outline-none cursor-pointer transition-colors"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6 stroke-[2.5]" />
+            ) : (
+              <Menu className="w-6 h-6 stroke-[2.5]" />
+            )}
+          </button>
         </div>
+
       </header>
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="fixed top-[88px] left-0 right-0 h-screen bg-[#F8F4EC] p-8 flex flex-col gap-6 md:hidden z-40 animate-in slide-in-from-top duration-300">
+        <div className="fixed inset-0 bg-[#F8F4EC] p-8 pt-28 flex flex-col gap-6 md:hidden z-40 animate-in slide-in-from-top duration-300">
           {navItems.map((item) => (
             <Link
               key={item.label}
@@ -106,7 +107,7 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <div className="pt-4 flex flex-col gap-3 mt-auto mb-24">
+          <div className="pt-4 flex flex-col gap-3 mt-auto mb-16">
             <Link href="/story" onClick={() => setMobileMenuOpen(false)}>
               <PillButton variant="pink" showArrow className="w-full justify-center">
                 What is TUMU
@@ -123,3 +124,4 @@ export default function Header() {
     </>
   );
 }
+
