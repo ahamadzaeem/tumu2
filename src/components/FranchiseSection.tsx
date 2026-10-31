@@ -52,7 +52,20 @@ export default function FranchiseSection() {
             })}
           </div>
 
-          <Link href="/franchise">
+          {/* 3 Formats Highlights */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            <span className="px-3 py-1 rounded-full bg-[#162B3A]/5 text-[#162B3A] font-bold text-xs">
+              01. Mall Kiosk
+            </span>
+            <span className="px-3 py-1 rounded-full bg-[#162B3A]/5 text-[#162B3A] font-bold text-xs">
+              02. Retail Outlet
+            </span>
+            <span className="px-3 py-1 rounded-full bg-[#162B3A]/5 text-[#162B3A] font-bold text-xs">
+              03. Food Truck
+            </span>
+          </div>
+
+          <Link href="/franchise#form">
             <PillButton variant="pink" showArrow className="w-fit px-8 py-3.5 text-base">
               Franchise Now
             </PillButton>
@@ -60,16 +73,17 @@ export default function FranchiseSection() {
         </div>
       </div>
 
-      {/* Right Side Visual (60% desktop) - Single Storefront Image */}
-      <div className="w-full lg:w-[60%] relative flex items-center justify-center bg-white z-20">
-        <Image
-          src="/images/tumu/franchise_kiosk_cyan.jpg"
-          alt="TUMU Architectural Franchise Storefront"
-          width={1536}
-          height={1024}
-          className="w-full h-auto object-contain"
-          priority
-        />
+      {/* Right Side Visual (60% desktop) - New Kiosk Elevation Image */}
+      <div className="w-full lg:w-[60%] relative flex items-center justify-center bg-[#FAF4E7] z-20 p-4 sm:p-8 lg:p-12">
+        <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/60 group">
+          <Image
+            src="/images/tumu/formats/kiosk_elevation.jpg"
+            alt="TUMU Architectural Franchise Storefront"
+            fill
+            className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            priority
+          />
+        </div>
       </div>
     </section>
   );

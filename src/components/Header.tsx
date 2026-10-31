@@ -33,22 +33,22 @@ export default function Header() {
     <>
       <header className="fixed top-3 sm:top-5 left-0 right-0 z-50 pointer-events-none px-5 sm:px-8 lg:px-14 flex items-center justify-between">
         
-        {/* ─── BRAND LOGO (OUTSIDE THE NAV BAR ON THE LEFT) ─── */}
+        {/* ─── BRAND LOGO (OUTSIDE NAV BAR ON THE LEFT - PROMINENT & BIGGER) ─── */}
         <div className="pointer-events-auto flex items-center">
           <Link href="/" className="group flex items-center transition-transform hover:scale-105 duration-200">
             <Image
               src="/images/tumu-logo-final.png"
               alt="TUMU Crisp & Cream Logo"
-              width={260}
-              height={320}
-              className="object-contain h-[62px] sm:h-[72px] md:h-[78px] w-auto drop-shadow-md"
+              width={300}
+              height={380}
+              className="object-contain h-[85px] sm:h-[95px] md:h-[105px] w-auto drop-shadow-md"
               priority
             />
           </Link>
         </div>
 
-        {/* ─── FLOATING PILL NAV BAR (CENTERED ISLAND LIKE REFERENCE) ─── */}
-        <nav className="pointer-events-auto hidden md:flex items-center gap-6 lg:gap-8 bg-white/95 backdrop-blur-md px-6 lg:px-8 py-2.5 rounded-full shadow-[0_10px_35px_rgba(22,43,58,0.1)] border border-[#162B3A]/8 transition-all duration-300">
+        {/* ─── FLOATING PILL NAV BAR (STRICTLY CENTERED HORIZONTALLY) ─── */}
+        <nav className="pointer-events-auto hidden md:flex items-center gap-6 lg:gap-8 bg-white/95 backdrop-blur-md px-6 lg:px-8 py-2.5 rounded-full shadow-[0_10px_35px_rgba(22,43,58,0.1)] border border-[#162B3A]/8 transition-all duration-300 absolute left-1/2 -translate-x-1/2">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -67,9 +67,9 @@ export default function Header() {
             );
           })}
 
-          {/* CTA Button Inside Floating Pill */}
+          {/* CTA Button Inside Floating Pill - Straight to Franchise Form */}
           <Link
-            href="/franchise"
+            href="/franchise#form"
             className="ml-2 px-5 py-2.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs font-black uppercase tracking-wider transition-all shadow-sm hover:shadow active:scale-95 flex items-center gap-1.5"
           >
             <span>Franchise Now</span>

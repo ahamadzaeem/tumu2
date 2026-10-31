@@ -309,7 +309,7 @@ export default function VideoScrollHero() {
                   What is TUMU
                 </PillButton>
               </Link>
-              <Link href="/franchise">
+              <Link href="/franchise#form">
                 <PillButton variant="cyan" showArrow>
                   Franchise Now
                 </PillButton>
@@ -355,7 +355,7 @@ export default function VideoScrollHero() {
                   What is TUMU
                 </PillButton>
               </Link>
-              <Link href="/franchise">
+              <Link href="/franchise#form">
                 <PillButton variant="white" showArrow>
                   Franchise Now
                 </PillButton>

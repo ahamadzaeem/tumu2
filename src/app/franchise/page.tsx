@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PillButton from "@/components/PillButton";
@@ -15,23 +15,41 @@ import {
   Megaphone,
   Package,
   BarChart3,
-  X,
   CheckCircle2,
   Plus,
-  Minus
+  Minus,
+  Truck
 } from "lucide-react";
 
 export default function FranchisePage() {
-  const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [selectedFormat, setSelectedFormat] = useState<"ALL" | "KIOSK" | "OUTLET" | "TRUCK">("ALL");
   const [formData, setFormData] = useState({
     contactPerson: "",
     company: "",
     contactNumber: "",
     email: "",
+    format: "Mall Kiosk",
     comments: ""
   });
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleHash = () => {
+        if (window.location.hash === "#form" || window.location.hash === "#franchise-form") {
+          const el = document.getElementById("form");
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      };
+      // Check immediately
+      setTimeout(handleHash, 100);
+      window.addEventListener("hashchange", handleHash);
+      return () => window.removeEventListener("hashchange", handleHash);
+    }
+  }, []);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -70,15 +88,15 @@ export default function FranchisePage() {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      setModalOpen(false);
       setFormData({
         contactPerson: "",
         company: "",
         contactNumber: "",
         email: "",
+        format: "Mall Kiosk",
         comments: ""
       });
-    }, 3000);
+    }, 5000);
   };
 
   return (
@@ -124,165 +142,331 @@ export default function FranchisePage() {
               Bring Japan&apos;s loved dessert experience to your city. Simple operations, high margins, and a brand people remember.
             </p>
 
-            <PillButton variant="pink" showArrow onClick={() => setModalOpen(true)}>
-              Enquire Now
-            </PillButton>
+            <a href="#form">
+              <PillButton variant="pink" showArrow>
+                Enquire Now
+              </PillButton>
+            </a>
           </motion.div>
         </div>
       </section>
 
 
-      {/* ─── STORE FORMAT & KIOSK GALLERY SECTION (2X SIZE) ─── */}
-      <section className="relative w-full bg-[#FAF4E7] py-20 sm:py-28 border-b border-[#162B3A]/5">
+      {/* ─── 3 HIGH-IMPACT FRANCHISE FORMATS: KIOSK, OUTLET & TRUCK ─── */}
+      <section id="formats" className="relative w-full bg-[#FAF4E7] py-20 sm:py-28 border-b border-[#162B3A]/5 scroll-mt-20">
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
           
-          <div className="flex flex-col items-start mb-10 sm:mb-14">
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
-              RETAIL CONCEPT & STORE DESIGN
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#162B3A]">
-              HIGH-IMPACT <span className="text-[#DB3E59]">STORE FORMATS.</span>
-            </h2>
-            <div className="w-12 h-1 bg-[#DB3E59] mt-4" />
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+            <div className="flex flex-col items-start">
+              <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
+                VERSATILE RETAIL CONCEPTS
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#162B3A] leading-tight">
+                3 HIGH-IMPACT <span className="text-[#DB3E59]">STORE FORMATS.</span>
+              </h2>
+              <div className="w-12 h-1 bg-[#DB3E59] mt-4" />
+            </div>
+
+            {/* Filter Pills */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              {(["ALL", "KIOSK", "OUTLET", "TRUCK"] as const).map((fmt) => (
+                <button
+                  key={fmt}
+                  onClick={() => setSelectedFormat(fmt)}
+                  className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                    selectedFormat === fmt
+                      ? "bg-[#DB3E59] text-white shadow-md scale-105"
+                      : "bg-white/80 hover:bg-white text-[#162B3A] border border-black/5"
+                  }`}
+                >
+                  {fmt === "ALL" && "All Formats"}
+                  {fmt === "KIOSK" && "01. Mall Kiosk"}
+                  {fmt === "OUTLET" && "02. Retail Outlet"}
+                  {fmt === "TRUCK" && "03. Food Truck"}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* 8-Card Grid Layout featuring BOTH original renders and new storefronts */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
-            {/* Image 1: Original Gallery 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <Image
-                src="/images/tumu/franchise_gallery_1.jpg"
-                alt="TUMU Kiosk Store Render Front View"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                unoptimized
-              />
-            </motion.div>
+          <div className="flex flex-col gap-20 sm:gap-28">
 
-            {/* Image 2: Original Gallery 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <Image
-                src="/images/tumu/franchise_gallery_2.jpg"
-                alt="TUMU Kiosk Side View"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                unoptimized
-              />
-            </motion.div>
+            {/* ════════════════════════════════════════════════════════════
+                FORMAT 1: MALL KIOSK (キオスク)
+               ════════════════════════════════════════════════════════════ */}
+            {(selectedFormat === "ALL" || selectedFormat === "KIOSK") && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
+              >
+                {/* Header & Badges */}
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="px-3.5 py-1 rounded-full bg-[#55D2DF]/20 text-[#162B3A] font-black text-xs uppercase tracking-wider">
+                        Format 01
+                      </span>
+                      <span className="text-xs font-bold text-[#DB3E59] tracking-widest uppercase">
+                        キオスク
+                      </span>
+                    </div>
+                    <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                      Mall <span className="text-[#DB3E59]">Kiosk</span>
+                    </h3>
+                    <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                      Engineered for high foot-traffic mall corridors, transit hubs, and airports.
+                    </p>
+                  </div>
 
-            {/* Image 3: Original Gallery 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <Image
-                src="/images/tumu/franchise_gallery_3.jpg"
-                alt="TUMU Kiosk Mall Layout"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                unoptimized
-              />
-            </motion.div>
+                  {/* Quick Specs Badges */}
+                  <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      📐 Footprint: <strong>80 – 150 sq.ft.</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      ⚡ Setup: <strong>3 – 4 Weeks</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      👥 Staff: <strong>1 – 2 Baristas</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                      💰 Low CapEx &amp; Fast ROI
+                    </span>
+                  </div>
+                </div>
 
-            {/* Image 4: Original Gallery 4 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <Image
-                src="/images/tumu/franchise_gallery_4.jpg"
-                alt="TUMU Neon Branding Close-up"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                unoptimized
-              />
-            </motion.div>
+                {/* Description */}
+                <p className="text-sm sm:text-base text-[#162B3A]/85 font-medium leading-relaxed max-w-4xl">
+                  Our signature island kiosk maximizes 360-degree visibility with illuminated neon brand arches, iconic curved cyan canopies, and integrated cream-injection taps. Fast customer turnover and high impulse sales with compact space requirements.
+                </p>
 
-            {/* Image 5: New Store 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <Image
-                src="/images/tumu/franchise_new_1.jpg"
-                alt="TUMU Storefront 1"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                unoptimized
-              />
-            </motion.div>
+                {/* Visual Showcase (3-Image Composition) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/kiosk_elevation.jpg"
+                      alt="TUMU Mall Kiosk Front Elevation"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      Front Elevation
+                    </div>
+                  </div>
 
-            {/* Image 6: New Store 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <Image
-                src="/images/tumu/franchise_new_2.jpg"
-                alt="TUMU Storefront 2"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                unoptimized
-              />
-            </motion.div>
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/kiosk_perspective.jpg"
+                      alt="TUMU Mall Kiosk 3D Perspective"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      Perspective Angle
+                    </div>
+                  </div>
 
-            {/* Image 7: New Store 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <Image
-                src="/images/tumu/franchise_new_3.jpg"
-                alt="TUMU Storefront 3"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                unoptimized
-              />
-            </motion.div>
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/kiosk_side.jpg"
+                      alt="TUMU Mall Kiosk Side Canopy"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      Canopy &amp; Vertical Neon
+                    </div>
+                  </div>
+                </div>
 
-            {/* Image 8: New Store 4 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="group relative aspect-[16/9] rounded-3xl sm:rounded-[32px] overflow-hidden bg-black/5 border border-black/10 shadow-lg hover:shadow-2xl transition-all duration-300"
-            >
-              <Image
-                src="/images/tumu/franchise_new_4.jpg"
-                alt="TUMU Storefront 4"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                unoptimized
-              />
-            </motion.div>
+                <div className="pt-2 flex justify-end">
+                  <a
+                    href="#form"
+                    onClick={() => setFormData({ ...formData, format: "Mall Kiosk" })}
+                    className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
+                  >
+                    <span>Apply for Mall Kiosk</span>
+                    <span>→</span>
+                  </a>
+                </div>
+              </motion.div>
+            )}
+
+
+            {/* ════════════════════════════════════════════════════════════
+                FORMAT 2: RETAIL OUTLET (店舗・ストア)
+               ════════════════════════════════════════════════════════════ */}
+            {(selectedFormat === "ALL" || selectedFormat === "OUTLET") && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
+              >
+                {/* Header & Badges */}
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="px-3.5 py-1 rounded-full bg-[#DB3E59]/20 text-[#DB3E59] font-black text-xs uppercase tracking-wider">
+                        Format 02
+                      </span>
+                      <span className="text-xs font-bold text-[#162B3A] tracking-widest uppercase">
+                        店舗・ストア
+                      </span>
+                    </div>
+                    <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                      Retail <span className="text-[#DB3E59]">Outlet</span>
+                    </h3>
+                    <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                      Inline mall retail unit, high-street dessert boutique, or flagship store.
+                    </p>
+                  </div>
+
+                  {/* Quick Specs Badges */}
+                  <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      📐 Footprint: <strong>250 – 600 sq.ft.</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      ⚡ Setup: <strong>5 – 8 Weeks</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      👥 Staff: <strong>2 – 4 Staff</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#55D2DF]/20 text-[#162B3A] border border-[#55D2DF]/40 font-black">
+                      ✨ Live Bakery Theater &amp; Cafe Seating
+                    </span>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base text-[#162B3A]/85 font-medium leading-relaxed max-w-4xl">
+                  The complete TUMU brand sanctuary. Features a front service ordering counter, open-concept live filling station where guests watch smooth cream piped into warm, golden crunchy sticks, and optional cafe seating for prolonged dining and higher beverage margins.
+                </p>
+
+                {/* Visual Showcase (2-Image Side by Side) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/outlet_storefront.jpg"
+                      alt="TUMU Retail Outlet Storefront"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      Full Storefront &amp; Live Barista Bar
+                    </div>
+                  </div>
+
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/outlet_counter.jpg"
+                      alt="TUMU Retail Outlet Service Counter"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      POS Service Counter &amp; Illuminated Logo
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex justify-end">
+                  <a
+                    href="#form"
+                    onClick={() => setFormData({ ...formData, format: "Retail Outlet" })}
+                    className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
+                  >
+                    <span>Apply for Retail Outlet</span>
+                    <span>→</span>
+                  </a>
+                </div>
+              </motion.div>
+            )}
+
+
+            {/* ════════════════════════════════════════════════════════════
+                FORMAT 3: FOOD TRUCK & TRAILER (フードトラック)
+               ════════════════════════════════════════════════════════════ */}
+            {(selectedFormat === "ALL" || selectedFormat === "TRUCK") && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
+              >
+                {/* Header & Badges */}
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="px-3.5 py-1 rounded-full bg-[#162B3A] text-white font-black text-xs uppercase tracking-wider flex items-center gap-1.5">
+                        <Truck className="w-3.5 h-3.5" />
+                        <span>Format 03</span>
+                      </span>
+                      <span className="text-xs font-bold text-[#DB3E59] tracking-widest uppercase">
+                        フードトラック
+                      </span>
+                    </div>
+                    <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                      Food Truck &amp; <span className="text-[#DB3E59]">Trailer</span>
+                    </h3>
+                    <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                      100% mobile, event-ready trailer for festivals, pop-ups, and campuses.
+                    </p>
+                  </div>
+
+                  {/* Quick Specs Badges */}
+                  <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      🚚 Mobility: <strong>Custom Dual-Axle Trailer</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      ⚡ Setup: <strong>Plug &amp; Play</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      👥 Staff: <strong>1 – 2 Operators</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#55D2DF]/20 text-[#162B3A] border border-[#55D2DF]/40 font-black">
+                      🎪 Zero Real Estate Lease Overhead
+                    </span>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base text-[#162B3A]/85 font-medium leading-relaxed max-w-4xl">
+                  Bring TUMU wherever crowds gather. Outfitted with heavy-duty commercial convection ovens, chilled piping stations, automated power hookups, and wide serving hatches wrapped in vibrant Japanese retro-modern styling. Maximum flexibility with low recurring operational costs.
+                </p>
+
+                {/* Visual Showcase (Wide Trailer Hero) */}
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group">
+                  <Image
+                    src="/images/tumu/formats/truck_trailer.jpg"
+                    alt="TUMU Mobile Food Truck Trailer"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-xs sm:text-sm font-black uppercase tracking-wider">
+                    Custom Japanese Mobile Trailer Unit
+                  </div>
+                </div>
+
+                <div className="pt-2 flex justify-end">
+                  <a
+                    href="#form"
+                    onClick={() => setFormData({ ...formData, format: "Food Truck" })}
+                    className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
+                  >
+                    <span>Apply for Food Truck</span>
+                    <span>→</span>
+                  </a>
+                </div>
+              </motion.div>
+            )}
+
           </div>
 
         </div>
@@ -692,149 +876,230 @@ export default function FranchisePage() {
       </section>
 
 
-      {/* ─── SECTION 6: CTA (BRING TUMU TO YOUR CITY.) ─── */}
-      <section className="relative w-full bg-[#FFA0B4] py-16 sm:py-24 overflow-hidden">
-        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex flex-col md:flex-row items-center justify-between gap-8">
-          
-          <div className="flex flex-col items-start max-w-[540px]">
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.2em] text-[#DB3E59] mb-3">
-              LET&apos;S GROW TOGETHER
-            </span>
+      {/* ─── SECTION 6: EMBEDDED FRANCHISE APPLICATION FORM ─── */}
+      <section id="form" className="relative w-full bg-[#FFA0B4] py-20 sm:py-28 overflow-hidden scroll-mt-24">
+        {/* Subtle decorative background watermark */}
+        <div className="absolute -top-12 -right-12 text-[180px] font-black text-white/10 select-none pointer-events-none leading-none tracking-tighter">
+          TUMU
+        </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-4">
-              <span className="block text-[#162B3A]">BRING TUMU</span>
-              <span className="block text-[#162B3A]">
-                TO <span className="text-[#DB3E59]">YOUR CITY.</span>
+        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            {/* Left Column: Headline & Value Prop */}
+            <div className="lg:col-span-5 flex flex-col items-start pt-2">
+              <span className="font-black text-xs sm:text-sm uppercase tracking-[0.2em] text-[#DB3E59] mb-3 bg-white/40 px-3.5 py-1 rounded-full border border-[#DB3E59]/20">
+                FRANCHISE APPLICATION • フランチャイズ申請
               </span>
-            </h2>
 
-            <div className="w-10 h-1 bg-[#DB3E59] mb-4" />
+              <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-5">
+                <span className="block text-[#162B3A]">BRING TUMU</span>
+                <span className="block text-[#162B3A]">
+                  TO <span className="text-[#DB3E59]">YOUR CITY.</span>
+                </span>
+              </h2>
 
-            <p className="text-[#162B3A]/85 font-semibold text-sm sm:text-base leading-relaxed">
-              Be part of a fast-growing dessert brand with a strong identity, loyal customers, and high returns.
-            </p>
+              <div className="w-14 h-1.5 bg-[#DB3E59] rounded-full mb-6" />
+
+              <p className="text-[#162B3A]/85 font-medium text-base sm:text-lg leading-relaxed mb-8">
+                Join Japan’s most exciting artisanal crunchy cream stick phenomenon. Select your preferred concept—<strong>Mall Kiosk</strong>, <strong>Retail Outlet</strong>, or <strong>Food Truck</strong>—and get in touch directly with our business development team.
+              </p>
+
+              {/* Perks Checklist */}
+              <div className="flex flex-col gap-4 w-full text-[#162B3A] font-semibold text-sm sm:text-base">
+                <div className="flex items-center gap-3 bg-white/40 backdrop-blur-sm px-4 py-3 rounded-2xl border border-white/60">
+                  <div className="w-7 h-7 rounded-full bg-[#DB3E59] text-white flex items-center justify-center shrink-0 font-bold text-xs">
+                    ✓
+                  </div>
+                  <span>Turnkey store setup &amp; custom Japanese equipment</span>
+                </div>
+
+                <div className="flex items-center gap-3 bg-white/40 backdrop-blur-sm px-4 py-3 rounded-2xl border border-white/60">
+                  <div className="w-7 h-7 rounded-full bg-[#DB3E59] text-white flex items-center justify-center shrink-0 font-bold text-xs">
+                    ✓
+                  </div>
+                  <span>Direct proprietary ingredient &amp; crust supply chain</span>
+                </div>
+
+                <div className="flex items-center gap-3 bg-white/40 backdrop-blur-sm px-4 py-3 rounded-2xl border border-white/60">
+                  <div className="w-7 h-7 rounded-full bg-[#DB3E59] text-white flex items-center justify-center shrink-0 font-bold text-xs">
+                    ✓
+                  </div>
+                  <span>Comprehensive staff pastry training &amp; SOP manuals</span>
+                </div>
+
+                <div className="flex items-center gap-3 bg-white/40 backdrop-blur-sm px-4 py-3 rounded-2xl border border-white/60">
+                  <div className="w-7 h-7 rounded-full bg-[#DB3E59] text-white flex items-center justify-center shrink-0 font-bold text-xs">
+                    ✓
+                  </div>
+                  <span>High gross margin with quick operational payback</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Embedded Form Card */}
+            <div className="lg:col-span-7">
+              <div className="bg-[#FAF4E7] rounded-[36px] p-6 sm:p-10 lg:p-12 shadow-2xl border border-black/10 relative overflow-hidden">
+                
+                {submitted ? (
+                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <CheckCircle2 className="w-20 h-20 text-[#DB3E59] mb-5 animate-bounce" />
+                    <h3 className="text-3xl font-black text-[#162B3A] uppercase tracking-tight mb-3">
+                      Enquiry Submitted!
+                    </h3>
+                    <p className="text-base sm:text-lg font-semibold text-[#162B3A]/80 max-w-md mx-auto mb-8 leading-relaxed">
+                      Thank you for your interest in the TUMU {formData.format} franchise. Our regional franchise director will review your submission and contact you within 24–48 hours.
+                    </p>
+                    <button
+                      onClick={() => setSubmitted(false)}
+                      className="px-8 py-3.5 rounded-full bg-[#162B3A] text-white font-bold text-xs uppercase tracking-wider hover:bg-black transition-all"
+                    >
+                      Submit Another Inquiry
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                    
+                    <div>
+                      <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#162B3A]">
+                        Franchise Inquiry Form
+                      </h3>
+                      <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                        Please fill in your details below. All fields marked with * are required.
+                      </p>
+                    </div>
+
+                    {/* Format Selector Pills */}
+                    <div>
+                      <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-2">
+                        Preferred Franchise Format *
+                      </label>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        {[
+                          { key: "Mall Kiosk", label: "Mall Kiosk", sub: "80–200 sq.ft." },
+                          { key: "Retail Outlet", label: "Retail Outlet", sub: "250–600 sq.ft." },
+                          { key: "Food Truck", label: "Food Truck", sub: "Mobile Trailer" },
+                        ].map((fmt) => {
+                          const isActive = formData.format === fmt.key;
+                          return (
+                            <button
+                              type="button"
+                              key={fmt.key}
+                              onClick={() => setFormData({ ...formData, format: fmt.key })}
+                              className={`px-4 py-3 rounded-2xl border text-left transition-all cursor-pointer ${
+                                isActive
+                                  ? "bg-[#DB3E59] border-[#DB3E59] text-white shadow-md scale-[1.02]"
+                                  : "bg-white/80 hover:bg-white border-black/10 text-[#162B3A]"
+                              }`}
+                            >
+                              <div className="text-xs font-black uppercase tracking-wider">{fmt.label}</div>
+                              <div className={`text-[11px] font-semibold ${isActive ? "text-white/80" : "text-[#162B3A]/60"}`}>
+                                {fmt.sub}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Inputs Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                          Contact Person *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Your full name"
+                          value={formData.contactPerson}
+                          onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
+                          className="w-full px-5 py-3.5 rounded-2xl bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all placeholder:text-[#162B3A]/40"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                          Company / Organization *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Company or Individual"
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          className="w-full px-5 py-3.5 rounded-2xl bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all placeholder:text-[#162B3A]/40"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                          Contact Number *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="+91 / International number"
+                          value={formData.contactNumber}
+                          onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
+                          className="w-full px-5 py-3.5 rounded-2xl bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all placeholder:text-[#162B3A]/40"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          placeholder="name@example.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full px-5 py-3.5 rounded-2xl bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all placeholder:text-[#162B3A]/40"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                        Target Location &amp; Comments *
+                      </label>
+                      <textarea
+                        rows={3}
+                        required
+                        placeholder="Tell us about your target city, preferred mall/location, investment readiness, or timeline..."
+                        value={formData.comments}
+                        onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
+                        className="w-full px-5 py-3.5 rounded-2xl bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm resize-none transition-all placeholder:text-[#162B3A]/40"
+                      />
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        className="w-full py-4 sm:py-5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-sm sm:text-base uppercase tracking-wider transition-all shadow-xl hover:shadow-2xl active:scale-98 flex items-center justify-center gap-3 cursor-pointer"
+                      >
+                        <span>Submit Franchise Application</span>
+                        <span className="text-lg">→</span>
+                      </button>
+                    </div>
+
+                    <p className="text-[11px] font-semibold text-[#162B3A]/60 text-center">
+                      🔒 Your information is confidential and strictly used for TUMU franchise qualification.
+                    </p>
+                  </form>
+                )}
+
+              </div>
+            </div>
+
           </div>
-
-          <div className="shrink-0">
-            <button
-              onClick={() => setModalOpen(true)}
-              className="px-8 py-4 sm:px-10 sm:py-5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-base uppercase tracking-wide transition-all shadow-lg hover:shadow-xl active:scale-95 flex items-center gap-3"
-            >
-              <span>Enquire Now</span>
-              <span className="text-lg">→</span>
-            </button>
-          </div>
-
         </div>
       </section>
 
-
-      {/* ─── FRANCHISE APPLICATION MODAL ─── */}
-      <AnimatePresence>
-        {modalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full max-w-[540px] bg-[#FAF4E7] rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/10 overflow-hidden"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setModalOpen(false)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-black/5 hover:bg-black/10 text-[#162B3A] transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              {submitted ? (
-                <div className="flex flex-col items-center justify-center py-12 text-center">
-                  <CheckCircle2 className="w-16 h-16 text-[#DB3E59] mb-4 animate-bounce" />
-                  <h3 className="text-2xl font-black text-[#162B3A] uppercase mb-2">
-                    Enquiry Received!
-                  </h3>
-                  <p className="text-base font-semibold text-[#162B3A]/80 max-w-xs">
-                    Thank you for your interest in TUMU Franchise. Our team will reach out to you shortly.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
-                  <div className="text-center mb-2">
-                    <p className="text-sm font-semibold text-[#162B3A]/80 leading-relaxed max-w-md mx-auto">
-                      Fill in the inquiry form and someone from our franchise department will get in touch with you.
-                    </p>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Contact Person</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.contactPerson}
-                      onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                      className="w-full px-5 py-3.5 rounded-full bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Company / Organization</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="w-full px-5 py-3.5 rounded-full bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Contact Number</label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.contactNumber}
-                      onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
-                      className="w-full px-5 py-3.5 rounded-full bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Email address</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-5 py-3.5 rounded-full bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-[#162B3A] mb-1.5">Comments</label>
-                    <textarea
-                      rows={3}
-                      required
-                      value={formData.comments}
-                      onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
-                      className="w-full px-5 py-3.5 rounded-2xl bg-white border border-black/15 focus:outline-none focus:border-[#DB3E59] text-sm font-semibold text-[#162B3A] shadow-sm resize-none transition-all"
-                    />
-                  </div>
-
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      className="w-full py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-sm uppercase tracking-wide transition-all shadow-md active:scale-95"
-                    >
-                      Submit Inquiry
-                    </button>
-                  </div>
-                </form>
-              )}
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* Footer */}
       <Footer />
