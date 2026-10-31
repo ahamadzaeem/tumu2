@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import PillButton from "./PillButton";
 import BrandStripes from "./BrandStripes";
 
@@ -40,9 +41,11 @@ export default function LifestyleStory() {
               とろける幸せを。
             </p>
 
-            <PillButton variant="pink" showArrow>
-              Our Story
-            </PillButton>
+            <Link href="/story">
+              <PillButton variant="pink" showArrow>
+                Our Story
+              </PillButton>
+            </Link>
           </div>
         </div>
       </div>

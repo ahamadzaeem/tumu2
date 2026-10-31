@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   description: "A golden, crispy stick filled with smooth, chilled cream — crafted with the finest ingredients from Japan.",
 };
 
+import Preloader from "@/components/Preloader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -42,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${openSans.variable} ${titanOne.variable} ${sughoiy.variable} ${notoSansJP.variable} antialiased`}>
       <body className="min-h-screen bg-[#F8F4EC] text-[#162B3A] font-sans selection:bg-[#DB3E59] selection:text-white">
+        <Preloader />
         {children}
       </body>
     </html>

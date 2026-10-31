@@ -5,12 +5,13 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import PillButton from "./PillButton";
 
-const TOTAL_FRAMES = 120;
+const TOTAL_FRAMES = 200;
 
 export default function VideoScrollHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
+  const lastRenderedImgRef = useRef<HTMLImageElement | null>(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const lastFrameIndexRef = useRef<number>(-1);
   const rafIdRef = useRef<number | null>(null);
@@ -30,8 +31,8 @@ export default function VideoScrollHero() {
   });
 
   // ─── CREAMY SPRING PHYSICS ───
-  // Lower stiffness + balanced damping + slight inertia creates a velvety, buttery scroll feel
-  const springConfig = { stiffness: 45, damping: 18, mass: 0.6, restDelta: 0.0001 };
+  // Velvety smooth scroll feel without lagging
+  const springConfig = { stiffness: 55, damping: 22, mass: 0.5, restDelta: 0.0001 };
   const smoothProgress = useSpring(scrollYProgress, springConfig);
 
   const renderFrameRef = useRef<(progressVal: number) => void>(() => {});
@@ -78,7 +79,7 @@ export default function VideoScrollHero() {
       canvas.height = bufferH;
     }
 
-    // 16:9 1080p source aspect ratio
+    // 16:9 source aspect ratio
     const imgAspect = 16 / 9;
     const canvasAspect = bufferW / (bufferH || 1);
 
@@ -107,7 +108,7 @@ export default function VideoScrollHero() {
     lastFrameIndexRef.current = -1;
   };
 
-  // Ultra-fast renderFrame: zero context reconfiguration, nearest-frame fallback
+  // Ultra-fast renderFrame: zero context reconfiguration, O(1) nearest-frame fallback
   const renderFrame = (progressVal: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -125,9 +126,10 @@ export default function VideoScrollHero() {
       return;
     }
 
-    let img = imagesRef.current[frameIndex];
+    let img: HTMLImageElement | null | undefined = imagesRef.current[frameIndex];
     if (!img || !img.complete || img.naturalWidth === 0) {
-      for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+      // Check nearest adjacent frames within small window (±5)
+      for (let offset = 1; offset <= 5; offset++) {
         const prev = imagesRef.current[frameIndex - offset];
         if (prev && prev.complete && prev.naturalWidth > 0) {
           img = prev;
@@ -139,6 +141,10 @@ export default function VideoScrollHero() {
           break;
         }
       }
+      // If still not available, fallback to the last successfully rendered image
+      if (!img || !img.complete || img.naturalWidth === 0) {
+        img = lastRenderedImgRef.current;
+      }
     }
 
     if (img && (img.complete || img.naturalWidth > 0)) {
@@ -146,38 +152,46 @@ export default function VideoScrollHero() {
       if (width > 0 && height > 0 && drawW > 0 && drawH > 0) {
         ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
         lastFrameIndexRef.current = frameIndex;
+        lastRenderedImgRef.current = img;
       }
     }
   };
 
   renderFrameRef.current = renderFrame;
 
-  // Progressive preloading of all 240 frames
+  // Progressive batched preloading of all 200 frames
   useEffect(() => {
     let loadedCount = 0;
     const loadedImages: HTMLImageElement[] = new Array(TOTAL_FRAMES);
     imagesRef.current = loadedImages;
 
-    // Load order: Priority 1: frame 0, Priority 2: every 4th frame, Priority 3: remaining frames
-    const order: number[] = [0];
-    for (let i = 4; i < TOTAL_FRAMES; i += 4) {
-      order.push(i);
+    // Phase 1: Frame 0, initial frames (1-10), and keyframes (every 4th)
+    const priorityIndices: number[] = [0];
+    for (let i = 1; i <= 10; i++) {
+      if (i < TOTAL_FRAMES) priorityIndices.push(i);
     }
-    for (let i = 1; i < TOTAL_FRAMES; i++) {
-      if (i % 4 !== 0) {
-        order.push(i);
+    for (let i = 12; i < TOTAL_FRAMES; i += 4) {
+      priorityIndices.push(i);
+    }
+
+    // Phase 2: Remaining in-between frames
+    const remainingIndices: number[] = [];
+    const prioritySet = new Set(priorityIndices);
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+      if (!prioritySet.has(i)) {
+        remainingIndices.push(i);
       }
     }
 
-    order.forEach((i) => {
+    const loadSingleFrame = (idx: number) => {
+      if (loadedImages[idx]) return;
       const img = new Image();
-      loadedImages[i] = img;
-      const frameNum = String(i).padStart(3, "0");
+      loadedImages[idx] = img;
+      const frameNum = String(idx).padStart(3, "0");
 
       img.onload = () => {
         loadedCount++;
-        // As soon as frame 0 or initial frames load, trigger draw
-        if (i === 0 || loadedCount === 1) {
+        if (idx === 0 || loadedCount === 1) {
           renderFrameRef.current(smoothProgress.get() || 0);
         }
         if (loadedCount === TOTAL_FRAMES) {
@@ -186,7 +200,31 @@ export default function VideoScrollHero() {
       };
 
       img.src = `/images/tumu/scroll-frames/frame_${frameNum}.jpg`;
-    });
+    };
+
+    // Load priority frames immediately
+    priorityIndices.forEach((idx) => loadSingleFrame(idx));
+
+    // Load remaining frames in small batches so main thread & network remain buttery smooth
+    let remainingTimer: NodeJS.Timeout | null = null;
+    let batchIndex = 0;
+    const BATCH_SIZE = 12;
+
+    const loadNextBatch = () => {
+      if (batchIndex >= remainingIndices.length) return;
+      const slice = remainingIndices.slice(batchIndex, batchIndex + BATCH_SIZE);
+      slice.forEach((idx) => loadSingleFrame(idx));
+      batchIndex += BATCH_SIZE;
+      if (batchIndex < remainingIndices.length) {
+        remainingTimer = setTimeout(loadNextBatch, 60);
+      }
+    };
+
+    remainingTimer = setTimeout(loadNextBatch, 150);
+
+    return () => {
+      if (remainingTimer) clearTimeout(remainingTimer);
+    };
   }, []);
 
   // Update canvas on smooth scroll progress and window resize
@@ -266,14 +304,14 @@ export default function VideoScrollHero() {
 
             {/* Action Buttons - Brand Pink and Cyan Duo Centered */}
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <a href="#flavours">
+              <Link href="/story">
                 <PillButton variant="pink" showArrow>
-                  Explore Our Flavours
+                  What is TUMU
                 </PillButton>
-              </a>
-              <Link href="/find-us">
+              </Link>
+              <Link href="/franchise">
                 <PillButton variant="cyan" showArrow>
-                  Find a Store
+                  Franchise Now
                 </PillButton>
               </Link>
             </div>
@@ -282,7 +320,7 @@ export default function VideoScrollHero() {
         </motion.div>
 
         {/* ════════════════════════════════════════════════════════════════
-            PHASE 2: WHILE SCROLLING (FRAMES ~15 TO ~105)
+            PHASE 2: WHILE SCROLLING (FRAMES ~15 TO ~180)
             NO TEXT, NOTHING!
             Pure, unhindered, cinema-grade food animation.
            ════════════════════════════════════════════════════════════════ */}
@@ -312,14 +350,14 @@ export default function VideoScrollHero() {
 
             {/* Small CTAs */}
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <a href="#flavours">
+              <Link href="/story">
                 <PillButton variant="pink" showArrow>
-                  Explore Our Flavours
+                  What is TUMU
                 </PillButton>
-              </a>
-              <Link href="/find-us">
+              </Link>
+              <Link href="/franchise">
                 <PillButton variant="white" showArrow>
-                  Visit a Store
+                  Franchise Now
                 </PillButton>
               </Link>
             </div>

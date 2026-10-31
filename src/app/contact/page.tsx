@@ -10,14 +10,11 @@ import {
   Mail,
   MapPin,
   Clock,
-  Plus,
-  Minus,
   CheckCircle2,
   ChevronDown
 } from "lucide-react";
 
 export default function ContactPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -43,38 +40,6 @@ export default function ContactPage() {
       });
     }, 4000);
   };
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
-
-  const faqList = [
-    {
-      question: "How do I become a franchise partner?",
-      answer:
-        "Fill out our franchise enquiry form above or reach out to our team directly at franchise@tumu.com. We'll schedule an initial discussion and guide you through our 5-step onboarding process."
-    },
-    {
-      question: "What is the initial investment?",
-      answer:
-        "Initial investment varies based on store location and format (kiosk vs standalone outlet). Entry budgets typically range from $50,000 to $150,000 with high gross margins (up to 82%)."
-    },
-    {
-      question: "Do you provide training and support?",
-      answer:
-        "Yes! We provide complete end-to-end support including site selection, store layout design, team training, operational SOPs, branded packaging, and launch marketing."
-    },
-    {
-      question: "Where can I open a TUMU outlet?",
-      answer:
-        "We target high foot-traffic locations including premium shopping malls, transit hubs, commercial dining centers, and popular retail strips across Asia-Pacific and global key markets."
-    },
-    {
-      question: "How soon can I start?",
-      answer:
-        "From agreement signing to grand opening, the onboarding process typically takes between 4 to 8 weeks depending on site readiness and local municipal approvals."
-    }
-  ];
 
   return (
     <main className="min-h-screen bg-[#FAF5EB] flex flex-col selection:bg-[#DB3E59] selection:text-white overflow-x-hidden font-sans">
@@ -323,58 +288,7 @@ export default function ContactPage() {
       </section>
 
 
-      {/* ─── SECTION 3: FREQUENTLY ASKED QUESTIONS (CYAN BACKGROUND ACCORDION) ─── */}
-      <section className="relative w-full bg-[#D9F4F6] py-20 sm:py-28 overflow-hidden">
-        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          
-          {/* Left Title Column */}
-          <div className="lg:col-span-5 flex flex-col items-start">
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
-              FREQUENTLY ASKED
-            </span>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-4 whitespace-nowrap">
-              <span className="text-[#162B3A]">QUEST</span>
-              <span className="text-[#DB3E59]">IONS.</span>
-            </h2>
-
-            <div className="w-12 h-1 bg-[#DB3E59]" />
-          </div>
-
-          {/* Right Column: FAQ Accordion */}
-          <div className="lg:col-span-7 flex flex-col w-full divide-y divide-[#162B3A]/15 border-t border-b border-[#162B3A]/15">
-            {faqList.map((item, idx) => (
-              <div key={idx} className="py-5 sm:py-6 flex flex-col">
-                <button
-                  onClick={() => toggleFaq(idx)}
-                  className="flex items-center justify-between w-full text-left gap-4 focus:outline-none group"
-                >
-                  <span className="text-base sm:text-lg lg:text-xl font-bold text-[#162B3A] group-hover:text-[#DB3E59] transition-colors">
-                    {item.question}
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center shrink-0">
-                    {openFaq === idx ? (
-                      <Minus className="w-4 h-4 stroke-[2.5]" />
-                    ) : (
-                      <Plus className="w-4 h-4 stroke-[2.5]" />
-                    )}
-                  </div>
-                </button>
-
-                {openFaq === idx && (
-                  <p className="mt-3 text-sm sm:text-base font-medium text-[#162B3A]/80 leading-relaxed pr-8 animate-in fade-in duration-200">
-                    {item.answer}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* ─── SECTION 4: CTA (BRING TUMU TO YOUR CITY.) ─── */}
+      {/* ─── SECTION 3: CTA (BRING TUMU TO YOUR CITY.) ─── */}
       <section className="relative w-full bg-[#FFA0B4] py-16 sm:py-24 overflow-hidden">
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex flex-col md:flex-row items-center justify-between gap-8">
           

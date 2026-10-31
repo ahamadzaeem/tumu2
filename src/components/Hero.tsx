@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import PillButton from "./PillButton";
 import BrandStripes from "./BrandStripes";
 
@@ -43,7 +44,9 @@ export default function Hero() {
           </h1>
 
           <div>
-            <PillButton variant="pink" showArrow>Explore TUMU</PillButton>
+            <Link href="/story">
+              <PillButton variant="pink" showArrow>Explore TUMU</PillButton>
+            </Link>
           </div>
         </div>
       </div>

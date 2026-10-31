@@ -24,13 +24,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#162B3A]/10">
           {/* Brand Logo Column (3 cols) */}
           <div className="lg:col-span-3 flex flex-col items-start">
-            <Link href="/" className="flex flex-col items-start mb-4 overflow-hidden">
+            <Link href="/" className="flex flex-col items-start mb-4 overflow-hidden group">
               <Image
                 src="/images/tumu-logo-final.png"
                 alt="TUMU Crisp & Cream Logo"
-                width={240}
-                height={300}
-                className="object-contain w-28 sm:w-36 h-auto mb-4"
+                width={360}
+                height={450}
+                className="object-contain w-52 sm:w-64 h-auto mb-4 group-hover:scale-105 transition-transform duration-200"
                 priority
               />
             </Link>
@@ -47,17 +47,17 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm font-semibold text-[#162B3A]">
               <li>
-                <Link href="#flavours" className="hover:text-[#DB3E59] transition-colors">
+                <Link href="/flavors" className="hover:text-[#DB3E59] transition-colors">
                   Flavours
                 </Link>
               </li>
               <li>
-                <Link href="#story" className="hover:text-[#DB3E59] transition-colors">
+                <Link href="/story" className="hover:text-[#DB3E59] transition-colors">
                   Our Story
                 </Link>
               </li>
               <li>
-                <Link href="#process" className="hover:text-[#DB3E59] transition-colors">
+                <Link href="/franchise#process" className="hover:text-[#DB3E59] transition-colors">
                   Process
                 </Link>
               </li>
@@ -67,7 +67,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#franchise" className="hover:text-[#DB3E59] transition-colors">
+                <Link href="/franchise" className="hover:text-[#DB3E59] transition-colors">
                   Franchise
                 </Link>
               </li>
@@ -81,12 +81,12 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm font-semibold text-[#162B3A]">
               <li>
-                <Link href="#" className="hover:text-[#DB3E59] transition-colors">
+                <Link href="/franchise#faq" className="hover:text-[#DB3E59] transition-colors">
                   FAQs
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#DB3E59] transition-colors">
+                <Link href="/contact" className="hover:text-[#DB3E59] transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -100,17 +100,17 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm font-semibold text-[#162B3A]">
               <li>
-                <a href="#" className="hover:text-[#DB3E59] transition-colors">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
                   Instagram
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#DB3E59] transition-colors">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-[#DB3E59] transition-colors">
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
                   YouTube
                 </a>
               </li>
@@ -154,11 +154,11 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-[#162B3A]/70">
           <div>© 2024 TUMU. All rights reserved.</div>
           <div className="flex items-center gap-4">
-            <Link href="#" className="hover:text-[#DB3E59]">
+            <Link href="/contact" className="hover:text-[#DB3E59] transition-colors">
               Privacy Policy
             </Link>
             <span>|</span>
-            <Link href="#" className="hover:text-[#DB3E59]">
+            <Link href="/contact" className="hover:text-[#DB3E59] transition-colors">
               Terms
             </Link>
             <span>|</span>

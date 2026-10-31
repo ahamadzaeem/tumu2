@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import PillButton from "./PillButton";
 import BrandStripes from "./BrandStripes";
 import { Store, Globe, TrendingUp } from "lucide-react";
@@ -51,9 +52,11 @@ export default function FranchiseSection() {
             })}
           </div>
 
-          <PillButton variant="pink" showArrow className="w-fit px-8 py-3.5 text-base">
-            Become a Partner
-          </PillButton>
+          <Link href="/franchise">
+            <PillButton variant="pink" showArrow className="w-fit px-8 py-3.5 text-base">
+              Franchise Now
+            </PillButton>
+          </Link>
         </div>
       </div>
 
