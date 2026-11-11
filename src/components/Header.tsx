@@ -21,11 +21,11 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: "Story", href: "/story" },
+    { label: "Story", href: "/our-story" },
+    { label: "Flavours", href: "/flavours" },
+    { label: "Process", href: "/process" },
+    { label: "Locations", href: "/locations" },
     { label: "Franchise", href: "/franchise" },
-    { label: "Flavors", href: "/flavors" },
-    { label: "Find Us", href: "/find-us" },
-    { label: "Events", href: "/catering" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -108,7 +108,7 @@ export default function Header() {
             </Link>
           ))}
           <div className="pt-4 flex flex-col gap-3 mt-auto mb-16">
-            <Link href="/story" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/our-story" onClick={() => setMobileMenuOpen(false)}>
               <PillButton variant="pink" showArrow className="w-full justify-center">
                 What is TUMU
               </PillButton>

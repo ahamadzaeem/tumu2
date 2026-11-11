@@ -132,6 +132,17 @@ export default function Flavours() {
             </div>
           ))}
         </div>
+
+        {/* View All Flavours Link */}
+        <div className="mt-12 text-center">
+          <a
+            href="/flavours"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#162B3A] hover:bg-black text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95"
+          >
+            <span>Explore All 12 Flavours &amp; Matcha Desserts</span>
+            <span>→</span>
+          </a>
+        </div>
       </div>
     </section>
   );

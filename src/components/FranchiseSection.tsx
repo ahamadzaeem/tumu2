@@ -32,7 +32,7 @@ export default function FranchiseSection() {
           </h2>
 
           <p className="text-[#162B3A]/85 text-base leading-relaxed font-medium mb-10">
-            Bring Japanese quality and a joyful snacking experience to your city.
+            Partner with the premier <strong>dessert franchise UAE</strong> opportunity. Bring authentic Japanese desserts, high operating margins, and turnkey store formats to your city.
           </p>
 
           {/* 3 Icon Labels without circles */}

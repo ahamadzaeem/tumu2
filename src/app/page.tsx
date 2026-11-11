@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import VideoScrollHero from "@/components/VideoScrollHero";
 import Hero from "@/components/Hero";
@@ -9,6 +10,15 @@ import FreshFromOven from "@/components/FreshFromOven";
 import FranchiseSection from "@/components/FranchiseSection";
 import HappinessSection from "@/components/HappinessSection";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "TUMU UAE | Japanese Cream-Filled Crispy Desserts",
+  description:
+    "Experience authentic Japanese desserts in UAE. TUMU specializes in golden crispy cream-filled dessert sticks freshly baked and piped with smooth, chilled cream. Visit our Japanese dessert shop Dubai or explore dessert franchise UAE opportunities.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   return (

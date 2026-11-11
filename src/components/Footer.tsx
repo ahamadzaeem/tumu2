@@ -40,15 +40,35 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* EXPLORE (2 cols) - Exact pages from Nav Bar */}
+          {/* EXPLORE (2 cols) - Dedicated SEO Pages */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#162B3A] mb-4">
               EXPLORE
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm font-semibold text-[#162B3A]">
               <li>
-                <Link href="/story" className="hover:text-[#DB3E59] transition-colors">
-                  Story
+                <Link href="/" className="hover:text-[#DB3E59] transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/flavours" className="hover:text-[#DB3E59] transition-colors">
+                  Our Flavours
+                </Link>
+              </li>
+              <li>
+                <Link href="/our-story" className="hover:text-[#DB3E59] transition-colors">
+                  Our Story
+                </Link>
+              </li>
+              <li>
+                <Link href="/process" className="hover:text-[#DB3E59] transition-colors">
+                  Our Process
+                </Link>
+              </li>
+              <li>
+                <Link href="/locations" className="hover:text-[#DB3E59] transition-colors">
+                  Store Locations
                 </Link>
               </li>
               <li>
@@ -56,19 +76,18 @@ export default function Footer() {
                   Franchise
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* HELP & INFO (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#162B3A] mb-4">
+              HELP &amp; INFO
+            </h4>
+            <ul className="flex flex-col gap-2.5 text-sm font-semibold text-[#162B3A]">
               <li>
-                <Link href="/flavors" className="hover:text-[#DB3E59] transition-colors">
-                  Flavors
-                </Link>
-              </li>
-              <li>
-                <Link href="/find-us" className="hover:text-[#DB3E59] transition-colors">
-                  Find Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/catering" className="hover:text-[#DB3E59] transition-colors">
-                  Events
+                <Link href="/faq" className="hover:text-[#DB3E59] transition-colors">
+                  FAQs
                 </Link>
               </li>
               <li>
@@ -76,23 +95,9 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          {/* HELP (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#162B3A] mb-4">
-              HELP
-            </h4>
-            <ul className="flex flex-col gap-2.5 text-sm font-semibold text-[#162B3A]">
               <li>
-                <Link href="/franchise#faq" className="hover:text-[#DB3E59] transition-colors">
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[#DB3E59] transition-colors">
-                  Contact Us
+                <Link href="/catering" className="hover:text-[#DB3E59] transition-colors">
+                  Events &amp; Catering
                 </Link>
               </li>
             </ul>
