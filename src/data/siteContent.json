@@ -1,0 +1,187 @@
+{
+  "general": {
+    "brandName": "TUMU UAE",
+    "tagline": "Crisp Outside. Creamy Inside.",
+    "japaneseTagline": "できたてのサクサク食感",
+    "description": "Modern Japanese dessert sticks made with golden crisp exterior and chilled smooth cream.",
+    "phone": "+971 4 362 7500",
+    "email": "hello@tumu.ae",
+    "address": "Downtown Dubai & Major Malls, Dubai, United Arab Emirates",
+    "openingHours": "Daily: 10:00 AM – Midnight",
+    "instagramUrl": "https://instagram.com/tumu_uae",
+    "facebookUrl": "https://facebook.com/tumuae",
+    "youtubeUrl": "https://youtube.com/@tumuae",
+    "copyrightText": "© 2026 TUMU UAE. All rights reserved. Crafted with authentic Japanese ingredients."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Authentic Japanese Desserts in UAE",
+      "headlineLine1": "CRISP OUTSIDE.",
+      "headlineLine2": "CREAMY INSIDE.",
+      "description": "Freshly baked crispy cream-filled desserts piped with velvety Japanese cream desserts across Dubai.",
+      "primaryBtnText": "Explore TUMU",
+      "primaryBtnLink": "/our-story",
+      "secondaryBtnText": "Our Flavours",
+      "secondaryBtnLink": "/flavours"
+    },
+    "realIngredients": {
+      "eyebrow": "NATURAL INGREDIENTS • 本物の素材",
+      "heading": "CRAFTED WITH HONEST TASTE",
+      "subtitle": "Only pure ingredients sourced directly from Japan's finest prefectures.",
+      "description": "Every single batch is crafted without artificial flavors, chemical stabilizers, or synthetic fillers. Real milk, real vanilla beans, and stone-ground tea leaves."
+    },
+    "productAnatomy": {
+      "eyebrow": "ANATOMY OF PERFECTION • 構造の美学",
+      "heading": "WHAT MAKES TUMU SPECIAL",
+      "subtitle": "Engineered for the ultimate hot-and-cold textural contrast in every bite.",
+      "layer1Title": "Golden Choux Pastry Stick",
+      "layer1Desc": "Light, airy pastry baked continuously in small batches throughout the day.",
+      "layer2Title": "Crunchy Almond & Sugar Crust",
+      "layer2Desc": "Toasted crushed almonds and pearl sugar caramelized to a brittle perfection.",
+      "layer3Title": "Chilled Velvet Cream Filling",
+      "layer3Desc": "Silky custard piped cold right into the warm shell upon your order."
+    },
+    "freshFromOven": {
+      "eyebrow": "FRESHLY BAKED DAILY",
+      "heading": "STRAIGHT FROM OUR OVENS",
+      "description": "Warm aromas fill the air as each tray emerges with a deep golden hue and crispy crust."
+    },
+    "franchiseCta": {
+      "eyebrow": "TUMU FRANCHISE • フランチャイズ",
+      "headingLine1": "TUMU FRANCHISE",
+      "headingLine2": "WITH TUMU",
+      "description": "Partner with the premier dessert franchise UAE opportunity. Bring authentic Japanese desserts, high operating margins, and turnkey store formats to your city.",
+      "buttonText": "Franchise Now",
+      "buttonLink": "/franchise#form",
+      "format1": "01. Mall Kiosk",
+      "format2": "02. Retail Outlet",
+      "format3": "03. Food Truck"
+    }
+  },
+  "story": {
+    "section1": {
+      "eyebrow": "OUR STORY • 私たちの物語",
+      "headingLine1": "A SIMPLE",
+      "headingLine2": "IDEA.",
+      "description": "To introduce authentic Japanese desserts in UAE by turning a timeless choux pastry into a new kind of sensory joy — crispy cream-filled desserts with an audible golden crunch outside, and chilled smooth cream inside."
+    },
+    "section2": {
+      "eyebrow": "CRAFTED DIFFERENTLY • 職人のこだわり",
+      "headingLine1": "TRADITION MEETS",
+      "headingLine2": "INNOVATION.",
+      "description": "We take inspiration from classic Japanese patisserie traditions and elevate them with modern textures and vibrant global flavours. Every TUMU dessert stick is freshly baked on-site, filled to order with premium Japanese cream desserts, and delivered warm and crisp directly to your hands."
+    },
+    "section3": {
+      "eyebrow": "ALL THE WAY FROM",
+      "heading": "JAPAN!",
+      "description": "Rooted in Japanese craftsmanship and uncompromising attention to detail, TUMU brings the soul of Japan's pastry culture to the UAE. Visit our Japanese dessert shop Dubai locations to taste the magic firsthand."
+    }
+  },
+  "process": {
+    "hero": {
+      "eyebrow": "ARTISANAL CRAFTSMANSHIP • おいしさができるまで",
+      "headingLine1": "FROM OUR OVEN",
+      "headingLine2": "TO YOU.",
+      "description": "The secret behind the finest crispy cream-filled desserts and Japanese desserts in UAE: an obsession with texture, temperature contrast, and zero compromise on fresh ingredients."
+    },
+    "steps": [
+      {
+        "step": "01",
+        "title": "BAKE",
+        "kanji": "丁寧に焼き上げる",
+        "subtitle": "Golden Convection Baking",
+        "description": "Every pastry stick starts as pure choux dough made with Japanese flour and unbleached butter. Baked fresh in specialized convection ovens at controlled temperature to form a hollow, airy chamber."
+      },
+      {
+        "step": "02",
+        "title": "CRUNCH",
+        "kanji": "サクサクの食感",
+        "subtitle": "Almond & Pearl Sugar Crust",
+        "description": "Before baking, each stick is coated with our secret crust layer of toasted crushed almonds and pearl sugar. This delivers our hallmark crispy cream-filled dessert experience."
+      },
+      {
+        "step": "03",
+        "title": "FILL",
+        "kanji": "なめらかなクリーム",
+        "subtitle": "Chilled Cream Piped to Order",
+        "description": "To ensure zero sogginess, our authentic Japanese cream desserts are never pre-filled. When you order, chilled silky cream is injected from end to end using high-precision confectionery nozzles."
+      },
+      {
+        "step": "04",
+        "title": "FINISH",
+        "kanji": "仕上げのトッピング",
+        "subtitle": "Artisanal Garnishing",
+        "description": "Delicate finishing touches — whether ceremonial Uji matcha dusting, roasted pistachio crumbles, or cocoa dust — applied with pastry chef precision."
+      },
+      {
+        "step": "05",
+        "title": "SERVE",
+        "kanji": "できたてをお届け",
+        "subtitle": "Peak Temperature Contrast",
+        "description": "Served within seconds of filling. That breathtaking first bite captures the legendary sensory contrast: warm, flaky exterior married with cool, luxurious Japanese cream."
+      }
+    ]
+  },
+  "franchise": {
+    "hero": {
+      "eyebrow": "FRANCHISE OPPORTUNITY • フランチャイズ募集",
+      "headingLine1": "BRING TUMU",
+      "headingLine2": "TO YOUR CITY.",
+      "description": "Join the global dessert revolution. Proven unit economics, turnkey Japanese setup, and rapid payback with high gross profit margins."
+    },
+    "formats": [
+      {
+        "id": "kiosk",
+        "name": "Mall Kiosk",
+        "kanji": "キオスク",
+        "subtitle": "Compact, high-turnover kiosk optimized for luxury shopping malls and transit hubs.",
+        "footprint": "80 – 200 sq.ft.",
+        "setupTime": "2 – 4 Weeks",
+        "staffing": "1 – 2 Staff",
+        "highlight": "High Footfall & Rapid Payback",
+        "description": "A streamlined retail jewel designed for high-density mall corridors and luxury shopping centers. Features an illuminated glass display, convection warming ovens, and precision cream injection nozzles."
+      },
+      {
+        "id": "outlet",
+        "name": "Retail Outlet",
+        "kanji": "店舗・ストア",
+        "subtitle": "Inline mall retail unit, high-street dessert boutique, or flagship store.",
+        "footprint": "250 – 600 sq.ft.",
+        "setupTime": "5 – 8 Weeks",
+        "staffing": "2 – 4 Staff",
+        "highlight": "Live Bakery Theater & Cafe Seating",
+        "description": "The complete TUMU brand sanctuary. Features a front service ordering counter, open-concept live filling station where guests watch smooth cream piped into warm, golden crunchy sticks, and optional cafe seating."
+      },
+      {
+        "id": "truck",
+        "name": "Food Truck & Trailer",
+        "kanji": "フードトラック",
+        "subtitle": "100% mobile, event-ready trailer for festivals, pop-ups, and campuses.",
+        "footprint": "Custom Dual-Axle Trailer",
+        "setupTime": "Plug & Play",
+        "staffing": "1 – 2 Operators",
+        "highlight": "Zero Real Estate Lease Overhead",
+        "description": "Bring TUMU wherever crowds gather. Outfitted with heavy-duty commercial convection ovens, chilled piping stations, automated power hookups, and wide serving hatches wrapped in vibrant Japanese retro-modern styling."
+      }
+    ],
+    "applicationForm": {
+      "eyebrow": "FRANCHISE APPLICATION • フランチャイズ申請",
+      "headingLine1": "BRING TUMU",
+      "headingLine2": "TO YOUR CITY.",
+      "description": "Join Japan's most exciting artisanal crunchy cream stick phenomenon. Select your preferred concept and submit your details to connect directly with our regional franchise development director.",
+      "perk1": "Turnkey store setup & custom Japanese equipment",
+      "perk2": "Direct proprietary ingredient & crust supply chain",
+      "perk3": "Comprehensive staff pastry training & SOP manuals",
+      "perk4": "High gross margin with quick operational payback"
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "LET'S CONNECT • お問い合わせ",
+      "headingLine1": "WE WOULD LOVE",
+      "headingLine2": "TO HEAR FROM YOU.",
+      "description": "Whether you are interested in a franchise opportunity, private event catering, or simply sharing feedback, our team is always ready to assist."
+    }
+  }
+}
+

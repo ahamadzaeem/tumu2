@@ -1,13 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { getSiteContent } from "@/lib/cms";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const general = content?.general || {
+    description: "Modern Japanese dessert sticks made with golden crisp exterior and chilled smooth cream.",
+    instagramUrl: "https://instagram.com/tumu_uae",
+    facebookUrl: "https://facebook.com/tumuae",
+    youtubeUrl: "https://youtube.com/@tumuae",
+    copyrightText: "© 2026 TUMU UAE. All rights reserved."
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,8 +54,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-xs text-[#162B3A]/70 font-medium max-w-[220px]">
-              Modern Japanese dessert sticks made with golden crisp exterior and
-              chilled smooth cream.
+              {general.description}
             </p>
           </div>
 
@@ -110,17 +128,17 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm font-semibold text-[#162B3A]">
               <li>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
+                <a href={general.instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
                   Instagram
                 </a>
               </li>
               <li>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
+                <a href={general.facebookUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
+                <a href={general.youtubeUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#DB3E59] transition-colors">
                   YouTube
                 </a>
               </li>
@@ -162,7 +180,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-[#162B3A]/70">
-          <div>© 2024 TUMU. All rights reserved.</div>
+          <div>{general.copyrightText}</div>
           <div className="flex items-center gap-4">
             <Link href="/contact" className="hover:text-[#DB3E59] transition-colors">
               Privacy Policy

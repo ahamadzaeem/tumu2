@@ -1,0 +1,122 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "slug": "/",
+      "name": "Home Page",
+      "metaTitle": "TUMU UAE | Japanese Cream-Filled Crispy Desserts",
+      "metaDescription": "Experience authentic Japanese desserts in UAE. TUMU specializes in golden crispy cream-filled dessert sticks freshly baked and piped with smooth, chilled cream. Visit our Japanese dessert shop Dubai or explore dessert franchise UAE opportunities.",
+      "metaKeywords": "Japanese desserts in UAE, Japanese cream desserts, Crispy cream-filled desserts, Japanese dessert shop Dubai, Matcha desserts UAE, Dessert franchise UAE, TUMU UAE, TUMU Dubai",
+      "canonicalUrl": "https://tumu.ae/",
+      "ogTitle": "TUMU UAE | Japanese Cream-Filled Crispy Desserts",
+      "ogDescription": "Authentic Japanese desserts in UAE. Freshly baked crispy pastry sticks filled with chilled, smooth cream in Dubai.",
+      "ogImage": "/images/tumu/hero_turquoise.png",
+      "robots": "index, follow"
+    },
+    {
+      "id": "flavours",
+      "slug": "/flavours",
+      "name": "Our Flavours",
+      "metaTitle": "Our Flavours | Japanese Cream Desserts & Matcha in UAE",
+      "metaDescription": "Explore TUMU's authentic Japanese cream desserts and matcha desserts in UAE. Handcrafted crispy cream-filled pastry sticks filled with Uji Matcha, Madagascar Vanilla, and Belgian Chocolate.",
+      "metaKeywords": "Japanese cream desserts, Matcha desserts UAE, Japanese desserts in UAE, Crispy cream-filled desserts, TUMU flavours, Dubai matcha pastry",
+      "canonicalUrl": "https://tumu.ae/flavours",
+      "ogTitle": "Our Flavours | TUMU UAE - Japanese Cream & Matcha Desserts",
+      "ogDescription": "Handcrafted crispy cream-filled dessert sticks. Discover our signature Uji Matcha, Madagascar Vanilla, and specialty Japanese flavours in UAE.",
+      "ogImage": "/images/tumu/flavour_v3_04_matcha_green_tea.png",
+      "robots": "index, follow"
+    },
+    {
+      "id": "our-story",
+      "slug": "/our-story",
+      "name": "Our Story",
+      "metaTitle": "Our Story | Authentic Japanese Desserts in UAE & Dubai",
+      "metaDescription": "Learn the story of TUMU UAE. Crafting authentic Japanese cream desserts and crispy cream-filled desserts with Japanese pastry perfection, freshly baked daily in Dubai.",
+      "metaKeywords": "Japanese desserts in UAE, Japanese cream desserts, Crispy cream-filled desserts, Japanese dessert shop Dubai, TUMU story",
+      "canonicalUrl": "https://tumu.ae/our-story",
+      "ogTitle": "Our Story | TUMU UAE - Japanese Cream-Filled Crispy Desserts",
+      "ogDescription": "A simple idea inspired by Japanese craft: turning classic pastry into an extraordinary crispy cream-filled dessert in the UAE.",
+      "ogImage": "/images/tumu/story_section_1.png",
+      "robots": "index, follow"
+    },
+    {
+      "id": "process",
+      "slug": "/process",
+      "name": "Our Process",
+      "metaTitle": "Our Process | Artisanal Japanese Baking & Fresh Chilled Cream",
+      "metaDescription": "Discover the 5-step craftsmanship behind TUMU's crispy cream-filled desserts in the UAE. From golden convection baking to piping fresh chilled cream to order in Dubai.",
+      "metaKeywords": "Crispy cream-filled desserts, Japanese cream desserts, Japanese desserts in UAE, Japanese dessert shop Dubai, TUMU baking process",
+      "canonicalUrl": "https://tumu.ae/process",
+      "ogTitle": "Our Process | TUMU UAE - The Art of Crispy Cream Desserts",
+      "ogDescription": "Explore how TUMU crafts its iconic crispy cream dessert sticks. Baked golden, crusted with almonds, and filled fresh to order in UAE.",
+      "ogImage": "/images/tumu/process_01_bake.jpg",
+      "robots": "index, follow"
+    },
+    {
+      "id": "locations",
+      "slug": "/locations",
+      "name": "Store Locations",
+      "metaTitle": "Store Locations | Japanese Dessert Shop Dubai & UAE",
+      "metaDescription": "Find your nearest TUMU Japanese dessert shop in Dubai and UAE. Visit our kiosks and boutiques for freshly baked crispy cream-filled desserts piped to order.",
+      "metaKeywords": "Japanese dessert shop Dubai, Japanese desserts in UAE, Crispy cream-filled desserts, Dubai dessert cafes, TUMU locations UAE",
+      "canonicalUrl": "https://tumu.ae/locations",
+      "ogTitle": "Store Locations | TUMU UAE - Japanese Dessert Shop Dubai",
+      "ogDescription": "Find TUMU dessert shops across Dubai & UAE. Freshly baked crispy cream dessert sticks with interactive Google Maps navigation.",
+      "ogImage": "/images/tumu/formats/outlet_storefront.jpg",
+      "robots": "index, follow"
+    },
+    {
+      "id": "franchise",
+      "slug": "/franchise",
+      "name": "Franchise",
+      "metaTitle": "Dessert Franchise UAE | Partner with TUMU Japanese Desserts",
+      "metaDescription": "Explore dessert franchise UAE opportunities with TUMU. Turnkey franchise formats: Mall Kiosks, Retail Outlets, and Food Trucks. High ROI, full training, and proprietary Japanese dessert supply chain.",
+      "metaKeywords": "Dessert franchise UAE, Japanese desserts in UAE, Japanese cream desserts, Crispy cream-filled desserts, Japanese dessert shop Dubai, TUMU franchise",
+      "canonicalUrl": "https://tumu.ae/franchise",
+      "ogTitle": "Dessert Franchise UAE | TUMU Japanese Cream Stick Concept",
+      "ogDescription": "Join the fastest-growing Japanese dessert concept in the UAE. Turnkey setup, high gross margins, and proven mall kiosk & retail formats.",
+      "ogImage": "/images/tumu/formats/kiosk_elevation.jpg",
+      "robots": "index, follow"
+    },
+    {
+      "id": "faq",
+      "slug": "/faq",
+      "name": "FAQs",
+      "metaTitle": "FAQs | Japanese Desserts & Franchise Questions in UAE",
+      "metaDescription": "Find answers to frequently asked questions about TUMU's crispy cream-filled Japanese desserts, Halal ingredients, Dubai store locations, and dessert franchise opportunities in UAE.",
+      "metaKeywords": "Japanese desserts in UAE, Japanese cream desserts, Crispy cream-filled desserts, Japanese dessert shop Dubai, Matcha desserts UAE, Dessert franchise UAE, TUMU FAQ",
+      "canonicalUrl": "https://tumu.ae/faq",
+      "ogTitle": "FAQs | TUMU UAE - Japanese Desserts & Franchise Info",
+      "ogDescription": "All your questions answered: halal certification, fresh baking process, Dubai stores, and franchise requirements in the UAE.",
+      "ogImage": "/images/tumu/hero_turquoise.png",
+      "robots": "index, follow"
+    },
+    {
+      "id": "contact",
+      "slug": "/contact",
+      "name": "Contact Us",
+      "metaTitle": "Contact Us | TUMU Japanese Desserts Dubai & UAE",
+      "metaDescription": "Get in touch with TUMU UAE. Contact our team for guest inquiries, corporate catering, brand partnerships, and dessert franchise opportunities in Dubai and the UAE.",
+      "metaKeywords": "Contact TUMU, Japanese dessert shop Dubai, Japanese desserts in UAE, TUMU phone number, Dubai dessert headquarters",
+      "canonicalUrl": "https://tumu.ae/contact",
+      "ogTitle": "Contact Us | TUMU UAE - Japanese Cream-Filled Crispy Desserts",
+      "ogDescription": "Connect with the TUMU UAE team for guest inquiries, catering events, and franchise questions in Dubai.",
+      "ogImage": "/images/tumu/hero_turquoise.png",
+      "robots": "index, follow"
+    },
+    {
+      "id": "catering",
+      "slug": "/catering",
+      "name": "Events & Catering",
+      "metaTitle": "Events & Catering | Live Japanese Dessert Station Dubai & UAE",
+      "metaDescription": "Book TUMU live dessert catering for private parties, weddings, corporate summits, and celebrations across Dubai & UAE. Freshly baked crispy cream dessert sticks piped on-site.",
+      "metaKeywords": "Japanese dessert catering Dubai, Japanese desserts in UAE, live dessert station Dubai, corporate catering UAE, wedding dessert station UAE",
+      "canonicalUrl": "https://tumu.ae/catering",
+      "ogTitle": "Events & Catering | TUMU UAE - Live Japanese Dessert Bar",
+      "ogDescription": "Bring the live TUMU experience to your next gathering. Freshly piped Japanese cream sticks for weddings, parties, and corporate events across UAE.",
+      "ogImage": "/images/tumu/catering_hero_banner.png",
+      "robots": "index, follow"
+    }
+  ]
+}
+

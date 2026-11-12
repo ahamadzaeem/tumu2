@@ -60,3 +60,4 @@ export const FAQ_ITEMS: FaqItem[] = [
       "We provide end-to-end support including turnkey architectural store design, custom Japanese convection ovens and filling machinery, direct proprietary ingredient supply chain, comprehensive staff pastry academy training, and continuous marketing support.",
   },
 ];
+

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -9,60 +9,45 @@ import Footer from "@/components/Footer";
 import ProductAnatomy from "@/components/ProductAnatomy";
 import RealIngredients from "@/components/RealIngredients";
 import { ArrowRight, Sparkles, Flame, Snowflake, Clock, Award } from "lucide-react";
+import { getSiteContent } from "@/lib/cms";
 
 export default function ProcessClient() {
-  const steps = [
-    {
-      num: "01",
-      title: "BAKE",
-      kanji: "丁寧に焼き上げる",
-      subtitle: "Golden Convection Baking",
-      description:
-        "Every pastry stick starts as pure choux dough made with Japanese flour and unbleached butter. Baked fresh in specialized convection ovens at controlled temperature to form a hollow, airy chamber.",
-      image: "/images/tumu/process_01_bake.jpg",
-      icon: Flame,
-    },
-    {
-      num: "02",
-      title: "CRUNCH",
-      kanji: "サクサクの食感",
-      subtitle: "Almond & Pearl Sugar Crust",
-      description:
-        "Before baking, each stick is coated with our secret crust layer of toasted crushed almonds and pearl sugar. This delivers our hallmark crispy cream-filled dessert experience.",
-      image: "/images/tumu/process_02_crunch.jpg",
-      icon: Sparkles,
-    },
-    {
-      num: "03",
-      title: "FILL",
-      kanji: "なめらかなクリーム",
-      subtitle: "Chilled Cream Piped to Order",
-      description:
-        "To ensure zero sogginess, our authentic Japanese cream desserts are never pre-filled. When you order, chilled silky cream is injected from end to end using high-precision confectionery nozzles.",
-      image: "/images/tumu/process_03_fill.jpg",
-      icon: Snowflake,
-    },
-    {
-      num: "04",
-      title: "FINISH",
-      kanji: "仕上げのトッピング",
-      subtitle: "Artisanal Garnishing",
-      description:
-        "Delicate finishing touches — whether ceremonial Uji matcha dusting, roasted pistachio crumbles, or cocoa dust — applied with pastry chef precision.",
-      image: "/images/tumu/process_04_finish.jpg",
-      icon: Award,
-    },
-    {
-      num: "05",
-      title: "SERVE",
-      kanji: "できたてをお届け",
-      subtitle: "Peak Temperature Contrast",
-      description:
-        "Served within seconds of filling. That breathtaking first bite captures the legendary sensory contrast: warm, flaky exterior married with cool, luxurious Japanese cream.",
-      image: "/images/tumu/process_05_serve.jpg",
-      icon: Clock,
-    },
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const hero = content?.process?.hero || {
+    eyebrow: "ARTISANAL CRAFTSMANSHIP • おいしさができるまで",
+    headingLine1: "FROM OUR OVEN",
+    headingLine2: "TO YOU.",
+    description: "The secret behind the finest crispy cream-filled desserts and Japanese desserts in UAE: an obsession with texture, temperature contrast, and zero compromise on fresh ingredients."
+  };
+
+  const icons = [Flame, Sparkles, Snowflake, Award, Clock];
+  const images = [
+    "/images/tumu/process_01_bake.jpg",
+    "/images/tumu/process_02_crunch.jpg",
+    "/images/tumu/process_03_fill.jpg",
+    "/images/tumu/process_04_finish.jpg",
+    "/images/tumu/process_05_serve.jpg",
   ];
+
+  const steps = (content?.process?.steps || []).map((stepItem: any, i: number) => ({
+    num: stepItem.step || `0${i + 1}`,
+    title: stepItem.title,
+    kanji: stepItem.kanji,
+    subtitle: stepItem.subtitle,
+    description: stepItem.description,
+    image: images[i] || images[0],
+    icon: icons[i] || Sparkles,
+  }));
 
   return (
     <main className="min-h-screen bg-[#FAF4E7] flex flex-col selection:bg-[#DB3E59] selection:text-white">
@@ -72,14 +57,14 @@ export default function ProcessClient() {
       <section className="relative w-full pt-32 sm:pt-40 pb-16 sm:pb-24 px-6 lg:px-12 max-w-[1440px] mx-auto">
         <div className="text-center max-w-3xl mx-auto">
           <span className="text-[#DB3E59] text-xs sm:text-sm font-black uppercase tracking-[0.25em] block mb-3">
-            ARTISANAL CRAFTSMANSHIP • おいしさができるまで
+            {hero.eyebrow}
           </span>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#162B3A] mb-6 leading-[0.95]">
-            FROM OUR OVEN <span className="text-[#DB3E59]">TO YOU.</span>
+            {hero.headingLine1} <span className="text-[#DB3E59]">{hero.headingLine2}</span>
           </h1>
           <div className="w-16 h-1.5 bg-[#DB3E59] mx-auto rounded-full mb-6" />
           <p className="text-[#162B3A]/80 text-base sm:text-lg lg:text-xl font-medium leading-relaxed">
-            The secret behind the finest <strong>crispy cream-filled desserts</strong> and <strong>Japanese desserts in UAE</strong>: an obsession with texture, temperature contrast, and zero compromise on fresh ingredients.
+            {hero.description}
           </p>
         </div>
       </section>

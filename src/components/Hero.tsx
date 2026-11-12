@@ -1,15 +1,38 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PillButton from "./PillButton";
-import BrandStripes from "./BrandStripes";
+import { getSiteContent } from "@/lib/cms";
 
 export default function Hero() {
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    // Optionally fetch live CMS updates if available
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const hero = content?.home?.hero || {
+    eyebrow: "Authentic Japanese Desserts in UAE",
+    headlineLine1: "CRISP OUTSIDE.",
+    headlineLine2: "CREAMY INSIDE.",
+    description:
+      "Freshly baked crispy cream-filled desserts piped with velvety Japanese cream desserts across Dubai.",
+    primaryBtnText: "Explore TUMU",
+    primaryBtnLink: "/our-story",
+    secondaryBtnText: "Our Flavours",
+    secondaryBtnLink: "/flavours",
+  };
+
   return (
     <section className="relative w-full h-screen overflow-hidden flex items-center pt-24 pb-0 bg-transparent">
-
       {/* ─── NEW BACKGROUND IMAGE ─── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
@@ -24,13 +47,11 @@ export default function Hero() {
 
       {/* ─── TEXT CONTENT (ON TOP OF EVERYTHING) ─── */}
       <div className="relative z-30 w-full max-w-[1440px] mx-auto flex items-center">
-        <div
-          className="flex flex-col justify-center pl-6 sm:pl-12 lg:pl-16 xl:pl-20"
-        >
+        <div className="flex flex-col justify-center pl-6 sm:pl-12 lg:pl-16 xl:pl-20">
           {/* Decorative Script Subhead */}
           <div className="mb-2">
             <span className="font-subhead text-[36px] sm:text-[42px] text-[#162B3A] inline-block drop-shadow-sm">
-              Authentic Japanese Desserts in UAE
+              {hero.eyebrow}
             </span>
           </div>
 
@@ -39,20 +60,24 @@ export default function Hero() {
             className="font-black uppercase tracking-tight leading-[0.9] mb-4"
             style={{ fontSize: "clamp(3rem, 6vw, 4.8rem)" }}
           >
-            <span className="block text-[#162B3A]">CRISP OUTSIDE.</span>
-            <span className="block text-[#DB3E59]">CREAMY INSIDE.</span>
+            <span className="block text-[#162B3A]">{hero.headlineLine1}</span>
+            <span className="block text-[#DB3E59]">{hero.headlineLine2}</span>
           </h1>
 
           <p className="text-[#162B3A]/85 font-bold text-sm sm:text-base max-w-md mb-8 leading-relaxed">
-            Freshly baked <strong>crispy cream-filled desserts</strong> piped with velvety <strong>Japanese cream desserts</strong> across Dubai.
+            {hero.description}
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
-            <Link href="/our-story">
-              <PillButton variant="pink" showArrow>Explore TUMU</PillButton>
+            <Link href={hero.primaryBtnLink || "/our-story"}>
+              <PillButton variant="pink" showArrow>
+                {hero.primaryBtnText || "Explore TUMU"}
+              </PillButton>
             </Link>
-            <Link href="/flavours">
-              <PillButton variant="outline" showArrow>Our Flavours</PillButton>
+            <Link href={hero.secondaryBtnLink || "/flavours"}>
+              <PillButton variant="outline" showArrow>
+                {hero.secondaryBtnText || "Our Flavours"}
+              </PillButton>
             </Link>
           </div>
         </div>

@@ -1,13 +1,44 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { getSiteContent } from "@/lib/cms";
 
 export default function OurStoryClient() {
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const story = content?.story || {
+    section1: {
+      eyebrow: "OUR STORY • 私たちの物語",
+      headingLine1: "A SIMPLE",
+      headingLine2: "IDEA.",
+      description: "To introduce authentic Japanese desserts in UAE by turning a timeless choux pastry into a new kind of sensory joy — crispy cream-filled desserts with an audible golden crunch outside, and chilled smooth cream inside."
+    },
+    section2: {
+      eyebrow: "CRAFTED DIFFERENTLY • 職人のこだわり",
+      headingLine1: "TRADITION MEETS",
+      headingLine2: "INNOVATION.",
+      description: "We take inspiration from classic Japanese patisserie traditions and elevate them with modern textures and vibrant global flavours. Every TUMU dessert stick is freshly baked on-site, filled to order with premium Japanese cream desserts, and delivered warm and crisp directly to your hands."
+    },
+    section3: {
+      eyebrow: "ALL THE WAY FROM",
+      heading: "JAPAN!",
+      description: "Rooted in Japanese craftsmanship and uncompromising attention to detail, TUMU brings the soul of Japan's pastry culture to the UAE. Visit our Japanese dessert shop Dubai locations to taste the magic firsthand."
+    }
+  };
   return (
     <main className="min-h-screen bg-[#FAF4E7] flex flex-col selection:bg-[#DB3E59] selection:text-white">
       {/* Navigation Header */}
@@ -36,20 +67,20 @@ export default function OurStoryClient() {
             className="max-w-[480px] lg:max-w-[540px] flex flex-col items-start"
           >
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-2 sm:mb-3">
-              OUR STORY • 私たちの物語
+              {story.section1?.eyebrow}
             </span>
 
             <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
-              <span className="block text-[#162B3A]">A SIMPLE</span>
+              <span className="block text-[#162B3A]">{story.section1?.headingLine1}</span>
               <span className="block text-[#DB3E59]">
-                IDEA<span className="text-[#DB3E59]">.</span>
+                {story.section1?.headingLine2}
               </span>
             </h1>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-5 sm:mb-6" />
 
             <p className="text-[#162B3A] max-sm:text-white max-sm:drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px]">
-              To introduce authentic <strong>Japanese desserts in UAE</strong> by turning a timeless choux pastry into a new kind of sensory joy — <strong>crispy cream-filled desserts</strong> with an audible golden crunch outside, and chilled smooth cream inside.
+              {story.section1?.description}
             </p>
           </motion.div>
         </div>
@@ -79,20 +110,20 @@ export default function OurStoryClient() {
             className="max-w-[500px] lg:max-w-[560px] flex flex-col items-start"
           >
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#162B3A] mb-2 sm:mb-3">
-              CRAFTED DIFFERENTLY • 職人のこだわり
+              {story.section2?.eyebrow}
             </span>
 
             <h2 className="text-5xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
-              <span className="block text-[#162B3A]">TRADITION MEETS</span>
+              <span className="block text-[#162B3A]">{story.section2?.headingLine1}</span>
               <span className="block text-white">
-                INNOVATION<span className="text-[#DB3E59]">.</span>
+                {story.section2?.headingLine2}
               </span>
             </h2>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-5 sm:mb-6" />
 
             <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px]">
-              We take inspiration from classic Japanese patisserie traditions and elevate them with modern textures and vibrant global flavours. Every TUMU dessert stick is freshly baked on-site, filled to order with premium <strong>Japanese cream desserts</strong>, and delivered warm and crisp directly to your hands.
+              {story.section2?.description}
             </p>
           </motion.div>
         </div>
@@ -122,19 +153,19 @@ export default function OurStoryClient() {
             className="max-w-[480px] lg:max-w-[520px] flex flex-col items-start"
           >
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#162B3A] mb-2 sm:mb-3">
-              ALL THE WAY FROM
+              {story.section3?.eyebrow}
             </span>
 
             <h2 className="text-5xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
               <span className="block text-[#E52D50]">
-                JAPAN<span className="text-[#E52D50]">!</span>
+                {story.section3?.heading}
               </span>
             </h2>
 
             <div className="w-12 h-1 bg-[#E52D50] mb-5 sm:mb-6" />
 
             <p className="text-white font-bold sm:font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[460px] mb-8">
-              Rooted in Japanese craftsmanship and uncompromising attention to detail, TUMU brings the soul of Japan’s pastry culture to the UAE. Visit our <strong>Japanese dessert shop Dubai</strong> locations to taste the magic firsthand.
+              {story.section3?.description}
             </p>
 
             <div className="flex flex-wrap gap-4">

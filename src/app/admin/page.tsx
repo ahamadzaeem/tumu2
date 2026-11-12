@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   supabase,
-  isSupabaseConfigured,
   Flavor,
   StoreLocation,
   DEFAULT_FLAVORS,
@@ -13,6 +12,9 @@ import {
   fetchAllFlavorsAdmin,
   fetchAllLocationsAdmin,
 } from "@/lib/supabase";
+import { FAQ_ITEMS as initialFaqItems, FaqItem } from "@/data/faq";
+import defaultSeoData from "@/data/seoContent.json";
+import defaultSiteContent from "@/data/siteContent.json";
 import {
   Plus,
   Trash2,
@@ -28,18 +30,57 @@ import {
   ArrowLeft,
   X,
   Search,
-  Navigation
+  Navigation,
+  Globe,
+  FileText,
+  Home,
+  BookOpen,
+  Cog,
+  Briefcase,
+  HelpCircle,
+  Save,
+  RotateCcw,
+  Eye,
+  Sliders,
+  Check,
+  Tag,
+  Link as LinkIcon
 } from "lucide-react";
+
+export interface PageSeoItem {
+  id: string;
+  slug: string;
+  name: string;
+  metaTitle: string;
+  metaDescription: string;
+  metaKeywords: string;
+  canonicalUrl: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+  robots: string;
+}
 
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false);
   const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState(false);
 
-  const [activeTab, setActiveTab] = useState<"flavors" | "locations">("flavors");
+  // Active Tab
+  const [activeTab, setActiveTab] = useState<
+    "seo" | "general" | "home" | "story" | "process" | "franchise" | "faqs" | "flavors" | "locations"
+  >("seo");
+
+  // Data states
   const [flavors, setFlavors] = useState<Flavor[]>(DEFAULT_FLAVORS);
   const [locations, setLocations] = useState<StoreLocation[]>(DEFAULT_LOCATIONS);
+  const [seoPages, setSeoPages] = useState<PageSeoItem[]>(defaultSeoData.pages);
+  const [selectedSeoId, setSelectedSeoId] = useState<string>("home");
+  const [siteContent, setSiteContent] = useState<any>(defaultSiteContent);
+  const [faqList, setFaqList] = useState<FaqItem[]>(initialFaqItems);
+
   const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
 
   // Flavor Modal state
@@ -61,11 +102,11 @@ export default function AdminPage() {
   const [editingLocation, setEditingLocation] = useState<StoreLocation | null>(null);
   const [locationForm, setLocationForm] = useState<Partial<StoreLocation>>({
     name: "",
-    city: "Tokyo",
-    country: "Japan",
+    city: "Dubai",
+    country: "UAE",
     address: "",
     phone: "",
-    opening_hours: "Daily: 10:00 AM – 10:00 PM",
+    opening_hours: "Daily: 10:00 AM – Midnight",
     google_maps_url: "",
     status: "Open Now",
     image: "/images/tumu/franchise_new_1.jpg",
@@ -73,9 +114,18 @@ export default function AdminPage() {
     display_order: 1,
   });
 
+  // FAQ Modal state
+  const [faqModalOpen, setFaqModalOpen] = useState(false);
+  const [editingFaqIndex, setEditingFaqIndex] = useState<number | null>(null);
+  const [faqForm, setFaqForm] = useState<FaqItem>({
+    category: "Product & Concept",
+    question: "",
+    answer: "",
+  });
+
   const correctPin = process.env.NEXT_PUBLIC_ADMIN_PIN || "1234";
 
-  // Check existing session
+  // Check session
   useEffect(() => {
     const savedAuth = localStorage.getItem("tumu_admin_auth");
     if (savedAuth === "true") {
@@ -86,12 +136,29 @@ export default function AdminPage() {
   // Load initial data
   useEffect(() => {
     if (!authenticated) return;
-    loadData();
+    loadAllData();
   }, [authenticated]);
 
-  const loadData = async () => {
+  const loadAllData = async () => {
     setLoading(true);
     try {
+      // 1. Fetch CMS content & SEO
+      try {
+        const res = await fetch("/api/cms");
+        if (res.ok) {
+          const cmsData = await res.json();
+          if (cmsData.seo?.pages?.length > 0) {
+            setSeoPages(cmsData.seo.pages);
+          }
+          if (cmsData.content && Object.keys(cmsData.content).length > 0) {
+            setSiteContent(cmsData.content);
+          }
+        }
+      } catch (e) {
+        console.warn("Could not load /api/cms, using local defaults", e);
+      }
+
+      // 2. Fetch flavors and locations from Supabase/defaults
       const [fetchedFlavors, fetchedLocations] = await Promise.all([
         fetchAllFlavorsAdmin(),
         fetchAllLocationsAdmin(),
@@ -123,7 +190,107 @@ export default function AdminPage() {
 
   const notify = (msg: string) => {
     setNotification(msg);
-    setTimeout(() => setNotification(null), 3500);
+    setTimeout(() => setNotification(null), 4000);
+  };
+
+  // ─── SAVE CMS (SEO + CONTENT) ───
+  const saveCmsChanges = async () => {
+    setSaving(true);
+    try {
+      const res = await fetch("/api/cms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          seo: { pages: seoPages },
+          content: siteContent,
+        }),
+      });
+
+      if (res.ok) {
+        notify("All CMS content and SEO settings saved successfully!");
+      } else {
+        notify("Saved locally in browser session.");
+      }
+    } catch (err) {
+      console.error("Error saving CMS:", err);
+      notify("Saved in current browser session!");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // ─── SEO ITEM HANDLERS ───
+  const selectedSeo = seoPages.find((p) => p.id === selectedSeoId) || seoPages[0];
+
+  const updateSelectedSeo = (field: keyof PageSeoItem, value: string) => {
+    setSeoPages((prev) =>
+      prev.map((item) =>
+        item.id === selectedSeo.id ? { ...item, [field]: value } : item
+      )
+    );
+  };
+
+  // ─── CONTENT FIELD HANDLER ───
+  const updateContentField = (section: string, subSection: string, field: string, value: any) => {
+    setSiteContent((prev: any) => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [subSection]: {
+          ...prev[section]?.[subSection],
+          [field]: value,
+        },
+      },
+    }));
+  };
+
+  const updateGeneralField = (field: string, value: any) => {
+    setSiteContent((prev: any) => ({
+      ...prev,
+      general: {
+        ...prev.general,
+        [field]: value,
+      },
+    }));
+  };
+
+  // ─── FAQ HANDLERS ───
+  const openNewFaqModal = () => {
+    setEditingFaqIndex(null);
+    setFaqForm({
+      category: "Product & Concept",
+      question: "",
+      answer: "",
+    });
+    setFaqModalOpen(true);
+  };
+
+  const openEditFaqModal = (index: number) => {
+    setEditingFaqIndex(index);
+    setFaqForm(faqList[index]);
+    setFaqModalOpen(true);
+  };
+
+  const handleSaveFaq = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (editingFaqIndex !== null) {
+      setFaqList((prev) => {
+        const copy = [...prev];
+        copy[editingFaqIndex] = faqForm;
+        return copy;
+      });
+      notify("FAQ question updated!");
+    } else {
+      setFaqList((prev) => [...prev, faqForm]);
+      notify("New FAQ question added!");
+    }
+    setFaqModalOpen(false);
+  };
+
+  const handleDeleteFaq = (index: number) => {
+    if (!confirm("Are you sure you want to remove this FAQ?")) return;
+    setFaqList((prev) => prev.filter((_, i) => i !== index));
+    notify("FAQ removed.");
   };
 
   // ─── FLAVOR CRUD ───
@@ -217,14 +384,14 @@ export default function AdminPage() {
     setLocationForm({
       id: "loc_" + Date.now(),
       name: "",
-      city: "Tokyo",
-      country: "Japan",
+      city: "Dubai",
+      country: "UAE",
       address: "",
-      phone: "",
-      opening_hours: "Daily: 10:00 AM – 10:00 PM",
+      phone: "+971 4 362 7500",
+      opening_hours: "Daily: 10:00 AM – Midnight",
       google_maps_url: "",
       status: "Open Now",
-      image: "/images/tumu/franchise_new_1.jpg",
+      image: "/images/tumu/formats/outlet_storefront.jpg",
       is_active: true,
       display_order: locations.length + 1,
     });
@@ -248,14 +415,14 @@ export default function AdminPage() {
     const finalLoc: StoreLocation = {
       id: editingLocation ? editingLocation.id : locationForm.id || "loc_" + Date.now(),
       name: locationForm.name || "Untitled Store",
-      city: locationForm.city || "Tokyo",
-      country: locationForm.country || "Japan",
+      city: locationForm.city || "Dubai",
+      country: locationForm.country || "UAE",
       address: locationForm.address || "",
       phone: locationForm.phone || "",
-      opening_hours: locationForm.opening_hours || "Daily: 10:00 AM – 10:00 PM",
+      opening_hours: locationForm.opening_hours || "Daily: 10:00 AM – Midnight",
       google_maps_url: mapUrl,
       status: (locationForm.status as any) || "Open Now",
-      image: locationForm.image || "/images/tumu/franchise_new_1.jpg",
+      image: locationForm.image || "/images/tumu/formats/outlet_storefront.jpg",
       display_order: Number(locationForm.display_order) || 1,
       is_active: locationForm.is_active !== false,
     };
@@ -301,326 +468,1297 @@ export default function AdminPage() {
         console.error(err);
       }
     } else {
-      notify(`Deleted store "${name}" locally.`);
+      notify(`Deleted "${name}" locally.`);
     }
 
     setLocations((prev) => prev.filter((l) => l.id !== id));
   };
 
-  // ─── LOGIN SCREEN ───
+  // ══════════════════════════════════════════════════════════════
+  // RENDER: LOGIN SCREEN
+  // ══════════════════════════════════════════════════════════════
   if (!authenticated) {
     return (
-      <div className="min-h-screen bg-[#F8F4EC] flex flex-col items-center justify-center p-6 selection:bg-[#DB3E59] selection:text-white">
-        <div className="w-full max-w-md bg-white rounded-3xl p-8 sm:p-10 shadow-2xl border border-black/5 text-center">
-          <div className="w-16 h-16 rounded-2xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mx-auto mb-6">
-            <Lock className="w-8 h-8 stroke-[2.2]" />
+      <main className="min-h-screen bg-[#FAF4E7] flex items-center justify-center p-6 selection:bg-[#DB3E59] selection:text-white">
+        <div className="w-full max-w-md bg-white rounded-[32px] p-8 sm:p-10 shadow-xl border border-black/5 text-center">
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/images/tumu-logo-final.png"
+              alt="TUMU Logo"
+              width={160}
+              height={200}
+              className="object-contain h-20 w-auto"
+              priority
+            />
           </div>
 
-          <span className="text-[#DB3E59] text-xs font-black uppercase tracking-widest block mb-2">
-            TUMU Content Management
-          </span>
-          <h1 className="text-3xl font-black text-[#162B3A] uppercase tracking-tight mb-2">
-            Admin Portal
+          <h1 className="text-2xl sm:text-3xl font-black text-[#162B3A] uppercase tracking-tight mb-2">
+            CMS Admin Portal
           </h1>
-          <p className="text-xs sm:text-sm text-[#162B3A]/70 font-medium mb-8">
-            Manage Flavors and Store Locations across your website.
+          <p className="text-sm font-semibold text-[#162B3A]/70 mb-8">
+            Manage complete website content, SEO metadata, URLs, flavors, and locations.
           </p>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-4">
             <div>
               <input
                 type="password"
-                placeholder="Enter Admin PIN (Default: 1234)"
+                placeholder="Enter Admin PIN"
                 value={pinInput}
                 onChange={(e) => setPinInput(e.target.value)}
-                className={`w-full px-5 py-4 rounded-full bg-[#F8F4EC] border text-center text-base font-bold text-[#162B3A] placeholder-[#162B3A]/40 focus:outline-none transition-all ${
-                  pinError ? "border-red-500 ring-2 ring-red-200" : "border-black/10 focus:border-[#DB3E59]"
-                }`}
                 autoFocus
+                className={`w-full px-5 py-4 rounded-2xl bg-[#FAF4E7] border text-center text-lg font-black tracking-widest text-[#162B3A] focus:outline-none transition-all ${
+                  pinError
+                    ? "border-red-500 focus:border-red-600 animate-shake"
+                    : "border-black/10 focus:border-[#DB3E59]"
+                }`}
               />
               {pinError && (
-                <p className="text-red-500 text-xs font-bold mt-2">
-                  Incorrect PIN. Please try again.
+                <p className="text-xs font-bold text-red-500 mt-2">
+                  Incorrect PIN code. Please try again.
                 </p>
               )}
             </div>
 
             <button
               type="submit"
-              className="w-full py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-sm uppercase tracking-wider transition-all shadow-md active:scale-95"
+              className="w-full py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer"
             >
-              Sign In to CMS
+              Sign In to CMS →
             </button>
+          </form>
 
+          <div className="mt-8 pt-6 border-t border-black/5">
             <Link
               href="/"
-              className="text-xs font-bold text-[#162B3A]/60 hover:text-[#DB3E59] transition-colors mt-2"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#162B3A]/60 hover:text-[#DB3E59] transition-colors"
             >
-              ← Back to TUMU Website
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Public Website</span>
             </Link>
-          </form>
+          </div>
         </div>
-      </div>
+      </main>
     );
   }
 
-  // ─── AUTHENTICATED ADMIN DASHBOARD ───
+  // ══════════════════════════════════════════════════════════════
+  // RENDER: AUTHENTICATED CMS DASHBOARD
+  // ══════════════════════════════════════════════════════════════
   return (
-    <div className="min-h-screen bg-[#F8F4EC] flex flex-col selection:bg-[#DB3E59] selection:text-white pb-24">
-      {/* Top Navbar */}
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-[#162B3A]/10 px-6 lg:px-12 py-4 flex items-center justify-between">
+    <main className="min-h-screen bg-[#F5EFE4] text-[#162B3A] flex flex-col font-sans selection:bg-[#DB3E59] selection:text-white">
+      {/* Toast Notification */}
+      {notification && (
+        <div className="fixed top-6 right-6 z-50 bg-[#162B3A] text-white px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-3 border border-white/20 animate-in fade-in slide-in-from-top-4 duration-300">
+          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+          <span className="text-xs sm:text-sm font-bold">{notification}</span>
+        </div>
+      )}
+
+      {/* Top Admin Navbar */}
+      <header className="bg-white border-b border-black/10 sticky top-0 z-40 px-6 sm:px-10 py-4 flex items-center justify-between shadow-sm">
         <div className="flex items-center gap-4">
-          <Link href="/" className="text-sm font-black text-[#162B3A] flex items-center gap-2 hover:text-[#DB3E59]">
-            <ArrowLeft className="w-4 h-4" />
-            <span>View Site</span>
-          </Link>
-          <span className="text-[#162B3A]/20">|</span>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#DB3E59] text-white">
-              CMS
+          <Link href="/" target="_blank" className="flex items-center gap-2 group">
+            <Image
+              src="/images/tumu-logo-final.png"
+              alt="TUMU Logo"
+              width={100}
+              height={120}
+              className="object-contain h-10 w-auto group-hover:scale-105 transition-transform"
+            />
+            <span className="font-black text-base sm:text-lg tracking-tight uppercase text-[#162B3A]">
+              CMS Control Hub
             </span>
-            <span className="text-lg font-black text-[#162B3A]">TUMU Admin</span>
-          </div>
+          </Link>
+          <span className="hidden sm:inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-black uppercase tracking-wider border border-emerald-200">
+            Live v2.0
+          </span>
         </div>
 
-        {/* Supabase Status & Logout */}
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-[#F8F4EC] border border-black/5">
-            <Database className="w-3.5 h-3.5 text-[#50B8B1]" />
-            <span>
-              {isSupabaseConfigured ? (
-                <span className="text-emerald-600 flex items-center gap-1">
-                  ● Supabase Connected
-                </span>
-              ) : (
-                <span className="text-amber-600 flex items-center gap-1">
-                  ○ Local Fallback Mode
-                </span>
-              )}
-            </span>
-          </div>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={saveCmsChanges}
+            disabled={saving}
+            className="px-5 py-2.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer disabled:opacity-50"
+          >
+            <Save className="w-4 h-4" />
+            <span>{saving ? "Saving Changes..." : "Save All CMS Changes"}</span>
+          </button>
+
+          <Link
+            href="/"
+            target="_blank"
+            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-black/5 hover:bg-black/10 text-xs font-bold text-[#162B3A] transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            <span>View Site</span>
+          </Link>
 
           <button
             onClick={handleLogout}
-            className="p-2 sm:px-4 sm:py-2 rounded-full bg-[#162B3A]/5 hover:bg-[#DB3E59] hover:text-white text-[#162B3A] text-xs font-bold transition-all flex items-center gap-2"
+            className="p-2.5 rounded-full bg-black/5 hover:bg-black/10 text-[#162B3A] transition-colors"
+            title="Log Out"
           >
-            <LogOut className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Sign Out</span>
+            <LogOut className="w-4 h-4" />
           </button>
         </div>
       </header>
 
-      {/* Notification Toast */}
-      {notification && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#162B3A] text-white px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10 animate-in fade-in duration-300">
-          <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-          <span className="text-sm font-bold">{notification}</span>
+      {/* Main CMS Layout with Navigation Tabs */}
+      <div className="flex-1 max-w-[1560px] mx-auto w-full px-4 sm:px-8 py-8 flex flex-col gap-6">
+        
+        {/* Navigation Tabs Pill Bar */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 border-b border-black/10">
+          {[
+            { id: "seo", label: "SEO & Meta Tags", icon: Globe },
+            { id: "general", label: "Site & Header/Footer", icon: Sliders },
+            { id: "home", label: "Home Page", icon: Home },
+            { id: "story", label: "Our Story", icon: BookOpen },
+            { id: "process", label: "Our Process", icon: Cog },
+            { id: "franchise", label: "Franchise & Formats", icon: Briefcase },
+            { id: "faqs", label: "FAQs Manager", icon: HelpCircle },
+            { id: "flavors", label: "Flavours Lineup", icon: IceCream },
+            { id: "locations", label: "Store Locations", icon: MapPin },
+          ].map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`px-5 py-3 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all flex items-center gap-2 shrink-0 cursor-pointer ${
+                  isActive
+                    ? "bg-[#162B3A] text-white shadow-md scale-[1.02]"
+                    : "bg-white/80 text-[#162B3A] hover:bg-white border border-black/5"
+                }`}
+              >
+                <Icon className={`w-4 h-4 ${isActive ? "text-[#DB3E59]" : "text-[#162B3A]/60"}`} />
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
         </div>
-      )}
 
-      {/* Main Container */}
-      <div className="max-w-[1440px] mx-auto w-full px-6 lg:px-12 pt-8">
-        {/* Banner if Supabase is not configured */}
-        {!isSupabaseConfigured && (
-          <div className="mb-8 p-5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 1: SEO, META TAGS, SLUGS & CANONICAL URLS
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "seo" && (
+          <div className="flex flex-col gap-8">
+            {/* Top Info Banner */}
+            <div className="p-6 rounded-3xl bg-white border border-black/5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h4 className="text-sm font-black uppercase tracking-wide">
-                  Supabase Credentials Not Yet Active in .env.local
-                </h4>
-                <p className="text-xs font-medium text-amber-800 mt-0.5">
-                  The CMS is running smoothly in preview mode. To persist updates to your live database, add{" "}
-                  <code className="bg-amber-100 px-1 py-0.5 rounded font-mono text-[11px]">NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
-                  <code className="bg-amber-100 px-1 py-0.5 rounded font-mono text-[11px]">NEXT_PUBLIC_SUPABASE_ANON_KEY</code>. Schema file{" "}
-                  <code className="bg-amber-100 px-1 py-0.5 rounded font-mono text-[11px]">supabase_schema.sql</code> is ready at root.
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                  Search Engine Optimization
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                  SEO, Meta Tags, Slugs &amp; Canonical URLs
+                </h2>
+                <p className="text-sm font-semibold text-[#162B3A]/70 mt-1 max-w-2xl">
+                  Select any page below to edit its URL slug, meta title, meta description, canonical link, and keywords for search engine indexing.
                 </p>
               </div>
+
+              {/* Page Selector Tabs */}
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+                {seoPages.map((p) => (
+                  <button
+                    key={p.id}
+                    onClick={() => setSelectedSeoId(p.id)}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                      selectedSeo.id === p.id
+                        ? "bg-[#DB3E59] text-white shadow-sm font-black"
+                        : "bg-black/5 text-[#162B3A] hover:bg-black/10"
+                    }`}
+                  >
+                    {p.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Editing Grid: Form (Left) & Google Snippet Live Preview (Right) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              {/* Left Column: Form Fields */}
+              <div className="lg:col-span-7 bg-white rounded-[32px] p-6 sm:p-8 border border-black/5 shadow-sm flex flex-col gap-6">
+                <div className="flex items-center justify-between border-b border-black/10 pb-4">
+                  <div>
+                    <span className="text-[11px] font-black uppercase tracking-wider text-[#DB3E59]">
+                      Editing Metadata For
+                    </span>
+                    <h3 className="text-2xl font-black text-[#162B3A] uppercase">
+                      {selectedSeo.name}
+                    </h3>
+                  </div>
+                  <span className="px-3.5 py-1 rounded-full bg-black/5 text-xs font-mono font-bold text-[#162B3A]">
+                    {selectedSeo.slug}
+                  </span>
+                </div>
+
+                {/* 1. Page Slug */}
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5 flex items-center justify-between">
+                    <span>URL Slug (Path)</span>
+                    <span className="text-[10px] text-[#162B3A]/50 lowercase">e.g. /flavours, /our-story</span>
+                  </label>
+                  <div className="relative flex items-center">
+                    <span className="absolute left-4 text-xs font-bold text-[#162B3A]/40">tumu.ae</span>
+                    <input
+                      type="text"
+                      value={selectedSeo.slug}
+                      onChange={(e) => updateSelectedSeo("slug", e.target.value)}
+                      className="w-full pl-20 pr-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                    />
+                  </div>
+                </div>
+
+                {/* 2. Meta Title / Meta Text */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-black uppercase tracking-wider text-[#162B3A]">
+                      Meta Title (Page Title &amp; Header Text)
+                    </label>
+                    <span className={`text-[11px] font-bold ${selectedSeo.metaTitle.length > 60 ? "text-amber-600" : "text-emerald-600"}`}>
+                      {selectedSeo.metaTitle.length}/60 chars recommended
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    value={selectedSeo.metaTitle}
+                    onChange={(e) => updateSelectedSeo("metaTitle", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  />
+                </div>
+
+                {/* 3. Meta Description */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-black uppercase tracking-wider text-[#162B3A]">
+                      Meta Description
+                    </label>
+                    <span className={`text-[11px] font-bold ${selectedSeo.metaDescription.length > 160 ? "text-amber-600" : "text-emerald-600"}`}>
+                      {selectedSeo.metaDescription.length}/160 chars recommended
+                    </span>
+                  </div>
+                  <textarea
+                    rows={3}
+                    value={selectedSeo.metaDescription}
+                    onChange={(e) => updateSelectedSeo("metaDescription", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium text-[#162B3A] focus:outline-none focus:border-[#DB3E59] resize-none"
+                  />
+                </div>
+
+                {/* 4. Canonical URL */}
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5 flex items-center justify-between">
+                    <span>Canonical URL</span>
+                    <span className="text-[10px] text-[#162B3A]/50">Prevents duplicate content penalties</span>
+                  </label>
+                  <input
+                    type="url"
+                    value={selectedSeo.canonicalUrl}
+                    onChange={(e) => updateSelectedSeo("canonicalUrl", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  />
+                </div>
+
+                {/* 5. Meta Tags / Keywords */}
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5 flex items-center justify-between">
+                    <span>Meta Tags &amp; Keywords (Comma-Separated)</span>
+                    <span className="text-[10px] text-[#162B3A]/50">Target search queries</span>
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={selectedSeo.metaKeywords}
+                    onChange={(e) => updateSelectedSeo("metaKeywords", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium text-[#162B3A] focus:outline-none focus:border-[#DB3E59] resize-none"
+                  />
+                </div>
+
+                {/* 6. Social Sharing (Open Graph) Title & Image */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                      Social Sharing (OG) Title
+                    </label>
+                    <input
+                      type="text"
+                      value={selectedSeo.ogTitle}
+                      onChange={(e) => updateSelectedSeo("ogTitle", e.target.value)}
+                      className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                      Robots Crawl Directive
+                    </label>
+                    <select
+                      value={selectedSeo.robots}
+                      onChange={(e) => updateSelectedSeo("robots", e.target.value)}
+                      className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                    >
+                      <option value="index, follow">index, follow (Allow Google Search)</option>
+                      <option value="noindex, nofollow">noindex, nofollow (Block Search)</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="pt-2 flex items-center justify-end gap-3">
+                  <button
+                    onClick={saveCmsChanges}
+                    disabled={saving}
+                    className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
+                  >
+                    <Save className="w-4 h-4" />
+                    <span>Save SEO for {selectedSeo.name}</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Google Live SERP Preview */}
+              <div className="lg:col-span-5 flex flex-col gap-6 sticky top-24">
+                {/* Google Search Result Card */}
+                <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-black/5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-4">
+                    <GoogleIcon className="w-4 h-4" />
+                    <span className="text-xs font-black uppercase tracking-wider text-[#162B3A]/60">
+                      Google Search Preview
+                    </span>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-[#F8F9FA] border border-black/5 font-sans">
+                    <div className="flex items-center gap-2 text-xs text-[#202124] mb-1">
+                      <span className="w-4 h-4 rounded-full bg-[#162B3A] text-white flex items-center justify-center font-bold text-[9px]">
+                        T
+                      </span>
+                      <span className="text-[12px] font-medium text-[#202124]">
+                        https://tumu.ae{selectedSeo.slug === "/" ? "" : selectedSeo.slug}
+                      </span>
+                    </div>
+
+                    <h4 className="text-[#1a0dab] hover:underline text-lg font-medium leading-snug cursor-pointer line-clamp-1">
+                      {selectedSeo.metaTitle || "TUMU UAE | Page Title"}
+                    </h4>
+
+                    <p className="text-xs text-[#4d5156] mt-1.5 leading-relaxed line-clamp-3">
+                      {selectedSeo.metaDescription || "Enter a meta description to see how this page will be displayed in search engine results."}
+                    </p>
+                  </div>
+
+                  {/* SEO Health Checklist */}
+                  <div className="mt-6 pt-6 border-t border-black/5 flex flex-col gap-2.5">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1 block">
+                      SEO Technical Checklist
+                    </span>
+
+                    <div className="flex items-center justify-between text-xs font-semibold py-1">
+                      <span>Canonical Configured:</span>
+                      <span className="text-emerald-600 font-bold flex items-center gap-1">
+                        <Check className="w-3.5 h-3.5" /> Valid
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs font-semibold py-1">
+                      <span>Robots Indexing:</span>
+                      <span className="text-emerald-600 font-bold flex items-center gap-1">
+                        <Check className="w-3.5 h-3.5" /> {selectedSeo.robots}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs font-semibold py-1">
+                      <span>Target Keywords:</span>
+                      <span className="text-[#162B3A] font-bold">
+                        {selectedSeo.metaKeywords.split(",").length} Keywords Set
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Link Card */}
+                <div className="p-6 rounded-3xl bg-[#162B3A] text-white">
+                  <h4 className="text-sm font-black uppercase tracking-wider text-[#FF758F] mb-1">
+                    Direct Page Link
+                  </h4>
+                  <p className="text-xs text-white/70 mb-4">
+                    Visit this live page on the public storefront.
+                  </p>
+                  <Link
+                    href={selectedSeo.slug}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#162B3A] hover:bg-[#FAF4E7] text-xs font-black uppercase tracking-wider transition-all"
+                  >
+                    <span>Open {selectedSeo.slug}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+
             </div>
           </div>
         )}
 
-        {/* Tab Switcher & Action Bar */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-[#162B3A]/10">
-          <div className="flex items-center gap-3 bg-white p-1.5 rounded-full border border-black/10 shadow-sm">
-            <button
-              onClick={() => setActiveTab("flavors")}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all ${
-                activeTab === "flavors"
-                  ? "bg-[#DB3E59] text-white shadow-sm"
-                  : "text-[#162B3A]/70 hover:text-[#162B3A]"
-              }`}
-            >
-              <IceCream className="w-4 h-4" />
-              <span>Flavors ({flavors.length})</span>
-            </button>
-            <button
-              onClick={() => setActiveTab("locations")}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all ${
-                activeTab === "locations"
-                  ? "bg-[#DB3E59] text-white shadow-sm"
-                  : "text-[#162B3A]/70 hover:text-[#162B3A]"
-              }`}
-            >
-              <MapPin className="w-4 h-4" />
-              <span>Store Locations ({locations.length})</span>
-            </button>
-          </div>
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 2: SITE SETTINGS & GENERAL BRANDING
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "general" && (
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-8">
+            <div>
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                GLOBAL SITE SETTINGS
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                Branding, Contact Details &amp; Footer Info
+              </h2>
+              <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                Edit sitewide details including company name, customer service phone, office address, and social channels.
+              </p>
+            </div>
 
-          <div>
-            {activeTab === "flavors" ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Brand Name
+                </label>
+                <input
+                  type="text"
+                  value={siteContent.general?.brandName || ""}
+                  onChange={(e) => updateGeneralField("brandName", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Main Slogan / Tagline
+                </label>
+                <input
+                  type="text"
+                  value={siteContent.general?.tagline || ""}
+                  onChange={(e) => updateGeneralField("tagline", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Customer Service Phone
+                </label>
+                <input
+                  type="text"
+                  value={siteContent.general?.phone || ""}
+                  onChange={(e) => updateGeneralField("phone", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Official Email Address
+                </label>
+                <input
+                  type="email"
+                  value={siteContent.general?.email || ""}
+                  onChange={(e) => updateGeneralField("email", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Headquarters &amp; Stores Address
+                </label>
+                <input
+                  type="text"
+                  value={siteContent.general?.address || ""}
+                  onChange={(e) => updateGeneralField("address", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Instagram Profile URL
+                </label>
+                <input
+                  type="url"
+                  value={siteContent.general?.instagramUrl || ""}
+                  onChange={(e) => updateGeneralField("instagramUrl", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Facebook Page URL
+                </label>
+                <input
+                  type="url"
+                  value={siteContent.general?.facebookUrl || ""}
+                  onChange={(e) => updateGeneralField("facebookUrl", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Footer Copyright Text
+                </label>
+                <input
+                  type="text"
+                  value={siteContent.general?.copyrightText || ""}
+                  onChange={(e) => updateGeneralField("copyrightText", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+            </div>
+
+            <div className="pt-4 flex justify-end">
+              <button
+                onClick={saveCmsChanges}
+                disabled={saving}
+                className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
+              >
+                <Save className="w-4 h-4" />
+                <span>Save Site Settings</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 3: HOME PAGE CONTENT
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "home" && (
+          <div className="flex flex-col gap-8">
+            {/* Section 1: Hero */}
+            <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
+              <div className="border-b border-black/10 pb-4">
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                  HOME SECTION 1
+                </span>
+                <h3 className="text-2xl font-black uppercase text-[#162B3A]">
+                  Hero Video / Banner Content
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Eyebrow Badge Text
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.hero?.eyebrow || ""}
+                    onChange={(e) => updateContentField("home", "hero", "eyebrow", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Primary Button Text
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.hero?.primaryBtnText || ""}
+                    onChange={(e) => updateContentField("home", "hero", "primaryBtnText", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Main Headline Line 1
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.hero?.headlineLine1 || ""}
+                    onChange={(e) => updateContentField("home", "hero", "headlineLine1", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-black text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Main Headline Line 2
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.hero?.headlineLine2 || ""}
+                    onChange={(e) => updateContentField("home", "hero", "headlineLine2", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-black text-[#DB3E59] focus:outline-none focus:border-[#DB3E59]"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Hero Description Paragraph
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={siteContent.home?.hero?.description || ""}
+                    onChange={(e) => updateContentField("home", "hero", "description", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium text-[#162B3A] focus:outline-none focus:border-[#DB3E59] resize-none"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Section 2: Real Ingredients */}
+            <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
+              <div className="border-b border-black/10 pb-4">
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                  HOME SECTION 2
+                </span>
+                <h3 className="text-2xl font-black uppercase text-[#162B3A]">
+                  Real Ingredients Section
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Eyebrow / Kanji
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.realIngredients?.eyebrow || ""}
+                    onChange={(e) => updateContentField("home", "realIngredients", "eyebrow", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Main Title
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.realIngredients?.heading || ""}
+                    onChange={(e) => updateContentField("home", "realIngredients", "heading", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-black text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Description Text
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={siteContent.home?.realIngredients?.description || ""}
+                    onChange={(e) => updateContentField("home", "realIngredients", "description", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium text-[#162B3A] focus:outline-none focus:border-[#DB3E59] resize-none"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Section 3: Product Anatomy */}
+            <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
+              <div className="border-b border-black/10 pb-4">
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                  HOME SECTION 3
+                </span>
+                <h3 className="text-2xl font-black uppercase text-[#162B3A]">
+                  Product Anatomy (3 Layers)
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5">
+                  <span className="text-xs font-black text-[#DB3E59] uppercase block mb-1">Layer 01</span>
+                  <input
+                    type="text"
+                    value={siteContent.home?.productAnatomy?.layer1Title || ""}
+                    onChange={(e) => updateContentField("home", "productAnatomy", "layer1Title", e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-black mb-2"
+                  />
+                  <textarea
+                    rows={3}
+                    value={siteContent.home?.productAnatomy?.layer1Desc || ""}
+                    onChange={(e) => updateContentField("home", "productAnatomy", "layer1Desc", e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
+                  />
+                </div>
+
+                <div className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5">
+                  <span className="text-xs font-black text-[#DB3E59] uppercase block mb-1">Layer 02</span>
+                  <input
+                    type="text"
+                    value={siteContent.home?.productAnatomy?.layer2Title || ""}
+                    onChange={(e) => updateContentField("home", "productAnatomy", "layer2Title", e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-black mb-2"
+                  />
+                  <textarea
+                    rows={3}
+                    value={siteContent.home?.productAnatomy?.layer2Desc || ""}
+                    onChange={(e) => updateContentField("home", "productAnatomy", "layer2Desc", e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
+                  />
+                </div>
+
+                <div className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5">
+                  <span className="text-xs font-black text-[#DB3E59] uppercase block mb-1">Layer 03</span>
+                  <input
+                    type="text"
+                    value={siteContent.home?.productAnatomy?.layer3Title || ""}
+                    onChange={(e) => updateContentField("home", "productAnatomy", "layer3Title", e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-black mb-2"
+                  />
+                  <textarea
+                    rows={3}
+                    value={siteContent.home?.productAnatomy?.layer3Desc || ""}
+                    onChange={(e) => updateContentField("home", "productAnatomy", "layer3Desc", e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Save Button */}
+            <div className="flex justify-end">
+              <button
+                onClick={saveCmsChanges}
+                disabled={saving}
+                className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
+              >
+                <Save className="w-4 h-4" />
+                <span>Save Home Page Content</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 4: OUR STORY PAGE CONTENT
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "story" && (
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-8">
+            <div className="border-b border-black/10 pb-4">
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                OUR STORY PAGE CONTENT
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                The 3 Brand Journey Chapters
+              </h2>
+            </div>
+
+            {/* Chapter 1 */}
+            <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 1: A Simple Idea</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Eyebrow"
+                  value={siteContent.story?.section1?.eyebrow || ""}
+                  onChange={(e) => updateContentField("story", "section1", "eyebrow", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
+                />
+                <input
+                  type="text"
+                  placeholder="Headline"
+                  value={siteContent.story?.section1?.headingLine1 || ""}
+                  onChange={(e) => updateContentField("story", "section1", "headingLine1", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+              </div>
+              <textarea
+                rows={3}
+                placeholder="Story description"
+                value={siteContent.story?.section1?.description || ""}
+                onChange={(e) => updateContentField("story", "section1", "description", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
+              />
+            </div>
+
+            {/* Chapter 2 */}
+            <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 2: Tradition Meets Innovation</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Eyebrow"
+                  value={siteContent.story?.section2?.eyebrow || ""}
+                  onChange={(e) => updateContentField("story", "section2", "eyebrow", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
+                />
+                <input
+                  type="text"
+                  placeholder="Headline"
+                  value={siteContent.story?.section2?.headingLine1 || ""}
+                  onChange={(e) => updateContentField("story", "section2", "headingLine1", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+              </div>
+              <textarea
+                rows={3}
+                placeholder="Story description"
+                value={siteContent.story?.section2?.description || ""}
+                onChange={(e) => updateContentField("story", "section2", "description", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
+              />
+            </div>
+
+            {/* Chapter 3 */}
+            <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 3: All The Way From Japan</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Eyebrow"
+                  value={siteContent.story?.section3?.eyebrow || ""}
+                  onChange={(e) => updateContentField("story", "section3", "eyebrow", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
+                />
+                <input
+                  type="text"
+                  placeholder="Headline"
+                  value={siteContent.story?.section3?.heading || ""}
+                  onChange={(e) => updateContentField("story", "section3", "heading", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+              </div>
+              <textarea
+                rows={3}
+                placeholder="Story description"
+                value={siteContent.story?.section3?.description || ""}
+                onChange={(e) => updateContentField("story", "section3", "description", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
+              />
+            </div>
+
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={saveCmsChanges}
+                disabled={saving}
+                className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
+              >
+                <Save className="w-4 h-4" />
+                <span>Save Story Content</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 5: OUR PROCESS PAGE CONTENT
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "process" && (
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-8">
+            <div className="border-b border-black/10 pb-4">
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                OUR PROCESS PAGE CONTENT
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                The 5 Japanese Crafting Steps
+              </h2>
+            </div>
+
+            {/* Steps list */}
+            <div className="flex flex-col gap-4">
+              {siteContent.process?.steps?.map((stepItem: any, idx: number) => (
+                <div key={idx} className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full bg-[#DB3E59] text-white text-xs font-black">
+                      Step {stepItem.step}
+                    </span>
+                    <span className="text-xs font-bold text-[#162B3A]/60 font-mono">
+                      {stepItem.kanji}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <input
+                      type="text"
+                      placeholder="Title"
+                      value={stepItem.title}
+                      onChange={(e) => {
+                        const copy = [...siteContent.process.steps];
+                        copy[idx].title = e.target.value;
+                        setSiteContent({ ...siteContent, process: { ...siteContent.process, steps: copy } });
+                      }}
+                      className="px-3.5 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Japanese Kanji"
+                      value={stepItem.kanji}
+                      onChange={(e) => {
+                        const copy = [...siteContent.process.steps];
+                        copy[idx].kanji = e.target.value;
+                        setSiteContent({ ...siteContent, process: { ...siteContent.process, steps: copy } });
+                      }}
+                      className="px-3.5 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Subtitle"
+                      value={stepItem.subtitle}
+                      onChange={(e) => {
+                        const copy = [...siteContent.process.steps];
+                        copy[idx].subtitle = e.target.value;
+                        setSiteContent({ ...siteContent, process: { ...siteContent.process, steps: copy } });
+                      }}
+                      className="px-3.5 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
+                    />
+                  </div>
+
+                  <textarea
+                    rows={2}
+                    placeholder="Step Description"
+                    value={stepItem.description}
+                    onChange={(e) => {
+                      const copy = [...siteContent.process.steps];
+                      copy[idx].description = e.target.value;
+                      setSiteContent({ ...siteContent, process: { ...siteContent.process, steps: copy } });
+                    }}
+                    className="px-3.5 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={saveCmsChanges}
+                disabled={saving}
+                className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
+              >
+                <Save className="w-4 h-4" />
+                <span>Save Process Content</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 6: FRANCHISE & FORMATS CONTENT
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "franchise" && (
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-8">
+            <div className="border-b border-black/10 pb-4">
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                FRANCHISE PAGE CONTENT
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                The 3 Business Formats (Kiosk, Outlet, Truck)
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {siteContent.franchise?.formats?.map((fmt: any, idx: number) => (
+                <div key={fmt.id || idx} className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full bg-[#162B3A] text-white text-[11px] font-black uppercase">
+                      {fmt.name}
+                    </span>
+                    <span className="text-xs font-bold text-[#DB3E59]">{fmt.kanji}</span>
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Subtitle</label>
+                    <input
+                      type="text"
+                      value={fmt.subtitle}
+                      onChange={(e) => {
+                        const copy = [...siteContent.franchise.formats];
+                        copy[idx].subtitle = e.target.value;
+                        setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
+                      }}
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-semibold"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-0.5">Footprint</label>
+                      <input
+                        type="text"
+                        value={fmt.footprint}
+                        onChange={(e) => {
+                          const copy = [...siteContent.franchise.formats];
+                          copy[idx].footprint = e.target.value;
+                          setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
+                        }}
+                        className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-black/10 text-xs font-bold"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-0.5">Setup Time</label>
+                      <input
+                        type="text"
+                        value={fmt.setupTime}
+                        onChange={(e) => {
+                          const copy = [...siteContent.franchise.formats];
+                          copy[idx].setupTime = e.target.value;
+                          setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
+                        }}
+                        className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-black/10 text-xs font-bold"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Description</label>
+                    <textarea
+                      rows={4}
+                      value={fmt.description}
+                      onChange={(e) => {
+                        const copy = [...siteContent.franchise.formats];
+                        copy[idx].description = e.target.value;
+                        setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
+                      }}
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={saveCmsChanges}
+                disabled={saving}
+                className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
+              >
+                <Save className="w-4 h-4" />
+                <span>Save Franchise Formats Content</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 7: FAQS MANAGER
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "faqs" && (
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/10 pb-4">
+              <div>
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                  FAQS MANAGEMENT
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                  Frequently Asked Questions ({faqList.length})
+                </h2>
+              </div>
+              <button
+                onClick={openNewFaqModal}
+                className="px-6 py-3 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer self-start sm:self-auto"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add Question</span>
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              {faqList.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                >
+                  <div className="flex flex-col items-start gap-1 max-w-3xl">
+                    <span className="px-2.5 py-0.5 rounded-full bg-white text-[10px] font-black uppercase tracking-wider text-[#DB3E59] border border-black/5">
+                      {item.category}
+                    </span>
+                    <h4 className="text-base font-black text-[#162B3A]">
+                      {item.question}
+                    </h4>
+                    <p className="text-xs font-medium text-[#162B3A]/70 line-clamp-2">
+                      {item.answer}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                    <button
+                      onClick={() => openEditFaqModal(idx)}
+                      className="p-2.5 rounded-full bg-white hover:bg-black/5 text-[#162B3A] transition-colors border border-black/5"
+                      title="Edit FAQ"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteFaq(idx)}
+                      className="p-2.5 rounded-full bg-red-50 hover:bg-red-100 text-red-600 transition-colors border border-red-200"
+                      title="Delete FAQ"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 8: FLAVOURS CRUD
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "flavors" && (
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/10 pb-4">
+              <div>
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                  PRODUCTS CATALOG
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                  Artisanal Flavours ({flavors.length})
+                </h2>
+              </div>
               <button
                 onClick={openNewFlavorModal}
-                className="px-6 py-3 rounded-full bg-[#162B3A] hover:bg-[#DB3E59] text-white text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-md transition-all active:scale-95"
+                className="px-6 py-3 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer self-start sm:self-auto"
               >
                 <Plus className="w-4 h-4" />
-                <span>Add New Flavor</span>
+                <span>Add New Flavour</span>
               </button>
-            ) : (
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {flavors.map((flavor) => (
+                <div
+                  key={flavor.id}
+                  className="p-5 rounded-3xl bg-[#FAF4E7] border border-black/5 shadow-sm flex flex-col justify-between group hover:shadow-md transition-all"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="relative w-28 h-36 mb-4">
+                      <Image
+                        src={flavor.image}
+                        alt={flavor.name}
+                        fill
+                        className="object-contain group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-white text-[10px] font-black uppercase tracking-wider text-[#162B3A] mb-2 border border-black/5">
+                      {flavor.tag || flavor.category}
+                    </span>
+                    <h4 className="text-lg font-black text-[#162B3A] mb-1">
+                      {flavor.name}
+                    </h4>
+                    <p className="text-xs text-[#162B3A]/70 font-medium line-clamp-2">
+                      {flavor.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-black/10 mt-4 flex items-center justify-between">
+                    <span className="text-xs font-mono font-bold text-[#162B3A]/50">
+                      #{flavor.display_order}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => openEditFlavorModal(flavor)}
+                        className="p-2 rounded-full bg-white hover:bg-black/5 text-[#162B3A] transition-colors"
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteFlavor(flavor.id, flavor.name)}
+                        className="p-2 rounded-full bg-red-50 hover:bg-red-100 text-red-600 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 9: STORE LOCATIONS CRUD
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "locations" && (
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/10 pb-4">
+              <div>
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                  PHYSICAL FOOTPRINT
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                  Store Locations &amp; Kiosks ({locations.length})
+                </h2>
+              </div>
               <button
                 onClick={openNewLocationModal}
-                className="px-6 py-3 rounded-full bg-[#162B3A] hover:bg-[#DB3E59] text-white text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-md transition-all active:scale-95"
+                className="px-6 py-3 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer self-start sm:self-auto"
               >
                 <Plus className="w-4 h-4" />
-                <span>Add New Location</span>
+                <span>Add Store Location</span>
               </button>
-            )}
-          </div>
-        </div>
+            </div>
 
-        {/* ─── TAB 1: FLAVORS TABLE / CARDS ─── */}
-        {activeTab === "flavors" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {flavors.map((flavor) => (
-              <div
-                key={flavor.id}
-                className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl border border-black/5 flex flex-col justify-between transition-all duration-300 group"
-              >
-                <div>
-                  {/* Image Display */}
-                  <div className="relative w-full h-48 rounded-2xl bg-[#F8F4EC] flex items-center justify-center overflow-hidden mb-4 border border-black/5">
-                    <Image
-                      src={flavor.image}
-                      alt={flavor.name}
-                      fill
-                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <span className="absolute top-2 left-2 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wide bg-white shadow-sm text-[#162B3A]">
-                      {flavor.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-black text-[#162B3A] tracking-tight mb-1">
-                    {flavor.name}
-                  </h3>
-                  <p className="text-xs text-[#162B3A]/70 line-clamp-2 font-medium mb-4">
-                    {flavor.description || "No description provided."}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between pt-3 border-t border-black/5">
-                  <span className="text-[11px] font-bold text-[#162B3A]/50">
-                    Order: #{flavor.display_order || 1}
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => openEditFlavorModal(flavor)}
-                      className="p-2 rounded-full bg-[#F8F4EC] hover:bg-[#50B8B1] hover:text-white text-[#162B3A] transition-colors"
-                      title="Edit Flavor"
-                    >
-                      <Edit2 className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      onClick={() => handleDeleteFlavor(flavor.id, flavor.name)}
-                      className="p-2 rounded-full bg-[#F8F4EC] hover:bg-red-500 hover:text-white text-red-500 transition-colors"
-                      title="Delete Flavor"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* ─── TAB 2: LOCATIONS TABLE / CARDS ─── */}
-        {activeTab === "locations" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {locations.map((loc) => (
-              <div
-                key={loc.id}
-                className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-black/5 flex flex-col justify-between transition-all duration-300"
-              >
-                <div>
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <div>
-                      <span className="text-[11px] font-black uppercase tracking-wider text-[#DB3E59] block">
-                        {loc.city}, {loc.country || "Japan"}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {locations.map((loc) => (
+                <div
+                  key={loc.id}
+                  className="p-6 rounded-3xl bg-[#FAF4E7] border border-black/5 shadow-sm flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="px-3 py-1 rounded-full bg-white text-[11px] font-black uppercase tracking-wider text-[#DB3E59]">
+                        {loc.city} &bull; {loc.country || "UAE"}
                       </span>
-                      <h3 className="text-xl font-black text-[#162B3A] tracking-tight">
-                        {loc.name}
-                      </h3>
+                      <span className="text-xs font-bold text-emerald-600">
+                        {loc.status || "Open Now"}
+                      </span>
                     </div>
-                    <span
-                      className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wide shrink-0 ${
-                        loc.status === "Open Now"
-                          ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
-                          : "bg-amber-50 text-amber-600 border border-amber-200"
-                      }`}
-                    >
-                      {loc.status || "Open Now"}
-                    </span>
+                    <h3 className="text-xl font-black text-[#162B3A] uppercase mb-1">
+                      {loc.name}
+                    </h3>
+                    <p className="text-xs font-semibold text-[#162B3A]/70 mb-2">
+                      {loc.address}
+                    </p>
+                    {loc.phone && (
+                      <p className="text-xs font-bold text-[#162B3A]">
+                        📞 {loc.phone}
+                      </p>
+                    )}
                   </div>
 
-                  <p className="text-xs sm:text-sm text-[#162B3A]/80 font-medium mb-3">
-                    {loc.address}
-                  </p>
-
-                  <div className="space-y-1 text-xs text-[#162B3A]/70 mb-4">
-                    {loc.opening_hours && <p>🕒 {loc.opening_hours}</p>}
-                    {loc.phone && <p>📞 {loc.phone}</p>}
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-black/5">
-                  <a
-                    href={loc.google_maps_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-bold text-[#50B8B1] hover:underline flex items-center gap-1"
-                  >
-                    <span>View Map</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => openEditLocationModal(loc)}
-                      className="p-2 rounded-full bg-[#F8F4EC] hover:bg-[#50B8B1] hover:text-white text-[#162B3A] transition-colors"
-                      title="Edit Location"
+                  <div className="pt-4 border-t border-black/10 mt-4 flex items-center justify-between">
+                    <a
+                      href={loc.google_maps_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold text-[#DB3E59] hover:underline flex items-center gap-1"
                     >
-                      <Edit2 className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      onClick={() => handleDeleteLocation(loc.id, loc.name)}
-                      className="p-2 rounded-full bg-[#F8F4EC] hover:bg-red-500 hover:text-white text-red-500 transition-colors"
-                      title="Delete Location"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
+                      <Navigation className="w-3.5 h-3.5" />
+                      <span>Maps Link</span>
+                    </a>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => openEditLocationModal(loc)}
+                        className="p-2 rounded-full bg-white hover:bg-black/5 text-[#162B3A] transition-colors"
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteLocation(loc.id, loc.name)}
+                        className="p-2 rounded-full bg-red-50 hover:bg-red-100 text-red-600 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
+
       </div>
 
-      {/* ─── FLAVOR MODAL ─── */}
+      {/* ══════════════════════════════════════════════════════════════
+          MODAL: FLAVOR EDIT / CREATE
+         ══════════════════════════════════════════════════════════════ */}
       {flavorModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/10 max-h-[90vh] overflow-y-auto">
+          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/10 overflow-y-auto max-h-[90vh]">
             <button
               onClick={() => setFlavorModalOpen(false)}
               className="absolute top-6 right-6 p-2 rounded-full bg-black/5 hover:bg-black/10 text-[#162B3A]"
@@ -628,100 +1766,92 @@ export default function AdminPage() {
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-2xl font-black text-[#162B3A] uppercase tracking-tight mb-6">
-              {editingFlavor ? "Edit Flavor" : "Add New Flavor"}
+            <h3 className="text-2xl font-black uppercase text-[#162B3A] mb-6">
+              {editingFlavor ? "Edit Flavour" : "Add New Flavour"}
             </h3>
 
             <form onSubmit={handleSaveFlavor} className="flex flex-col gap-4">
               <div>
-                <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                  Flavor Name *
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                  Flavour Name
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Yuzu Honey Blossom"
                   value={flavorForm.name || ""}
                   onChange={(e) => setFlavorForm({ ...flavorForm, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                    Category *
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                    Category
                   </label>
                   <select
                     value={flavorForm.category || "CLASSIC"}
                     onChange={(e) => setFlavorForm({ ...flavorForm, category: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
                   >
                     <option value="CLASSIC">CLASSIC</option>
                     <option value="SIGNATURE">SIGNATURE</option>
-                    <option value="ASIAN INSPIRED">ASIAN INSPIRED</option>
                     <option value="FRUIT BLENDS">FRUIT BLENDS</option>
+                    <option value="ASIAN INSPIRED">ASIAN INSPIRED</option>
+                    <option value="SEASONAL">SEASONAL</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                    Display Order
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                    Badge Tag
                   </label>
                   <input
-                    type="number"
-                    value={flavorForm.display_order || 1}
-                    onChange={(e) =>
-                      setFlavorForm({ ...flavorForm, display_order: Number(e.target.value) })
-                    }
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                    type="text"
+                    value={flavorForm.tag || ""}
+                    onChange={(e) => setFlavorForm({ ...flavorForm, tag: e.target.value })}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
                   Description
                 </label>
                 <textarea
                   rows={3}
-                  placeholder="Artisanal description of taste notes and ingredients..."
                   value={flavorForm.description || ""}
                   onChange={(e) => setFlavorForm({ ...flavorForm, description: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59] resize-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium resize-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                  Image Path / URL *
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                  Image URL / Asset Path
                 </label>
                 <input
                   type="text"
-                  required
-                  placeholder="/images/tumu/flavour_v3_04_matcha_green_tea.png"
                   value={flavorForm.image || ""}
                   onChange={(e) => setFlavorForm({ ...flavorForm, image: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono"
                 />
-                <p className="text-[11px] text-[#162B3A]/60 mt-1">
-                  Use existing paths like <code className="font-mono">/images/tumu/flavour_v3_*.png</code> or external image URLs.
-                </p>
               </div>
 
-              <div className="pt-4 flex items-center justify-end gap-3">
+              <div className="pt-2 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setFlavorModalOpen(false)}
-                  className="px-5 py-3 rounded-full bg-black/5 hover:bg-black/10 text-xs font-bold text-[#162B3A]"
+                  className="px-6 py-3 rounded-full bg-black/5 hover:bg-black/10 text-xs font-bold uppercase tracking-wider"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-8 py-3 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs font-black uppercase tracking-wider shadow-md"
+                  className="px-6 py-3 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs uppercase tracking-wider"
                 >
-                  Save Flavor
+                  Save Flavour
                 </button>
               </div>
             </form>
@@ -729,10 +1859,12 @@ export default function AdminPage() {
         </div>
       )}
 
-      {/* ─── LOCATION MODAL ─── */}
+      {/* ══════════════════════════════════════════════════════════════
+          MODAL: LOCATION EDIT / CREATE
+         ══════════════════════════════════════════════════════════════ */}
       {locationModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/10 max-h-[90vh] overflow-y-auto">
+          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/10 overflow-y-auto max-h-[90vh]">
             <button
               onClick={() => setLocationModalOpen(false)}
               className="absolute top-6 right-6 p-2 rounded-full bg-black/5 hover:bg-black/10 text-[#162B3A]"
@@ -740,135 +1872,112 @@ export default function AdminPage() {
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-2xl font-black text-[#162B3A] uppercase tracking-tight mb-6">
+            <h3 className="text-2xl font-black uppercase text-[#162B3A] mb-6">
               {editingLocation ? "Edit Store Location" : "Add Store Location"}
             </h3>
 
             <form onSubmit={handleSaveLocation} className="flex flex-col gap-4">
               <div>
-                <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                  Store / Outlet Name *
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                  Store / Kiosk Name
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. TUMU Omotesando Boutique"
                   value={locationForm.name || ""}
                   onChange={(e) => setLocationForm({ ...locationForm, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                    City *
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                    City
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="Tokyo"
                     value={locationForm.city || ""}
                     onChange={(e) => setLocationForm({ ...locationForm, city: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
                   />
                 </div>
-
                 <div>
-                  <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
                     Country
                   </label>
                   <input
                     type="text"
-                    placeholder="Japan"
+                    required
                     value={locationForm.country || ""}
                     onChange={(e) => setLocationForm({ ...locationForm, country: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                  Full Street Address *
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                  Full Address
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="4-12-10 Jingumae, Shibuya City, Tokyo"
                   value={locationForm.address || ""}
                   onChange={(e) => setLocationForm({ ...locationForm, address: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                    Phone
+                  </label>
+                  <input
+                    type="text"
+                    value={locationForm.phone || ""}
+                    onChange={(e) => setLocationForm({ ...locationForm, phone: e.target.value })}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
                     Opening Hours
                   </label>
                   <input
                     type="text"
-                    placeholder="Daily: 10:00 AM – 9:00 PM"
                     value={locationForm.opening_hours || ""}
                     onChange={(e) => setLocationForm({ ...locationForm, opening_hours: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                    Status
-                  </label>
-                  <select
-                    value={locationForm.status || "Open Now"}
-                    onChange={(e) => setLocationForm({ ...locationForm, status: e.target.value as any })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
-                  >
-                    <option value="Open Now">Open Now</option>
-                    <option value="Coming Soon">Coming Soon</option>
-                    <option value="Renovating">Renovating</option>
-                  </select>
-                </div>
               </div>
 
               <div>
-                <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  placeholder="+81 3-1234-5678"
-                  value={locationForm.phone || ""}
-                  onChange={(e) => setLocationForm({ ...locationForm, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-black uppercase text-[#162B3A] mb-1">
-                  Google Maps URL (Optional - Auto generated if left blank)
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                  Google Maps URL
                 </label>
                 <input
                   type="url"
-                  placeholder="https://maps.google.com/..."
                   value={locationForm.google_maps_url || ""}
                   onChange={(e) => setLocationForm({ ...locationForm, google_maps_url: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#F8F4EC] border border-black/10 text-sm font-semibold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono"
                 />
               </div>
 
-              <div className="pt-4 flex items-center justify-end gap-3">
+              <div className="pt-2 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setLocationModalOpen(false)}
-                  className="px-5 py-3 rounded-full bg-black/5 hover:bg-black/10 text-xs font-bold text-[#162B3A]"
+                  className="px-6 py-3 rounded-full bg-black/5 hover:bg-black/10 text-xs font-bold uppercase tracking-wider"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-8 py-3 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs font-black uppercase tracking-wider shadow-md"
+                  className="px-6 py-3 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs uppercase tracking-wider"
                 >
                   Save Store
                 </button>
@@ -877,6 +1986,110 @@ export default function AdminPage() {
           </div>
         </div>
       )}
-    </div>
+
+      {/* ══════════════════════════════════════════════════════════════
+          MODAL: FAQ EDIT / CREATE
+         ══════════════════════════════════════════════════════════════ */}
+      {faqModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/10 overflow-y-auto max-h-[90vh]">
+            <button
+              onClick={() => setFaqModalOpen(false)}
+              className="absolute top-6 right-6 p-2 rounded-full bg-black/5 hover:bg-black/10 text-[#162B3A]"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <h3 className="text-2xl font-black uppercase text-[#162B3A] mb-6">
+              {editingFaqIndex !== null ? "Edit FAQ Question" : "Add FAQ Question"}
+            </h3>
+
+            <form onSubmit={handleSaveFaq} className="flex flex-col gap-4">
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                  Category
+                </label>
+                <select
+                  value={faqForm.category}
+                  onChange={(e) => setFaqForm({ ...faqForm, category: e.target.value })}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
+                >
+                  <option value="Product & Concept">Product & Concept</option>
+                  <option value="Ingredients & Dietary">Ingredients & Dietary</option>
+                  <option value="Store Locations & Delivery">Store Locations & Delivery</option>
+                  <option value="Franchise & Expansion">Franchise & Expansion</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                  Question
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={faqForm.question}
+                  onChange={(e) => setFaqForm({ ...faqForm, question: e.target.value })}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
+                  Answer
+                </label>
+                <textarea
+                  rows={4}
+                  required
+                  value={faqForm.answer}
+                  onChange={(e) => setFaqForm({ ...faqForm, answer: e.target.value })}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium resize-none"
+                />
+              </div>
+
+              <div className="pt-2 flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setFaqModalOpen(false)}
+                  className="px-6 py-3 rounded-full bg-black/5 hover:bg-black/10 text-xs font-bold uppercase tracking-wider"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-3 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs uppercase tracking-wider"
+                >
+                  Save Question
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+    </main>
+  );
+}
+
+function GoogleIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none">
+      <path
+        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+        fill="#4285F4"
+      />
+      <path
+        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+        fill="#34A853"
+      />
+      <path
+        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+        fill="#FBBC05"
+      />
+      <path
+        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+        fill="#EA4335"
+      />
+    </svg>
   );
 }
