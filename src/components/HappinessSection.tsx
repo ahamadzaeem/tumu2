@@ -1,11 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { getSiteContent } from "@/lib/cms";
 
 export default function HappinessSection() {
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const happiness = content?.home?.happinessSection || {
+    headingLine1: "A LITTLE",
+    headingLine2: "HAPPINESS",
+    headingLine3: "IN EVERY BITE.",
+    japaneseText: "できたての、とろける幸せを。",
+    btnText: "Our Story",
+    btnLink: "/our-story",
+  };
+
   return (
     <section className="relative w-full overflow-hidden bg-[#F8F4EC] lg:h-[500px] flex flex-col lg:flex-row shadow-xl">
       {/* Left Image Area (70% on desktop) */}
@@ -37,21 +58,20 @@ export default function HappinessSection() {
       {/* Right Content Area (30% on desktop) */}
       <div className="w-full lg:w-[30%] h-full bg-[#F8F4EC] flex flex-col justify-center px-8 sm:px-12 py-12 lg:py-0 z-20">
         <h2 className="text-[32px] sm:text-[40px] lg:text-[42px] font-black tracking-tight leading-[1.05] mb-6">
-          <span className="block text-[#1A2E44]">A LITTLE</span>
-          <span className="block text-[#1A2E44]">HAPPINESS</span>
-          <span className="block text-[#0088CC]">IN EVERY BITE.</span>
+          <span className="block text-[#1A2E44]">{happiness.headingLine1}</span>
+          <span className="block text-[#1A2E44]">{happiness.headingLine2}</span>
+          <span className="block text-[#0088CC]">{happiness.headingLine3}</span>
         </h2>
         
-        <p className="text-[#1A2E44] font-bold text-base sm:text-lg mb-8 tracking-wider">
-          できたての、<br className="hidden lg:block"/>
-          とろける幸せを。
+        <p className="text-[#1A2E44] font-bold text-base sm:text-lg mb-8 tracking-wider whitespace-pre-line">
+          {happiness.japaneseText}
         </p>
         
         <Link 
-          href="/story"
+          href={happiness.btnLink || "/our-story"}
           className="bg-[#DB3E59] text-white px-8 py-3 rounded-full font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 w-fit hover:scale-105 hover:bg-[#d01c4c] transition-all shadow-lg shadow-pink-500/30"
         >
-          Our Story <ArrowRight className="w-5 h-5" />
+          {happiness.btnText || "Our Story"} <ArrowRight className="w-5 h-5" />
         </Link>
       </div>
     </section>

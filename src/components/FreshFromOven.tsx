@@ -1,25 +1,48 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Sparkles, Utensils, Clock } from "lucide-react";
+import { getSiteContent } from "@/lib/cms";
 
 export default function FreshFromOven() {
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const fresh = content?.home?.freshFromOven || {
+    eyebrow: "FRESH FROM OUR OVEN",
+    heading: "WHY SO FRESH!?",
+    pillar1Title: "FAST AND EASY",
+    pillar1Desc: "Baking process for a perfectly crunchy puff every time at every single store.",
+    pillar2Title: "THE FINEST INGREDIENTS",
+    pillar2Desc: "Using only the freshest and highest quality milk and butter.",
+    pillar3Title: "FRESHLY SERVED",
+    pillar3Desc: "Filling freshly prepared cream into crunchy puffs with every single order."
+  };
+
   const pillars = [
     {
       icon: Clock,
-      title: "FAST AND EASY",
-      description: "Baking process for a perfectly crunchy puff every time at every single store."
+      title: fresh.pillar1Title || "FAST AND EASY",
+      description: fresh.pillar1Desc || "Baking process for a perfectly crunchy puff every time at every single store."
     },
     {
       icon: Sparkles,
-      title: "THE FINEST INGREDIENTS",
-      description: "Using only the freshest and highest quality milk and butter."
+      title: fresh.pillar2Title || "THE FINEST INGREDIENTS",
+      description: fresh.pillar2Desc || "Using only the freshest and highest quality milk and butter."
     },
     {
       icon: Utensils,
-      title: "FRESHLY SERVED",
-      description: "Filling freshly prepared cream into crunchy puffs with every single order."
+      title: fresh.pillar3Title || "FRESHLY SERVED",
+      description: fresh.pillar3Desc || "Filling freshly prepared cream into crunchy puffs with every single order."
     }
   ];
 
@@ -40,10 +63,10 @@ export default function FreshFromOven() {
         {/* Why So Fresh Card */}
         <div className="bg-[#DB3E59] text-white p-8 sm:p-10 lg:p-12 rounded-[36px] shadow-2xl relative overflow-hidden border border-white/10">
           <span className="text-white/80 text-xs sm:text-sm tracking-[0.25em] font-extrabold uppercase mb-2 block">
-            FRESH FROM OUR OVEN
+            {fresh.eyebrow}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase mb-8 leading-tight">
-            WHY SO FRESH!?
+            {fresh.heading}
           </h2>
 
           <div className="space-y-8">

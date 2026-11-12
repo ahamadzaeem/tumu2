@@ -4,10 +4,37 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import PillButton from "./PillButton";
+import { getSiteContent } from "@/lib/cms";
 
 const TOTAL_FRAMES = 200;
 
 export default function VideoScrollHero() {
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const heroData = content?.home?.videoScrollHero || {
+    phase1Headline1: "A CRISP CRUST.",
+    phase1Headline2: "A VELVET HEART.",
+    phase1Btn1Text: "What is TUMU",
+    phase1Btn1Link: "/our-story",
+    phase1Btn2Text: "Franchise Now",
+    phase1Btn2Link: "/franchise#form",
+    phase3Headline1: "EVERY BITE,",
+    phase3Headline2: "PURE HAPPINESS.",
+    phase3Btn1Text: "What is TUMU",
+    phase3Btn1Link: "/our-story",
+    phase3Btn2Text: "Franchise Now",
+    phase3Btn2Link: "/franchise#form",
+  };
+
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
@@ -296,22 +323,22 @@ export default function VideoScrollHero() {
             
             {/* Bold Editorial Headline - Titan One Font Centered */}
             <h1 className="font-heading text-4xl sm:text-6xl lg:text-[70px] xl:text-[78px] font-normal uppercase tracking-tight leading-[0.95] mb-8 drop-shadow-[0_4px_24px_rgba(22,43,58,0.26)]">
-              <span className="block text-[#318EC7]">A CRISP CRUST.</span>
+              <span className="block text-[#318EC7]">{heroData.phase1Headline1}</span>
               <span className="block text-[#DE3558]">
-                A VELVET HEART<span className="text-[#DE3558]">.</span>
+                {heroData.phase1Headline2}
               </span>
             </h1>
 
             {/* Action Buttons - Brand Pink and Cyan Duo Centered */}
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/story">
+              <Link href={heroData.phase1Btn1Link || "/our-story"}>
                 <PillButton variant="pink" showArrow>
-                  What is TUMU
+                  {heroData.phase1Btn1Text || "What is TUMU"}
                 </PillButton>
               </Link>
-              <Link href="/franchise#form">
+              <Link href={heroData.phase1Btn2Link || "/franchise#form"}>
                 <PillButton variant="cyan" showArrow>
-                  Franchise Now
+                  {heroData.phase1Btn2Text || "Franchise Now"}
                 </PillButton>
               </Link>
             </div>
@@ -342,22 +369,22 @@ export default function VideoScrollHero() {
 
             {/* Grand Climax Headline - Titan One Font with Enhanced Visibility */}
             <h2 className="font-heading text-4xl sm:text-6xl lg:text-[70px] xl:text-[78px] font-normal uppercase tracking-tight leading-[0.95] mb-8 drop-shadow-[0_4px_24px_rgba(22,43,58,0.28)]">
-              <span className="block text-[#318EC7]">EVERY BITE,</span>
+              <span className="block text-[#318EC7]">{heroData.phase3Headline1}</span>
               <span className="block text-[#DE3558]">
-                PURE HAPPINESS<span className="text-[#DE3558]">.</span>
+                {heroData.phase3Headline2}
               </span>
             </h2>
 
             {/* Small CTAs */}
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/story">
+              <Link href={heroData.phase3Btn1Link || "/our-story"}>
                 <PillButton variant="pink" showArrow>
-                  What is TUMU
+                  {heroData.phase3Btn1Text || "What is TUMU"}
                 </PillButton>
               </Link>
-              <Link href="/franchise#form">
+              <Link href={heroData.phase3Btn2Link || "/franchise#form"}>
                 <PillButton variant="white" showArrow>
-                  Franchise Now
+                  {heroData.phase3Btn2Text || "Franchise Now"}
                 </PillButton>
               </Link>
             </div>

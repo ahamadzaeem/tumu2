@@ -14,6 +14,21 @@
     "copyrightText": "© 2026 TUMU UAE. All rights reserved. Crafted with authentic Japanese ingredients."
   },
   "home": {
+    "videoScrollHero": {
+      "eyebrow": "PREMIERE FOOD CINEMA",
+      "phase1Headline1": "A CRISP CRUST.",
+      "phase1Headline2": "A VELVET HEART.",
+      "phase1Btn1Text": "What is TUMU",
+      "phase1Btn1Link": "/our-story",
+      "phase1Btn2Text": "Franchise Now",
+      "phase1Btn2Link": "/franchise#form",
+      "phase3Headline1": "EVERY BITE,",
+      "phase3Headline2": "PURE HAPPINESS.",
+      "phase3Btn1Text": "What is TUMU",
+      "phase3Btn1Link": "/our-story",
+      "phase3Btn2Text": "Franchise Now",
+      "phase3Btn2Link": "/franchise#form"
+    },
     "hero": {
       "eyebrow": "Authentic Japanese Desserts in UAE",
       "headlineLine1": "CRISP OUTSIDE.",
@@ -41,10 +56,31 @@
       "layer3Title": "Chilled Velvet Cream Filling",
       "layer3Desc": "Silky custard piped cold right into the warm shell upon your order."
     },
+    "flavoursSection": {
+      "eyebrow": "FLAVOURS",
+      "headingLine1": "A FLAVOUR",
+      "headingLine2": "FOR EVERY MOOD",
+      "description": "From timeless classics to bold Japanese-inspired creations, each TUMU is made to delight.",
+      "btnText": "Explore All 12 Flavours & Matcha Desserts",
+      "btnLink": "/flavours"
+    },
     "freshFromOven": {
-      "eyebrow": "FRESHLY BAKED DAILY",
-      "heading": "STRAIGHT FROM OUR OVENS",
-      "description": "Warm aromas fill the air as each tray emerges with a deep golden hue and crispy crust."
+      "eyebrow": "FRESH FROM OUR OVEN",
+      "heading": "WHY SO FRESH!?",
+      "pillar1Title": "FAST AND EASY",
+      "pillar1Desc": "Baking process for a perfectly crunchy puff every time at every single store.",
+      "pillar2Title": "THE FINEST INGREDIENTS",
+      "pillar2Desc": "Using only the freshest and highest quality milk and butter.",
+      "pillar3Title": "FRESHLY SERVED",
+      "pillar3Desc": "Filling freshly prepared cream into crunchy puffs with every single order."
+    },
+    "happinessSection": {
+      "headingLine1": "A LITTLE",
+      "headingLine2": "HAPPINESS",
+      "headingLine3": "IN EVERY BITE.",
+      "japaneseText": "できたての、とろける幸せを。",
+      "btnText": "Our Story",
+      "btnLink": "/our-story"
     },
     "franchiseCta": {
       "eyebrow": "TUMU FRANCHISE • フランチャイズ",
@@ -184,4 +220,3 @@
     }
   }
 }
-

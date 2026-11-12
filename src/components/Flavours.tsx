@@ -4,11 +4,31 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { fetchFlavors, Flavor, DEFAULT_FLAVORS } from "@/lib/supabase";
+import { getSiteContent } from "@/lib/cms";
 
 export default function Flavours() {
   const [flavours, setFlavours] = useState<Flavor[]>(DEFAULT_FLAVORS);
   const [activeCategory, setActiveCategory] = useState<string>("ALL");
+  const [content, setContent] = useState(getSiteContent());
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const flavoursData = content?.home?.flavoursSection || {
+    eyebrow: "FLAVOURS",
+    headingLine1: "A FLAVOUR",
+    headingLine2: "FOR EVERY MOOD",
+    description: "From timeless classics to bold Japanese-inspired creations, each TUMU is made to delight.",
+    btnText: "Explore All 12 Flavours & Matcha Desserts",
+    btnLink: "/flavours"
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -50,17 +70,17 @@ export default function Flavours() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
           <div>
             <span className="text-[#DB3E59] text-sm tracking-[0.2em] uppercase font-bold block mb-4">
-              FLAVOURS
+              {flavoursData.eyebrow}
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading tracking-tight leading-[1.1] uppercase text-[#DB3E59]">
-              <span className="block">A FLAVOUR</span>
-              <span className="block">FOR EVERY MOOD</span>
+              <span className="block">{flavoursData.headingLine1}</span>
+              <span className="block">{flavoursData.headingLine2}</span>
             </h2>
           </div>
 
           <div className="flex flex-col md:items-end gap-6 max-w-sm">
             <p className="text-[#162B3A] text-sm font-semibold leading-relaxed md:text-right">
-              From timeless classics to bold Japanese-inspired creations, each TUMU is made to delight.
+              {flavoursData.description}
             </p>
             {/* Nav Arrows */}
             <div className="flex items-center gap-3">
@@ -136,10 +156,10 @@ export default function Flavours() {
         {/* View All Flavours Link */}
         <div className="mt-12 text-center">
           <a
-            href="/flavours"
+            href={flavoursData.btnLink || "/flavours"}
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#162B3A] hover:bg-black text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95"
           >
-            <span>Explore All 12 Flavours &amp; Matcha Desserts</span>
+            <span>{flavoursData.btnText || "Explore All 12 Flavours & Matcha Desserts"}</span>
             <span>→</span>
           </a>
         </div>
