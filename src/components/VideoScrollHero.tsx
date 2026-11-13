@@ -21,17 +21,17 @@ export default function VideoScrollHero() {
   }, []);
 
   const heroData = content?.home?.videoScrollHero || {
-    phase1Headline1: "A CRISP CRUST.",
-    phase1Headline2: "A VELVET HEART.",
-    phase1Btn1Text: "What is TUMU",
-    phase1Btn1Link: "/our-story",
-    phase1Btn2Text: "Franchise Now",
-    phase1Btn2Link: "/franchise#form",
+    phase1Headline1: "a unique viral concept.",
+    phase1Headline2: "crafted by a japanese chef",
+    phase1Btn1Text: "Own a Franchise.",
+    phase1Btn1Link: "/franchise#form",
+    phase1Btn2Text: "",
+    phase1Btn2Link: "",
     phase3Headline1: "EVERY BITE,",
     phase3Headline2: "PURE HAPPINESS.",
     phase3Btn1Text: "What is TUMU",
     phase3Btn1Link: "/our-story",
-    phase3Btn2Text: "Franchise Now",
+    phase3Btn2Text: "Own a Franchise",
     phase3Btn2Link: "/franchise#form",
   };
 
@@ -321,26 +321,30 @@ export default function VideoScrollHero() {
         >
           <div className="w-full max-w-[900px] mx-auto flex flex-col items-center text-center">
             
-            {/* Bold Editorial Headline - Titan One Font Centered */}
-            <h1 className="font-heading text-4xl sm:text-6xl lg:text-[70px] xl:text-[78px] font-normal uppercase tracking-tight leading-[0.95] mb-8 drop-shadow-[0_4px_24px_rgba(22,43,58,0.26)]">
-              <span className="block text-[#318EC7]">{heroData.phase1Headline1}</span>
-              <span className="block text-[#DE3558]">
+            {/* Bold Editorial Headline - Titan One Font Centered with Crisp White Text */}
+            <h1 className="font-heading text-4xl sm:text-6xl lg:text-[70px] xl:text-[78px] font-normal uppercase tracking-tight leading-[0.95] mb-8 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]">
+              <span className="block text-white">{heroData.phase1Headline1}</span>
+              <span className="block text-white">
                 {heroData.phase1Headline2}
               </span>
             </h1>
 
-            {/* Action Buttons - Brand Pink and Cyan Duo Centered */}
+            {/* Action Buttons - Own a Franchise (Removed Find a Store) */}
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href={heroData.phase1Btn1Link || "/our-story"}>
-                <PillButton variant="pink" showArrow>
-                  {heroData.phase1Btn1Text || "What is TUMU"}
-                </PillButton>
-              </Link>
-              <Link href={heroData.phase1Btn2Link || "/franchise#form"}>
-                <PillButton variant="cyan" showArrow>
-                  {heroData.phase1Btn2Text || "Franchise Now"}
-                </PillButton>
-              </Link>
+              {heroData.phase1Btn1Text && (
+                <Link href={heroData.phase1Btn1Link || "/franchise#form"}>
+                  <PillButton variant="pink" showArrow>
+                    {heroData.phase1Btn1Text}
+                  </PillButton>
+                </Link>
+              )}
+              {heroData.phase1Btn2Text && (
+                <Link href={heroData.phase1Btn2Link || "/franchise#form"}>
+                  <PillButton variant="cyan" showArrow>
+                    {heroData.phase1Btn2Text}
+                  </PillButton>
+                </Link>
+              )}
             </div>
 
           </div>

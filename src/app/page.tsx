@@ -6,7 +6,6 @@ import Hero from "@/components/Hero";
 import RealIngredients from "@/components/RealIngredients";
 import ProductAnatomy from "@/components/ProductAnatomy";
 import Flavours from "@/components/Flavours";
-import FreshFromOven from "@/components/FreshFromOven";
 import FranchiseSection from "@/components/FranchiseSection";
 import HappinessSection from "@/components/HappinessSection";
 import Footer from "@/components/Footer";
@@ -41,13 +40,10 @@ export default function Home() {
       {/* 5. Flavours Section */}
       <Flavours />
 
-      {/* 6. Fresh From Our Oven Section */}
-      <FreshFromOven />
-
-      {/* 7. Happiness CTA Section */}
+      {/* 6. Happiness CTA Section */}
       <HappinessSection />
 
-      {/* 8. Franchise Section */}
+      {/* 7. Franchise Section */}
       <FranchiseSection />
 
       {/* 9. Footer */}

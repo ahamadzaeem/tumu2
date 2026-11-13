@@ -63,77 +63,28 @@ export default function Flavours() {
   };
 
   return (
-    <section id="flavours" className="relative w-full bg-[#50B8B1] scroll-mt-20 pt-32 pb-24 lg:scroll-mt-24 lg:pt-40 lg:pb-32 overflow-hidden">
+    <section id="flavours" className="relative w-full bg-[#50B8B1] scroll-mt-20 pt-28 pb-24 lg:scroll-mt-24 lg:pt-36 lg:pb-32 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-20">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
-          <div>
-            <span className="text-[#DB3E59] text-sm tracking-[0.2em] uppercase font-bold block mb-4">
-              {flavoursData.eyebrow}
-            </span>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading tracking-tight leading-[1.1] uppercase text-[#DB3E59]">
-              <span className="block">{flavoursData.headingLine1}</span>
-              <span className="block">{flavoursData.headingLine2}</span>
-            </h2>
-          </div>
-
-          <div className="flex flex-col md:items-end gap-6 max-w-sm">
-            <p className="text-[#162B3A] text-sm font-semibold leading-relaxed md:text-right">
-              {flavoursData.description}
-            </p>
-            {/* Nav Arrows */}
-            <div className="flex items-center gap-3">
-              <button 
-                onClick={() => handleScroll("left")}
-                className="w-10 h-10 rounded-full border border-[#DB3E59]/40 flex items-center justify-center text-[#DB3E59] hover:bg-[#DB3E59] hover:text-white transition-colors"
-                aria-label="Previous flavours"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </button>
-              <button 
-                onClick={() => handleScroll("right")}
-                className="w-10 h-10 rounded-full border border-[#DB3E59]/40 flex items-center justify-center text-[#DB3E59] hover:bg-[#DB3E59] hover:text-white transition-colors"
-                aria-label="Next flavours"
-              >
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
+        {/* Section Header - Big Prominent "FLAVOURS" */}
+        <div className="mb-14 text-left">
+          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[96px] font-heading tracking-tight leading-none uppercase text-[#DB3E59] drop-shadow-sm">
+            FLAVOURS
+          </h2>
         </div>
 
-        {/* Filter Bar */}
-        <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar mb-16 pb-2">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-black tracking-wider uppercase transition-all duration-300 shrink-0 ${
-                  isActive
-                    ? "bg-[#DB3E59] text-white shadow-md"
-                    : "bg-white/30 text-[#162B3A] hover:bg-white/60 hover:text-[#DB3E59]"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Product Carousel */}
+        {/* 6 Flavour Product Lineup */}
         <div
           ref={scrollRef}
-          className="flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto no-scrollbar scroll-smooth pb-12 pt-6 items-end justify-start lg:justify-between"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 pb-12 pt-2 items-end justify-items-center"
         >
-          {filteredFlavours.map((item) => (
+          {flavours.slice(0, 6).map((item) => (
             <div
               key={item.id}
-              className="relative shrink-0 flex flex-col items-center group cursor-pointer w-[120px] sm:w-[155px] lg:w-[180px]"
+              className="relative shrink-0 flex flex-col items-center group cursor-pointer w-full max-w-[180px]"
             >
               {/* Product Image */}
-              <div className="relative w-full h-[275px] sm:h-[340px] lg:h-[390px] mb-5 flex justify-center">
+              <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[360px] mb-4 flex justify-center">
                 <Image
                   src={item.image}
                   alt={item.name}
@@ -144,7 +95,7 @@ export default function Flavours() {
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#162B3A] font-black text-center text-sm sm:text-base lg:text-lg leading-tight px-1 group-hover:text-[#DB3E59] transition-colors">
+              <h3 className="text-[#162B3A] font-black text-center text-xs sm:text-sm lg:text-base leading-tight px-1 group-hover:text-[#DB3E59] transition-colors">
                 {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
@@ -153,13 +104,17 @@ export default function Flavours() {
           ))}
         </div>
 
-        {/* View All Flavours Link */}
-        <div className="mt-12 text-center">
+        {/* Bottom Section - 35 Unique Flavors & MORE FLAVORS Button */}
+        <div className="mt-8 flex flex-col items-center text-center gap-6">
+          <p className="text-xl sm:text-2xl lg:text-3xl font-black text-[#162B3A] tracking-tight uppercase max-w-2xl">
+            35 Unique Flavors, Made with Japan&apos;s Finest Ingredients
+          </p>
+
           <a
-            href={flavoursData.btnLink || "/flavours"}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#162B3A] hover:bg-black text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95"
+            href="/flavours"
+            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-sm sm:text-base font-black uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
           >
-            <span>{flavoursData.btnText || "Explore All 12 Flavours & Matcha Desserts"}</span>
+            <span>MORE FLAVORS</span>
             <span>→</span>
           </a>
         </div>

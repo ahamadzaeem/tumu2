@@ -16,82 +16,73 @@
   "home": {
     "videoScrollHero": {
       "eyebrow": "PREMIERE FOOD CINEMA",
-      "phase1Headline1": "A CRISP CRUST.",
-      "phase1Headline2": "A VELVET HEART.",
-      "phase1Btn1Text": "What is TUMU",
-      "phase1Btn1Link": "/our-story",
-      "phase1Btn2Text": "Franchise Now",
-      "phase1Btn2Link": "/franchise#form",
+      "phase1Headline1": "a unique viral concept.",
+      "phase1Headline2": "crafted by a japanese chef",
+      "phase1Btn1Text": "Own a Franchise.",
+      "phase1Btn1Link": "/franchise#form",
+      "phase1Btn2Text": "",
+      "phase1Btn2Link": "",
       "phase3Headline1": "EVERY BITE,",
       "phase3Headline2": "PURE HAPPINESS.",
       "phase3Btn1Text": "What is TUMU",
       "phase3Btn1Link": "/our-story",
-      "phase3Btn2Text": "Franchise Now",
+      "phase3Btn2Text": "Own a Franchise",
       "phase3Btn2Link": "/franchise#form"
     },
     "hero": {
-      "eyebrow": "Authentic Japanese Desserts in UAE",
+      "eyebrow": "Five Years. Countless Experiments.\nOne Vision. Tumu Is Finally Here\nall the way from JAPAN",
       "headlineLine1": "CRISP OUTSIDE.",
       "headlineLine2": "CREAMY INSIDE.",
-      "description": "Freshly baked crispy cream-filled desserts piped with velvety Japanese cream desserts across Dubai.",
+      "description": "",
       "primaryBtnText": "Explore TUMU",
       "primaryBtnLink": "/our-story",
-      "secondaryBtnText": "Our Flavours",
-      "secondaryBtnLink": "/flavours"
+      "secondaryBtnText": "",
+      "secondaryBtnLink": ""
     },
     "realIngredients": {
-      "eyebrow": "NATURAL INGREDIENTS • 本物の素材",
-      "heading": "CRAFTED WITH HONEST TASTE",
-      "subtitle": "Only pure ingredients sourced directly from Japan's finest prefectures.",
-      "description": "Every single batch is crafted without artificial flavors, chemical stabilizers, or synthetic fillers. Real milk, real vanilla beans, and stone-ground tea leaves."
+      "eyebrow": "JUST 3 STEPS.",
+      "heading": "UNIQUELY DELICIOUS.",
+      "subtitle": "Bake It • Fill It • Serve It",
+      "description": "Bake It • Fill It • Serve It"
     },
     "productAnatomy": {
       "eyebrow": "ANATOMY OF PERFECTION • 構造の美学",
-      "heading": "WHAT MAKES TUMU SPECIAL",
-      "subtitle": "Engineered for the ultimate hot-and-cold textural contrast in every bite.",
-      "layer1Title": "Golden Choux Pastry Stick",
-      "layer1Desc": "Light, airy pastry baked continuously in small batches throughout the day.",
-      "layer2Title": "Crunchy Almond & Sugar Crust",
-      "layer2Desc": "Toasted crushed almonds and pearl sugar caramelized to a brittle perfection.",
-      "layer3Title": "Chilled Velvet Cream Filling",
-      "layer3Desc": "Silky custard piped cold right into the warm shell upon your order."
+      "heading": "WHAT'S INSIDE A TUMU",
+      "subtitle": "Hot, Golden & Crispy Outer Layer with Smooth Chilled Cream",
+      "layer1Title": "Crunchy Almond Topping",
+      "layer1Desc": "Delicately roasted nuts for an irresistible crunch.",
+      "layer2Title": "Hot, Golden & Crispy Outer Layer",
+      "layer2Desc": "Oven-baked to a rich golden crunch every single order.",
+      "layer3Title": "Smooth and Chilled Cream",
+      "layer3Desc": "Velvety Japanese cream piped fresh into the warm crust."
     },
     "flavoursSection": {
       "eyebrow": "FLAVOURS",
-      "headingLine1": "A FLAVOUR",
-      "headingLine2": "FOR EVERY MOOD",
-      "description": "From timeless classics to bold Japanese-inspired creations, each TUMU is made to delight.",
-      "btnText": "Explore All 12 Flavours & Matcha Desserts",
+      "headingLine1": "FLAVOURS",
+      "headingLine2": "",
+      "description": "35 Unique Flavors, Made with Japan's Finest Ingredients",
+      "btnText": "MORE FLAVORS",
       "btnLink": "/flavours"
     },
-    "freshFromOven": {
-      "eyebrow": "FRESH FROM OUR OVEN",
-      "heading": "WHY SO FRESH!?",
-      "pillar1Title": "FAST AND EASY",
-      "pillar1Desc": "Baking process for a perfectly crunchy puff every time at every single store.",
-      "pillar2Title": "THE FINEST INGREDIENTS",
-      "pillar2Desc": "Using only the freshest and highest quality milk and butter.",
-      "pillar3Title": "FRESHLY SERVED",
-      "pillar3Desc": "Filling freshly prepared cream into crunchy puffs with every single order."
-    },
     "happinessSection": {
-      "headingLine1": "A LITTLE",
-      "headingLine2": "HAPPINESS",
-      "headingLine3": "IN EVERY BITE.",
+      "headingLine1": "TASTE IT ONCE.",
+      "headingLine2": "CRAVE IT FOREVER.",
+      "headingLine3": "LET HAPPINESS FLOW",
       "japaneseText": "できたての、とろける幸せを。",
       "btnText": "Our Story",
       "btnLink": "/our-story"
     },
     "franchiseCta": {
       "eyebrow": "TUMU FRANCHISE • フランチャイズ",
-      "headingLine1": "TUMU FRANCHISE",
-      "headingLine2": "WITH TUMU",
-      "description": "Partner with the premier dessert franchise UAE opportunity. Bring authentic Japanese desserts, high operating margins, and turnkey store formats to your city.",
-      "buttonText": "Franchise Now",
+      "headingLine1": "Be Part of a Growing,",
+      "headingLine2": "Viral & Unique Brand from Japan!",
+      "description": "",
+      "buttonText": "Join Our Growing Franchise Family",
       "buttonLink": "/franchise#form",
-      "format1": "01. Mall Kiosk",
-      "format2": "02. Retail Outlet",
-      "format3": "03. Food Truck"
+      "format1": "Easy-to-Operate Format",
+      "format2": "Low Investment",
+      "format3": "Attractive Returns",
+      "format4": "Target ROI Within 12 Months"
     }
   },
   "story": {

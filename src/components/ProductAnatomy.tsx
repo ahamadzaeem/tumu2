@@ -42,39 +42,54 @@ export default function ProductAnatomy() {
   const smoothX = useSpring(rawX, springConfig);
   const x = useTransform(smoothX, (val) => `${val}%`);
 
-  // ─── 2-STEP TEXT ANIMATIONS ───
-  // Step 01: Crisp Outside
-  const opacityCrunch = useSpring(useTransform(scrollYProgress, [0.12, 0.20, 0.42, 0.48], [0, 1, 1, 0]), springConfig);
-  const yCrunch = useSpring(useTransform(scrollYProgress, [0.12, 0.20, 0.42, 0.48], [60, 0, 0, -60]), springConfig);
-  const lineCrunch = useSpring(useTransform(scrollYProgress, [0.12, 0.20, 0.42, 0.48], [0, 1, 1, 0]), springConfig);
+  // ─── 3-STEP SCROLL ANIMATIONS (Matching Reference Image) ───
+  // Step 1 [0.10 - 0.35]: Crunchy Almond Topping
+  const opacityAlmond = useSpring(useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [0, 1, 1, 0]), springConfig);
+  const yAlmond = useSpring(useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [60, 0, 0, -60]), springConfig);
+  const lineAlmond = useSpring(useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [0, 1, 1, 0]), springConfig);
 
-  // Step 02: Creamy Inside
-  const opacityCream = useSpring(useTransform(scrollYProgress, [0.52, 0.58, 0.78, 0.84], [0, 1, 1, 0]), springConfig);
-  const yCream = useSpring(useTransform(scrollYProgress, [0.52, 0.58, 0.78, 0.84], [60, 0, 0, -60]), springConfig);
-  const lineCream = useSpring(useTransform(scrollYProgress, [0.52, 0.58, 0.78, 0.84], [0, 1, 1, 0]), springConfig);
+  // Step 2 [0.40 - 0.65]: Hot, Golden & Crispy Outer Layer
+  const opacityCrunch = useSpring(useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [0, 1, 1, 0]), springConfig);
+  const yCrunch = useSpring(useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [60, 0, 0, -60]), springConfig);
+  const lineCrunch = useSpring(useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [0, 1, 1, 0]), springConfig);
+
+  // Step 3 [0.68 - 0.92]: Smooth and Chilled Cream
+  const opacityCream = useSpring(useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [0, 1, 1, 0]), springConfig);
+  const yCream = useSpring(useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [60, 0, 0, -60]), springConfig);
+  const lineCream = useSpring(useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [0, 1, 1, 0]), springConfig);
 
   const opacityTitle = useSpring(useTransform(scrollYProgress, [0, 0.10], [1, 0]), springConfig);
 
   const features = [
     {
       num: "01",
-      title: "CRISP OUTSIDE",
-      description: "Golden baked exterior with a delicate crunch in every bite.",
-      opacity: opacityCrunch,
-      yPos: yCrunch,
-      lineScale: lineCrunch,
+      title: "Crunchy Almond Topping",
+      description: "Delicately roasted nuts for an irresistible crunch.",
+      opacity: opacityAlmond,
+      yPos: yAlmond,
+      lineScale: lineAlmond,
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]"
     },
     {
       num: "02",
-      title: "CREAMY INSIDE",
-      description: "Smooth and chilled cream filling with a rich and velvety texture.",
+      title: "Hot, Golden & Crispy Outer Layer",
+      description: "Oven-baked to a rich golden crunch every single order.",
+      opacity: opacityCrunch,
+      yPos: yCrunch,
+      lineScale: lineCrunch,
+      color: "text-[#DE3558]", // Brand Pink
+      lineBg: "bg-[#DE3558]"
+    },
+    {
+      num: "03",
+      title: "Smooth and Chilled Cream",
+      description: "Velvety Japanese cream piped fresh into the warm crust.",
       opacity: opacityCream,
       yPos: yCream,
       lineScale: lineCream,
-      color: "text-[#DE3558]", // Brand Pink
-      lineBg: "bg-[#DE3558]"
+      color: "text-[#318EC7]", // Brand Cyan
+      lineBg: "bg-[#318EC7]"
     },
   ];
 

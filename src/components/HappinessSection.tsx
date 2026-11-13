@@ -19,9 +19,9 @@ export default function HappinessSection() {
   }, []);
 
   const happiness = content?.home?.happinessSection || {
-    headingLine1: "A LITTLE",
-    headingLine2: "HAPPINESS",
-    headingLine3: "IN EVERY BITE.",
+    headingLine1: "TASTE IT ONCE.",
+    headingLine2: "CRAVE IT FOREVER.",
+    headingLine3: "LET HAPPINESS FLOW",
     japaneseText: "できたての、とろける幸せを。",
     btnText: "Our Story",
     btnLink: "/our-story",

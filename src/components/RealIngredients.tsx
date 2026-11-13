@@ -1,11 +1,30 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import CircleArrow from "./CircleArrow";
 import BrandStripes from "./BrandStripes";
+import { getSiteContent } from "@/lib/cms";
 
 export default function RealIngredients() {
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const real = content?.home?.realIngredients || {
+    eyebrow: "JUST 3 STEPS.",
+    heading: "UNIQUELY DELICIOUS.",
+    description: "Bake It • Fill It • Serve It",
+  };
+
   return (
     <section className="relative w-full bg-[#F8F4EC] overflow-hidden flex flex-col lg:flex-row">
       {/* Left Side Photography (approx 62% width on desktop) */}
@@ -22,23 +41,36 @@ export default function RealIngredients() {
       {/* Right Side Text Content (approx 38% width on desktop) */}
       <div className="w-full lg:w-[38%] relative bg-[#F8F4EC] p-8 sm:p-12 lg:p-16 xl:p-20 flex flex-col justify-center items-start">
         
-        <span className="text-[#DB3E59] font-semibold text-lg uppercase tracking-[0.15em] mb-2">
-          REAL
+        <span className="text-[#DB3E59] font-black text-sm sm:text-base uppercase tracking-[0.2em] mb-2">
+          {real.eyebrow || "JUST 3 STEPS."}
         </span>
 
-        <h2 className="text-4xl sm:text-5xl xl:text-[46px] font-black tracking-tight leading-[1.1] uppercase mb-6 text-[#162B3A]">
-          <span className="block">INGREDIENTS.</span>
-          <span className="block">EXCEPTIONAL</span>
-          <span className="block">TASTE.</span>
+        <h2 className="text-4xl sm:text-5xl xl:text-[50px] font-black tracking-tight leading-[1.05] uppercase mb-8 text-[#162B3A]">
+          <span className="block text-[#162B3A]">UNIQUELY</span>
+          <span className="block text-[#DB3E59]">DELICIOUS.</span>
         </h2>
 
-        <p className="text-[#162B3A] font-bold text-base sm:text-lg mb-10 leading-relaxed tracking-wide" style={{ fontFamily: "var(--font-noto-jp), sans-serif" }}>
-          素材から、
-          <br />
-          特別なおいしさを。
-        </p>
+        {/* The 3 Steps */}
+        <div className="flex flex-col gap-3.5 mb-10 w-full">
+          {[
+            { num: "01", label: "Bake It", desc: "Golden crust baked crunchy to perfection" },
+            { num: "02", label: "Fill It", desc: "Fresh chilled cream piped inside on order" },
+            { num: "03", label: "Serve It", desc: "Served immediately at peak freshness" },
+          ].map((s) => (
+            <div key={s.label} className="flex items-center gap-3.5 group">
+              <span className="w-8 h-8 rounded-full bg-[#162B3A] text-white text-xs font-black flex items-center justify-center shrink-0 group-hover:bg-[#DB3E59] transition-colors">
+                {s.num}
+              </span>
+              <span className="text-xl sm:text-2xl font-black text-[#162B3A] uppercase tracking-tight group-hover:text-[#DB3E59] transition-colors">
+                {s.label}
+              </span>
+            </div>
+          ))}
+        </div>
 
-        <CircleArrow variant="cyan-outline" size="md" />
+        <Link href="/process" aria-label="Learn about our 3-step process">
+          <CircleArrow variant="cyan-outline" size="md" />
+        </Link>
 
         {/* Far Right Vertical Blue Stripes */}
         <div className="absolute right-[4%] top-0 bottom-[15%] w-12 hidden lg:block pointer-events-none z-10">

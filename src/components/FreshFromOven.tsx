@@ -17,7 +17,7 @@ export default function FreshFromOven() {
       .catch(() => {});
   }, []);
 
-  const fresh = content?.home?.freshFromOven || {
+  const fresh = (content?.home as any)?.freshFromOven || {
     eyebrow: "FRESH FROM OUR OVEN",
     heading: "WHY SO FRESH!?",
     pillar1Title: "FAST AND EASY",

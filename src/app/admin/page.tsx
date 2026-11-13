@@ -1029,7 +1029,7 @@ export default function AdminPage() {
         )}
 
         {/* ══════════════════════════════════════════════════════════════
-            TAB 3: HOME PAGE CONTENT (ALL 8 SECTIONS)
+            TAB 3: HOME PAGE CONTENT (ALL 7 SECTIONS)
            ══════════════════════════════════════════════════════════════ */}
         {activeTab === "home" && (
           <div className="flex flex-col gap-8">
@@ -1040,10 +1040,10 @@ export default function AdminPage() {
                   Complete Homepage Manager
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
-                  All 8 Homepage Sections
+                  All 7 Homepage Sections
                 </h2>
                 <p className="text-sm font-semibold text-[#162B3A]/70 mt-1 max-w-2xl">
-                  Edit headlines, subtitles, descriptions, button labels, links, and pillar highlights across all 8 homepage sections.
+                  Edit headlines, subtitles, descriptions, button labels, links, and pillar highlights across all 7 homepage sections.
                 </p>
               </div>
               <button
@@ -1060,7 +1060,7 @@ export default function AdminPage() {
             <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
               <div className="border-b border-black/10 pb-4">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                  HOME SECTION 1 OF 8
+                  HOME SECTION 1 OF 7
                 </span>
                 <h3 className="text-2xl font-black uppercase text-[#162B3A]">
                   Video Scroll Hero (Cinematic Food Animation)
@@ -1201,7 +1201,7 @@ export default function AdminPage() {
             <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
               <div className="border-b border-black/10 pb-4">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                  HOME SECTION 2 OF 8
+                  HOME SECTION 2 OF 7
                 </span>
                 <h3 className="text-2xl font-black uppercase text-[#162B3A]">
                   Hero Banner Content (Crisp Outside / Creamy Inside)
@@ -1271,14 +1271,14 @@ export default function AdminPage() {
               </div>
             </div>
 
-            {/* Section 3: Real Ingredients */}
+            {/* Section 3: Just 3 Steps (Real Ingredients Section) */}
             <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
               <div className="border-b border-black/10 pb-4">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                  HOME SECTION 3 OF 8
+                  HOME SECTION 3 OF 7
                 </span>
                 <h3 className="text-2xl font-black uppercase text-[#162B3A]">
-                  Real Ingredients Section
+                  Just 3 Steps. Uniquely Delicious. (Bake It, Fill It, Serve It)
                 </h3>
               </div>
 
@@ -1325,10 +1325,10 @@ export default function AdminPage() {
             <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
               <div className="border-b border-black/10 pb-4">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                  HOME SECTION 4 OF 8
+                  HOME SECTION 4 OF 7
                 </span>
                 <h3 className="text-2xl font-black uppercase text-[#162B3A]">
-                  Product Anatomy (3 Layers)
+                  Product Anatomy (3 Callout Layers)
                 </h3>
               </div>
 
@@ -1387,7 +1387,7 @@ export default function AdminPage() {
             <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
               <div className="border-b border-black/10 pb-4">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                  HOME SECTION 5 OF 8
+                  HOME SECTION 5 OF 7
                 </span>
                 <h3 className="text-2xl font-black uppercase text-[#162B3A]">
                   Flavours Carousel Section
@@ -1400,176 +1400,45 @@ export default function AdminPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Eyebrow Text
+                    Bottom Headline (&quot;35 Unique Flavors, Made with Japan&apos;s Finest Ingredients&quot;)
                   </label>
                   <input
                     type="text"
-                    value={siteContent.home?.flavoursSection?.eyebrow || ""}
-                    onChange={(e) => updateContentField("home", "flavoursSection", "eyebrow", e.target.value)}
+                    value={siteContent.home?.flavoursSection?.description || ""}
+                    onChange={(e) => updateContentField("home", "flavoursSection", "description", e.target.value)}
                     className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    CTA Button Text
+                    Button Label (&quot;MORE FLAVORS&quot;)
                   </label>
                   <input
                     type="text"
-                    value={siteContent.home?.flavoursSection?.btnText || ""}
+                    value={siteContent.home?.flavoursSection?.btnText || "MORE FLAVORS"}
                     onChange={(e) => updateContentField("home", "flavoursSection", "btnText", e.target.value)}
                     className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Heading Line 1
-                  </label>
-                  <input
-                    type="text"
-                    value={siteContent.home?.flavoursSection?.headingLine1 || ""}
-                    onChange={(e) => updateContentField("home", "flavoursSection", "headingLine1", e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-black text-[#162B3A]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Heading Line 2
-                  </label>
-                  <input
-                    type="text"
-                    value={siteContent.home?.flavoursSection?.headingLine2 || ""}
-                    onChange={(e) => updateContentField("home", "flavoursSection", "headingLine2", e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-black text-[#DB3E59]"
-                  />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Description Paragraph
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={siteContent.home?.flavoursSection?.description || ""}
-                    onChange={(e) => updateContentField("home", "flavoursSection", "description", e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium text-[#162B3A] resize-none"
-                  />
-                </div>
               </div>
             </div>
 
-            {/* Section 6: Fresh From Our Oven (Why So Fresh!? 3 Pillars) */}
+            {/* Section 6: Happiness Section ("TASTE IT ONCE. CRAVE IT FOREVER. LET HAPPINESS FLOW") */}
             <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
               <div className="border-b border-black/10 pb-4">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                  HOME SECTION 6 OF 8
+                  HOME SECTION 6 OF 7
                 </span>
                 <h3 className="text-2xl font-black uppercase text-[#162B3A]">
-                  Fresh From Our Oven (Why So Fresh!? 3 Pillars)
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Eyebrow Text
-                  </label>
-                  <input
-                    type="text"
-                    value={siteContent.home?.freshFromOven?.eyebrow || ""}
-                    onChange={(e) => updateContentField("home", "freshFromOven", "eyebrow", e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Card Heading
-                  </label>
-                  <input
-                    type="text"
-                    value={siteContent.home?.freshFromOven?.heading || ""}
-                    onChange={(e) => updateContentField("home", "freshFromOven", "heading", e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-black text-[#DB3E59]"
-                  />
-                </div>
-              </div>
-
-              {/* 3 Pillars */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-                <div className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5">
-                  <span className="text-xs font-black text-[#DB3E59] uppercase block mb-1">Pillar 1</span>
-                  <input
-                    type="text"
-                    placeholder="Pillar 1 Title"
-                    value={siteContent.home?.freshFromOven?.pillar1Title || ""}
-                    onChange={(e) => updateContentField("home", "freshFromOven", "pillar1Title", e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-black mb-2"
-                  />
-                  <textarea
-                    rows={3}
-                    placeholder="Pillar 1 Description"
-                    value={siteContent.home?.freshFromOven?.pillar1Desc || ""}
-                    onChange={(e) => updateContentField("home", "freshFromOven", "pillar1Desc", e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
-                  />
-                </div>
-
-                <div className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5">
-                  <span className="text-xs font-black text-[#DB3E59] uppercase block mb-1">Pillar 2</span>
-                  <input
-                    type="text"
-                    placeholder="Pillar 2 Title"
-                    value={siteContent.home?.freshFromOven?.pillar2Title || ""}
-                    onChange={(e) => updateContentField("home", "freshFromOven", "pillar2Title", e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-black mb-2"
-                  />
-                  <textarea
-                    rows={3}
-                    placeholder="Pillar 2 Description"
-                    value={siteContent.home?.freshFromOven?.pillar2Desc || ""}
-                    onChange={(e) => updateContentField("home", "freshFromOven", "pillar2Desc", e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
-                  />
-                </div>
-
-                <div className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5">
-                  <span className="text-xs font-black text-[#DB3E59] uppercase block mb-1">Pillar 3</span>
-                  <input
-                    type="text"
-                    placeholder="Pillar 3 Title"
-                    value={siteContent.home?.freshFromOven?.pillar3Title || ""}
-                    onChange={(e) => updateContentField("home", "freshFromOven", "pillar3Title", e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-black mb-2"
-                  />
-                  <textarea
-                    rows={3}
-                    placeholder="Pillar 3 Description"
-                    value={siteContent.home?.freshFromOven?.pillar3Desc || ""}
-                    onChange={(e) => updateContentField("home", "freshFromOven", "pillar3Desc", e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Section 7: Happiness Section ("A Little Happiness In Every Bite") */}
-            <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
-              <div className="border-b border-black/10 pb-4">
-                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                  HOME SECTION 7 OF 8
-                </span>
-                <h3 className="text-2xl font-black uppercase text-[#162B3A]">
-                  Happiness Section (&quot;A Little Happiness In Every Bite&quot;)
+                  Happiness Section (&quot;TASTE IT ONCE. CRAVE IT FOREVER. LET HAPPINESS FLOW&quot;)
                 </h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Heading Line 1
+                    Heading Line 1 (&quot;TASTE IT ONCE.&quot;)
                   </label>
                   <input
                     type="text"
@@ -1581,7 +1450,7 @@ export default function AdminPage() {
 
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Heading Line 2
+                    Heading Line 2 (&quot;CRAVE IT FOREVER.&quot;)
                   </label>
                   <input
                     type="text"
@@ -1593,7 +1462,7 @@ export default function AdminPage() {
 
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Heading Line 3 (Cyan)
+                    Heading Line 3 (&quot;LET HAPPINESS FLOW&quot;)
                   </label>
                   <input
                     type="text"
@@ -1617,20 +1486,20 @@ export default function AdminPage() {
 
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Button Text &amp; Link
+                    Button Text (&quot;Our Story&quot;)
                   </label>
                   <div className="flex gap-2">
                     <input
                       type="text"
                       placeholder="Label"
-                      value={siteContent.home?.happinessSection?.btnText || ""}
+                      value={siteContent.home?.happinessSection?.btnText || "Our Story"}
                       onChange={(e) => updateContentField("home", "happinessSection", "btnText", e.target.value)}
                       className="w-1/2 px-3 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-xs font-bold text-[#162B3A]"
                     />
                     <input
                       type="text"
                       placeholder="Link"
-                      value={siteContent.home?.happinessSection?.btnLink || ""}
+                      value={siteContent.home?.happinessSection?.btnLink || "/our-story"}
                       onChange={(e) => updateContentField("home", "happinessSection", "btnLink", e.target.value)}
                       className="w-1/2 px-3 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-xs font-mono text-[#162B3A]"
                     />
@@ -1639,11 +1508,11 @@ export default function AdminPage() {
               </div>
             </div>
 
-            {/* Section 8: Franchise With TUMU Section */}
+            {/* Section 7: Franchise With TUMU Section */}
             <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
               <div className="border-b border-black/10 pb-4">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                  HOME SECTION 8 OF 8
+                  HOME SECTION 7 OF 7
                 </span>
                 <h3 className="text-2xl font-black uppercase text-[#162B3A]">
                   Franchise With TUMU Section

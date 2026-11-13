@@ -20,15 +20,14 @@ export default function Hero() {
   }, []);
 
   const hero = content?.home?.hero || {
-    eyebrow: "Authentic Japanese Desserts in UAE",
+    eyebrow: "Five Years. Countless Experiments.\nOne Vision. Tumu Is Finally Here\nall the way from JAPAN",
     headlineLine1: "CRISP OUTSIDE.",
     headlineLine2: "CREAMY INSIDE.",
-    description:
-      "Freshly baked crispy cream-filled desserts piped with velvety Japanese cream desserts across Dubai.",
+    description: "",
     primaryBtnText: "Explore TUMU",
     primaryBtnLink: "/our-story",
-    secondaryBtnText: "Our Flavours",
-    secondaryBtnLink: "/flavours",
+    secondaryBtnText: "",
+    secondaryBtnLink: "",
   };
 
   return (
@@ -48,25 +47,27 @@ export default function Hero() {
       {/* ─── TEXT CONTENT (ON TOP OF EVERYTHING) ─── */}
       <div className="relative z-30 w-full max-w-[1440px] mx-auto flex items-center">
         <div className="flex flex-col justify-center pl-6 sm:pl-12 lg:pl-16 xl:pl-20">
-          {/* Decorative Script Subhead */}
-          <div className="mb-2">
-            <span className="font-subhead text-[36px] sm:text-[42px] text-[#162B3A] inline-block drop-shadow-sm">
+          {/* Eyebrow / Story Prelude */}
+          <div className="mb-4">
+            <p className="font-heading text-lg sm:text-xl lg:text-2xl text-[#162B3A] uppercase tracking-wide leading-tight whitespace-pre-line drop-shadow-sm">
               {hero.eyebrow}
-            </span>
+            </p>
           </div>
 
           {/* Main Headline */}
           <h1
-            className="font-black uppercase tracking-tight leading-[0.9] mb-4"
+            className="font-black uppercase tracking-tight leading-[0.9] mb-6"
             style={{ fontSize: "clamp(3rem, 6vw, 4.8rem)" }}
           >
             <span className="block text-[#162B3A]">{hero.headlineLine1}</span>
             <span className="block text-[#DB3E59]">{hero.headlineLine2}</span>
           </h1>
 
-          <p className="text-[#162B3A]/85 font-bold text-sm sm:text-base max-w-md mb-8 leading-relaxed">
-            {hero.description}
-          </p>
+          {hero.description ? (
+            <p className="text-[#162B3A]/85 font-bold text-sm sm:text-base max-w-md mb-8 leading-relaxed">
+              {hero.description}
+            </p>
+          ) : null}
 
           <div className="flex flex-wrap items-center gap-3">
             <Link href={hero.primaryBtnLink || "/our-story"}>
@@ -74,11 +75,13 @@ export default function Hero() {
                 {hero.primaryBtnText || "Explore TUMU"}
               </PillButton>
             </Link>
-            <Link href={hero.secondaryBtnLink || "/flavours"}>
-              <PillButton variant="outline" showArrow>
-                {hero.secondaryBtnText || "Our Flavours"}
-              </PillButton>
-            </Link>
+            {hero.secondaryBtnText ? (
+              <Link href={hero.secondaryBtnLink || "/flavours"}>
+                <PillButton variant="outline" showArrow>
+                  {hero.secondaryBtnText}
+                </PillButton>
+              </Link>
+            ) : null}
           </div>
         </div>
       </div>
