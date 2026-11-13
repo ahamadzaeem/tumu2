@@ -87,21 +87,20 @@
   },
   "story": {
     "section1": {
-      "eyebrow": "OUR STORY",
-      "headingLine1": "A SIMPLE",
-      "headingLine2": "IDEA.",
-      "description": "To introduce authentic Japanese desserts in UAE by turning a timeless choux pastry into a new kind of sensory joy — crispy cream-filled desserts with an audible golden crunch outside, and chilled smooth cream inside."
+      "heading": "FIVE YEARS OF MIXING, BAKING, TESTING & DREAMING",
+      "p1": "What began as a dream in the mind of a Japanese chef became a five-year journey of passion, creativity and countless experiments.",
+      "p2": "Every detail perfected. Every bite imagined differently.",
+      "p3": "Meet TUMU – where crispy warmth meets creamy sweetness, bringing together hot and cold, crisp and smooth in one unforgettable bite.",
+      "tagline": "Hot. Crispy. Sweet. Creamy. Simply TUMU."
     },
     "section2": {
-      "eyebrow": "CRAFTED DIFFERENTLY",
-      "headingLine1": "TRADITION MEETS",
-      "headingLine2": "INNOVATION.",
-      "description": "We take inspiration from classic Japanese patisserie traditions and elevate them with modern textures and vibrant global flavours. Every TUMU dessert stick is freshly baked on-site, filled to order with premium Japanese cream desserts, and delivered warm and crisp directly to your hands."
+      "eyebrow": "THE ARTIST BEHIND TUMU",
+      "subheading": "Japanese Pastry Artist | Chef Ren",
+      "description": "The art of sweetness, perfected. Crafted by Tokyo-based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses."
     },
     "section3": {
-      "eyebrow": "ALL THE WAY FROM",
-      "heading": "JAPAN!",
-      "description": "Rooted in Japanese craftsmanship and uncompromising attention to detail, TUMU brings the soul of Japan's pastry culture to the UAE. Visit our Japanese dessert shop Dubai locations to taste the magic firsthand."
+      "heading": "80% JAPANESE INGREDIENTS. DELICIOUSLY TUMU!",
+      "description": "made with ingredients sourced from japan for authentic japanese quality. so, bite with caution! smooth, chilled cream is about to ooze out and create a deliciously messy experience"
     }
   },
   "process": {
@@ -151,55 +150,65 @@
   },
   "franchise": {
     "hero": {
-      "eyebrow": "FRANCHISE OPPORTUNITY",
-      "headingLine1": "BRING TUMU",
-      "headingLine2": "TO YOUR CITY.",
-      "description": "Join the global dessert revolution. Proven unit economics, turnkey Japanese setup, and rapid payback with high gross profit margins."
+      "eyebrow": "WHO SAYS NO TO A VIRAL FRANCHISE?",
+      "headingLine1": "BRING THE JAPAN-MADE",
+      "headingLine2": "TUMU EXPERIENCE.",
+      "description": "Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.",
+      "buttonText": "Get Franchise Profile",
+      "buttonLink": "#form"
+    },
+    "promise": {
+      "headingLine1": "ROI WITHIN 12 MONTHS.",
+      "headingLine2": "WE DON'T JUST SAY IT. WE STAND BY IT.",
+      "headingLine3": "THAT'S OUR PROMISE.",
+      "description": "This promise is not just a verdict. It is the result of hours of research, strategic homework, and industry expertise. Crafted by chef ren and backed by a team with 22 years of hands-on experience in f&b operations, franchising, and marketing.we understand the business. We know the numbers. We know what it takes to make it work.",
+      "tagline1": "NO SPECULATION. NO EMPTY CLAIMS. NO EXCUSES.",
+      "tagline2": "JUST EXPERIENCE, STRATEGY, AND ACCOUNTABILITY",
+      "buttonText": "OWN A FRANCHISE",
+      "buttonLink": "#form"
+    },
+    "formatsHeader": {
+      "headingLine1": "THREE FORMATS.",
+      "headingLine2": "ONE VIRAL BRAND. IT'S TUMU."
     },
     "formats": [
       {
         "id": "kiosk",
-        "name": "Mall Kiosk",
-        "kanji": "",
-        "subtitle": "Compact, high-turnover kiosk optimized for luxury shopping malls and transit hubs.",
-        "footprint": "80 – 200 sq.ft.",
-        "setupTime": "2 – 4 Weeks",
-        "staffing": "1 – 2 Staff",
-        "highlight": "High Footfall & Rapid Payback",
-        "description": "A streamlined retail jewel designed for high-density mall corridors and luxury shopping centers. Features an illuminated glass display, convection warming ovens, and precision cream injection nozzles."
+        "name": "Kiosk",
+        "size": "150 sq. ft. approx.",
+        "description": "A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.",
+        "image": "/images/tumu/formats/kiosk_elevation.jpg"
       },
       {
-        "id": "outlet",
-        "name": "Retail Outlet",
-        "kanji": "",
-        "subtitle": "Inline mall retail unit, high-street dessert boutique, or flagship store.",
-        "footprint": "250 – 600 sq.ft.",
-        "setupTime": "5 – 8 Weeks",
-        "staffing": "2 – 4 Staff",
-        "highlight": "Live Bakery Theater & Cafe Seating",
-        "description": "The complete TUMU brand sanctuary. Features a front service ordering counter, open-concept live filling station where guests watch smooth cream piped into warm, golden crunchy sticks, and optional cafe seating."
+        "id": "store",
+        "name": "Store",
+        "size": "300 sq. ft. approx.",
+        "description": "An expanded store format offering enhanced service space and a more immersive TUMU experience.",
+        "image": "/images/tumu/formats/outlet_storefront.jpg"
       },
       {
         "id": "truck",
-        "name": "Food Truck & Trailer",
-        "kanji": "",
-        "subtitle": "100% mobile, event-ready trailer for festivals, pop-ups, and campuses.",
-        "footprint": "Custom Dual-Axle Trailer",
-        "setupTime": "Plug & Play",
-        "staffing": "1 – 2 Operators",
-        "highlight": "Zero Real Estate Lease Overhead",
-        "description": "Bring TUMU wherever crowds gather. Outfitted with heavy-duty commercial convection ovens, chilled piping stations, automated power hookups, and wide serving hatches wrapped in vibrant Japanese retro-modern styling."
+        "name": "TUMU outdoor food truck",
+        "size": "Versatile Mobile Concept",
+        "description": "A versatile mobile concept designed for events, festivals, catering, and outdoor activations, bringing TUMU’s freshly baked signature pastries directly to customers.",
+        "image": "/images/tumu/formats/truck_trailer.jpg"
       }
     ],
-    "applicationForm": {
-      "eyebrow": "FRANCHISE APPLICATION",
-      "headingLine1": "BRING TUMU",
-      "headingLine2": "TO YOUR CITY.",
-      "description": "Join Japan's most exciting artisanal crunchy cream stick phenomenon. Select your preferred concept and submit your details to connect directly with our regional franchise development director.",
-      "perk1": "Turnkey store setup & custom Japanese equipment",
-      "perk2": "Direct proprietary ingredient & crust supply chain",
-      "perk3": "Comprehensive staff pastry training & SOP manuals",
-      "perk4": "High gross margin with quick operational payback"
+    "support": {
+      "headingLine1": "NO RETAIL EXPERIENCE?",
+      "headingLine2": "NO WORRIES. YOU'RE NEVER IN BUSINESS ALONE.",
+      "headingLine3": "WE'RE WITH YOU EVERY STEP OF YOUR FRANCHISE JOURNEY.",
+      "description": "From day one to every day after.TUMU stands by you with continuous, hands-on support beyond training, every step of your franchise journey",
+      "pillars": [
+        "SITE SELECTION",
+        "OPERATIONS",
+        "PARTNER SUPPORT",
+        "MARKETING",
+        "R&D",
+        "PURCHASING",
+        "STAFFING",
+        "NETWORK OVERSIGHT"
+      ]
     }
   },
   "contact": {
