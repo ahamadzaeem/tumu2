@@ -17,9 +17,9 @@ const sughoiy = localFont({
   display: "swap",
 });
 
-const segoeWP = localFont({
-  src: "../fonts/SegoeWP.ttf",
-  variable: "--font-segoe",
+const openSans = localFont({
+  src: "../fonts/OpenSans-Variable.ttf",
+  variable: "--font-opensans",
   display: "swap",
 });
 
@@ -173,7 +173,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${segoeWP.variable} ${titanOne.variable} ${sughoiy.variable} antialiased`}
+      className={`${openSans.variable} ${titanOne.variable} ${sughoiy.variable} antialiased`}
     >
       <head>
         <script
