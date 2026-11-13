@@ -22,13 +22,13 @@ export default function OurStoryClient() {
 
   const story = content?.story || {
     section1: {
-      eyebrow: "OUR STORY • 私たちの物語",
+      eyebrow: "OUR STORY",
       headingLine1: "A SIMPLE",
       headingLine2: "IDEA.",
       description: "To introduce authentic Japanese desserts in UAE by turning a timeless choux pastry into a new kind of sensory joy — crispy cream-filled desserts with an audible golden crunch outside, and chilled smooth cream inside."
     },
     section2: {
-      eyebrow: "CRAFTED DIFFERENTLY • 職人のこだわり",
+      eyebrow: "CRAFTED DIFFERENTLY",
       headingLine1: "TRADITION MEETS",
       headingLine2: "INNOVATION.",
       description: "We take inspiration from classic Japanese patisserie traditions and elevate them with modern textures and vibrant global flavours. Every TUMU dessert stick is freshly baked on-site, filled to order with premium Japanese cream desserts, and delivered warm and crisp directly to your hands."

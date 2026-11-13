@@ -776,7 +776,7 @@ export default function AdminPage() {
                   />
                 </div>
 
-                {/* 6. Social Sharing (Open Graph) Title & Image */}
+                {/* 6. Social Sharing (Open Graph) Title, Description & Robots */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
@@ -803,6 +803,40 @@ export default function AdminPage() {
                       <option value="noindex, nofollow">noindex, nofollow (Block Search)</option>
                     </select>
                   </div>
+                </div>
+
+                {/* 6b. OG Description */}
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-black uppercase tracking-wider text-[#162B3A]">
+                      Social Sharing (OG) Description
+                    </label>
+                    <span className={`text-[11px] font-bold ${selectedSeo.ogDescription.length > 200 ? "text-amber-600" : "text-emerald-600"}`}>
+                      {selectedSeo.ogDescription.length}/200 chars recommended
+                    </span>
+                  </div>
+                  <textarea
+                    rows={2}
+                    value={selectedSeo.ogDescription}
+                    onChange={(e) => updateSelectedSeo("ogDescription", e.target.value)}
+                    placeholder="Description shown when page is shared on social media (Facebook, WhatsApp, etc.)"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-medium text-[#162B3A] focus:outline-none focus:border-[#DB3E59] resize-none"
+                  />
+                </div>
+
+                {/* 6c. OG Image */}
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5 flex items-center justify-between">
+                    <span>Social Sharing (OG) Image Path</span>
+                    <span className="text-[10px] text-[#162B3A]/50">1200×630px recommended</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={selectedSeo.ogImage}
+                    onChange={(e) => updateSelectedSeo("ogImage", e.target.value)}
+                    placeholder="/images/tumu/hero_turquoise.png"
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                  />
                 </div>
 
                 {/* Action Buttons */}

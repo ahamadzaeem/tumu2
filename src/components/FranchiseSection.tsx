@@ -21,7 +21,7 @@ export default function FranchiseSection() {
   }, []);
 
   const franchiseCta = content?.home?.franchiseCta || {
-    eyebrow: "TUMU FRANCHISE • フランチャイズ",
+    eyebrow: "TUMU FRANCHISE",
     headingLine1: "Be Part of a Growing,",
     headingLine2: "Viral & Unique Brand from Japan!",
     description: "",

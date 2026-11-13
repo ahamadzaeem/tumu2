@@ -2,7 +2,7 @@
   "general": {
     "brandName": "TUMU UAE",
     "tagline": "Crisp Outside. Creamy Inside.",
-    "japaneseTagline": "できたてのサクサク食感",
+    "japaneseTagline": "",
     "description": "Modern Japanese dessert sticks made with golden crisp exterior and chilled smooth cream.",
     "phone": "+971 4 362 7500",
     "email": "hello@tumu.ae",
@@ -46,7 +46,7 @@
       "description": "Bake It • Fill It • Serve It"
     },
     "productAnatomy": {
-      "eyebrow": "ANATOMY OF PERFECTION • 構造の美学",
+      "eyebrow": "ANATOMY OF PERFECTION",
       "heading": "WHAT'S INSIDE A TUMU",
       "subtitle": "Hot, Golden & Crispy Outer Layer with Smooth Chilled Cream",
       "layer1Title": "Crunchy Almond Topping",
@@ -68,12 +68,12 @@
       "headingLine1": "TASTE IT ONCE.",
       "headingLine2": "CRAVE IT FOREVER.",
       "headingLine3": "LET HAPPINESS FLOW",
-      "japaneseText": "できたての、とろける幸せを。",
+      "japaneseText": "、。",
       "btnText": "Our Story",
       "btnLink": "/our-story"
     },
     "franchiseCta": {
-      "eyebrow": "TUMU FRANCHISE • フランチャイズ",
+      "eyebrow": "TUMU FRANCHISE",
       "headingLine1": "Be Part of a Growing,",
       "headingLine2": "Viral & Unique Brand from Japan!",
       "description": "",
@@ -87,13 +87,13 @@
   },
   "story": {
     "section1": {
-      "eyebrow": "OUR STORY • 私たちの物語",
+      "eyebrow": "OUR STORY",
       "headingLine1": "A SIMPLE",
       "headingLine2": "IDEA.",
       "description": "To introduce authentic Japanese desserts in UAE by turning a timeless choux pastry into a new kind of sensory joy — crispy cream-filled desserts with an audible golden crunch outside, and chilled smooth cream inside."
     },
     "section2": {
-      "eyebrow": "CRAFTED DIFFERENTLY • 職人のこだわり",
+      "eyebrow": "CRAFTED DIFFERENTLY",
       "headingLine1": "TRADITION MEETS",
       "headingLine2": "INNOVATION.",
       "description": "We take inspiration from classic Japanese patisserie traditions and elevate them with modern textures and vibrant global flavours. Every TUMU dessert stick is freshly baked on-site, filled to order with premium Japanese cream desserts, and delivered warm and crisp directly to your hands."
@@ -106,7 +106,7 @@
   },
   "process": {
     "hero": {
-      "eyebrow": "ARTISANAL CRAFTSMANSHIP • おいしさができるまで",
+      "eyebrow": "ARTISANAL CRAFTSMANSHIP",
       "headingLine1": "FROM OUR OVEN",
       "headingLine2": "TO YOU.",
       "description": "The secret behind the finest crispy cream-filled desserts and Japanese desserts in UAE: an obsession with texture, temperature contrast, and zero compromise on fresh ingredients."
@@ -115,35 +115,35 @@
       {
         "step": "01",
         "title": "BAKE",
-        "kanji": "丁寧に焼き上げる",
+        "kanji": "",
         "subtitle": "Golden Convection Baking",
         "description": "Every pastry stick starts as pure choux dough made with Japanese flour and unbleached butter. Baked fresh in specialized convection ovens at controlled temperature to form a hollow, airy chamber."
       },
       {
         "step": "02",
         "title": "CRUNCH",
-        "kanji": "サクサクの食感",
+        "kanji": "",
         "subtitle": "Almond & Pearl Sugar Crust",
         "description": "Before baking, each stick is coated with our secret crust layer of toasted crushed almonds and pearl sugar. This delivers our hallmark crispy cream-filled dessert experience."
       },
       {
         "step": "03",
         "title": "FILL",
-        "kanji": "なめらかなクリーム",
+        "kanji": "",
         "subtitle": "Chilled Cream Piped to Order",
         "description": "To ensure zero sogginess, our authentic Japanese cream desserts are never pre-filled. When you order, chilled silky cream is injected from end to end using high-precision confectionery nozzles."
       },
       {
         "step": "04",
         "title": "FINISH",
-        "kanji": "仕上げのトッピング",
+        "kanji": "",
         "subtitle": "Artisanal Garnishing",
         "description": "Delicate finishing touches — whether ceremonial Uji matcha dusting, roasted pistachio crumbles, or cocoa dust — applied with pastry chef precision."
       },
       {
         "step": "05",
         "title": "SERVE",
-        "kanji": "できたてをお届け",
+        "kanji": "",
         "subtitle": "Peak Temperature Contrast",
         "description": "Served within seconds of filling. That breathtaking first bite captures the legendary sensory contrast: warm, flaky exterior married with cool, luxurious Japanese cream."
       }
@@ -151,7 +151,7 @@
   },
   "franchise": {
     "hero": {
-      "eyebrow": "FRANCHISE OPPORTUNITY • フランチャイズ募集",
+      "eyebrow": "FRANCHISE OPPORTUNITY",
       "headingLine1": "BRING TUMU",
       "headingLine2": "TO YOUR CITY.",
       "description": "Join the global dessert revolution. Proven unit economics, turnkey Japanese setup, and rapid payback with high gross profit margins."
@@ -160,7 +160,7 @@
       {
         "id": "kiosk",
         "name": "Mall Kiosk",
-        "kanji": "キオスク",
+        "kanji": "",
         "subtitle": "Compact, high-turnover kiosk optimized for luxury shopping malls and transit hubs.",
         "footprint": "80 – 200 sq.ft.",
         "setupTime": "2 – 4 Weeks",
@@ -171,7 +171,7 @@
       {
         "id": "outlet",
         "name": "Retail Outlet",
-        "kanji": "店舗・ストア",
+        "kanji": "",
         "subtitle": "Inline mall retail unit, high-street dessert boutique, or flagship store.",
         "footprint": "250 – 600 sq.ft.",
         "setupTime": "5 – 8 Weeks",
@@ -182,7 +182,7 @@
       {
         "id": "truck",
         "name": "Food Truck & Trailer",
-        "kanji": "フードトラック",
+        "kanji": "",
         "subtitle": "100% mobile, event-ready trailer for festivals, pop-ups, and campuses.",
         "footprint": "Custom Dual-Axle Trailer",
         "setupTime": "Plug & Play",
@@ -192,7 +192,7 @@
       }
     ],
     "applicationForm": {
-      "eyebrow": "FRANCHISE APPLICATION • フランチャイズ申請",
+      "eyebrow": "FRANCHISE APPLICATION",
       "headingLine1": "BRING TUMU",
       "headingLine2": "TO YOUR CITY.",
       "description": "Join Japan's most exciting artisanal crunchy cream stick phenomenon. Select your preferred concept and submit your details to connect directly with our regional franchise development director.",
@@ -204,7 +204,7 @@
   },
   "contact": {
     "hero": {
-      "eyebrow": "LET'S CONNECT • お問い合わせ",
+      "eyebrow": "LET'S CONNECT",
       "headingLine1": "WE WOULD LOVE",
       "headingLine2": "TO HEAR FROM YOU.",
       "description": "Whether you are interested in a franchise opportunity, private event catering, or simply sharing feedback, our team is always ready to assist."

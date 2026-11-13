@@ -191,7 +191,7 @@ export default function FranchisePage() {
           <div className="flex flex-col gap-20 sm:gap-28">
 
             {/* ════════════════════════════════════════════════════════════
-                FORMAT 1: MALL KIOSK (キオスク)
+                FORMAT 1: MALL KIOSK
                ════════════════════════════════════════════════════════════ */}
             {(selectedFormat === "ALL" || selectedFormat === "KIOSK") && (
               <motion.div
@@ -209,7 +209,7 @@ export default function FranchisePage() {
                         Format 01
                       </span>
                       <span className="text-xs font-bold text-[#DB3E59] tracking-widest uppercase">
-                        キオスク
+                        
                       </span>
                     </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
@@ -296,7 +296,7 @@ export default function FranchisePage() {
 
 
             {/* ════════════════════════════════════════════════════════════
-                FORMAT 2: RETAIL OUTLET (店舗・ストア)
+                FORMAT 2: RETAIL OUTLET
                ════════════════════════════════════════════════════════════ */}
             {(selectedFormat === "ALL" || selectedFormat === "OUTLET") && (
               <motion.div
@@ -314,7 +314,7 @@ export default function FranchisePage() {
                         Format 02
                       </span>
                       <span className="text-xs font-bold text-[#162B3A] tracking-widest uppercase">
-                        店舗・ストア
+                        
                       </span>
                     </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
@@ -389,7 +389,7 @@ export default function FranchisePage() {
 
 
             {/* ════════════════════════════════════════════════════════════
-                FORMAT 3: FOOD TRUCK & TRAILER (フードトラック)
+                FORMAT 3: FOOD TRUCK & TRAILER
                ════════════════════════════════════════════════════════════ */}
             {(selectedFormat === "ALL" || selectedFormat === "TRUCK") && (
               <motion.div
@@ -408,7 +408,7 @@ export default function FranchisePage() {
                         <span>Format 03</span>
                       </span>
                       <span className="text-xs font-bold text-[#DB3E59] tracking-widest uppercase">
-                        フードトラック
+                        
                       </span>
                     </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
@@ -889,8 +889,7 @@ export default function FranchisePage() {
             {/* Left Column: Headline & Value Prop */}
             <div className="lg:col-span-5 flex flex-col items-start pt-2">
               <span className="font-black text-xs sm:text-sm uppercase tracking-[0.2em] text-[#DB3E59] mb-3 bg-white/40 px-3.5 py-1 rounded-full border border-[#DB3E59]/20">
-                FRANCHISE APPLICATION • フランチャイズ申請
-              </span>
+                FRANCHISE APPLICATION</span>
 
               <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-5">
                 <span className="block text-[#162B3A]">BRING TUMU</span>

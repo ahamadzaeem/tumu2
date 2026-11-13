@@ -24,7 +24,7 @@ export default function ProcessClient() {
   }, []);
 
   const hero = content?.process?.hero || {
-    eyebrow: "ARTISANAL CRAFTSMANSHIP • おいしさができるまで",
+    eyebrow: "ARTISANAL CRAFTSMANSHIP",
     headingLine1: "FROM OUR OVEN",
     headingLine2: "TO YOU.",
     description: "The secret behind the finest crispy cream-filled desserts and Japanese desserts in UAE: an obsession with texture, temperature contrast, and zero compromise on fresh ingredients."

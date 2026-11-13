@@ -36,9 +36,9 @@ export default function LifestyleStory() {
             </h2>
 
             <p className="text-[#162B3A] font-bold text-base sm:text-lg mb-8 leading-snug">
-              できたての、
+              、
               <br />
-              とろける幸せを。
+              。
             </p>
 
             <Link href="/story">

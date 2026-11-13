@@ -43,8 +43,7 @@ export default function FlavoursClient() {
         {/* Hero Section with Targeted Keywords */}
         <div className="text-center mb-12">
           <span className="text-[#DB3E59] text-xs sm:text-sm font-black uppercase tracking-[0.25em] block mb-3">
-            Handcrafted Japanese Desserts in UAE • 職人の味わい
-          </span>
+            Handcrafted Japanese Desserts in UAE</span>
           <h1 className="text-5xl lg:text-7xl font-black tracking-tighter text-[#1A2E44] uppercase mb-6 drop-shadow-sm">
             Our Flavours
           </h1>

@@ -35,8 +35,7 @@ export default function FaqClient() {
       {/* Hero Section */}
       <section className="relative w-full pt-32 sm:pt-40 pb-16 px-6 lg:px-12 max-w-[1440px] mx-auto text-center">
         <span className="text-[#DB3E59] text-xs sm:text-sm font-black uppercase tracking-[0.25em] block mb-3">
-          HELP &amp; FREQUENTLY ASKED QUESTIONS • よくある質問
-        </span>
+          HELP &amp; FREQUENTLY ASKED QUESTIONS</span>
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#162B3A] mb-6">
           FREQUENTLY ASKED <span className="text-[#DB3E59]">QUESTIONS.</span>
         </h1>

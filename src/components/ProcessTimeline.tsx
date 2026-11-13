@@ -10,31 +10,31 @@ export default function ProcessTimeline() {
     {
       num: "01",
       title: "BAKE",
-      japanese: "丁寧に焼き上げる",
+      japanese: "",
       image: "/images/tumu/process_01_bake.jpg",
     },
     {
       num: "02",
       title: "CRUNCH",
-      japanese: "サクサクの食感",
+      japanese: "",
       image: "/images/tumu/process_02_crunch.jpg",
     },
     {
       num: "03",
       title: "FILL",
-      japanese: "なめらかなクリーム",
+      japanese: "",
       image: "/images/tumu/process_03_fill.jpg",
     },
     {
       num: "04",
       title: "FINISH",
-      japanese: "仕上げのトッピング",
+      japanese: "",
       image: "/images/tumu/process_04_finish.jpg",
     },
     {
       num: "05",
       title: "SERVE",
-      japanese: "できたてをお届け",
+      japanese: "",
       image: "/images/tumu/process_05_serve.jpg",
     },
   ];
@@ -49,7 +49,7 @@ export default function ProcessTimeline() {
             <span className="block text-[#DB3E59]">TO YOU</span>
           </h2>
           <p className="text-[#5CBEB3] font-bold text-sm sm:text-base mb-6">
-            おいしさができるまで
+            
           </p>
           <CircleArrow variant="blue" size="lg" />
         </div>

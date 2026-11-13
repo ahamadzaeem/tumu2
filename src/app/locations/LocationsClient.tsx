@@ -83,8 +83,7 @@ export default function LocationsClient() {
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59]">
-                STORE LOCATOR & ACCESS • 店舗案内
-              </span>
+                STORE LOCATOR & ACCESS</span>
               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] tracking-widest uppercase">
                 DUBAI &bull; UAE
               </span>
@@ -144,8 +143,7 @@ export default function LocationsClient() {
           {/* Section Header */}
           <div className="flex flex-col items-start mb-10 sm:mb-14">
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
-              LIVE STORE DIRECTORY • 日本デザートショップ
-            </span>
+              LIVE STORE DIRECTORY</span>
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#162B3A] leading-tight">
               FIND YOUR NEAREST <span className="text-[#DB3E59]">OUTLET.</span>
             </h2>

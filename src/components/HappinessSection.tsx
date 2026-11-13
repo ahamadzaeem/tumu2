@@ -22,7 +22,6 @@ export default function HappinessSection() {
     headingLine1: "TASTE IT ONCE.",
     headingLine2: "CRAVE IT FOREVER.",
     headingLine3: "LET HAPPINESS FLOW",
-    japaneseText: "できたての、とろける幸せを。",
     btnText: "Our Story",
     btnLink: "/our-story",
   };
@@ -57,15 +56,11 @@ export default function HappinessSection() {
 
       {/* Right Content Area (30% on desktop) */}
       <div className="w-full lg:w-[30%] h-full bg-[#F8F4EC] flex flex-col justify-center px-8 sm:px-12 py-12 lg:py-0 z-20">
-        <h2 className="text-[32px] sm:text-[40px] lg:text-[42px] font-black tracking-tight leading-[1.05] mb-6">
+        <h2 className="text-[32px] sm:text-[40px] lg:text-[42px] font-black tracking-tight leading-[1.05] mb-8">
           <span className="block text-[#1A2E44]">{happiness.headingLine1}</span>
           <span className="block text-[#1A2E44]">{happiness.headingLine2}</span>
           <span className="block text-[#0088CC]">{happiness.headingLine3}</span>
         </h2>
-        
-        <p className="text-[#1A2E44] font-bold text-base sm:text-lg mb-8 tracking-wider whitespace-pre-line">
-          {happiness.japaneseText}
-        </p>
         
         <Link 
           href={happiness.btnLink || "/our-story"}

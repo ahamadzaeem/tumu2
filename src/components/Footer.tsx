@@ -189,10 +189,6 @@ export default function Footer() {
             <Link href="/contact" className="hover:text-[#DB3E59] transition-colors">
               Terms
             </Link>
-            <span>|</span>
-            <span className="hover:text-[#DB3E59] cursor-pointer">日本語</span>
-            <span>|</span>
-            <span className="text-[#DB3E59] font-bold cursor-pointer">English</span>
           </div>
         </div>
       </div>
