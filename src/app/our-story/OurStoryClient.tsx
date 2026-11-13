@@ -101,26 +101,26 @@ export default function OurStoryClient() {
           />
         </div>
 
-        {/* Text Overlay (Right Aligned) */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex justify-end">
+        {/* Text Overlay (Right Aligned, shifted further right away from the pastry illustration) */}
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:pr-14 flex justify-end">
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-[520px] lg:max-w-[600px] flex flex-col items-start bg-[#79D2D9]/90 sm:bg-transparent p-6 sm:p-0 rounded-3xl backdrop-blur-sm sm:backdrop-blur-none"
+            className="max-w-[420px] sm:max-w-[460px] lg:max-w-[490px] xl:max-w-[510px] flex flex-col items-start bg-[#79D2D9]/90 sm:bg-transparent p-6 sm:p-0 rounded-3xl backdrop-blur-sm sm:backdrop-blur-none"
           >
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#162B3A] mb-2 sm:mb-3">
               {story.section2?.eyebrow || "THE ARTIST BEHIND TUMU"}
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-tight mb-4 text-[#DB3E59]">
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-black uppercase tracking-tight leading-[1.02] mb-4 text-[#DB3E59]">
               {story.section2?.subheading || "Japanese Pastry Artist | Chef Ren"}
             </h2>
 
-            <div className="w-14 h-1.5 bg-white mb-6" />
+            <div className="w-14 h-1.5 bg-white mb-5" />
 
-            <p className="text-white text-base sm:text-lg lg:text-[19px] leading-relaxed font-bold drop-shadow-sm">
+            <p className="text-white text-sm sm:text-base lg:text-[17px] leading-relaxed font-bold drop-shadow-sm max-w-[460px]">
               {story.section2?.description}
             </p>
           </motion.div>
@@ -148,15 +148,15 @@ export default function OurStoryClient() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-[520px] lg:max-w-[600px] flex flex-col items-start bg-[#FACDD1]/90 sm:bg-transparent p-6 sm:p-0 rounded-3xl backdrop-blur-sm sm:backdrop-blur-none"
+            className="max-w-[440px] sm:max-w-[460px] lg:max-w-[480px] flex flex-col items-start bg-[#FACDD1]/90 sm:bg-transparent p-6 sm:p-0 rounded-3xl backdrop-blur-sm sm:backdrop-blur-none"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] font-black uppercase tracking-tight leading-[1.05] mb-5 text-[#E52D50]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[52px] font-black uppercase tracking-tight leading-[1.02] mb-4 text-[#E52D50]">
               {story.section3?.heading || "80% JAPANESE INGREDIENTS. DELICIOUSLY TUMU!"}
             </h2>
 
-            <div className="w-14 h-1.5 bg-[#E52D50] mb-6" />
+            <div className="w-14 h-1.5 bg-[#E52D50] mb-5" />
 
-            <p className="text-[#162B3A] font-bold text-base sm:text-lg lg:text-[19px] leading-relaxed mb-8">
+            <p className="text-[#162B3A] font-bold text-xs sm:text-sm lg:text-[15px] leading-relaxed mb-8 max-w-[420px]">
               {story.section3?.description}
             </p>
 
