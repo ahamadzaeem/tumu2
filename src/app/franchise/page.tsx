@@ -130,14 +130,18 @@ export default function FranchisePage() {
               FRANCHISE WITH TUMU
             </span>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-black uppercase tracking-tight leading-[0.98] mb-5 text-[#DB3E59]">
-              WHO SAYS NO TO A VIRAL FRANCHISE?
+            <h1 className="text-3xl sm:text-4xl lg:text-[46px] font-black uppercase tracking-tight leading-[0.95] mb-5">
+              <span className="block text-[#162B3A]">WHO SAYS NO</span>
+              <span className="block text-[#DB3E59]">TO A VIRAL</span>
+              <span className="block text-[#162B3A]">
+                FRANCHISE<span className="text-[#DB3E59]">?</span>
+              </span>
             </h1>
 
-            <div className="w-12 h-1 bg-[#162B3A] mb-5" />
+            <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
 
             <p className="text-[#162B3A] font-semibold text-sm sm:text-base leading-relaxed max-w-[340px] sm:max-w-[370px] mb-8">
-              Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.
+              Bring the <strong className="font-black text-[#162B3A]">Japan-made TUMU experience</strong> to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.
             </p>
 
             <a href="#form">
