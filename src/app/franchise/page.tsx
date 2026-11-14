@@ -694,39 +694,38 @@ export default function FranchisePage() {
       </section>
 
 
-      {/* ─── SECTION 5: COMPREHENSIVE SUPPORT (WITH YOU AT EVERY STEP.) ─── */}
+      {/* ─── SECTION 5: COMPREHENSIVE SUPPORT (4th SECTION OF FRANCHISE JOURNEY) ─── */}
       <section className="relative w-full bg-[#FAF4E7] py-16 sm:py-24 overflow-hidden border-b border-[#162B3A]/5">
-        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Left Text Column with Right Border Divider */}
-          <div className="lg:col-span-5 flex flex-col items-start lg:pr-12 lg:border-r border-[#DB3E59]/20">
+          <div className="lg:col-span-6 flex flex-col items-start lg:pr-12 lg:border-r border-[#DB3E59]/20">
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.2em] text-[#DB3E59] mb-3">
-              NO RETAIL EXPERIENCE? NO WORRIES.
+              NO RETAIL EXPERIENCE?
             </span>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black uppercase tracking-tight leading-[1.02] mb-4">
-              <span className="block text-[#162B3A]">YOU'RE NEVER IN</span>
-              <span className="block text-[#DB3E59]">BUSINESS ALONE.</span>
-              <span className="block text-[#162B3A] text-lg sm:text-xl lg:text-[22px] mt-2 font-bold normal-case">
-                We're with you every step of your franchise journey.
-              </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black uppercase tracking-tight leading-[0.98] mb-3 text-[#162B3A]">
+              <span>NO WORRIES. </span>
+              <span className="text-[#DB3E59]">YOU&apos;RE NEVER IN BUSINESS ALONE.</span>
             </h2>
 
-            <div className="w-10 h-1 bg-[#DB3E59] mb-4" />
+            <h3 className="text-xl sm:text-2xl lg:text-[26px] font-black uppercase tracking-tight leading-tight text-[#162B3A] mb-4">
+              WE&apos;RE WITH YOU EVERY STEP OF YOUR FRANCHISE JOURNEY.
+            </h3>
 
-            <p className="text-[#162B3A]/85 font-semibold text-xs sm:text-sm leading-relaxed max-w-[400px] mb-4">
+            <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
+
+            <p className="text-[#162B3A]/85 font-semibold text-sm sm:text-base leading-relaxed max-w-[500px] mb-6">
               From day one to every day after.TUMU stands by you with continuous, hands-on support beyond training, every step of your franchise journey
             </p>
 
-            <div className="flex flex-wrap gap-1.5 pt-2">
-              {[
-                "SITE SELECTION", "OPERATIONS", "PARTNER SUPPORT", "MARKETING",
-                "R&D", "PURCHASING", "STAFFING", "NETWORK OVERSIGHT"
-              ].map(p => (
-                <span key={p} className="px-2.5 py-1 rounded-lg bg-white border border-black/5 text-[10px] font-black uppercase text-[#DB3E59]">
-                  {p}
-                </span>
-              ))}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-black/5 shadow-sm w-full">
+              <span className="text-[11px] font-black uppercase text-[#DB3E59] tracking-wider block mb-2">
+                Core Support Disciplines
+              </span>
+              <p className="text-xs sm:text-sm font-black uppercase text-[#162B3A] tracking-wide leading-relaxed">
+                SITE SELECTION • OPERATIONS • PARTNER SUPPORT • MARKETING • R&amp;D • PURCHASING • STAFFING • NETWORK OVERSIGHT
+              </p>
             </div>
           </div>
 
