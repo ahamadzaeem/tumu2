@@ -486,101 +486,45 @@ export default function FranchisePage() {
           />
         </div>
 
-        {/* Text Overlay & 2x2 Feature Grid (LEFT ALIGNED - STRICTLY INSIDE THE OFF-WHITE LEFT AREA) */}
+        {/* Text Overlay (LEFT ALIGNED - STRICTLY INSIDE THE OFF-WHITE LEFT AREA) */}
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex justify-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-[340px] sm:max-w-[360px] lg:max-w-[380px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
+            className="max-w-[360px] sm:max-w-[400px] lg:max-w-[440px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
           >
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
               ROI WITHIN 12 MONTHS.
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black uppercase tracking-tight leading-[0.95] mb-4">
-              <span className="block text-[#162B3A]">WE DON'T JUST SAY IT.</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black uppercase tracking-tight leading-[0.98] mb-4">
+              <span className="block text-[#162B3A]">WE DON&apos;T JUST SAY IT.</span>
               <span className="block text-[#DB3E59]">WE STAND BY IT.</span>
-              <span className="block text-[#162B3A]">THAT'S OUR PROMISE.</span>
+              <span className="block text-[#162B3A]">THAT&apos;S OUR PROMISE.</span>
             </h2>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-4" />
 
-            <p className="text-[#162B3A] font-semibold text-xs sm:text-sm leading-relaxed max-w-[350px] mb-6">
+            <p className="text-[#162B3A] font-semibold text-xs sm:text-sm leading-relaxed max-w-[380px] sm:max-w-[410px] mb-6">
               This promise is not just a verdict. It is the result of hours of research, strategic homework, and industry expertise. Crafted by chef ren and backed by a team with 22 years of hands-on experience in f&b operations, franchising, and marketing.we understand the business. We know the numbers. We know what it takes to make it work.
             </p>
 
-            <div className="p-3.5 rounded-2xl bg-white/90 border border-black/5 shadow-sm mb-6 w-full">
-              <p className="text-[11px] font-black uppercase text-[#DB3E59] tracking-wider mb-1">
+            <div className="p-4 rounded-2xl bg-white/95 border border-black/5 shadow-sm mb-6 w-full">
+              <p className="text-[11px] sm:text-xs font-black uppercase text-[#DB3E59] tracking-wider mb-1">
                 NO SPECULATION. NO EMPTY CLAIMS. NO EXCUSES.
               </p>
-              <p className="text-[11px] font-black uppercase text-[#162B3A] tracking-wider">
+              <p className="text-[11px] sm:text-xs font-black uppercase text-[#162B3A] tracking-wider">
                 JUST EXPERIENCE, STRATEGY, AND ACCOUNTABILITY
               </p>
             </div>
 
-            <a href="#form" className="mb-6">
-              <PillButton variant="pink" showArrow>
+            <a href="#form">
+              <PillButton variant="pink" showArrow className="px-8 py-3.5 text-xs sm:text-sm font-black uppercase">
                 OWN A FRANCHISE
               </PillButton>
             </a>
-
-            {/* 2x2 Feature Grid (With Pristine White Backdrop Cards for 100% Legibility) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4.5 w-full">
-              {/* Feature 1 */}
-              <div className="flex flex-col items-start bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-md border border-black/5 transition-transform hover:-translate-y-1">
-                <div className="w-10 h-10 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2.5 shrink-0">
-                  <Gem className="w-5 h-5 stroke-[2.2]" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#162B3A] uppercase mb-1">
-                  Unique Product
-                </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/80 leading-snug">
-                  A distinctive dessert concept.
-                </p>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="flex flex-col items-start bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-md border border-black/5 transition-transform hover:-translate-y-1">
-                <div className="w-10 h-10 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2.5 shrink-0">
-                  <Heart className="w-5 h-5 stroke-[2.2]" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#162B3A] uppercase mb-1">
-                  Proven Concept
-                </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/80 leading-snug">
-                  Built around a memorable product experience.
-                </p>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="flex flex-col items-start bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-md border border-black/5 transition-transform hover:-translate-y-1">
-                <div className="w-10 h-10 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2.5 shrink-0">
-                  <TrendingUp className="w-5 h-5 stroke-[2.2]" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#162B3A] uppercase mb-1">
-                  Growing Demand
-                </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/80 leading-snug">
-                  Designed for today&apos;s grab-and-go audience.
-                </p>
-              </div>
-
-              {/* Feature 4 */}
-              <div className="flex flex-col items-start bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl shadow-md border border-black/5 transition-transform hover:-translate-y-1">
-                <div className="w-10 h-10 rounded-xl bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center mb-2.5 shrink-0">
-                  <Store className="w-5 h-5 stroke-[2.2]" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#162B3A] uppercase mb-1">
-                  Strong Brand Identity
-                </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-[#162B3A]/80 leading-snug">
-                  Japanese-inspired, instantly recognizable.
-                </p>
-              </div>
-            </div>
-
           </motion.div>
         </div>
       </section>
