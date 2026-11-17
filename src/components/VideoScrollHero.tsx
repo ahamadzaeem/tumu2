@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PillButton from "./PillButton";
 import { getSiteContent } from "@/lib/cms";
-
-const TOTAL_FRAMES = 200;
 
 export default function VideoScrollHero() {
   const [content, setContent] = useState(getSiteContent());
@@ -36,265 +36,100 @@ export default function VideoScrollHero() {
   };
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
-  const lastRenderedImgRef = useRef<HTMLImageElement | null>(null);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const lastFrameIndexRef = useRef<number>(-1);
-  const rafIdRef = useRef<number | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const dimensionsRef = useRef({
-    width: 0,
-    height: 0,
-    drawW: 0,
-    drawH: 0,
-    offsetX: 0,
-    offsetY: 0,
-  });
-
+  // Framer Motion scroll tracker for perfectly synchronized text transitions
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // ─── SYNCHRONIZED SCROLL PHYSICS ───
-  // Synchronized directly with Lenis smooth scroll for instant, zero-lag 60fps response
-  const smoothProgress = scrollYProgress;
-
-  const renderFrameRef = useRef<(progressVal: number) => void>(() => {});
-
   // ─── STORYTELLING TRANSITIONS ───
   // 1. Initial text: visible at frame 0, smoothly fades out as user scrolls
-  const initialOpacity = useTransform(smoothProgress, [0, 0.08, 0.14], [1, 0.9, 0]);
-  const initialY = useTransform(smoothProgress, [0, 0.14], [0, -30]);
-  const initialPointerEvents = useTransform(smoothProgress, (val) =>
+  const initialOpacity = useTransform(scrollYProgress, [0, 0.08, 0.14], [1, 0.9, 0]);
+  const initialY = useTransform(scrollYProgress, [0, 0.14], [0, -30]);
+  const initialPointerEvents = useTransform(scrollYProgress, (val) =>
     val < 0.12 ? "auto" : "none"
   );
 
-  // 2. Middle section (0.14 to 0.80): ABSOLUTELY NO TEXT — pure cinematic video!
+  // 2. Middle section (0.14 to 0.78): Pure cinematic video without text distractions
 
-  // 3. Last frame reveal (0.80 to 1.0): climax text & CTA reveal over the frame
-  const finalOpacity = useTransform(smoothProgress, [0.78, 0.88, 1.0], [0, 1, 1]);
-  const finalY = useTransform(smoothProgress, [0.78, 0.88], [35, 0]);
-  const finalScale = useTransform(smoothProgress, [0.78, 0.88], [0.95, 1]);
-  const finalPointerEvents = useTransform(smoothProgress, (val) =>
+  // 3. Last frame reveal (0.78 to 1.0): Climax text & CTA reveal over the finished pastry break
+  const finalOpacity = useTransform(scrollYProgress, [0.78, 0.88, 1.0], [0, 1, 1]);
+  const finalY = useTransform(scrollYProgress, [0.78, 0.88], [35, 0]);
+  const finalScale = useTransform(scrollYProgress, [0.78, 0.88], [0.95, 1]);
+  const finalPointerEvents = useTransform(scrollYProgress, (val) =>
     val > 0.8 ? "auto" : "none"
   );
 
-  // Soft ambient overlay for the final climax reveal so text pops while video remains visible
-  const finalBackdropOpacity = useTransform(smoothProgress, [0.78, 0.88], [0, 0.35]);
+  // Ambient backdrops for high text readability
+  const finalBackdropOpacity = useTransform(scrollYProgress, [0.78, 0.88], [0, 0.35]);
+  const initialBackdropOpacity = useTransform(scrollYProgress, [0, 0.08, 0.14], [0.22, 0.12, 0]);
+  const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.06], [0.8, 0]);
 
-  // Subtle black overlay for 1st text part so text is more visible, smoothly fading out as user begins scrolling
-  const initialBackdropOpacity = useTransform(smoothProgress, [0, 0.08, 0.14], [0.22, 0.12, 0]);
-
-  // Bottom scroll cue fades out quickly as user starts scrolling
-  const scrollCueOpacity = useTransform(smoothProgress, [0, 0.06], [0.8, 0]);
-
-  // Pre-calculate and cache canvas dimensions to avoid GPU context reset during scroll
-  const updateDimensions = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1, 2);
-    const bufferW = Math.round(rect.width * dpr);
-    const bufferH = Math.round(rect.height * dpr);
-
-    if (canvas.width !== bufferW || canvas.height !== bufferH) {
-      canvas.width = bufferW;
-      canvas.height = bufferH;
-    }
-
-    // 16:9 source aspect ratio
-    const imgAspect = 16 / 9;
-    const canvasAspect = bufferW / (bufferH || 1);
-
-    let drawW = bufferW;
-    let drawH = bufferH;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    if (canvasAspect > imgAspect) {
-      drawH = Math.round(bufferW / imgAspect);
-      offsetY = Math.round((bufferH - drawH) / 2);
-    } else {
-      drawW = Math.round(bufferH * imgAspect);
-      offsetX = Math.round((bufferW - drawW) / 2);
-    }
-
-    dimensionsRef.current = {
-      width: bufferW,
-      height: bufferH,
-      drawW,
-      drawH,
-      offsetX,
-      offsetY,
-    };
-
-    lastFrameIndexRef.current = -1;
-  };
-
-  // Ultra-fast renderFrame: zero context reconfiguration, O(1) nearest-frame fallback
-  const renderFrame = (progressVal: number) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: false });
-    if (!ctx) return;
-
-    const safeProgress = isNaN(progressVal) ? 0 : Math.min(1, Math.max(0, progressVal));
-    const frameIndex = Math.min(
-      TOTAL_FRAMES - 1,
-      Math.max(0, Math.floor(safeProgress * (TOTAL_FRAMES - 1)))
-    );
-
-    // Skip redundant draw if frame hasn't changed
-    if (frameIndex === lastFrameIndexRef.current && lastFrameIndexRef.current !== -1) {
-      return;
-    }
-
-    let img: HTMLImageElement | null | undefined = imagesRef.current[frameIndex];
-    if (!img || !img.complete || img.naturalWidth === 0) {
-      // Check nearest adjacent frames within small window (±5)
-      for (let offset = 1; offset <= 5; offset++) {
-        const prev = imagesRef.current[frameIndex - offset];
-        if (prev && prev.complete && prev.naturalWidth > 0) {
-          img = prev;
-          break;
-        }
-        const next = imagesRef.current[frameIndex + offset];
-        if (next && next.complete && next.naturalWidth > 0) {
-          img = next;
-          break;
-        }
-      }
-      // If still not available, fallback to the last successfully rendered image
-      if (!img || !img.complete || img.naturalWidth === 0) {
-        img = lastRenderedImgRef.current;
-      }
-    }
-
-    if (img && (img.complete || img.naturalWidth > 0)) {
-      const { width, height, drawW, drawH, offsetX, offsetY } = dimensionsRef.current;
-      if (width > 0 && height > 0 && drawW > 0 && drawH > 0) {
-        ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
-        lastFrameIndexRef.current = frameIndex;
-        lastRenderedImgRef.current = img;
-      }
-    }
-  };
-
-  renderFrameRef.current = renderFrame;
-
-  // Progressive batched preloading of all 200 frames
+  // ─── OPTION 1: HARDWARE-ACCELERATED VIDEO SCROLL SCRUBBING ───
   useEffect(() => {
-    let loadedCount = 0;
-    const loadedImages: HTMLImageElement[] = new Array(TOTAL_FRAMES);
-    imagesRef.current = loadedImages;
-
-    // Phase 1: Frame 0, initial frames (1-10), and keyframes (every 4th)
-    const priorityIndices: number[] = [0];
-    for (let i = 1; i <= 10; i++) {
-      if (i < TOTAL_FRAMES) priorityIndices.push(i);
-    }
-    for (let i = 12; i < TOTAL_FRAMES; i += 4) {
-      priorityIndices.push(i);
-    }
-
-    // Phase 2: Remaining in-between frames
-    const remainingIndices: number[] = [];
-    const prioritySet = new Set(priorityIndices);
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
-      if (!prioritySet.has(i)) {
-        remainingIndices.push(i);
-      }
-    }
-
-    const loadSingleFrame = (idx: number) => {
-      if (loadedImages[idx]) return;
-      const img = new Image();
-      loadedImages[idx] = img;
-      const frameNum = String(idx).padStart(3, "0");
-
-      img.onload = () => {
-        loadedCount++;
-        if (idx === 0 || loadedCount === 1) {
-          renderFrameRef.current(smoothProgress.get() || 0);
-        }
-        if (loadedCount === TOTAL_FRAMES) {
-          setImagesLoaded(true);
-        }
-      };
-
-      img.src = `/images/tumu/scroll-frames/frame_${frameNum}.jpg`;
-    };
-
-    // Load priority frames immediately
-    priorityIndices.forEach((idx) => loadSingleFrame(idx));
-
-    // Load remaining frames in small batches so main thread & network remain buttery smooth
-    let remainingTimer: NodeJS.Timeout | null = null;
-    let batchIndex = 0;
-    const BATCH_SIZE = 12;
-
-    const loadNextBatch = () => {
-      if (batchIndex >= remainingIndices.length) return;
-      const slice = remainingIndices.slice(batchIndex, batchIndex + BATCH_SIZE);
-      slice.forEach((idx) => loadSingleFrame(idx));
-      batchIndex += BATCH_SIZE;
-      if (batchIndex < remainingIndices.length) {
-        remainingTimer = setTimeout(loadNextBatch, 60);
-      }
-    };
-
-    remainingTimer = setTimeout(loadNextBatch, 150);
-
-    return () => {
-      if (remainingTimer) clearTimeout(remainingTimer);
-    };
-  }, []);
-
-  // Update canvas on smooth scroll progress and window resize
-  useEffect(() => {
-    updateDimensions();
-
-    const unsubscribe = smoothProgress.on("change", (val) => {
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
-      rafIdRef.current = requestAnimationFrame(() => {
-        renderFrame(val);
-      });
-    });
-
-    const handleResize = () => {
-      updateDimensions();
-      renderFrame(smoothProgress.get() || 0);
-    };
+    const video = videoRef.current;
+    const container = containerRef.current;
+    if (!video || !container) return;
 
     if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
+      gsap.registerPlugin(ScrollTrigger);
     }
 
-    renderFrame(smoothProgress.get() || 0);
+    let st: ScrollTrigger | null = null;
+
+    const setupVideoScrubber = () => {
+      // Warm up video decoder on mobile/iOS
+      video.play().then(() => {
+        video.pause();
+      }).catch(() => {});
+
+      st = ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.15, // Ultra-responsive 150ms interpolation for silky smooth 60fps
+        onUpdate: (self) => {
+          if (!video.duration || isNaN(video.duration)) return;
+          const targetTime = Math.min(
+            self.progress * (video.duration - 0.05),
+            video.duration - 0.05
+          );
+          // Only update if difference is meaningful to save GPU cycles
+          if (Math.abs(video.currentTime - targetTime) > 0.01) {
+            video.currentTime = targetTime;
+          }
+        },
+      });
+    };
+
+    if (video.readyState >= 1) {
+      setupVideoScrubber();
+    } else {
+      video.addEventListener("loadedmetadata", setupVideoScrubber, { once: true });
+    }
 
     return () => {
-      unsubscribe();
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleResize);
-      }
+      if (st) st.kill();
     };
-  }, [imagesLoaded]);
+  }, []);
 
   return (
     <section ref={containerRef} className="relative w-full h-[500vh] bg-[#F8F4EC]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
-        {/* Canvas Background Video Frame Sequence */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 w-full h-full object-cover z-0"
+        {/* Hardware-Accelerated Scrubbed Video Element */}
+        <video
+          ref={videoRef}
+          src="/images/tumu/hero-scroll.mp4"
+          preload="auto"
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0 gpu-layer"
         />
 
-        {/* Subtle Initial Black Overlay (Makes 1st text part more visible, fades out smoothly on scroll) */}
+        {/* Subtle Initial Black Overlay for Title Legibility */}
         <motion.div
           style={{ opacity: initialBackdropOpacity }}
           className="absolute inset-0 bg-black pointer-events-none z-10"
@@ -328,7 +163,7 @@ export default function VideoScrollHero() {
               </span>
             </h1>
 
-            {/* Action Buttons - Own a Franchise (Removed Find a Store) */}
+            {/* Action Buttons - Own a Franchise */}
             <div className="flex flex-wrap items-center justify-center gap-4">
               {heroData.phase1Btn1Text && (
                 <Link href={heroData.phase1Btn1Link || "/franchise#form"}>
@@ -350,7 +185,7 @@ export default function VideoScrollHero() {
         </motion.div>
 
         {/* ════════════════════════════════════════════════════════════════
-            PHASE 2: WHILE SCROLLING (FRAMES ~15 TO ~180)
+            PHASE 2: WHILE SCROLLING
             NO TEXT, NOTHING!
             Pure, unhindered, cinema-grade food animation.
            ════════════════════════════════════════════════════════════════ */}
@@ -378,7 +213,7 @@ export default function VideoScrollHero() {
               </span>
             </h2>
 
-            {/* Small CTAs */}
+            {/* CTAs */}
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href={heroData.phase3Btn1Link || "/our-story"}>
                 <PillButton variant="pink" showArrow>
