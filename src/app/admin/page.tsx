@@ -1720,7 +1720,7 @@ export default function AdminPage() {
 
             {/* Chapter 2 */}
             <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
-              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 2: Tradition Meets Innovation</span>
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 2: Tradition Meets Innovation (Blue BG)</span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
                   type="text"
@@ -1731,7 +1731,7 @@ export default function AdminPage() {
                 />
                 <input
                   type="text"
-                  placeholder="Headline"
+                  placeholder="Headline Line 1"
                   value={siteContent.story?.section2?.headingLine1 || ""}
                   onChange={(e) => updateContentField("story", "section2", "headingLine1", e.target.value)}
                   className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
@@ -1742,6 +1742,34 @@ export default function AdminPage() {
                 placeholder="Story description"
                 value={siteContent.story?.section2?.description || ""}
                 onChange={(e) => updateContentField("story", "section2", "description", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
+              />
+            </div>
+
+            {/* Chef Ren Section */}
+            <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Chef Ren Section: The Artist Behind TUMU</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Eyebrow"
+                  value={siteContent.story?.chefSection?.eyebrow || ""}
+                  onChange={(e) => updateContentField("story", "chefSection", "eyebrow", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
+                />
+                <input
+                  type="text"
+                  placeholder="Subheading / Title"
+                  value={siteContent.story?.chefSection?.subheading || ""}
+                  onChange={(e) => updateContentField("story", "chefSection", "subheading", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+              </div>
+              <textarea
+                rows={3}
+                placeholder="Chef description"
+                value={siteContent.story?.chefSection?.description || ""}
+                onChange={(e) => updateContentField("story", "chefSection", "description", e.target.value)}
                 className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
               />
             </div>

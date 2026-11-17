@@ -94,13 +94,19 @@
       "tagline": "Hot. Crispy. Sweet. Creamy. Simply TUMU."
     },
     "section2": {
-      "eyebrow": "THE ARTIST BEHIND TUMU",
-      "subheading": "Japanese Pastry Artist | Chef Ren",
-      "description": "The art of sweetness, perfected. Crafted by Tokyo-based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses."
+      "eyebrow": "CRAFTED DIFFERENTLY",
+      "headingLine1": "TRADITION MEETS",
+      "headingLine2": "INNOVATION.",
+      "description": "We take inspiration from classic Japanese patisserie traditions and elevate them with modern textures and vibrant global flavours. Every TUMU dessert stick is freshly baked on-site, filled to order with premium Japanese cream desserts, and delivered warm and crisp directly to your hands."
     },
     "section3": {
       "heading": "80% JAPANESE INGREDIENTS. DELICIOUSLY TUMU!",
       "description": "made with ingredients sourced from japan for authentic japanese quality. so, bite with caution! smooth, chilled cream is about to ooze out and create a deliciously messy experience"
+    },
+    "chefSection": {
+      "eyebrow": "THE ARTIST BEHIND TUMU",
+      "subheading": "Japanese Pastry Artist | Chef Ren",
+      "description": "The art of sweetness, perfected. Crafted by Tokyo-based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses."
     }
   },
   "process": {
