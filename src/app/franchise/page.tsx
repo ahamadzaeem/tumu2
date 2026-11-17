@@ -225,7 +225,7 @@ export default function FranchisePage() {
                   {/* Quick Specs Badges */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      📐 Footprint: <strong>80 – 150 sq.ft.</strong>
+                      📐 Footprint: <strong>150 sq. ft. approx.</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
                       ⚡ Setup: <strong>3 – 4 Weeks</strong>
@@ -241,7 +241,7 @@ export default function FranchisePage() {
 
                 {/* Description */}
                 <p className="text-sm sm:text-base text-[#162B3A]/85 font-medium leading-relaxed max-w-4xl">
-                  Our signature island kiosk maximizes 360-degree visibility with illuminated neon brand arches, iconic curved cyan canopies, and integrated cream-injection taps. Fast customer turnover and high impulse sales with compact space requirements.
+                  A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.
                 </p>
 
                 {/* Visual Showcase (3-Image Composition) */}
@@ -330,7 +330,7 @@ export default function FranchisePage() {
                   {/* Quick Specs Badges */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      📐 Footprint: <strong>250 – 600 sq.ft.</strong>
+                      📐 Footprint: <strong>300 sq. ft. approx.</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
                       ⚡ Setup: <strong>5 – 8 Weeks</strong>
@@ -346,7 +346,7 @@ export default function FranchisePage() {
 
                 {/* Description */}
                 <p className="text-sm sm:text-base text-[#162B3A]/85 font-medium leading-relaxed max-w-4xl">
-                  The complete TUMU brand sanctuary. Features a front service ordering counter, open-concept live filling station where guests watch smooth cream piped into warm, golden crunchy sticks, and optional cafe seating for prolonged dining and higher beverage margins.
+                  An expanded store format offering enhanced service space and a more immersive TUMU experience.
                 </p>
 
                 {/* Visual Showcase (2-Image Side by Side) */}
