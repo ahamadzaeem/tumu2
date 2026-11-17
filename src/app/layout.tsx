@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Preloader from "@/components/Preloader";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const titanOne = localFont({
   src: "../fonts/TitanOne-Regular.ttf",
@@ -185,7 +186,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-[#F8F4EC] text-[#162B3A] font-sans selection:bg-[#DB3E59] selection:text-white">
         <Preloader />
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

@@ -57,10 +57,9 @@ export default function VideoScrollHero() {
     offset: ["start start", "end end"],
   });
 
-  // ─── CREAMY SPRING PHYSICS ───
-  // Velvety smooth scroll feel without lagging
-  const springConfig = { stiffness: 55, damping: 22, mass: 0.5, restDelta: 0.0001 };
-  const smoothProgress = useSpring(scrollYProgress, springConfig);
+  // ─── SYNCHRONIZED SCROLL PHYSICS ───
+  // Synchronized directly with Lenis smooth scroll for instant, zero-lag 60fps response
+  const smoothProgress = scrollYProgress;
 
   const renderFrameRef = useRef<(progressVal: number) => void>(() => {});
 

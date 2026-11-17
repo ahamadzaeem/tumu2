@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function ProductAnatomy() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -12,17 +12,14 @@ export default function ProductAnatomy() {
     offset: ["start start", "end end"],
   });
 
-  const springConfig = { stiffness: 70, damping: 20, mass: 0.8 };
-
-  // ─── 2-STEP ZOOM ANIMATIONS ───
+  // ─── 2-STEP ZOOM ANIMATIONS (Direct GPU-driven transforms with Lenis smooth scroll) ───
   // Step 1 [0.15 - 0.48]: Focus on exterior crisp stick
   // Step 2 [0.52 - 0.85]: MAIN FOCUS ON CREAM - Zoom & pan directly onto the top cream filling opening!
-  const rawScale = useTransform(
+  const scale = useTransform(
     scrollYProgress,
     [0, 0.15, 0.25, 0.48, 0.55, 0.82, 0.92, 1],
     [1, 1.6, 1.6, 1.6, 2.4, 2.4, 1, 1]
   );
-  const scale = useSpring(rawScale, springConfig);
 
   // Y Translation: Push down (+32%) in Step 2 so top cream filling opening is right in the central view
   const rawY = useTransform(
@@ -30,8 +27,7 @@ export default function ProductAnatomy() {
     [0, 0.15, 0.25, 0.48, 0.55, 0.82, 0.92, 1],
     [0, 4, 4, 4, 32, 32, 0, 0]
   );
-  const smoothY = useSpring(rawY, springConfig);
-  const y = useTransform(smoothY, (val) => `${val}%`);
+  const y = useTransform(rawY, (val) => `${val}%`);
 
   // X Translation: Shift left (-16%) in Step 2 to center the cream filling opening on screen
   const rawX = useTransform(
@@ -39,26 +35,25 @@ export default function ProductAnatomy() {
     [0, 0.15, 0.25, 0.48, 0.55, 0.82, 0.92, 1],
     [0, 4, 4, 4, -16, -16, 0, 0]
   );
-  const smoothX = useSpring(rawX, springConfig);
-  const x = useTransform(smoothX, (val) => `${val}%`);
+  const x = useTransform(rawX, (val) => `${val}%`);
 
   // ─── 3-STEP SCROLL ANIMATIONS (Matching Reference Image) ───
   // Step 1 [0.10 - 0.35]: Crunchy Almond Topping
-  const opacityAlmond = useSpring(useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [0, 1, 1, 0]), springConfig);
-  const yAlmond = useSpring(useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [60, 0, 0, -60]), springConfig);
-  const lineAlmond = useSpring(useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [0, 1, 1, 0]), springConfig);
+  const opacityAlmond = useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [0, 1, 1, 0]);
+  const yAlmond = useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [60, 0, 0, -60]);
+  const lineAlmond = useTransform(scrollYProgress, [0.10, 0.18, 0.32, 0.38], [0, 1, 1, 0]);
 
   // Step 2 [0.40 - 0.65]: Hot, Golden & Crispy Outer Layer
-  const opacityCrunch = useSpring(useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [0, 1, 1, 0]), springConfig);
-  const yCrunch = useSpring(useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [60, 0, 0, -60]), springConfig);
-  const lineCrunch = useSpring(useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [0, 1, 1, 0]), springConfig);
+  const opacityCrunch = useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [0, 1, 1, 0]);
+  const yCrunch = useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [60, 0, 0, -60]);
+  const lineCrunch = useTransform(scrollYProgress, [0.40, 0.48, 0.60, 0.66], [0, 1, 1, 0]);
 
   // Step 3 [0.68 - 0.92]: Smooth and Chilled Cream
-  const opacityCream = useSpring(useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [0, 1, 1, 0]), springConfig);
-  const yCream = useSpring(useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [60, 0, 0, -60]), springConfig);
-  const lineCream = useSpring(useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [0, 1, 1, 0]), springConfig);
+  const opacityCream = useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [0, 1, 1, 0]);
+  const yCream = useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [60, 0, 0, -60]);
+  const lineCream = useTransform(scrollYProgress, [0.68, 0.74, 0.88, 0.94], [0, 1, 1, 0]);
 
-  const opacityTitle = useSpring(useTransform(scrollYProgress, [0, 0.10], [1, 0]), springConfig);
+  const opacityTitle = useTransform(scrollYProgress, [0, 0.10], [1, 0]);
 
   const features = [
     {
