@@ -56,18 +56,17 @@ export default function HappinessSection() {
 
       {/* Right Content Area (30% on desktop) */}
       <div className="w-full lg:w-[30%] h-full bg-[#F8F4EC] flex flex-col justify-center px-8 sm:px-12 py-12 lg:py-0 z-20">
-        {/* Standardised small, bold, lowercase heading */}
-        <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight mb-5">
-          <span className="block text-[#1A2E44]">{(happiness.headingLine1 || "taste it once.").toLowerCase()}</span>
-          <span className="block text-[#1A2E44]">{(happiness.headingLine2 || "crave it forever.").toLowerCase()}</span>
-          <span className="block text-[#0088CC]">{(happiness.headingLine3 || "let happiness flow").toLowerCase()}</span>
+        <h2 className="text-[32px] sm:text-[40px] lg:text-[42px] font-black tracking-tight leading-[1.05] mb-8">
+          <span className="block text-[#1A2E44]">{happiness.headingLine1}</span>
+          <span className="block text-[#1A2E44]">{happiness.headingLine2}</span>
+          <span className="block text-[#0088CC]">{happiness.headingLine3}</span>
         </h2>
         
         <Link 
           href={happiness.btnLink || "/our-story"}
-          className="bg-[#DB3E59] text-white px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm lowercase tracking-normal flex items-center justify-center gap-2 w-fit hover:scale-105 hover:bg-[#d01c4c] transition-all shadow-md"
+          className="bg-[#DB3E59] text-white px-8 py-3 rounded-full font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 w-fit hover:scale-105 hover:bg-[#d01c4c] transition-all shadow-lg shadow-pink-500/30"
         >
-          {(happiness.btnText || "our story").toLowerCase()} <ArrowRight className="w-4 h-4" />
+          {happiness.btnText || "Our Story"} <ArrowRight className="w-5 h-5" />
         </Link>
       </div>
     </section>

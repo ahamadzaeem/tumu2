@@ -66,10 +66,10 @@ export default function Flavours() {
     <section id="flavours" className="relative w-full bg-[#50B8B1] scroll-mt-20 pt-28 pb-24 lg:scroll-mt-24 lg:pt-36 lg:pb-32 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-20">
         
-        {/* Section Header - Standardised small, bold, lowercase */}
-        <div className="mb-8 text-left">
-          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight text-[#DB3E59]">
-            flavours
+        {/* Section Header - Big Prominent "FLAVOURS" */}
+        <div className="mb-14 text-left">
+          <h2 className="text-6xl sm:text-7xl lg:text-8xl xl:text-[96px] font-heading tracking-tight leading-none uppercase text-[#DB3E59] drop-shadow-sm">
+            FLAVOURS
           </h2>
         </div>
 
@@ -95,8 +95,8 @@ export default function Flavours() {
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#162B3A] font-bold text-center text-xs sm:text-sm lg:text-base leading-tight px-1 group-hover:text-[#DB3E59] transition-colors lowercase">
-                {item.name.toLowerCase().split(" ").map((word, i) => (
+              <h3 className="text-[#162B3A] font-black text-center text-xs sm:text-sm lg:text-base leading-tight px-1 group-hover:text-[#DB3E59] transition-colors">
+                {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
               </h3>
