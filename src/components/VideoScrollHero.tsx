@@ -52,18 +52,7 @@ export default function VideoScrollHero() {
     val < 0.12 ? "auto" : "none"
   );
 
-  // 2. Middle section (0.14 to 0.78): Pure cinematic video without text distractions
-
-  // 3. Last frame reveal (0.78 to 1.0): Climax text & CTA reveal over the finished pastry break
-  const finalOpacity = useTransform(scrollYProgress, [0.78, 0.88, 1.0], [0, 1, 1]);
-  const finalY = useTransform(scrollYProgress, [0.78, 0.88], [35, 0]);
-  const finalScale = useTransform(scrollYProgress, [0.78, 0.88], [0.95, 1]);
-  const finalPointerEvents = useTransform(scrollYProgress, (val) =>
-    val > 0.8 ? "auto" : "none"
-  );
-
-  // Ambient backdrops for high text readability while keeping product image clearly visible
-  const finalBackdropOpacity = useTransform(scrollYProgress, [0.78, 0.88], [0, 0.25]);
+  // Subtle initial backdrop to enhance initial text legibility without blocking the product
   const initialBackdropOpacity = useTransform(scrollYProgress, [0, 0.08, 0.14], [0.10, 0.05, 0]);
   const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.06], [0.8, 0]);
 
@@ -135,12 +124,6 @@ export default function VideoScrollHero() {
           className="absolute inset-0 bg-black pointer-events-none z-10"
         />
 
-        {/* Ambient Climax Backdrop (Fades in at the last frame to ensure text pop) */}
-        <motion.div
-          style={{ opacity: finalBackdropOpacity }}
-          className="absolute inset-0 bg-[#162B3A] pointer-events-none z-10"
-        />
-
         {/* ════════════════════════════════════════════════════════════════
             PHASE 1: REFINED INITIAL TEXT (COMPACT & BALANCED)
             Small, bold, lowercase text letting product image shine through.
@@ -186,50 +169,10 @@ export default function VideoScrollHero() {
         </motion.div>
 
         {/* ════════════════════════════════════════════════════════════════
-            PHASE 2: WHILE SCROLLING
-            NO TEXT, NOTHING!
-            Pure, unhindered, cinema-grade food animation.
+            SCROLL EXPERIENCE: PURE PRODUCT FOCUS
+            No text overlays during or at the end of the scroll,
+            allowing the crispy pastry break and cream to be fully showcased.
            ════════════════════════════════════════════════════════════════ */}
-
-        {/* ════════════════════════════════════════════════════════════════
-            PHASE 3: LAST FRAME REVEAL (CLIMAX TEXT & CTA)
-            Standardised small, bold, lowercase text.
-           ════════════════════════════════════════════════════════════════ */}
-        <motion.div
-          style={{
-            opacity: finalOpacity,
-            y: finalY,
-            scale: finalScale,
-            pointerEvents: finalPointerEvents as any,
-          }}
-          className="absolute inset-0 z-30 flex items-center justify-center p-6"
-        >
-          <div className="w-full max-w-[580px] mx-auto flex flex-col items-center text-center">
-
-            {/* Small, bold, lowercase climax heading */}
-            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight mb-5 drop-shadow-[0_2px_14px_rgba(22,43,58,0.3)]">
-              <span className="block text-[#318EC7]">{(heroData.phase3Headline1 || "every bite,").toLowerCase()}</span>
-              <span className="block text-[#DE3558]">
-                {(heroData.phase3Headline2 || "pure happiness.").toLowerCase()}
-              </span>
-            </h2>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <Link href={heroData.phase3Btn1Link || "/our-story"}>
-                <PillButton variant="pink" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
-                  {(heroData.phase3Btn1Text || "what is tumu").toLowerCase()}
-                </PillButton>
-              </Link>
-              <Link href={heroData.phase3Btn2Link || "/franchise#form"}>
-                <PillButton variant="white" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
-                  {(heroData.phase3Btn2Text || "franchise now").toLowerCase()}
-                </PillButton>
-              </Link>
-            </div>
-
-          </div>
-        </motion.div>
 
         {/* Initial Scroll Cue (Only visible at the very beginning) */}
         <motion.div
