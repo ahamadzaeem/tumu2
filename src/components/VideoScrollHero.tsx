@@ -62,9 +62,9 @@ export default function VideoScrollHero() {
     val > 0.8 ? "auto" : "none"
   );
 
-  // Ambient backdrops for high text readability
-  const finalBackdropOpacity = useTransform(scrollYProgress, [0.78, 0.88], [0, 0.35]);
-  const initialBackdropOpacity = useTransform(scrollYProgress, [0, 0.08, 0.14], [0.22, 0.12, 0]);
+  // Ambient backdrops for high text readability while keeping product image clearly visible
+  const finalBackdropOpacity = useTransform(scrollYProgress, [0.78, 0.88], [0, 0.25]);
+  const initialBackdropOpacity = useTransform(scrollYProgress, [0, 0.08, 0.14], [0.10, 0.05, 0]);
   const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.06], [0.8, 0]);
 
   // ─── OPTION 1: HARDWARE-ACCELERATED VIDEO SCROLL SCRUBBING ───
@@ -142,7 +142,8 @@ export default function VideoScrollHero() {
         />
 
         {/* ════════════════════════════════════════════════════════════════
-            PHASE 1: CREATIVE INITIAL TEXT (CENTERED - BEFORE SCROLLING)
+            PHASE 1: REFINED INITIAL TEXT (COMPACT & BALANCED)
+            Small, bold, lowercase text letting product image shine through.
             Fades out smoothly as the user begins scrolling.
            ════════════════════════════════════════════════════════════════ */}
         <motion.div
@@ -151,31 +152,31 @@ export default function VideoScrollHero() {
             y: initialY,
             pointerEvents: initialPointerEvents as any,
           }}
-          className="absolute inset-0 z-30 flex items-center justify-center p-6 pt-16 sm:pt-20"
+          className="absolute inset-0 z-30 flex items-center justify-center p-6 pt-12 sm:pt-16"
         >
-          <div className="w-full max-w-[900px] mx-auto flex flex-col items-center text-center">
+          <div className="w-full max-w-[580px] mx-auto flex flex-col items-center text-center">
             
-            {/* Bold Editorial Headline - Titan One Font Centered with Crisp White Text */}
-            <h1 className="font-heading text-4xl sm:text-6xl lg:text-[70px] xl:text-[78px] font-normal uppercase tracking-tight leading-[0.95] mb-8 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.85)]">
-              <span className="block text-white">{heroData.phase1Headline1}</span>
+            {/* Small, bold, lowercase heading */}
+            <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight mb-5 text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.7)]">
+              <span className="block text-white">{(heroData.phase1Headline1 || "a unique viral concept.").toLowerCase()}</span>
               <span className="block text-white">
-                {heroData.phase1Headline2}
+                {(heroData.phase1Headline2 || "crafted by a japanese chef").toLowerCase()}
               </span>
             </h1>
 
             {/* Action Buttons - Own a Franchise */}
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               {heroData.phase1Btn1Text && (
                 <Link href={heroData.phase1Btn1Link || "/franchise#form"}>
-                  <PillButton variant="pink" showArrow>
-                    {heroData.phase1Btn1Text}
+                  <PillButton variant="pink" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
+                    {heroData.phase1Btn1Text.toLowerCase()}
                   </PillButton>
                 </Link>
               )}
               {heroData.phase1Btn2Text && (
                 <Link href={heroData.phase1Btn2Link || "/franchise#form"}>
-                  <PillButton variant="cyan" showArrow>
-                    {heroData.phase1Btn2Text}
+                  <PillButton variant="cyan" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
+                    {heroData.phase1Btn2Text.toLowerCase()}
                   </PillButton>
                 </Link>
               )}
@@ -192,7 +193,7 @@ export default function VideoScrollHero() {
 
         {/* ════════════════════════════════════════════════════════════════
             PHASE 3: LAST FRAME REVEAL (CLIMAX TEXT & CTA)
-            Comes on the frame once the pastry is fully broken open.
+            Standardised small, bold, lowercase text.
            ════════════════════════════════════════════════════════════════ */}
         <motion.div
           style={{
@@ -203,26 +204,26 @@ export default function VideoScrollHero() {
           }}
           className="absolute inset-0 z-30 flex items-center justify-center p-6"
         >
-          <div className="w-full max-w-[880px] mx-auto flex flex-col items-center text-center">
+          <div className="w-full max-w-[580px] mx-auto flex flex-col items-center text-center">
 
-            {/* Grand Climax Headline - Titan One Font with Enhanced Visibility */}
-            <h2 className="font-heading text-4xl sm:text-6xl lg:text-[70px] xl:text-[78px] font-normal uppercase tracking-tight leading-[0.95] mb-8 drop-shadow-[0_4px_24px_rgba(22,43,58,0.28)]">
-              <span className="block text-[#318EC7]">{heroData.phase3Headline1}</span>
+            {/* Small, bold, lowercase climax heading */}
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight mb-5 drop-shadow-[0_2px_14px_rgba(22,43,58,0.3)]">
+              <span className="block text-[#318EC7]">{(heroData.phase3Headline1 || "every bite,").toLowerCase()}</span>
               <span className="block text-[#DE3558]">
-                {heroData.phase3Headline2}
+                {(heroData.phase3Headline2 || "pure happiness.").toLowerCase()}
               </span>
             </h2>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <Link href={heroData.phase3Btn1Link || "/our-story"}>
-                <PillButton variant="pink" showArrow>
-                  {heroData.phase3Btn1Text || "What is TUMU"}
+                <PillButton variant="pink" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
+                  {(heroData.phase3Btn1Text || "what is tumu").toLowerCase()}
                 </PillButton>
               </Link>
               <Link href={heroData.phase3Btn2Link || "/franchise#form"}>
-                <PillButton variant="white" showArrow>
-                  {heroData.phase3Btn2Text || "Franchise Now"}
+                <PillButton variant="white" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
+                  {(heroData.phase3Btn2Text || "franchise now").toLowerCase()}
                 </PillButton>
               </Link>
             </div>

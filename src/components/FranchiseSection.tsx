@@ -51,26 +51,27 @@ export default function FranchiseSection() {
         </div>
 
         <div className="pl-6 sm:pl-10 max-w-[520px]">
-          <h2 className="text-[32px] sm:text-[40px] lg:text-[44px] font-heading tracking-tight leading-[1.05] uppercase mb-8">
-            <span className="block text-[#DB3E59]">{franchiseCta.headingLine1}</span>
-            <span className="block text-[#162B3A]">{franchiseCta.headingLine2}</span>
+          {/* Standardised small, bold, lowercase heading */}
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight mb-5">
+            <span className="block text-[#DB3E59]">{(franchiseCta.headingLine1 || "be part of a growing,").toLowerCase()}</span>
+            <span className="block text-[#162B3A]">{(franchiseCta.headingLine2 || "viral & unique brand from japan!").toLowerCase()}</span>
           </h2>
 
           {/* Key Franchise Advantages List */}
-          <div className="flex flex-col gap-3.5 mb-10">
+          <div className="flex flex-col gap-3 mb-8">
             {benefits.map((b) => (
               <div key={b.title} className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E59] shrink-0" />
-                <span className="text-[#162B3A] font-black text-base sm:text-lg tracking-wide uppercase">
-                  {b.title}
+                <span className="w-2 h-2 rounded-full bg-[#DB3E59] shrink-0" />
+                <span className="text-[#162B3A] font-bold text-sm sm:text-base tracking-normal lowercase">
+                  {b.title.toLowerCase()}
                 </span>
               </div>
             ))}
           </div>
 
           <Link href={franchiseCta.buttonLink || "/franchise#form"}>
-            <PillButton variant="pink" showArrow className="w-fit px-8 py-3.5 text-sm sm:text-base font-black">
-              {franchiseCta.buttonText || "Join Our Growing Franchise Family"}
+            <PillButton variant="pink" showArrow className="w-fit px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
+              {(franchiseCta.buttonText || "join our growing franchise family").toLowerCase()}
             </PillButton>
           </Link>
         </div>

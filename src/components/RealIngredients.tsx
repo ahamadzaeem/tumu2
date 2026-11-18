@@ -41,27 +41,28 @@ export default function RealIngredients() {
       {/* Right Side Text Content (approx 38% width on desktop) */}
       <div className="w-full lg:w-[38%] relative bg-[#F8F4EC] p-8 sm:p-12 lg:p-16 xl:p-20 flex flex-col justify-center items-start">
         
-        <span className="text-[#DB3E59] font-black text-sm sm:text-base uppercase tracking-[0.2em] mb-2">
-          {real.eyebrow || "JUST 3 STEPS."}
+        <span className="text-[#DB3E59] font-bold text-xs sm:text-sm lowercase tracking-normal mb-1.5">
+          {(real.eyebrow || "just 3 steps.").toLowerCase()}
         </span>
 
-        <h2 className="text-4xl sm:text-5xl xl:text-[50px] font-black tracking-tight leading-[1.05] uppercase mb-8 text-[#162B3A]">
-          <span className="block text-[#162B3A]">UNIQUELY</span>
-          <span className="block text-[#DB3E59]">DELICIOUS.</span>
+        {/* Standardised small, bold, lowercase heading */}
+        <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight mb-6 text-[#162B3A]">
+          <span className="block text-[#162B3A]">uniquely</span>
+          <span className="block text-[#DB3E59]">delicious.</span>
         </h2>
 
         {/* The 3 Steps */}
-        <div className="flex flex-col gap-3.5 mb-10 w-full">
+        <div className="flex flex-col gap-3 mb-8 w-full">
           {[
-            { num: "01", label: "Bake It", desc: "Golden crust baked crunchy to perfection" },
-            { num: "02", label: "Fill It", desc: "Fresh chilled cream piped inside on order" },
-            { num: "03", label: "Serve It", desc: "Served immediately at peak freshness" },
+            { num: "01", label: "bake it", desc: "golden crust baked crunchy to perfection" },
+            { num: "02", label: "fill it", desc: "fresh chilled cream piped inside on order" },
+            { num: "03", label: "serve it", desc: "served immediately at peak freshness" },
           ].map((s) => (
-            <div key={s.label} className="flex items-center gap-3.5 group">
-              <span className="w-8 h-8 rounded-full bg-[#162B3A] text-white text-xs font-black flex items-center justify-center shrink-0 group-hover:bg-[#DB3E59] transition-colors">
+            <div key={s.label} className="flex items-center gap-3 group">
+              <span className="w-7 h-7 rounded-full bg-[#162B3A] text-white text-xs font-bold flex items-center justify-center shrink-0 group-hover:bg-[#DB3E59] transition-colors">
                 {s.num}
               </span>
-              <span className="text-xl sm:text-2xl font-black text-[#162B3A] uppercase tracking-tight group-hover:text-[#DB3E59] transition-colors">
+              <span className="text-base sm:text-lg font-bold text-[#162B3A] lowercase tracking-normal group-hover:text-[#DB3E59] transition-colors">
                 {s.label}
               </span>
             </div>

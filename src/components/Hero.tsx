@@ -48,31 +48,28 @@ export default function Hero() {
       <div className="relative z-30 w-full max-w-[1440px] mx-auto flex items-center">
         <div className="flex flex-col justify-center pl-6 sm:pl-12 lg:pl-16 xl:pl-20">
           {/* Eyebrow / Story Prelude */}
-          <div className="mb-4">
-            <p className="font-heading text-lg sm:text-xl lg:text-2xl text-[#162B3A] uppercase tracking-wide leading-tight whitespace-pre-line drop-shadow-sm">
-              {hero.eyebrow}
+          <div className="mb-3 max-w-lg">
+            <p className="text-xs sm:text-sm font-bold text-[#162B3A]/80 lowercase tracking-normal leading-relaxed whitespace-pre-line">
+              {(hero.eyebrow || "").toLowerCase()}
             </p>
           </div>
 
-          {/* Main Headline */}
-          <h1
-            className="font-black uppercase tracking-tight leading-[0.9] mb-6"
-            style={{ fontSize: "clamp(3rem, 6vw, 4.8rem)" }}
-          >
-            <span className="block text-[#162B3A]">{hero.headlineLine1}</span>
-            <span className="block text-[#DB3E59]">{hero.headlineLine2}</span>
+          {/* Main Headline - Standardised small, bold, lowercase */}
+          <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight mb-5">
+            <span className="block text-[#162B3A]">{(hero.headlineLine1 || "crisp outside.").toLowerCase()}</span>
+            <span className="block text-[#DB3E59]">{(hero.headlineLine2 || "creamy inside.").toLowerCase()}</span>
           </h1>
 
           {hero.description ? (
-            <p className="text-[#162B3A]/85 font-bold text-sm sm:text-base max-w-md mb-8 leading-relaxed">
-              {hero.description}
+            <p className="text-[#162B3A]/85 font-medium text-xs sm:text-sm max-w-md mb-6 leading-relaxed lowercase">
+              {hero.description.toLowerCase()}
             </p>
           ) : null}
 
           <div className="flex flex-wrap items-center gap-3">
             <Link href={hero.primaryBtnLink || "/our-story"}>
-              <PillButton variant="pink" showArrow>
-                {hero.primaryBtnText || "Explore TUMU"}
+              <PillButton variant="pink" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase">
+                {(hero.primaryBtnText || "explore tumu").toLowerCase()}
               </PillButton>
             </Link>
             {hero.secondaryBtnText ? (

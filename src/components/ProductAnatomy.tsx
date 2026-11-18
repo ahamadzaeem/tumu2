@@ -58,8 +58,8 @@ export default function ProductAnatomy() {
   const features = [
     {
       num: "01",
-      title: "Crunchy Almond Topping",
-      description: "Delicately roasted nuts for an irresistible crunch.",
+      title: "crunchy almond topping",
+      description: "delicately roasted nuts for an irresistible crunch.",
       opacity: opacityAlmond,
       yPos: yAlmond,
       lineScale: lineAlmond,
@@ -68,8 +68,8 @@ export default function ProductAnatomy() {
     },
     {
       num: "02",
-      title: "Hot, Golden & Crispy Outer Layer",
-      description: "Oven-baked to a rich golden crunch every single order.",
+      title: "hot, golden & crispy outer layer",
+      description: "oven-baked to a rich golden crunch every single order.",
       opacity: opacityCrunch,
       yPos: yCrunch,
       lineScale: lineCrunch,
@@ -78,8 +78,8 @@ export default function ProductAnatomy() {
     },
     {
       num: "03",
-      title: "Smooth and Chilled Cream",
-      description: "Velvety Japanese cream piped fresh into the warm crust.",
+      title: "smooth and chilled cream",
+      description: "velvety japanese cream piped fresh into the warm crust.",
       opacity: opacityCream,
       yPos: yCream,
       lineScale: lineCream,
@@ -92,16 +92,16 @@ export default function ProductAnatomy() {
     <section ref={containerRef} className="relative w-full bg-[#F8F4EC] h-[400vh]">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
-        {/* Main Title (Visible initially, fades out) */}
+        {/* Main Title (Visible initially, fades out) - Standardised small, bold, lowercase */}
         <motion.div 
           style={{ opacity: opacityTitle }}
           className="absolute left-6 sm:left-12 lg:left-16 xl:left-20 top-24 lg:top-32 z-30 pointer-events-none"
         >
-          <h2 className="text-4xl sm:text-5xl xl:text-[54px] font-black tracking-tight leading-[1] uppercase text-[#162B3A] mb-8">
-            <span className="block">WHAT&apos;S INSIDE</span>
-            <span className="block">A TUMU</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight text-[#162B3A] mb-4">
+            <span className="block">what&apos;s inside</span>
+            <span className="block">a tumu</span>
           </h2>
-          <div className="w-16 h-1.5 bg-[#DB3E59]"></div>
+          <div className="w-12 h-1 bg-[#DB3E59]"></div>
         </motion.div>
 
         {/* Feature Descriptions (2 Steps) */}
@@ -113,14 +113,14 @@ export default function ProductAnatomy() {
               className="absolute top-1/2 -translate-y-1/2 w-full flex flex-col"
             >
               {/* Massive Background Number - Enhanced Visibility */}
-              <div className={`absolute -left-6 -top-16 lg:-left-12 lg:-top-24 text-[140px] lg:text-[180px] font-heading font-normal opacity-50 sm:opacity-60 ${feature.color} select-none pointer-events-none leading-none tracking-tight`}>
+              <div className={`absolute -left-6 -top-16 lg:-left-12 lg:-top-24 text-[120px] lg:text-[150px] font-heading font-normal opacity-40 sm:opacity-50 ${feature.color} select-none pointer-events-none leading-none tracking-tight`}>
                 {feature.num}
               </div>
               
               <div className="relative z-10 pl-2 lg:pl-6 pt-4">
-                <div className="flex items-center gap-4 mb-4">
-                  {/* Title */}
-                  <h3 className="text-3xl sm:text-4xl lg:text-[42px] font-black uppercase tracking-tight text-[#162B3A] whitespace-nowrap drop-shadow-sm">
+                <div className="flex items-center gap-4 mb-3">
+                  {/* Title - small, bold, lowercase */}
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold lowercase tracking-tight text-[#162B3A] whitespace-nowrap drop-shadow-sm">
                     {feature.title}
                   </h3>
                   
