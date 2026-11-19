@@ -237,8 +237,8 @@ export default function FranchisePage() {
                   </div>
                 </div>
 
-                {/* Visual Showcase (2 Best Images) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                {/* Visual Showcase (All 3 Relevant Images) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                   <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
                     <Image
                       src="/images/tumu/formats/kiosk1_exterior.jpg"
@@ -260,6 +260,18 @@ export default function FranchisePage() {
                     />
                     <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
                       Service Counter &amp; Atrium Perspective
+                    </div>
+                  </div>
+
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/kiosk1_front.jpg"
+                      alt="TUMU Kiosk 1 Front Elevation & Service Window"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      Front Service Window &amp; Neon Details
                     </div>
                   </div>
                 </div>
@@ -322,8 +334,8 @@ export default function FranchisePage() {
                   </div>
                 </div>
 
-                {/* Visual Showcase (2 Best Images) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                {/* Visual Showcase (All 3 Relevant Images) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                   <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
                     <Image
                       src="/images/tumu/formats/kiosk_elevation.jpg"
@@ -344,7 +356,19 @@ export default function FranchisePage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
-                      Perspective Angle &amp; Striped Canopy
+                      Perspective Angle
+                    </div>
+                  </div>
+
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/kiosk_side.jpg"
+                      alt="TUMU Kiosk 2 Canopy & Vertical Neon"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      Canopy &amp; Vertical Neon
                     </div>
                   </div>
                 </div>
