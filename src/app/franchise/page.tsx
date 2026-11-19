@@ -722,7 +722,7 @@ export default function FranchisePage() {
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Left Text Column with Right Border Divider */}
-          <div className="lg:col-span-6 flex flex-col items-start lg:pr-12 lg:border-r border-[#DB3E59]/20">
+          <div className="lg:col-span-7 flex flex-col items-start lg:pr-12 lg:border-r border-[#DB3E59]/20">
             <span className="font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
               NO RETAIL EXPERIENCE?
             </span>
@@ -750,7 +750,7 @@ export default function FranchisePage() {
           </div>
 
           {/* Right Column: 4 Clean Vertical Support Features (No Card Enclosures) */}
-          <div className="lg:col-span-7 flex flex-col gap-6 sm:gap-7 w-full lg:pl-4">
+          <div className="lg:col-span-5 flex flex-col gap-6 sm:gap-7 w-full lg:pl-8">
             {/* Support 1 */}
             <div className="flex items-center gap-4 sm:gap-5">
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] flex items-center justify-center shrink-0">
