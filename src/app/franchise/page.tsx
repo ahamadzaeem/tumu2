@@ -17,8 +17,7 @@ import {
   BarChart3,
   CheckCircle2,
   Plus,
-  Minus,
-  Truck
+  Minus
 } from "lucide-react";
 
 export default function FranchisePage() {
@@ -207,11 +206,6 @@ export default function FranchisePage() {
                 {/* Header & Badges */}
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="px-3.5 py-1 rounded-full bg-[#55D2DF]/20 text-[#162B3A] font-black text-xs uppercase tracking-wider">
-                        Format 01
-                      </span>
-                    </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
                       Kiosk 1 <span className="text-[#DB3E59]">- 150 sq. ft. approx.</span>
                     </h3>
@@ -304,11 +298,6 @@ export default function FranchisePage() {
                 {/* Header & Badges */}
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="px-3.5 py-1 rounded-full bg-[#55D2DF]/20 text-[#162B3A] font-black text-xs uppercase tracking-wider">
-                        Format 02
-                      </span>
-                    </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
                       Kiosk 2 <span className="text-[#DB3E59]">- 150 sq. ft. approx.</span>
                     </h3>
@@ -401,11 +390,6 @@ export default function FranchisePage() {
                 {/* Header & Badges */}
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="px-3.5 py-1 rounded-full bg-[#DB3E59]/20 text-[#DB3E59] font-black text-xs uppercase tracking-wider">
-                        Format 03
-                      </span>
-                    </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
                       Store <span className="text-[#DB3E59]">- 300 sq. ft. approx.</span>
                     </h3>
@@ -486,12 +470,6 @@ export default function FranchisePage() {
                 {/* Header & Badges */}
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="px-3.5 py-1 rounded-full bg-[#162B3A] text-white font-black text-xs uppercase tracking-wider flex items-center gap-1.5">
-                        <Truck className="w-3.5 h-3.5" />
-                        <span>Format 04</span>
-                      </span>
-                    </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
                       Outdoor <span className="text-[#DB3E59]">Truck</span>
                     </h3>
