@@ -46,17 +46,17 @@ export default function Hero() {
 
       {/* ─── TEXT CONTENT: PROMINENT & BOLD IN THE LEFT EMPTY ZONE ─── */}
       <div className="relative z-30 w-full max-w-[1440px] mx-auto flex items-center">
-        <div className="flex flex-col justify-center pl-5 sm:pl-8 lg:pl-16 xl:pl-20 pt-10 sm:pt-14 lg:pt-0 max-w-[260px] xs:max-w-[280px] sm:max-w-[340px] lg:max-w-[640px]">
+        <div className="flex flex-col justify-center pl-5 sm:pl-8 lg:pl-16 xl:pl-20 pt-8 sm:pt-12 lg:pt-0 max-w-[280px] xs:max-w-[310px] sm:max-w-[380px] lg:max-w-[640px]">
           
-          {/* Eyebrow / Story Prelude */}
+          {/* Eyebrow / Story Prelude - Enlarged as requested */}
           <div className="mb-3 lg:mb-4">
-            <p className="font-heading text-xs xs:text-[13px] sm:text-sm lg:text-xl xl:text-2xl text-[#162B3A] uppercase tracking-wide leading-tight whitespace-pre-line drop-shadow-sm">
+            <p className="font-heading text-[15px] xs:text-[17px] sm:text-xl lg:text-2xl xl:text-[26px] text-[#162B3A] uppercase tracking-tight leading-snug whitespace-pre-line drop-shadow-sm">
               {hero.eyebrow}
             </p>
           </div>
 
-          {/* Main Headline - Bigger & bolder */}
-          <h1 className="font-black uppercase tracking-tight leading-[0.92] mb-5 lg:mb-6 text-[34px] xs:text-[38px] sm:text-[44px] lg:text-[clamp(3.2rem,6vw,4.8rem)]">
+          {/* Main Headline */}
+          <h1 className="font-black uppercase tracking-tight leading-[0.92] mb-5 lg:mb-6 text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)]">
             <span className="block text-[#162B3A]">{hero.headlineLine1}</span>
             <span className="block text-[#DB3E59]">{hero.headlineLine2}</span>
           </h1>
