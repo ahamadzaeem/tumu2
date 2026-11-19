@@ -519,16 +519,16 @@ export default function FranchisePage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-[360px] sm:max-w-[400px] lg:max-w-[440px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
+            className="max-w-[380px] xs:max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
           >
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
+            <span className="font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#DB3E59] uppercase tracking-wide leading-tight mb-2.5 block">
               ROI WITHIN 12 MONTHS.
             </span>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-black uppercase tracking-tight leading-[0.98] mb-4">
-              <span className="block text-[#162B3A]">WE DON&apos;T JUST SAY IT.</span>
-              <span className="block text-[#DB3E59]">WE STAND BY IT.</span>
-              <span className="block text-[#162B3A]">THAT&apos;S OUR PROMISE.</span>
+            <h2 className="text-[20px] xs:text-[23px] sm:text-[29px] lg:text-[34px] xl:text-[38px] font-black uppercase tracking-tight leading-[1.05] mb-4">
+              <span className="block text-[#162B3A] whitespace-nowrap">WE DON&apos;T JUST SAY IT.</span>
+              <span className="block text-[#DB3E59] whitespace-nowrap">WE STAND BY IT.</span>
+              <span className="block text-[#162B3A] whitespace-nowrap">THAT&apos;S OUR PROMISE.</span>
             </h2>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-4" />
