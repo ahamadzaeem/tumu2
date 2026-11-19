@@ -100,7 +100,7 @@ export default function ProductAnatomy() {
       lineScale: lineAlmond,
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]",
-      lineWidth: "w-16 sm:w-24 md:w-32 lg:w-40",
+      lineWidth: "w-16 sm:w-24 md:w-32 lg:w-44",
     },
     {
       num: "02",
@@ -111,7 +111,7 @@ export default function ProductAnatomy() {
       lineScale: lineCrunch,
       color: "text-[#DE3558]", // Brand Pink
       lineBg: "bg-[#DE3558]",
-      lineWidth: "w-20 sm:w-28 md:w-36 lg:w-48",
+      lineWidth: "w-20 sm:w-28 md:w-36 lg:w-44",
     },
     {
       num: "03",
@@ -122,7 +122,7 @@ export default function ProductAnatomy() {
       lineScale: lineCream,
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]",
-      lineWidth: "w-40 sm:w-64 md:w-80 lg:w-[380px] xl:w-[440px] 2xl:w-[520px]",
+      lineWidth: "w-40 sm:w-64 md:w-80 lg:w-[360px] xl:w-[440px] 2xl:w-[500px]",
     },
   ];
 
@@ -161,15 +161,15 @@ export default function ProductAnatomy() {
         </motion.div>
 
         {/* ─── 3-STEP FEATURE ANNOTATIONS OVERLAY (Docked bottom on mobile, left on desktop) ─── */}
-        <div className="absolute left-4 right-4 sm:right-auto sm:left-12 lg:left-16 xl:left-20 bottom-10 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 z-40 max-w-none sm:max-w-[440px] pointer-events-none">
+        <div className="absolute left-4 right-4 sm:right-auto sm:left-12 lg:left-16 xl:left-20 bottom-10 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 z-40 w-auto pointer-events-none">
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
               style={{ opacity: feature.opacity, y: feature.yPos }}
-              className="absolute bottom-0 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 w-full flex flex-col"
+              className="absolute bottom-0 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 w-full sm:w-[380px] md:w-[420px] flex flex-col"
             >
               {/* Massive Background Number (Desktop only) */}
-              <div className={`hidden sm:block absolute -left-4 -top-16 lg:-left-10 lg:-top-24 text-[130px] lg:text-[170px] font-heading font-normal opacity-40 sm:opacity-50 ${feature.color} select-none pointer-events-none leading-none tracking-tight`}>
+              <div className={`hidden sm:block absolute -left-4 sm:-left-8 top-0 text-[100px] lg:text-[130px] font-heading font-normal opacity-25 ${feature.color} select-none pointer-events-none leading-none tracking-tight`}>
                 {feature.num}
               </div>
               
@@ -191,14 +191,14 @@ export default function ProductAnatomy() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 mb-1.5 sm:mb-3">
+                <div className="relative inline-flex items-center mb-1.5 sm:mb-3">
                   {/* Title */}
-                  <h3 className="text-lg xs:text-xl sm:text-3xl lg:text-[40px] font-black uppercase tracking-tight text-[#162B3A] drop-shadow-sm leading-tight">
+                  <h3 className="text-lg xs:text-xl sm:text-2xl lg:text-[34px] font-black uppercase tracking-tight text-[#162B3A] drop-shadow-sm leading-[1.15]">
                     {feature.title}
                   </h3>
                   
                   {/* Animated Line Indicator (Desktop/Tablet) */}
-                  <div className="items-center pt-1 hidden sm:flex shrink-0">
+                  <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center shrink-0 pointer-events-none">
                     <motion.div 
                       className={`h-[4px] ${feature.lineWidth} ${feature.lineBg} origin-left rounded-l-full shadow-sm`}
                       style={{ scaleX: feature.lineScale }} 
@@ -218,7 +218,7 @@ export default function ProductAnatomy() {
                 </div>
 
                 {/* Description text */}
-                <p className="text-[#162B3A] font-medium sm:font-bold text-xs sm:text-base lg:text-xl leading-relaxed max-w-[360px] drop-shadow-sm">
+                <p className="text-[#162B3A] font-medium sm:font-bold text-xs sm:text-base lg:text-lg leading-relaxed max-w-[360px] drop-shadow-sm">
                   {feature.description}
                 </p>
               </div>
