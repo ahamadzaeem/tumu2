@@ -31,26 +31,38 @@ export default function Hero() {
   };
 
   return (
-    <>
-      {/* ─── 1. PORTRAIT VIEW (Phones in Portrait Mode): OPTION 2 VERTICAL STACK ─── */}
-      <section className="relative w-full bg-[#6BE6EC] flex flex-col pt-28 pb-0 landscape:hidden lg:hidden overflow-hidden">
-        {/* Top: Text Content Area (No text over pastries) */}
-        <div className="relative z-10 w-full px-6 sm:px-10 flex flex-col items-start mb-4">
+    <section className="relative w-full h-screen min-h-[580px] sm:min-h-[640px] overflow-hidden flex items-center bg-[#6BE6EC]">
+      {/* ─── FULL BACKGROUND IMAGE (ORIGINAL FULL-SCREEN DESIGN) ─── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/tumu/hero_turquoise.png"
+          alt="TUMU UAE - Japanese Cream-Filled Crispy Desserts"
+          fill
+          priority
+          className="object-cover object-[78%_center] sm:object-[75%_center] lg:object-center"
+          sizes="100vw"
+        />
+      </div>
+
+      {/* ─── TEXT CONTENT (CONTAINED TO THE EMPTY LEFT TURQUOISE AREA) ─── */}
+      <div className="relative z-30 w-full max-w-[1440px] mx-auto flex items-center">
+        <div className="flex flex-col justify-center pl-6 sm:pl-10 lg:pl-16 xl:pl-20 pt-16 sm:pt-20 lg:pt-0 max-w-[240px] xs:max-w-[270px] sm:max-w-[340px] lg:max-w-[620px]">
+          
           {/* Eyebrow / Story Prelude */}
-          <div className="mb-3 max-w-md">
-            <p className="font-heading text-xs sm:text-sm text-[#162B3A] uppercase tracking-wide leading-tight whitespace-pre-line drop-shadow-sm">
+          <div className="mb-3 lg:mb-4">
+            <p className="font-heading text-[11px] xs:text-xs sm:text-sm lg:text-xl xl:text-2xl text-[#162B3A] uppercase tracking-wide leading-snug whitespace-pre-line drop-shadow-sm">
               {hero.eyebrow}
             </p>
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-black uppercase tracking-tight leading-[0.92] mb-4 text-[32px] sm:text-4xl">
+          <h1 className="font-black uppercase tracking-tight leading-[0.92] mb-4 lg:mb-6 text-[28px] xs:text-[32px] sm:text-4xl lg:text-[clamp(3rem,6vw,4.8rem)]">
             <span className="block text-[#162B3A]">{hero.headlineLine1}</span>
             <span className="block text-[#DB3E59]">{hero.headlineLine2}</span>
           </h1>
 
           {hero.description ? (
-            <p className="text-[#162B3A]/85 font-bold text-xs sm:text-sm max-w-md mb-4 leading-relaxed">
+            <p className="text-[#162B3A]/85 font-bold text-xs sm:text-sm lg:text-base max-w-md mb-6 lg:mb-8 leading-relaxed">
               {hero.description}
             </p>
           ) : null}
@@ -58,88 +70,21 @@ export default function Hero() {
           {/* Action CTA */}
           <div className="flex flex-wrap items-center gap-3">
             <Link href={hero.primaryBtnLink || "/our-story"}>
-              <PillButton variant="pink" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-black">
+              <PillButton variant="pink" showArrow className="px-5 py-2.5 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base font-black">
                 {hero.primaryBtnText || "Explore TUMU"}
               </PillButton>
             </Link>
             {hero.secondaryBtnText ? (
               <Link href={hero.secondaryBtnLink || "/flavours"}>
-                <PillButton variant="outline" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-black">
+                <PillButton variant="outline" showArrow className="px-5 py-2.5 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base font-black">
                   {hero.secondaryBtnText}
                 </PillButton>
               </Link>
             ) : null}
           </div>
+
         </div>
-
-        {/* Bottom: Complete, Unobstructed TUMU Pastries in Full Straight View */}
-        <div className="relative w-full h-[320px] sm:h-[400px] mt-2">
-          <Image
-            src="/images/tumu/hero_turquoise.png"
-            alt="TUMU UAE - Japanese Cream-Filled Crispy Desserts"
-            fill
-            priority
-            className="object-cover object-[75%_center]"
-            sizes="100vw"
-          />
-        </div>
-      </section>
-
-      {/* ─── 2. LANDSCAPE & DESKTOP VIEW: ORIGINAL FULL-SCREEN SIDE-BY-SIDE COMPOSITION ─── */}
-      <section className="hidden landscape:flex lg:flex relative w-full min-h-[440px] h-screen overflow-hidden items-center pt-16 sm:pt-20 lg:pt-24 pb-0 bg-[#6BE6EC]">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Image
-            src="/images/tumu/hero_turquoise.png"
-            alt="TUMU UAE - Japanese Cream-Filled Crispy Desserts"
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-
-        {/* Text Content */}
-        <div className="relative z-30 w-full max-w-[1440px] mx-auto flex items-center">
-          <div className="flex flex-col justify-center pl-6 sm:pl-12 lg:pl-16 xl:pl-20 max-w-[550px] lg:max-w-none">
-            {/* Eyebrow / Story Prelude */}
-            <div className="mb-3 lg:mb-4">
-              <p className="font-heading text-xs sm:text-sm lg:text-xl xl:text-2xl text-[#162B3A] uppercase tracking-wide leading-tight whitespace-pre-line drop-shadow-sm">
-                {hero.eyebrow}
-              </p>
-            </div>
-
-            {/* Main Headline */}
-            <h1
-              className="font-black uppercase tracking-tight leading-[0.9] mb-4 lg:mb-6 text-3xl sm:text-4xl lg:text-[clamp(3rem,6vw,4.8rem)]"
-            >
-              <span className="block text-[#162B3A]">{hero.headlineLine1}</span>
-              <span className="block text-[#DB3E59]">{hero.headlineLine2}</span>
-            </h1>
-
-            {hero.description ? (
-              <p className="text-[#162B3A]/85 font-bold text-xs sm:text-sm lg:text-base max-w-md mb-6 lg:mb-8 leading-relaxed">
-                {hero.description}
-              </p>
-            ) : null}
-
-            <div className="flex flex-wrap items-center gap-3">
-              <Link href={hero.primaryBtnLink || "/our-story"}>
-                <PillButton variant="pink" showArrow className="px-6 py-2.5 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base">
-                  {hero.primaryBtnText || "Explore TUMU"}
-                </PillButton>
-              </Link>
-              {hero.secondaryBtnText ? (
-                <Link href={hero.secondaryBtnLink || "/flavours"}>
-                  <PillButton variant="outline" showArrow className="px-6 py-2.5 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base">
-                    {hero.secondaryBtnText}
-                  </PillButton>
-                </Link>
-              ) : null}
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
