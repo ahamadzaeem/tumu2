@@ -105,19 +105,35 @@ export default function Flavours() {
         </div>
 
         {/* Bottom Section - 35 Unique Flavors & MORE FLAVORS Button */}
-        <div className="mt-8 flex flex-col items-center text-center gap-6">
-          <p className="text-xl sm:text-2xl lg:text-3xl font-black text-[#162B3A] tracking-tight uppercase max-w-2xl">
-            35 Unique Flavors, Made with Japan&apos;s Finest Ingredients
-          </p>
+        {(() => {
+          const rawDesc = content?.home?.flavoursSection?.description || "35 Unique Flavors, Made with Japan's Finest Ingredients";
+          const [headlinePart, subtitlePart] = rawDesc.includes(",")
+            ? rawDesc.split(/,\s*(.+)/)
+            : [rawDesc, ""];
 
-          <a
-            href="/flavours"
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-sm sm:text-base font-black uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-          >
-            <span>MORE FLAVORS</span>
-            <span>→</span>
-          </a>
-        </div>
+          return (
+            <div className="mt-12 sm:mt-16 flex flex-col items-center text-center gap-6 sm:gap-8 max-w-3xl mx-auto px-4">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="font-black uppercase tracking-tight leading-[0.92] text-[30px] xs:text-[36px] sm:text-[46px] lg:text-[clamp(3.2rem,5.5vw,4.5rem)] text-[#162B3A]">
+                  {headlinePart || "35 UNIQUE FLAVORS"}
+                </h3>
+                {subtitlePart ? (
+                  <p className="font-heading text-[15px] xs:text-[17px] sm:text-xl lg:text-2xl text-[#162B3A] uppercase tracking-wide leading-snug">
+                    {subtitlePart}
+                  </p>
+                ) : null}
+              </div>
+
+              <a
+                href={content?.home?.flavoursSection?.btnLink || "/flavours"}
+                className="inline-flex items-center gap-2 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm lg:text-base font-black uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+              >
+                <span>{content?.home?.flavoursSection?.btnText || "MORE FLAVORS"}</span>
+                <span>→</span>
+              </a>
+            </div>
+          );
+        })()}
       </div>
     </section>
   );
