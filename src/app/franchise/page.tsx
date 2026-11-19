@@ -149,7 +149,62 @@ export default function FranchisePage() {
       </section>
 
 
-      {/* ─── 3 HIGH-IMPACT FRANCHISE FORMATS: KIOSK, OUTLET & TRUCK ─── */}
+      {/* ─── SECTION 2: WHY TUMU / ROI ─── */}
+      <section className="relative w-full min-h-[680px] sm:min-h-[760px] lg:min-h-[840px] bg-[#FAF4E7] overflow-hidden flex items-center py-16 sm:py-24 border-b border-[#162B3A]/5">
+        {/* Background Image Composition (Left diagonal pastry layout) */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Image
+            src="/images/tumu/franchise_section_2.png"
+            alt="Why TUMU - Product Lineup"
+            fill
+            className="object-cover object-center"
+            priority
+            unoptimized
+          />
+        </div>
+
+        {/* Text Overlay (LEFT ALIGNED - STRICTLY INSIDE THE OFF-WHITE LEFT AREA) */}
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex justify-start">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="max-w-[380px] xs:max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
+          >
+            <h2 className="text-[20px] xs:text-[23px] sm:text-[29px] lg:text-[34px] xl:text-[38px] font-black uppercase tracking-tight leading-[1.05] mb-4">
+              <span className="block text-[#DB3E59] whitespace-nowrap">ROI WITHIN 12 MONTHS.</span>
+              <span className="block text-[#162B3A] whitespace-nowrap">WE DON&apos;T JUST SAY IT.</span>
+              <span className="block text-[#DB3E59] whitespace-nowrap">WE STAND BY IT.</span>
+              <span className="block text-[#162B3A] whitespace-nowrap">THAT&apos;S OUR PROMISE.</span>
+            </h2>
+
+            <div className="w-12 h-1 bg-[#DB3E59] mb-4" />
+
+            <p className="text-[#162B3A] font-semibold text-xs sm:text-sm leading-relaxed max-w-[380px] sm:max-w-[410px] mb-6">
+              This promise is not just a verdict. It is the result of hours of research, strategic homework, and industry expertise. Crafted by chef ren and backed by a team with 22 years of hands-on experience in f&b operations, franchising, and marketing.we understand the business. We know the numbers. We know what it takes to make it work.
+            </p>
+
+            <div className="p-4 rounded-2xl bg-white/95 border border-black/5 shadow-sm mb-6 w-full">
+              <p className="text-[11px] sm:text-xs font-black uppercase text-[#DB3E59] tracking-wider mb-1">
+                NO SPECULATION. NO EMPTY CLAIMS. NO EXCUSES.
+              </p>
+              <p className="text-[11px] sm:text-xs font-black uppercase text-[#162B3A] tracking-wider">
+                JUST EXPERIENCE, STRATEGY, AND ACCOUNTABILITY
+              </p>
+            </div>
+
+            <a href="#form">
+              <PillButton variant="pink" showArrow className="px-8 py-3.5 text-xs sm:text-sm font-black uppercase">
+                OWN A FRANCHISE
+              </PillButton>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+
+      {/* ─── SECTION 3: 3 HIGH-IMPACT FRANCHISE FORMATS: KIOSK, OUTLET & TRUCK ─── */}
       <section id="formats" className="relative w-full bg-[#FAF4E7] py-20 sm:py-28 border-b border-[#162B3A]/5 scroll-mt-20">
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
           
@@ -499,61 +554,7 @@ export default function FranchisePage() {
 
         </div>
       </section>
-      <section className="relative w-full min-h-[680px] sm:min-h-[760px] lg:min-h-[840px] bg-[#FAF4E7] overflow-hidden flex items-center py-16 sm:py-24">
-        {/* Background Image Composition (Left diagonal pastry layout) */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Image
-            src="/images/tumu/franchise_section_2.png"
-            alt="Why TUMU - Product Lineup"
-            fill
-            className="object-cover object-center"
-            priority
-            unoptimized
-          />
-        </div>
-
-        {/* Text Overlay (LEFT ALIGNED - STRICTLY INSIDE THE OFF-WHITE LEFT AREA) */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex justify-start">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-[380px] xs:max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
-          >
-            <h2 className="text-[20px] xs:text-[23px] sm:text-[29px] lg:text-[34px] xl:text-[38px] font-black uppercase tracking-tight leading-[1.05] mb-4">
-              <span className="block text-[#DB3E59] whitespace-nowrap">ROI WITHIN 12 MONTHS.</span>
-              <span className="block text-[#162B3A] whitespace-nowrap">WE DON&apos;T JUST SAY IT.</span>
-              <span className="block text-[#DB3E59] whitespace-nowrap">WE STAND BY IT.</span>
-              <span className="block text-[#162B3A] whitespace-nowrap">THAT&apos;S OUR PROMISE.</span>
-            </h2>
-
-            <div className="w-12 h-1 bg-[#DB3E59] mb-4" />
-
-            <p className="text-[#162B3A] font-semibold text-xs sm:text-sm leading-relaxed max-w-[380px] sm:max-w-[410px] mb-6">
-              This promise is not just a verdict. It is the result of hours of research, strategic homework, and industry expertise. Crafted by chef ren and backed by a team with 22 years of hands-on experience in f&b operations, franchising, and marketing.we understand the business. We know the numbers. We know what it takes to make it work.
-            </p>
-
-            <div className="p-4 rounded-2xl bg-white/95 border border-black/5 shadow-sm mb-6 w-full">
-              <p className="text-[11px] sm:text-xs font-black uppercase text-[#DB3E59] tracking-wider mb-1">
-                NO SPECULATION. NO EMPTY CLAIMS. NO EXCUSES.
-              </p>
-              <p className="text-[11px] sm:text-xs font-black uppercase text-[#162B3A] tracking-wider">
-                JUST EXPERIENCE, STRATEGY, AND ACCOUNTABILITY
-              </p>
-            </div>
-
-            <a href="#form">
-              <PillButton variant="pink" showArrow className="px-8 py-3.5 text-xs sm:text-sm font-black uppercase">
-                OWN A FRANCHISE
-              </PillButton>
-            </a>
-          </motion.div>
-        </div>
-      </section>
-
-
-      {/* ─── SECTION: COMPREHENSIVE SUPPORT ─── */}
+      {/* ─── SECTION 4: COMPREHENSIVE SUPPORT ─── */}
       <section className="relative w-full bg-[#FAF4E7] py-16 sm:py-24 overflow-hidden border-b border-[#162B3A]/5">
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
