@@ -148,39 +148,56 @@ export default function ProductAnatomy() {
         {/* ─── MAIN SECTION TITLE (Top Right, Fades out smoothly on initial scroll) ─── */}
         <motion.div 
           style={{ opacity: opacityTitle }}
-          className="absolute right-6 sm:right-12 lg:right-16 xl:right-20 top-24 lg:top-32 z-30 pointer-events-none flex flex-col items-end text-right"
+          className="absolute right-4 sm:right-12 lg:right-16 xl:right-20 top-20 sm:top-24 lg:top-32 z-30 pointer-events-none flex flex-col items-end text-right"
         >
-          <span className="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-2 block font-black">
+          <span className="font-heading text-[10px] sm:text-xs lg:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-1.5 sm:mb-2 block font-black">
             ANATOMY OF PERFECTION
           </span>
-          <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black tracking-tight leading-[0.95] uppercase text-[#162B3A] mb-4">
+          <h2 className="text-2xl xs:text-[28px] sm:text-[44px] lg:text-5xl font-black tracking-tight leading-[0.95] uppercase text-[#162B3A] mb-3 sm:mb-4">
             <span className="block">WHAT&apos;S INSIDE</span>
             <span className="block text-[#DB3E59]">A TUMU</span>
           </h2>
-          <div className="w-16 h-1.5 bg-[#DB3E59]" />
+          <div className="w-12 sm:w-16 h-1 sm:h-1.5 bg-[#DB3E59]" />
         </motion.div>
 
-        {/* ─── 3-STEP FEATURE ANNOTATIONS OVERLAY ─── */}
-        <div className="absolute left-6 sm:left-12 lg:left-16 xl:left-20 top-1/2 -translate-y-1/2 z-40 w-full max-w-[440px] pointer-events-none">
+        {/* ─── 3-STEP FEATURE ANNOTATIONS OVERLAY (Docked bottom on mobile, left on desktop) ─── */}
+        <div className="absolute left-4 right-4 sm:right-auto sm:left-12 lg:left-16 xl:left-20 bottom-10 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 z-40 max-w-none sm:max-w-[440px] pointer-events-none">
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
               style={{ opacity: feature.opacity, y: feature.yPos }}
-              className="absolute top-1/2 -translate-y-1/2 w-full flex flex-col"
+              className="absolute bottom-0 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 w-full flex flex-col"
             >
-              {/* Massive Background Number */}
-              <div className={`absolute -left-4 -top-16 lg:-left-10 lg:-top-24 text-[130px] lg:text-[170px] font-heading font-normal opacity-40 sm:opacity-50 ${feature.color} select-none pointer-events-none leading-none tracking-tight`}>
+              {/* Massive Background Number (Desktop only) */}
+              <div className={`hidden sm:block absolute -left-4 -top-16 lg:-left-10 lg:-top-24 text-[130px] lg:text-[170px] font-heading font-normal opacity-40 sm:opacity-50 ${feature.color} select-none pointer-events-none leading-none tracking-tight`}>
                 {feature.num}
               </div>
               
-              <div className="relative z-10 pl-2 lg:pl-6 pt-4 max-sm:bg-white/85 max-sm:backdrop-blur-md max-sm:p-4 max-sm:rounded-2xl max-sm:shadow-lg">
-                <div className="flex items-center gap-4 mb-3">
+              <div className="relative z-10 p-4 sm:p-0 sm:pl-2 lg:pl-6 sm:pt-4 bg-[#FAF4E7]/94 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none rounded-2xl sm:rounded-none border border-black/5 sm:border-0 shadow-xl sm:shadow-none">
+                {/* Mobile Layer Progress Pill Badge */}
+                <div className="flex sm:hidden items-center justify-between mb-2 pb-2 border-b border-black/5">
+                  <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider text-white ${feature.lineBg}`}>
+                    Layer {feature.num}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    {[0, 1, 2].map((dotIdx) => (
+                      <span
+                        key={dotIdx}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          dotIdx === idx ? `w-4 ${feature.lineBg}` : "w-1.5 bg-[#162B3A]/25"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 mb-1.5 sm:mb-3">
                   {/* Title */}
-                  <h3 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] font-black uppercase tracking-tight text-[#162B3A] drop-shadow-sm leading-tight">
+                  <h3 className="text-lg xs:text-xl sm:text-3xl lg:text-[40px] font-black uppercase tracking-tight text-[#162B3A] drop-shadow-sm leading-tight">
                     {feature.title}
                   </h3>
                   
-                  {/* Animated Line Indicator */}
+                  {/* Animated Line Indicator (Desktop/Tablet) */}
                   <div className="items-center pt-1 hidden sm:flex shrink-0">
                     <motion.div 
                       className={`h-[4px] ${feature.lineWidth} ${feature.lineBg} origin-left rounded-l-full shadow-sm`}
@@ -201,7 +218,7 @@ export default function ProductAnatomy() {
                 </div>
 
                 {/* Description text */}
-                <p className="text-[#162B3A] font-bold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[360px] drop-shadow-sm">
+                <p className="text-[#162B3A] font-medium sm:font-bold text-xs sm:text-base lg:text-xl leading-relaxed max-w-[360px] drop-shadow-sm">
                   {feature.description}
                 </p>
               </div>
@@ -212,7 +229,7 @@ export default function ProductAnatomy() {
         {/* ─── SCROLL HINT (Bottom Center) ─── */}
         <motion.div
           style={{ opacity: opacityTitle }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center gap-2"
+          className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center gap-2"
         >
           <span className="text-[11px] font-black uppercase tracking-widest text-[#162B3A]/60">
             Scroll to Explore
