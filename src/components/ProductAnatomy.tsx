@@ -13,7 +13,7 @@ export default function ProductAnatomy() {
     offset: ["start start", "end end"],
   });
 
-  // ─── VIDEO SCROLL DRIVER (Smooth RAF Lerp for Butter-Smooth Scrubbing) ───
+  // ─── VIDEO SCROLL DRIVER (Hardware-Safe Non-Blocking Frame Seeking) ───
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -21,46 +21,56 @@ export default function ProductAnatomy() {
     // Ensure video is strictly paused so scroll exclusively controls playback
     video.pause();
 
-    let targetTime = 0;
-    let animId: number;
+    let pendingProgress: number | null = null;
 
-    const render = () => {
-      if (video && video.duration && !isNaN(video.duration)) {
-        const current = video.currentTime;
-        const diff = targetTime - current;
+    const seekTo = (progress: number) => {
+      if (!video) return;
+      const duration = video.duration;
+      if (!duration || isNaN(duration)) return;
 
-        // Smoothly interpolate towards target time with a responsive lerp factor
-        if (Math.abs(diff) > 0.003) {
-          video.currentTime = current + diff * 0.28;
-        } else {
-          video.currentTime = targetTime;
-        }
+      const target = Math.min(Math.max(progress * duration, 0.01), duration - 0.05);
+
+      if (video.seeking) {
+        pendingProgress = progress;
+        return;
       }
-      animId = requestAnimationFrame(render);
+
+      video.currentTime = target;
     };
 
-    animId = requestAnimationFrame(render);
+    const handleSeeked = () => {
+      if (pendingProgress !== null) {
+        const next = pendingProgress;
+        pendingProgress = null;
+        seekTo(next);
+      }
+    };
+
+    const handleLoaded = () => {
+      setIsVideoReady(true);
+      seekTo(scrollYProgress.get());
+    };
+
+    video.addEventListener("seeked", handleSeeked);
+    video.addEventListener("loadedmetadata", handleLoaded);
+    video.addEventListener("canplay", handleLoaded);
+
+    // If metadata was already cached/loaded
+    if (video.readyState >= 1) {
+      handleLoaded();
+    }
 
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      if (video && video.duration && !isNaN(video.duration)) {
-        // Clamp target time between 0 and duration
-        targetTime = Math.min(Math.max(latest * video.duration, 0.001), video.duration - 0.02);
-      }
+      seekTo(latest);
     });
 
     return () => {
-      cancelAnimationFrame(animId);
+      video.removeEventListener("seeked", handleSeeked);
+      video.removeEventListener("loadedmetadata", handleLoaded);
+      video.removeEventListener("canplay", handleLoaded);
       unsubscribe();
     };
   }, [scrollYProgress]);
-
-  // Set initial video frame on load
-  const handleLoadedMetadata = () => {
-    setIsVideoReady(true);
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0.01;
-    }
-  };
 
   // ─── 3-STEP SCROLL ANIMATIONS (Synchronized with 3D Video Progression) ───
   // Step 1 [0.10 - 0.35]: Crunchy Almond Topping
@@ -126,7 +136,6 @@ export default function ProductAnatomy() {
             ref={videoRef}
             src="/videos/tumo_dessert_animation.mp4"
             poster="/videos/tumu_product_poster.jpg"
-            onLoadedMetadata={handleLoadedMetadata}
             playsInline
             muted
             preload="auto"
