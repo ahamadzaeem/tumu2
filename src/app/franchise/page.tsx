@@ -539,7 +539,7 @@ export default function FranchisePage() {
             STRONG UNIT ECONOMICS
           </span>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-[64px] font-black uppercase tracking-tight leading-[0.92] mb-4">
+          <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black uppercase tracking-tight leading-[0.95] mb-4">
             <span className="block text-[#162B3A]">HIGH MARGINS.</span>
             <span className="block text-[#DB3E59]">GREATER POTENTIAL<span className="text-[#DB3E59]">.</span></span>
           </h2>

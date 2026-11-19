@@ -97,7 +97,7 @@ export default function ProductAnatomy() {
           style={{ opacity: opacityTitle }}
           className="absolute left-6 sm:left-12 lg:left-16 xl:left-20 top-24 lg:top-32 z-30 pointer-events-none"
         >
-          <h2 className="text-4xl sm:text-5xl xl:text-[54px] font-black tracking-tight leading-[1] uppercase text-[#162B3A] mb-8">
+          <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black tracking-tight leading-[0.95] uppercase text-[#162B3A] mb-6">
             <span className="block">WHAT&apos;S INSIDE</span>
             <span className="block">A TUMU</span>
           </h2>

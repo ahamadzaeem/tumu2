@@ -51,7 +51,7 @@ export default function FranchiseSection() {
         </div>
 
         <div className="pl-6 sm:pl-10 max-w-[520px]">
-          <h2 className="text-[32px] sm:text-[40px] lg:text-[44px] font-heading tracking-tight leading-[1.05] uppercase mb-8">
+          <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-heading tracking-tight leading-[0.95] uppercase mb-6">
             <span className="block text-[#DB3E59]">{franchiseCta.headingLine1}</span>
             <span className="block text-[#162B3A]">{franchiseCta.headingLine2}</span>
           </h2>

@@ -56,7 +56,7 @@ export default function HappinessSection() {
 
       {/* Right Content Area (30% on desktop) */}
       <div className="w-full lg:w-[30%] h-full bg-[#F8F4EC] flex flex-col justify-center px-8 sm:px-12 py-12 lg:py-0 z-20">
-        <h2 className="text-[32px] sm:text-[40px] lg:text-[42px] font-black tracking-tight leading-[1.05] mb-8">
+        <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black tracking-tight leading-[0.95] mb-6">
           <span className="block text-[#1A2E44]">{happiness.headingLine1}</span>
           <span className="block text-[#1A2E44]">{happiness.headingLine2}</span>
           <span className="block text-[#0088CC]">{happiness.headingLine3}</span>

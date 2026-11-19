@@ -137,13 +137,13 @@ export default function VideoScrollHero() {
           }}
           className="absolute inset-0 z-30 flex items-center justify-center p-6 pt-12 sm:pt-16"
         >
-          <div className="w-full max-w-[580px] mx-auto flex flex-col items-center text-center">
+          <div className="w-full max-w-[640px] mx-auto flex flex-col items-center text-center">
             
-            {/* Small, bold, lowercase heading */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold lowercase tracking-tight leading-tight mb-5 text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.7)]">
-              <span className="block text-white">{(heroData.phase1Headline1 || "a unique viral concept.").toLowerCase()}</span>
+            {/* Standardised Hero Typography */}
+            <h1 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black uppercase tracking-tight leading-[0.92] mb-5 text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.7)]">
+              <span className="block text-white">{heroData.phase1Headline1 || "a unique viral concept."}</span>
               <span className="block text-white">
-                {(heroData.phase1Headline2 || "crafted by a japanese chef").toLowerCase()}
+                {heroData.phase1Headline2 || "crafted by a japanese chef"}
               </span>
             </h1>
 
@@ -151,15 +151,15 @@ export default function VideoScrollHero() {
             <div className="flex flex-wrap items-center justify-center gap-3">
               {heroData.phase1Btn1Text && (
                 <Link href={heroData.phase1Btn1Link || "/franchise#form"}>
-                  <PillButton variant="pink" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
-                    {heroData.phase1Btn1Text.toLowerCase()}
+                  <PillButton variant="pink" showArrow className="px-6 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base font-black">
+                    {heroData.phase1Btn1Text}
                   </PillButton>
                 </Link>
               )}
               {heroData.phase1Btn2Text && (
                 <Link href={heroData.phase1Btn2Link || "/franchise#form"}>
-                  <PillButton variant="cyan" showArrow className="px-6 py-2.5 text-xs sm:text-sm font-bold lowercase tracking-normal">
-                    {heroData.phase1Btn2Text.toLowerCase()}
+                  <PillButton variant="cyan" showArrow className="px-6 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base font-black">
+                    {heroData.phase1Btn2Text}
                   </PillButton>
                 </Link>
               )}

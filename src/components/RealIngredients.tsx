@@ -45,7 +45,7 @@ export default function RealIngredients() {
           {real.eyebrow || "JUST 3 STEPS."}
         </span>
 
-        <h2 className="text-4xl sm:text-5xl xl:text-[50px] font-black tracking-tight leading-[1.05] uppercase mb-8 text-[#162B3A]">
+        <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black tracking-tight leading-[0.95] uppercase mb-6 text-[#162B3A]">
           <span className="block text-[#162B3A]">UNIQUELY</span>
           <span className="block text-[#DB3E59]">DELICIOUS.</span>
         </h2>
