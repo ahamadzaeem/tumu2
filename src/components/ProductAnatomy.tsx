@@ -90,6 +90,7 @@ export default function ProductAnatomy() {
       lineScale: lineAlmond,
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]",
+      lineWidth: "w-16 sm:w-24 md:w-32 lg:w-40",
     },
     {
       num: "02",
@@ -100,6 +101,7 @@ export default function ProductAnatomy() {
       lineScale: lineCrunch,
       color: "text-[#DE3558]", // Brand Pink
       lineBg: "bg-[#DE3558]",
+      lineWidth: "w-20 sm:w-28 md:w-36 lg:w-48",
     },
     {
       num: "03",
@@ -110,6 +112,7 @@ export default function ProductAnatomy() {
       lineScale: lineCream,
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]",
+      lineWidth: "w-40 sm:w-64 md:w-80 lg:w-[380px] xl:w-[440px] 2xl:w-[520px]",
     },
   ];
 
@@ -171,13 +174,20 @@ export default function ProductAnatomy() {
                   {/* Animated Line Indicator */}
                   <div className="items-center pt-1 hidden sm:flex shrink-0">
                     <motion.div 
-                      className={`h-[4px] w-16 sm:w-20 lg:w-32 ${feature.lineBg} origin-left rounded-l-full shadow-sm`}
+                      className={`h-[4px] ${feature.lineWidth} ${feature.lineBg} origin-left rounded-l-full shadow-sm`}
                       style={{ scaleX: feature.lineScale }} 
                     />
-                    <motion.div 
-                      className={`w-3.5 h-3.5 rounded-full ${feature.lineBg} shrink-0 shadow-sm`}
-                      style={{ scale: feature.lineScale }} 
-                    />
+                    <div className="relative flex items-center justify-center shrink-0">
+                      <motion.div 
+                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full ${feature.lineBg} shadow-md`}
+                        style={{ scale: feature.lineScale }} 
+                      />
+                      <motion.div 
+                        animate={{ scale: [1, 2.2, 1], opacity: [0.7, 0, 0.7] }}
+                        transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+                        className={`absolute w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full ${feature.lineBg} pointer-events-none`}
+                      />
+                    </div>
                   </div>
                 </div>
 
