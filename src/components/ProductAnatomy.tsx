@@ -2,6 +2,8 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ProductAnatomy() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,64 +15,110 @@ export default function ProductAnatomy() {
     offset: ["start start", "end end"],
   });
 
-  // ─── VIDEO SCROLL DRIVER (Hardware-Safe Non-Blocking Frame Seeking) ───
+  // ─── VIDEO SCROLL DRIVER (Hardware-Accelerated & iOS Safari Optimized) ───
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const container = containerRef.current;
+    if (!video || !container) return;
 
-    // Ensure video is strictly paused so scroll exclusively controls playback
-    video.pause();
-
-    let pendingProgress: number | null = null;
-
-    const seekTo = (progress: number) => {
-      if (!video) return;
-      const duration = video.duration;
-      if (!duration || isNaN(duration)) return;
-
-      const target = Math.min(Math.max(progress * duration, 0.01), duration - 0.05);
-
-      if (video.seeking) {
-        pendingProgress = progress;
-        return;
-      }
-
-      video.currentTime = target;
-    };
-
-    const handleSeeked = () => {
-      if (pendingProgress !== null) {
-        const next = pendingProgress;
-        pendingProgress = null;
-        seekTo(next);
-      }
-    };
-
-    const handleLoaded = () => {
-      setIsVideoReady(true);
-      seekTo(scrollYProgress.get());
-    };
-
-    video.addEventListener("seeked", handleSeeked);
-    video.addEventListener("loadedmetadata", handleLoaded);
-    video.addEventListener("canplay", handleLoaded);
-
-    // If metadata was already cached/loaded
-    if (video.readyState >= 1) {
-      handleLoaded();
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
     }
 
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      seekTo(latest);
-    });
+    // 1. Force iOS WebKit inline muted flags on the DOM element
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "true");
+    video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("preload", "auto");
+
+    // 2. Decoder warm-up & unlock for iOS Safari (including Low Power Mode)
+    let isPrimed = false;
+    const primeVideo = () => {
+      if (isPrimed || !video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            video.pause();
+            isPrimed = true;
+          })
+          .catch(() => {});
+      }
+    };
+
+    // Immediate decoder warm-up
+    primeVideo();
+
+    // Unlock on first user touch / scroll (guarantees unlock on iOS Low Power Mode)
+    const onUserInteraction = () => {
+      primeVideo();
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("pointerdown", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+    };
+    window.addEventListener("touchstart", onUserInteraction, { passive: true });
+    window.addEventListener("pointerdown", onUserInteraction, { passive: true });
+    window.addEventListener("scroll", onUserInteraction, { passive: true });
+
+    if (video.readyState < 2) {
+      video.load();
+    }
+
+    let st: ScrollTrigger | null = null;
+
+    const setupVideoScrubber = () => {
+      primeVideo();
+      setIsVideoReady(true);
+
+      if (st) st.kill();
+
+      st = ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.15, // Ultra-responsive 150ms interpolation synchronized with Lenis
+        onUpdate: (self) => {
+          if (!video.duration || isNaN(video.duration)) return;
+          const targetTime = Math.min(
+            self.progress * (video.duration - 0.05),
+            video.duration - 0.05
+          );
+
+          if (Math.abs(video.currentTime - targetTime) > 0.015) {
+            if ("fastSeek" in video && typeof (video as any).fastSeek === "function") {
+              try {
+                (video as any).fastSeek(targetTime);
+              } catch {
+                video.currentTime = targetTime;
+              }
+            } else {
+              video.currentTime = targetTime;
+            }
+          }
+        },
+      });
+    };
+
+    if (video.readyState >= 1) {
+      setupVideoScrubber();
+    } else {
+      video.addEventListener("loadedmetadata", setupVideoScrubber, { once: true });
+      video.addEventListener("canplay", setupVideoScrubber, { once: true });
+    }
 
     return () => {
-      video.removeEventListener("seeked", handleSeeked);
-      video.removeEventListener("loadedmetadata", handleLoaded);
-      video.removeEventListener("canplay", handleLoaded);
-      unsubscribe();
+      if (st) st.kill();
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("pointerdown", onUserInteraction);
+      window.removeEventListener("scroll", onUserInteraction);
+      video.removeEventListener("loadedmetadata", setupVideoScrubber);
+      video.removeEventListener("canplay", setupVideoScrubber);
     };
-  }, [scrollYProgress]);
+  }, []);
 
   // ─── 3-STEP SCROLL ANIMATIONS (Synchronized with 3D Video Progression) ───
   // Step 1 [0.10 - 0.35]: Crunchy Almond Topping
@@ -138,8 +186,9 @@ export default function ProductAnatomy() {
             poster="/videos/tumu_product_poster.jpg"
             playsInline
             muted
+            autoPlay
             preload="auto"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center gpu-layer"
           />
           {/* Subtle gradient overlay to enhance text legibility on left */}
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#FAF4E7]/40 via-transparent to-transparent z-10" />
