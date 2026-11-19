@@ -84,7 +84,7 @@ export default function ProductAnatomy() {
     {
       num: "01",
       title: "Crunchy Almond Topping",
-      description: "Delicately roasted nuts for an irresistible crunch.",
+      description: "Specially crafted almond crunch with our secret recipe for an irresistibly crispy bite",
       opacity: opacityAlmond,
       yPos: yAlmond,
       lineScale: lineAlmond,
