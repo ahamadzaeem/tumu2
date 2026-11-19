@@ -558,13 +558,13 @@ export default function FranchisePage() {
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 flex flex-col items-start">
           
           {/* Section Header */}
-          <span className="font-black text-xs sm:text-sm uppercase tracking-[0.2em] text-[#DB3E59] mb-3">
+          <span className="font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
             STRONG UNIT ECONOMICS
           </span>
 
-          <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black uppercase tracking-tight leading-[0.95] mb-4">
+          <h2 className="text-[34px] xs:text-[38px] sm:text-[46px] lg:text-5xl font-black uppercase tracking-tight leading-[0.95] mb-4">
             <span className="block text-[#162B3A]">HIGH MARGINS.</span>
-            <span className="block text-[#DB3E59]">GREATER POTENTIAL<span className="text-[#DB3E59]">.</span></span>
+            <span className="block text-[#DB3E59]">GREATER POTENTIAL.</span>
           </h2>
 
           <div className="w-10 h-1 bg-[#DB3E59] mb-4" />
@@ -723,30 +723,27 @@ export default function FranchisePage() {
           
           {/* Left Text Column with Right Border Divider */}
           <div className="lg:col-span-6 flex flex-col items-start lg:pr-12 lg:border-r border-[#DB3E59]/20">
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.2em] text-[#DB3E59] mb-3">
+            <span className="font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
               NO RETAIL EXPERIENCE?
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black uppercase tracking-tight leading-[0.98] mb-3 text-[#162B3A]">
-              <span>NO WORRIES. </span>
-              <span className="text-[#DB3E59]">YOU&apos;RE NEVER IN BUSINESS ALONE.</span>
+            <h2 className="text-[28px] xs:text-[32px] sm:text-[38px] lg:text-[42px] font-black uppercase tracking-tight leading-[0.98] mb-3">
+              <span className="block text-[#162B3A]">NO WORRIES.</span>
+              <span className="block text-[#DB3E59]">YOU&apos;RE NEVER IN BUSINESS ALONE.</span>
             </h2>
 
-            <h3 className="text-xl sm:text-2xl lg:text-[26px] font-black uppercase tracking-tight leading-tight text-[#162B3A] mb-4">
+            <h3 className="text-lg xs:text-xl sm:text-2xl font-black uppercase tracking-tight leading-snug text-[#162B3A] mb-4">
               WE&apos;RE WITH YOU EVERY STEP OF YOUR FRANCHISE JOURNEY.
             </h3>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
 
             <p className="text-[#162B3A]/85 font-semibold text-sm sm:text-base leading-relaxed max-w-[500px] mb-6">
-              From day one to every day after.TUMU stands by you with continuous, hands-on support beyond training, every step of your franchise journey
+              From day one to every day after. TUMU stands by you with continuous, hands-on support beyond training, every step of your franchise journey
             </p>
 
             <div className="p-4 sm:p-5 rounded-2xl bg-white border border-black/5 shadow-sm w-full">
-              <span className="text-[11px] font-black uppercase text-[#DB3E59] tracking-wider block mb-2">
-                Core Support Disciplines
-              </span>
-              <p className="text-xs sm:text-sm font-black uppercase text-[#162B3A] tracking-wide leading-relaxed">
+              <p className="text-xs sm:text-sm font-black uppercase text-[#162B3A] tracking-wider leading-relaxed">
                 SITE SELECTION • OPERATIONS • PARTNER SUPPORT • MARKETING • R&amp;D • PURCHASING • STAFFING • NETWORK OVERSIGHT
               </p>
             </div>
