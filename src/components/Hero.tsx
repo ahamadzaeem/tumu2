@@ -32,37 +32,37 @@ export default function Hero() {
 
   return (
     <section className="relative w-full h-screen min-h-[580px] sm:min-h-[640px] overflow-hidden flex items-center bg-[#6BE6EC]">
-      {/* ─── FULL BACKGROUND IMAGE (ORIGINAL FULL-SCREEN DESIGN) ─── */}
+      {/* ─── FULL BACKGROUND IMAGE (EXACT FRAMING AS USER SCREENSHOT) ─── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src="/images/tumu/hero_turquoise.png"
           alt="TUMU UAE - Japanese Cream-Filled Crispy Desserts"
           fill
           priority
-          className="object-cover object-[78%_center] sm:object-[75%_center] lg:object-center"
+          className="object-cover object-center"
           sizes="100vw"
         />
       </div>
 
-      {/* ─── TEXT CONTENT (CONTAINED TO THE EMPTY LEFT TURQUOISE AREA) ─── */}
+      {/* ─── TEXT CONTENT: PROMINENT & BOLD IN THE LEFT EMPTY ZONE ─── */}
       <div className="relative z-30 w-full max-w-[1440px] mx-auto flex items-center">
-        <div className="flex flex-col justify-center pl-6 sm:pl-10 lg:pl-16 xl:pl-20 pt-16 sm:pt-20 lg:pt-0 max-w-[240px] xs:max-w-[270px] sm:max-w-[340px] lg:max-w-[620px]">
+        <div className="flex flex-col justify-center pl-5 sm:pl-8 lg:pl-16 xl:pl-20 pt-10 sm:pt-14 lg:pt-0 max-w-[260px] xs:max-w-[280px] sm:max-w-[340px] lg:max-w-[640px]">
           
           {/* Eyebrow / Story Prelude */}
           <div className="mb-3 lg:mb-4">
-            <p className="font-heading text-[11px] xs:text-xs sm:text-sm lg:text-xl xl:text-2xl text-[#162B3A] uppercase tracking-wide leading-snug whitespace-pre-line drop-shadow-sm">
+            <p className="font-heading text-xs xs:text-[13px] sm:text-sm lg:text-xl xl:text-2xl text-[#162B3A] uppercase tracking-wide leading-tight whitespace-pre-line drop-shadow-sm">
               {hero.eyebrow}
             </p>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="font-black uppercase tracking-tight leading-[0.92] mb-4 lg:mb-6 text-[28px] xs:text-[32px] sm:text-4xl lg:text-[clamp(3rem,6vw,4.8rem)]">
+          {/* Main Headline - Bigger & bolder */}
+          <h1 className="font-black uppercase tracking-tight leading-[0.92] mb-5 lg:mb-6 text-[34px] xs:text-[38px] sm:text-[44px] lg:text-[clamp(3.2rem,6vw,4.8rem)]">
             <span className="block text-[#162B3A]">{hero.headlineLine1}</span>
             <span className="block text-[#DB3E59]">{hero.headlineLine2}</span>
           </h1>
 
           {hero.description ? (
-            <p className="text-[#162B3A]/85 font-bold text-xs sm:text-sm lg:text-base max-w-md mb-6 lg:mb-8 leading-relaxed">
+            <p className="text-[#162B3A]/85 font-bold text-xs sm:text-sm lg:text-base max-w-md mb-5 lg:mb-8 leading-relaxed">
               {hero.description}
             </p>
           ) : null}
@@ -70,13 +70,13 @@ export default function Hero() {
           {/* Action CTA */}
           <div className="flex flex-wrap items-center gap-3">
             <Link href={hero.primaryBtnLink || "/our-story"}>
-              <PillButton variant="pink" showArrow className="px-5 py-2.5 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base font-black">
+              <PillButton variant="pink" showArrow className="px-6 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base font-black shadow-md">
                 {hero.primaryBtnText || "Explore TUMU"}
               </PillButton>
             </Link>
             {hero.secondaryBtnText ? (
               <Link href={hero.secondaryBtnLink || "/flavours"}>
-                <PillButton variant="outline" showArrow className="px-5 py-2.5 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base font-black">
+                <PillButton variant="outline" showArrow className="px-6 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm lg:text-base font-black">
                   {hero.secondaryBtnText}
                 </PillButton>
               </Link>
