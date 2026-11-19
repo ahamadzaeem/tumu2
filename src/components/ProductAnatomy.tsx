@@ -136,10 +136,10 @@ export default function ProductAnatomy() {
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#FAF4E7]/40 via-transparent to-transparent z-10" />
         </div>
 
-        {/* ─── MAIN SECTION TITLE (Fades out smoothly on initial scroll) ─── */}
+        {/* ─── MAIN SECTION TITLE (Top Right, Fades out smoothly on initial scroll) ─── */}
         <motion.div 
           style={{ opacity: opacityTitle }}
-          className="absolute left-6 sm:left-12 lg:left-16 xl:left-20 top-24 lg:top-32 z-30 pointer-events-none"
+          className="absolute right-6 sm:right-12 lg:right-16 xl:right-20 top-24 lg:top-32 z-30 pointer-events-none flex flex-col items-end text-right"
         >
           <span className="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-2 block font-black">
             ANATOMY OF PERFECTION
