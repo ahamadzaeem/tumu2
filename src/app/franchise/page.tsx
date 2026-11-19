@@ -156,10 +156,11 @@ export default function FranchisePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
             <div className="flex flex-col items-start">
               <span className="font-heading text-[18px] xs:text-[20px] sm:text-2xl lg:text-[26px] text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
-                FOUR FORMATS.
+                THREE FORMATS.
               </span>
-              <h2 className="text-[34px] xs:text-[38px] sm:text-[46px] lg:text-5xl font-black uppercase tracking-tight text-[#162B3A] leading-tight">
-                ONE VIRAL BRAND. <span className="text-[#DB3E59]">IT'S TUMU.</span>
+              <h2 className="text-[34px] xs:text-[38px] sm:text-[46px] lg:text-5xl font-black uppercase tracking-tight leading-tight">
+                <span className="block text-[#162B3A]">ONE VIRAL BRAND.</span>
+                <span className="block text-[#DB3E59]">IT&apos;S TUMU.</span>
               </h2>
               <div className="w-12 h-1 bg-[#DB3E59] mt-4" />
             </div>
