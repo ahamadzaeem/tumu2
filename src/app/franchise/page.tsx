@@ -126,10 +126,6 @@ export default function FranchisePage() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="max-w-[340px] sm:max-w-[380px] lg:max-w-[400px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
           >
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
-              FRANCHISE WITH TUMU
-            </span>
-
             <h1 className="text-3xl sm:text-4xl lg:text-[46px] font-black uppercase tracking-tight leading-[0.95] mb-5">
               <span className="block text-[#162B3A]">WHO SAYS NO</span>
               <span className="block text-[#DB3E59]">TO A VIRAL</span>
@@ -141,7 +137,7 @@ export default function FranchisePage() {
             <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
 
             <p className="text-[#162B3A] font-semibold text-sm sm:text-base leading-relaxed max-w-[340px] sm:max-w-[370px] mb-8">
-              Bring the <strong className="font-black text-[#162B3A]">Japan-made TUMU experience</strong> to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.
+              Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.
             </p>
 
             <a href="#form">
