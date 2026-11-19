@@ -68,7 +68,7 @@ export default function Flavours() {
         
         {/* Section Header */}
         <div className="mb-8 text-left">
-          <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-heading tracking-tight leading-none uppercase text-[#DB3E59] drop-shadow-sm">
+          <h2 className="font-black uppercase tracking-tight leading-[0.92] text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)] text-[#162B3A]">
             FLAVOURS
           </h2>
         </div>
@@ -95,7 +95,7 @@ export default function Flavours() {
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#162B3A] font-black text-center text-xs sm:text-sm lg:text-base leading-tight px-1 group-hover:text-[#DB3E59] transition-colors">
+              <h3 className="text-[#162B3A] font-black text-center text-xs sm:text-sm lg:text-base leading-tight px-1 group-hover:text-white transition-colors">
                 {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
