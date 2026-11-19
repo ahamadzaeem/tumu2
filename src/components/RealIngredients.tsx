@@ -41,11 +41,13 @@ export default function RealIngredients() {
       {/* Right Side Text Content (approx 38% width on desktop) */}
       <div className="w-full lg:w-[38%] relative bg-[#F8F4EC] p-8 sm:p-12 lg:p-16 xl:p-20 flex flex-col justify-center items-start">
         
-        <span className="text-[#DB3E59] font-black text-sm sm:text-base uppercase tracking-[0.2em] mb-2">
+        {/* Eyebrow - Matching Hero font format */}
+        <span className="font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
           {real.eyebrow || "JUST 3 STEPS."}
         </span>
 
-        <h2 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black tracking-tight leading-[0.95] uppercase mb-6 text-[#162B3A]">
+        {/* Main Heading - Matching Hero font format */}
+        <h2 className="font-black uppercase tracking-tight leading-[0.92] mb-6 text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)]">
           <span className="block text-[#162B3A]">UNIQUELY</span>
           <span className="block text-[#DB3E59]">DELICIOUS.</span>
         </h2>
