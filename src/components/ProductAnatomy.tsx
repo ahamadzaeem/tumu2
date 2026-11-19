@@ -148,16 +148,16 @@ export default function ProductAnatomy() {
         {/* ─── MAIN SECTION TITLE (Top Right, Fades out smoothly on initial scroll) ─── */}
         <motion.div 
           style={{ opacity: opacityTitle }}
-          className="absolute right-4 sm:right-12 lg:right-16 xl:right-20 top-20 sm:top-24 lg:top-32 z-30 pointer-events-none flex flex-col items-end text-right"
+          className="absolute right-4 sm:right-12 lg:right-16 xl:right-20 top-20 sm:top-24 lg:top-28 z-30 pointer-events-none flex flex-col items-end text-right"
         >
-          <span className="font-heading text-[10px] sm:text-xs lg:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-1.5 sm:mb-2 block font-black">
+          <span className="font-heading text-[18px] xs:text-[20px] sm:text-2xl lg:text-[26px] text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
             ANATOMY OF PERFECTION
           </span>
-          <h2 className="text-2xl xs:text-[28px] sm:text-[44px] lg:text-5xl font-black tracking-tight leading-[0.95] uppercase text-[#162B3A] mb-3 sm:mb-4">
-            <span className="block">WHAT&apos;S INSIDE</span>
+          <h2 className="font-black uppercase tracking-tight leading-[0.92] mb-6 text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)]">
+            <span className="block text-[#162B3A]">WHAT&apos;S INSIDE</span>
             <span className="block text-[#DB3E59]">A TUMU</span>
           </h2>
-          <div className="w-12 sm:w-16 h-1 sm:h-1.5 bg-[#DB3E59]" />
+          <div className="w-14 sm:w-20 h-1 sm:h-1.5 bg-[#DB3E59]" />
         </motion.div>
 
         {/* ─── 3-STEP FEATURE ANNOTATIONS OVERLAY (Docked bottom on mobile, left on desktop) ─── */}
