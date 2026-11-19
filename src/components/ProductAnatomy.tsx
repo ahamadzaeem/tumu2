@@ -124,7 +124,7 @@ export default function ProductAnatomy() {
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <video
             ref={videoRef}
-            src="/videos/tumu_product_scroll.mp4"
+            src="/videos/tumo_dessert_animation.mp4"
             poster="/videos/tumu_product_poster.jpg"
             onLoadedMetadata={handleLoadedMetadata}
             playsInline
