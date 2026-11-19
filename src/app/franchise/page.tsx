@@ -24,13 +24,13 @@ import {
 export default function FranchisePage() {
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [selectedFormat, setSelectedFormat] = useState<"ALL" | "KIOSK" | "OUTLET" | "TRUCK">("ALL");
+  const [selectedFormat, setSelectedFormat] = useState<"ALL" | "KIOSK_1" | "KIOSK_2" | "STORE" | "TRUCK">("ALL");
   const [formData, setFormData] = useState({
     contactPerson: "",
     company: "",
     contactNumber: "",
     email: "",
-    format: "Mall Kiosk",
+    format: "Kiosk 1",
     comments: ""
   });
 
@@ -157,7 +157,7 @@ export default function FranchisePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
             <div className="flex flex-col items-start">
               <span className="font-heading text-[18px] xs:text-[20px] sm:text-2xl lg:text-[26px] text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
-                THREE FORMATS.
+                FOUR FORMATS.
               </span>
               <h2 className="text-[34px] xs:text-[38px] sm:text-[46px] lg:text-5xl font-black uppercase tracking-tight text-[#162B3A] leading-tight">
                 ONE VIRAL BRAND. <span className="text-[#DB3E59]">IT'S TUMU.</span>
@@ -167,20 +167,25 @@ export default function FranchisePage() {
 
             {/* Filter Pills */}
             <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-              {(["ALL", "KIOSK", "OUTLET", "TRUCK"] as const).map((fmt) => (
+              {(
+                [
+                  { id: "ALL", label: "All Formats" },
+                  { id: "KIOSK_1", label: "Kiosk 1" },
+                  { id: "KIOSK_2", label: "Kiosk 2" },
+                  { id: "STORE", label: "Store" },
+                  { id: "TRUCK", label: "Outdoor Truck" },
+                ] as const
+              ).map((fmt) => (
                 <button
-                  key={fmt}
-                  onClick={() => setSelectedFormat(fmt)}
+                  key={fmt.id}
+                  onClick={() => setSelectedFormat(fmt.id)}
                   className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                    selectedFormat === fmt
+                    selectedFormat === fmt.id
                       ? "bg-[#DB3E59] text-white shadow-md scale-105"
                       : "bg-white/80 hover:bg-white text-[#162B3A] border border-black/5"
                   }`}
                 >
-                  {fmt === "ALL" && "All Formats"}
-                  {fmt === "KIOSK" && "Mall Kiosk"}
-                  {fmt === "OUTLET" && "Retail Outlet"}
-                  {fmt === "TRUCK" && "Food Truck"}
+                  {fmt.label}
                 </button>
               ))}
             </div>
@@ -189,9 +194,9 @@ export default function FranchisePage() {
           <div className="flex flex-col gap-20 sm:gap-28">
 
             {/* ════════════════════════════════════════════════════════════
-                FORMAT 1: MALL KIOSK
+                FORMAT 1: KIOSK 1 (Island Concept)
                ════════════════════════════════════════════════════════════ */}
-            {(selectedFormat === "ALL" || selectedFormat === "KIOSK") && (
+            {(selectedFormat === "ALL" || selectedFormat === "KIOSK_1") && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -206,46 +211,123 @@ export default function FranchisePage() {
                       <span className="px-3.5 py-1 rounded-full bg-[#55D2DF]/20 text-[#162B3A] font-black text-xs uppercase tracking-wider">
                         Format 01
                       </span>
-                      <span className="text-xs font-bold text-[#DB3E59] tracking-widest uppercase">
-                        
-                      </span>
                     </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      Kiosk <span className="text-[#DB3E59]">- 150 sq. ft. approx.</span>
+                      Kiosk 1 <span className="text-[#DB3E59]">- 150 sq. ft. approx.</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.
                     </p>
                   </div>
 
-                  {/* Quick Specs Badges */}
+                  {/* Quick Specs Badges (Clean & Simple without symbols) */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      📐 Footprint: <strong>150 sq. ft. approx.</strong>
+                      Footprint: <strong>150 sq. ft. approx.</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      ⚡ Setup: <strong>3 – 4 Weeks</strong>
+                      Setup: <strong>3 – 4 Weeks</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      👥 Staff: <strong>1 – 2 Baristas</strong>
+                      Staff: <strong>1 – 2 Baristas</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                      💰 Low CapEx &amp; Fast ROI
+                      Low CapEx &amp; Fast ROI
                     </span>
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-sm sm:text-base text-[#162B3A]/85 font-medium leading-relaxed max-w-4xl">
-                  A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.
-                </p>
+                {/* Visual Showcase (2 Best Images) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/kiosk1_exterior.jpg"
+                      alt="TUMU Kiosk 1 Branded Corner & Neon Logo"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      Branded Corner &amp; Luminous 3D Neon
+                    </div>
+                  </div>
 
-                {/* Visual Showcase (3-Image Composition) */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                    <Image
+                      src="/images/tumu/formats/kiosk1_counter.jpg"
+                      alt="TUMU Kiosk 1 Service Counter Perspective"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                      Service Counter &amp; Atrium Perspective
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2 flex justify-end">
+                  <a
+                    href="#form"
+                    onClick={() => setFormData({ ...formData, format: "Kiosk 1" })}
+                    className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
+                  >
+                    <span>Apply for Kiosk 1</span>
+                    <span>→</span>
+                  </a>
+                </div>
+              </motion.div>
+            )}
+
+
+            {/* ════════════════════════════════════════════════════════════
+                FORMAT 2: KIOSK 2 (Canopy Design)
+               ════════════════════════════════════════════════════════════ */}
+            {(selectedFormat === "ALL" || selectedFormat === "KIOSK_2") && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
+              >
+                {/* Header & Badges */}
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="px-3.5 py-1 rounded-full bg-[#55D2DF]/20 text-[#162B3A] font-black text-xs uppercase tracking-wider">
+                        Format 02
+                      </span>
+                    </div>
+                    <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                      Kiosk 2 <span className="text-[#DB3E59]">- 150 sq. ft. approx.</span>
+                    </h3>
+                    <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                      A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.
+                    </p>
+                  </div>
+
+                  {/* Quick Specs Badges (Clean & Simple without symbols) */}
+                  <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      Footprint: <strong>150 sq. ft. approx.</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      Setup: <strong>3 – 4 Weeks</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                      Staff: <strong>1 – 2 Baristas</strong>
+                    </span>
+                    <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                      High-Traffic Mall Turnkey
+                    </span>
+                  </div>
+                </div>
+
+                {/* Visual Showcase (2 Best Images) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
                     <Image
                       src="/images/tumu/formats/kiosk_elevation.jpg"
-                      alt="TUMU Mall Kiosk Front Elevation"
+                      alt="TUMU Kiosk 2 Front Elevation"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
@@ -257,24 +339,12 @@ export default function FranchisePage() {
                   <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
                     <Image
                       src="/images/tumu/formats/kiosk_perspective.jpg"
-                      alt="TUMU Mall Kiosk 3D Perspective"
+                      alt="TUMU Kiosk 2 3D Perspective"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
-                      Perspective Angle
-                    </div>
-                  </div>
-
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/kiosk_side.jpg"
-                      alt="TUMU Mall Kiosk Side Canopy"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
-                      Canopy &amp; Vertical Neon
+                      Perspective Angle &amp; Striped Canopy
                     </div>
                   </div>
                 </div>
@@ -282,10 +352,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "Mall Kiosk" })}
+                    onClick={() => setFormData({ ...formData, format: "Kiosk 2" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Mall Kiosk</span>
+                    <span>Apply for Kiosk 2</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -294,9 +364,9 @@ export default function FranchisePage() {
 
 
             {/* ════════════════════════════════════════════════════════════
-                FORMAT 2: RETAIL OUTLET
+                FORMAT 3: STORE (Retail Outlet)
                ════════════════════════════════════════════════════════════ */}
-            {(selectedFormat === "ALL" || selectedFormat === "OUTLET") && (
+            {(selectedFormat === "ALL" || selectedFormat === "STORE") && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -309,10 +379,7 @@ export default function FranchisePage() {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <span className="px-3.5 py-1 rounded-full bg-[#DB3E59]/20 text-[#DB3E59] font-black text-xs uppercase tracking-wider">
-                        Format 02
-                      </span>
-                      <span className="text-xs font-bold text-[#162B3A] tracking-widest uppercase">
-                        
+                        Format 03
                       </span>
                     </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
@@ -323,29 +390,24 @@ export default function FranchisePage() {
                     </p>
                   </div>
 
-                  {/* Quick Specs Badges */}
+                  {/* Quick Specs Badges (Clean & Simple without symbols) */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      📐 Footprint: <strong>300 sq. ft. approx.</strong>
+                      Footprint: <strong>300 sq. ft. approx.</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      ⚡ Setup: <strong>5 – 8 Weeks</strong>
+                      Setup: <strong>5 – 8 Weeks</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      👥 Staff: <strong>2 – 4 Staff</strong>
+                      Staff: <strong>2 – 4 Staff</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#55D2DF]/20 text-[#162B3A] border border-[#55D2DF]/40 font-black">
-                      ✨ Live Bakery Theater &amp; Cafe Seating
+                      Live Bakery Theater &amp; Cafe Seating
                     </span>
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-sm sm:text-base text-[#162B3A]/85 font-medium leading-relaxed max-w-4xl">
-                  An expanded store format offering enhanced service space and a more immersive TUMU experience.
-                </p>
-
-                {/* Visual Showcase (2-Image Side by Side) */}
+                {/* Visual Showcase (2 Best Images) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
                     <Image
@@ -375,10 +437,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "Retail Outlet" })}
+                    onClick={() => setFormData({ ...formData, format: "Store" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Retail Outlet</span>
+                    <span>Apply for Store</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -387,7 +449,7 @@ export default function FranchisePage() {
 
 
             {/* ════════════════════════════════════════════════════════════
-                FORMAT 3: FOOD TRUCK & TRAILER
+                FORMAT 4: OUTDOOR TRUCK
                ════════════════════════════════════════════════════════════ */}
             {(selectedFormat === "ALL" || selectedFormat === "TRUCK") && (
               <motion.div
@@ -403,43 +465,35 @@ export default function FranchisePage() {
                     <div className="flex items-center gap-3 mb-2">
                       <span className="px-3.5 py-1 rounded-full bg-[#162B3A] text-white font-black text-xs uppercase tracking-wider flex items-center gap-1.5">
                         <Truck className="w-3.5 h-3.5" />
-                        <span>Format 03</span>
-                      </span>
-                      <span className="text-xs font-bold text-[#DB3E59] tracking-widest uppercase">
-                        
+                        <span>Format 04</span>
                       </span>
                     </div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      TUMU outdoor <span className="text-[#DB3E59]">food truck</span>
+                      Outdoor <span className="text-[#DB3E59]">Truck</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       A versatile mobile concept designed for events, festivals, catering, and outdoor activations.
                     </p>
                   </div>
 
-                  {/* Quick Specs Badges */}
+                  {/* Quick Specs Badges (Clean & Simple without symbols) */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      🚚 Mobility: <strong>Versatile Mobile Concept</strong>
+                      Mobility: <strong>Versatile Mobile Concept</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      ⚡ Setup: <strong>Plug &amp; Play</strong>
+                      Setup: <strong>Plug &amp; Play</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      👥 Staff: <strong>1 – 2 Operators</strong>
+                      Staff: <strong>1 – 2 Operators</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#55D2DF]/20 text-[#162B3A] border border-[#55D2DF]/40 font-black">
-                      🎪 Events, Festivals &amp; Catering
+                      Events, Festivals &amp; Catering
                     </span>
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-sm sm:text-base text-[#162B3A]/85 font-medium leading-relaxed max-w-4xl">
-                  A versatile mobile concept designed for events, festivals, catering, and outdoor activations, bringing TUMU’s freshly baked signature pastries directly to customers.
-                </p>
-
-                {/* Visual Showcase (Wide Trailer Hero) */}
+                {/* Visual Showcase (Only 1 Image) */}
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group">
                   <Image
                     src="/images/tumu/formats/truck_trailer.jpg"
@@ -455,10 +509,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "Food Truck" })}
+                    onClick={() => setFormData({ ...formData, format: "Outdoor Truck" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Food Truck</span>
+                    <span>Apply for Outdoor Truck</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -940,11 +994,12 @@ export default function FranchisePage() {
                       <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-2">
                         Preferred Franchise Format *
                       </label>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                         {[
-                          { key: "Mall Kiosk", label: "Mall Kiosk", sub: "80–200 sq.ft." },
-                          { key: "Retail Outlet", label: "Retail Outlet", sub: "250–600 sq.ft." },
-                          { key: "Food Truck", label: "Food Truck", sub: "Mobile Trailer" },
+                          { key: "Kiosk 1", label: "Kiosk 1", sub: "150 sq. ft." },
+                          { key: "Kiosk 2", label: "Kiosk 2", sub: "150 sq. ft." },
+                          { key: "Store", label: "Store", sub: "300 sq. ft." },
+                          { key: "Outdoor Truck", label: "Outdoor Truck", sub: "Mobile Trailer" },
                         ].map((fmt) => {
                           const isActive = formData.format === fmt.key;
                           return (
