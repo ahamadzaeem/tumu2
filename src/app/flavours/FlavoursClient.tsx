@@ -537,16 +537,14 @@ export default function FlavoursClient() {
   // Track active collection on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const c0 = document.getElementById("cream-card-0");
-      const c1 = document.getElementById("cream-card-1");
-      const c2 = document.getElementById("cream-card-2");
-      const c3 = document.getElementById("cream-card-3");
-      const cards = [c0, c1, c2, c3];
-      const threshold = window.innerHeight * 0.4;
+      const isMobile = window.innerWidth < 768;
+      const prefix = isMobile ? "cream-card-mobile-" : "cream-card-";
+      const threshold = window.innerHeight * 0.45;
       let current = 0;
-      cards.forEach((card, idx) => {
-        if (card) {
-          const rect = card.getBoundingClientRect();
+      [0, 1, 2, 3].forEach((idx) => {
+        const el = document.getElementById(`${prefix}${idx}`);
+        if (el) {
+          const rect = el.getBoundingClientRect();
           if (rect.top <= threshold) {
             current = idx;
           }
@@ -562,10 +560,13 @@ export default function FlavoursClient() {
 
   const scrollToCard = (idx: number) => {
     setActiveCard(idx);
-    if (typeof window !== "undefined" && window.innerWidth >= 768) {
-      const el = document.getElementById(`cream-card-${idx}`);
+    if (typeof window !== "undefined") {
+      const isMobile = window.innerWidth < 768;
+      const prefix = isMobile ? "cream-card-mobile-" : "cream-card-";
+      const el = document.getElementById(`${prefix}${idx}`);
       if (el) {
-        const y = el.getBoundingClientRect().top + window.pageYOffset - 140;
+        const offset = isMobile ? 70 : 140;
+        const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
@@ -739,68 +740,64 @@ export default function FlavoursClient() {
             </div>
 
             {/* ══════════════════════════════════════════════════════════════
-                MOBILE VIEW (< md): In-Place Interactive Tab Switcher
+                MOBILE VIEW (< md): Dedicated Scroll Card Overlapping Stack
                 ══════════════════════════════════════════════════════════════ */}
-            <div className="block md:hidden relative z-10 w-full max-w-lg mx-auto">
+            <div className="block md:hidden relative z-10 w-full max-w-md mx-auto">
               {COLLECTIONS_DATA.map((col, idx) => (
                 <div
                   key={col.id}
-                  className={`transition-all duration-300 rounded-[28px] ${col.bgGradient} border border-white/25 p-5 shadow-2xl flex flex-col justify-start ${
-                    activeCard === idx ? "block animate-in fade-in zoom-in-95 duration-200" : "hidden"
-                  }`}
+                  id={`cream-card-mobile-${idx}`}
+                  className={`sticky ${
+                    idx === 0
+                      ? "top-16 z-10 mb-36"
+                      : idx === 1
+                      ? "top-20 z-20 mb-36"
+                      : idx === 2
+                      ? "top-24 z-30 mb-36"
+                      : "top-28 z-40 mb-6"
+                  } rounded-[28px] ${col.bgGradient} border border-white/25 p-4 sm:p-5 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] min-h-[460px] h-[460px] flex flex-col justify-between transition-all duration-300`}
                 >
-                  {/* Mobile Card Header */}
-                  <div className="flex items-center justify-between gap-2 mb-4 border-b border-white/20 pb-3">
-                    <h3 className={`font-sans font-black text-xl ${col.titleColor} tracking-tight uppercase leading-none`}>
-                      {col.title}
-                    </h3>
-                    <div className="flex items-center gap-1.5">
-                      <span className={`font-sans text-[10px] font-bold uppercase tracking-wider ${col.badgeBg} ${col.badgeText} px-2.5 py-1 rounded-full shadow-sm shrink-0`}>
-                        {col.badge}
-                      </span>
-                      <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/85 bg-white/15 px-2 py-1 rounded-full">
-                        {col.items.length}
-                      </span>
+                  <div>
+                    {/* Mobile Header */}
+                    <div className="flex items-center justify-between gap-2 mb-3 border-b border-white/20 pb-2.5">
+                      <h3 className={`font-sans font-black text-lg ${col.titleColor} tracking-tight uppercase leading-none`}>
+                        {col.title}
+                      </h3>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`font-sans text-[9px] font-bold uppercase tracking-wider ${col.badgeBg} ${col.badgeText} px-2.5 py-1 rounded-full shadow-sm shrink-0`}>
+                          {col.badge}
+                        </span>
+                        <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-white/85 bg-white/15 px-2 py-1 rounded-full">
+                          {col.items.length}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 2-Column Compact Grid for Mobile */}
+                    <div className="grid grid-cols-2 gap-2">
+                      {col.items.map((item) => (
+                        <div
+                          key={item.name}
+                          className="flex flex-col justify-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-2.5 h-[62px]"
+                        >
+                          <div className="flex items-center gap-1.5 mb-0.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
+                            <span className="font-sans font-bold text-white text-xs leading-tight truncate">
+                              {item.name}
+                            </span>
+                          </div>
+                          <p className="font-sans text-[10px] text-white/80 leading-snug pl-3 font-normal line-clamp-1">
+                            {item.desc}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  {/* Mobile Card Flavours List */}
-                  <div className="space-y-2.5">
-                    {col.items.map((item) => (
-                      <div
-                        key={item.name}
-                        className="flex flex-col justify-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3"
-                      >
-                        <div className="flex items-center gap-2 mb-0.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
-                          <span className="font-sans font-bold text-white text-sm sm:text-base tracking-normal leading-tight">
-                            {item.name}
-                          </span>
-                        </div>
-                        <p className="font-sans text-[11px] sm:text-xs text-white/80 leading-snug pl-3.5 font-normal">
-                          {item.desc}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Mobile Quick Navigation Footer */}
-                  <div className="mt-4 pt-3 border-t border-white/15 flex items-center justify-between text-xs text-white/70 font-sans">
-                    <button
-                      onClick={() => scrollToCard((activeCard + 3) % 4)}
-                      className="text-white/80 hover:text-white font-bold flex items-center gap-1 cursor-pointer py-1"
-                    >
-                      &larr; Prev
-                    </button>
-                    <span className="text-[11px] opacity-60 font-mono">
-                      {activeCard + 1} of 4
-                    </span>
-                    <button
-                      onClick={() => scrollToCard((activeCard + 1) % 4)}
-                      className="text-white/80 hover:text-white font-bold flex items-center gap-1 cursor-pointer py-1"
-                    >
-                      Next &rarr;
-                    </button>
+                  {/* Card Footer Micro-bar */}
+                  <div className="pt-2 border-t border-white/15 flex items-center justify-between text-[10px] text-white/65 font-mono">
+                    <span>COLLECTION 0{idx + 1} OF 04</span>
+                    <span>SCROLL TO OVERLAP &darr;</span>
                   </div>
                 </div>
               ))}
