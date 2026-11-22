@@ -755,12 +755,12 @@ export default function FlavoursClient() {
                       : idx === 2
                       ? "top-24 z-30 mb-36"
                       : "top-28 z-40 mb-6"
-                  } rounded-[28px] ${col.bgGradient} border border-white/25 p-4 sm:p-5 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] min-h-[460px] h-[460px] flex flex-col justify-between transition-all duration-300`}
+                  } rounded-[28px] ${col.bgGradient} border border-white/25 p-4 sm:p-5 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] min-h-[490px] h-[490px] flex flex-col justify-between transition-all duration-300`}
                 >
                   <div>
                     {/* Mobile Header */}
                     <div className="flex items-center justify-between gap-2 mb-3 border-b border-white/20 pb-2.5">
-                      <h3 className={`font-sans font-black text-lg ${col.titleColor} tracking-tight uppercase leading-none`}>
+                      <h3 className={`font-sans font-black text-lg sm:text-xl ${col.titleColor} tracking-tight uppercase leading-none`}>
                         {col.title}
                       </h3>
                       <div className="flex items-center gap-1.5">
@@ -773,20 +773,20 @@ export default function FlavoursClient() {
                       </div>
                     </div>
 
-                    {/* 2-Column Compact Grid for Mobile */}
-                    <div className="grid grid-cols-2 gap-2">
+                    {/* 1-Column Full-Width List for Mobile with 100% visible subtext */}
+                    <div className="space-y-2 max-h-[380px] overflow-y-auto pr-1">
                       {col.items.map((item) => (
                         <div
                           key={item.name}
-                          className="flex flex-col justify-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-2.5 h-[62px]"
+                          className="flex flex-col justify-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-3.5 py-2.5 transition-all"
                         >
-                          <div className="flex items-center gap-1.5 mb-0.5">
+                          <div className="flex items-center gap-2 mb-1">
                             <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
-                            <span className="font-sans font-bold text-white text-xs leading-tight truncate">
+                            <span className="font-sans font-bold text-white text-sm leading-tight">
                               {item.name}
                             </span>
                           </div>
-                          <p className="font-sans text-[10px] text-white/80 leading-snug pl-3 font-normal line-clamp-1">
+                          <p className="font-sans text-xs text-white/90 leading-relaxed pl-3.5 font-normal">
                             {item.desc}
                           </p>
                         </div>
