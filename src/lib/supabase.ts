@@ -49,7 +49,7 @@ export interface StoreLocation {
 export const DEFAULT_FLAVORS: Flavor[] = [
   {
     id: "matcha_green_tea",
-    name: "Matcha Green Tea",
+    name: "Uji Matcha",
     category: "ASIAN INSPIRED",
     description: "Authentic Kyoto Uji matcha cream with an earthy and sweet profile.",
     image: "/images/tumu/flavour_v3_04_matcha_green_tea.png",
@@ -63,7 +63,7 @@ export const DEFAULT_FLAVORS: Flavor[] = [
   },
   {
     id: "vanilla",
-    name: "Vanilla Bean Dream",
+    name: "Tokyo Vanilla Cloud",
     category: "CLASSIC",
     description: "Classic Madagascar vanilla bean folded into rich Hokkaido cream.",
     image: "/images/tumu/flavour_v3_02_vanilla.png",
@@ -77,7 +77,7 @@ export const DEFAULT_FLAVORS: Flavor[] = [
   },
   {
     id: "pistachio_crunch",
-    name: "Pistachio Crunch",
+    name: "Pistachio Royale",
     category: "SIGNATURE",
     description: "Roasted Bronte pistachios blended for nutty perfection with a crunchy finish.",
     image: "/images/tumu/flavour_v3_08_pistachio_crunch.png",
@@ -91,7 +91,7 @@ export const DEFAULT_FLAVORS: Flavor[] = [
   },
   {
     id: "strawberry_bliss",
-    name: "Strawberry Bliss",
+    name: "Strawberry Crush",
     category: "FRUIT BLENDS",
     description: "Sweet Japanese strawberries folded into light and velvety whipped cream.",
     image: "/images/tumu/flavour_v3_05_strawberry_bliss.png",
@@ -105,7 +105,7 @@ export const DEFAULT_FLAVORS: Flavor[] = [
   },
   {
     id: "dark_chocolate",
-    name: "Double Dark Chocolate",
+    name: "Cacao Noir",
     category: "CLASSIC",
     description: "Single-origin cocoa blend with rich bittersweet velvety cream.",
     image: "/images/tumu/flavour_v3_01_dark_chocolate.png",
@@ -119,7 +119,7 @@ export const DEFAULT_FLAVORS: Flavor[] = [
   },
   {
     id: "tiramisu_indulgence",
-    name: "Tiramisu Indulgence",
+    name: "Dolce Tiramisu",
     category: "SIGNATURE",
     description: "Espresso-soaked savoiardi flavour with mascarpone cream and cocoa dust.",
     image: "/images/tumu/flavour_v3_07_tiramisu_indulgence.png",
@@ -129,6 +129,34 @@ export const DEFAULT_FLAVORS: Flavor[] = [
     tagBg: "bg-white",
     tagText: "text-[#C68E17]",
     display_order: 6,
+    is_active: true
+  },
+  {
+    id: "mango_sol",
+    name: "Mango Sol",
+    category: "FRUIT BLENDS",
+    description: "Sun-ripened tropical mango puree swirled into refreshing cream.",
+    image: "/images/tumu/flavour_v2_new_mango.png",
+    color: "bg-[#FFE066]",
+    textColor: "text-[#1A2E44]",
+    tag: "Fruit Blends",
+    tagBg: "bg-[#1A2E44]",
+    tagText: "text-white",
+    display_order: 7,
+    is_active: true
+  },
+  {
+    id: "biscoff_velvet",
+    name: "Biscoff Velvet",
+    category: "SIGNATURE",
+    description: "Iconic caramelized biscuit butter topped with crushed crunchy Biscoff.",
+    image: "/images/tumu/flavour_v3_03_lotus_biscoff.png",
+    color: "bg-[#D35400]",
+    textColor: "text-white",
+    tag: "Signature",
+    tagBg: "bg-white",
+    tagText: "text-[#D35400]",
+    display_order: 8,
     is_active: true
   }
 ];
@@ -210,7 +238,7 @@ export async function fetchFlavors(): Promise<Flavor[]> {
       .select("*")
       .eq("is_active", true)
       .order("display_order", { ascending: true })
-      .limit(6);
+      .limit(8);
 
     if (error || !data || data.length === 0) {
       return DEFAULT_FLAVORS;

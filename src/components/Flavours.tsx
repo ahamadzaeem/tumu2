@@ -73,7 +73,12 @@ export default function Flavours() {
             {content?.home?.flavoursSection?.headingLine1 || "CRUSTÉ FLAVOURS"}
           </h2>
 
-          {/* 2. Tagline directly underneath heading */}
+          {/* 2. Subtitle */}
+          <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-[#162B3A] tracking-normal mt-2 sm:mt-3">
+            {content?.home?.flavoursSection?.subheading || "Explore TUMU’s signature crispy shell flavours"}
+          </p>
+
+          {/* 3. Tagline directly underneath heading */}
           {(() => {
             const rawDesc = content?.home?.flavoursSection?.description || "25 Unique Flavours, Made with Japan's Finest Ingredients";
             const [headlinePart, subtitlePart] = rawDesc.includes(",")
@@ -94,7 +99,7 @@ export default function Flavours() {
             );
           })()}
 
-          {/* 3. More Flavours Tab directly underneath text */}
+          {/* 4. More Flavours Tab directly underneath text */}
           <div className="mt-6 sm:mt-8">
             <a
               href={content?.home?.flavoursSection?.btnLink || "/flavours"}
@@ -106,29 +111,29 @@ export default function Flavours() {
           </div>
         </div>
 
-        {/* 6 Flavour Product Lineup */}
+        {/* 8 Flavour Product Lineup */}
         <div
           ref={scrollRef}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 pt-2 items-end justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 pt-2 items-end justify-items-center"
         >
-          {flavours.slice(0, 6).map((item) => (
+          {flavours.slice(0, 8).map((item) => (
             <div
               key={item.id}
-              className="relative shrink-0 flex flex-col items-center group cursor-pointer w-full max-w-[180px]"
+              className="relative shrink-0 flex flex-col items-center group cursor-pointer w-full max-w-[155px]"
             >
               {/* Product Image */}
-              <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[360px] mb-4 flex justify-center">
+              <div className="relative w-full h-[220px] sm:h-[260px] lg:h-[300px] mb-3 flex justify-center">
                 <Image
                   src={item.image}
                   alt={item.name}
                   fill
                   className="object-contain object-center drop-shadow-[0_16px_24px_rgba(0,0,0,0.2)] transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
-                  sizes="(max-width: 640px) 150px, (max-width: 1024px) 220px, 280px"
+                  sizes="(max-width: 640px) 140px, (max-width: 1024px) 180px, 220px"
                 />
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#162B3A] font-black text-center text-xs sm:text-sm lg:text-base leading-tight px-1 group-hover:text-white transition-colors">
+              <h3 className="text-[#162B3A] font-black text-center text-xs sm:text-sm lg:text-[15px] leading-tight px-1 group-hover:text-white transition-colors">
                 {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
