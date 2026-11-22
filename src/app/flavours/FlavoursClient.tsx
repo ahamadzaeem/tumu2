@@ -552,148 +552,125 @@ export default function FlavoursClient() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: 25 CHILLED CREAM FILLINGS (Concept 3: Confectionery Swatch Palette)
+            SECTION 2: 25 CHILLED CREAM FILLINGS (Apple / SpaceX Precision Spec Module)
             ══════════════════════════════════════════════════════════════ */}
         <section className="mt-32 pt-16 border-t border-[#162B3A]/10">
           
-          {/* Confectionery Palette Outer Frame */}
-          <div className="rounded-[44px] bg-gradient-to-b from-[#FFFDF9] via-[#FAF6F0] to-[#FFFDF9] border border-[#162B3A]/8 p-6 sm:p-10 lg:p-14 shadow-[0_10px_40px_rgba(22,43,58,0.03)] relative">
+          {/* Aerospace Dark Precision Canvas */}
+          <div className="rounded-[40px] bg-[#0B151F] border border-white/10 p-6 sm:p-10 lg:p-14 shadow-[0_25px_80px_rgba(11,21,31,0.4)] relative overflow-hidden text-white">
             
-            {/* Header: Pantone Culinary Collection */}
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-12 border-b border-[#162B3A]/10">
+            {/* Subtle SpaceX Orbital Grid Glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#DB3E59]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#50B8B1]/10 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Header: Mission Telemetry & Specs */}
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-12 border-b border-white/10">
               <div>
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-[#162B3A]/10 shadow-sm text-xs font-bold tracking-widest uppercase mb-3 text-[#162B3A]">
-                  <span className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-[#F7C844]" />
-                    <span className="w-2 h-2 rounded-full bg-[#F27A9B]" />
-                    <span className="w-2 h-2 rounded-full bg-[#3E6333]" />
-                    <span className="w-2 h-2 rounded-full bg-[#5E3A24]" />
-                  </span>
-                  <span>THE CREAM SWATCH PALETTE // 25 CULINARY HUES</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-mono tracking-widest uppercase mb-3 text-white/70">
+                  <span className="w-2 h-2 rounded-full bg-[#50B8B1] animate-pulse" />
+                  <span>SYSTEM 25 // DUAL-CORE INJECTION</span>
                 </div>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#162B3A] leading-[0.92]">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[0.92]">
                   CREAM FILLINGS
                 </h2>
-                <p className="font-heading text-sm sm:text-base lg:text-lg text-[#162B3A]/80 tracking-wide mt-2 font-bold uppercase">
+                <p className="text-sm sm:text-base lg:text-lg text-white/70 tracking-wide mt-2 font-medium">
                   Cream fillings made with Japanese imports blended with premium local ingredients
                 </p>
               </div>
 
-              {/* Volume Filter Pills */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+              {/* Apple-Style Segmented Navigation Bar */}
+              <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
                 {CREAM_COLLECTIONS.map((col) => (
                   <button
                     key={col.id}
                     onClick={() => setSelectedCreamCollection(col.id)}
-                    className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-2 ${
+                    className={`px-4 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                       selectedCreamCollection === col.id
-                        ? "bg-[#DB3E59] text-white shadow-md scale-105"
-                        : "bg-white text-[#162B3A]/80 hover:bg-white hover:text-[#DB3E59] border border-[#162B3A]/10"
+                        ? "bg-[#DB3E59] text-white shadow-[0_0_20px_rgba(219,62,89,0.4)]"
+                        : "text-white/60 hover:text-white hover:bg-white/[0.06]"
                     }`}
                   >
                     <span>{col.label}</span>
-                    <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
-                      selectedCreamCollection === col.id ? "bg-white/25 text-white" : "bg-[#162B3A]/5 text-[#162B3A]/60"
-                    }`}>
-                      {col.count}
-                    </span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* 4 Curated Collection Volumes */}
-            <div className="space-y-16">
+            {/* 4 Collection Stages */}
+            <div className="relative z-10 space-y-14">
               {displayedGroups.map((group) => (
                 <div key={group.id} className="relative">
                   
                   {/* Collection Header (Bold Red Headline from Client Spec) */}
-                  <div className="flex flex-wrap items-end justify-between gap-3 pb-4 mb-8 border-b border-[#162B3A]/10">
+                  <div className="flex flex-wrap items-end justify-between gap-3 pb-4 mb-6 border-b border-white/10">
                     <div>
-                      <span className="text-xs font-black tracking-widest text-[#162B3A]/50 uppercase font-mono block mb-1">
-                        {group.japaneseTitle}
+                      <span className="text-[11px] font-mono font-bold tracking-widest text-[#50B8B1] uppercase block mb-1">
+                        {group.japaneseTitle} // STAGE SPECIFICATION
                       </span>
-                      <h3 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-[#DB3E59] tracking-tight uppercase leading-none">
+                      <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#DB3E59] tracking-tight uppercase leading-none">
                         {group.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#162B3A]/70 font-semibold uppercase tracking-wider mt-1.5">
+                      <p className="text-xs sm:text-sm text-white/50 font-mono tracking-wider mt-1.5">
                         {group.subtitle}
                       </p>
                     </div>
-                    <span className="px-4 py-1.5 rounded-full bg-white border border-[#162B3A]/10 shadow-xs text-xs font-black uppercase tracking-wider text-[#162B3A]">
+                    <span className="px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-mono font-bold uppercase tracking-widest text-white/80">
                       {group.countBadge}
                     </span>
                   </div>
 
-                  {/* Pantone Swatch Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                  {/* Precision Spec Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                     {group.items.map((filling) => (
                       <div
                         key={filling.id}
-                        className="group relative bg-white rounded-[32px] p-6 border border-[#162B3A]/8 shadow-[0_4px_24px_rgba(22,43,58,0.03)] hover:shadow-[0_20px_48px_rgba(22,43,58,0.12)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden cursor-pointer backdrop-blur-sm"
+                        className="group relative rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-[#DB3E59]/50 transition-all duration-300 p-5 flex flex-col justify-between cursor-pointer hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.5)]"
                       >
-                        {/* Top Card Bar: Swatch ID & Tag */}
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="font-mono text-[11px] font-bold text-[#162B3A]/50 tracking-wider">
-                            SWATCH // {filling.number}
-                          </span>
-                          <span className="text-[10px] font-black uppercase tracking-wider text-[#162B3A]/70 bg-[#FAF4E7] px-2.5 py-0.5 rounded-full border border-black/5">
-                            {filling.tag}
-                          </span>
-                        </div>
-
-                        {/* Dimensional Cream Swatch / Pipette Swirl */}
-                        <div className="relative w-28 h-28 mx-auto my-3 flex items-center justify-center">
-                          {/* Ambient Color Glow */}
-                          <div
-                            className="absolute inset-0 rounded-full blur-xl opacity-30 group-hover:opacity-55 transition-opacity duration-300"
-                            style={{ backgroundColor: filling.swatchHex }}
-                          />
-                          
-                          {/* 3D Glossy Cream Swatch Circle */}
-                          <div
-                            className="w-24 h-24 rounded-full relative shadow-[0_8px_24px_rgba(0,0,0,0.12)] border-2 border-white transition-all duration-300 group-hover:scale-105 group-hover:rotate-6 flex items-center justify-center"
-                            style={{
-                              background: `radial-gradient(circle at 35% 28%, ${filling.highlightHex}, ${filling.swatchHex} 52%, ${filling.shadowHex} 100%)`
-                            }}
-                          >
-                            {/* Whipped Piped Cream Texture */}
-                            <svg viewBox="0 0 100 100" className="w-full h-full absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none">
-                              <path d="M50 14 C66 18, 82 34, 82 50 C82 68, 66 84, 50 84 C32 84, 18 68, 18 50 C18 36, 28 22, 42 16 C54 12, 64 24, 62 36 C60 44, 48 48, 42 45" fill="none" stroke="white" strokeWidth="4.5" strokeLinecap="round" />
-                            </svg>
-                            {/* Specular Gloss Reflection */}
-                            <div className="absolute top-3 left-4 w-4 h-2 bg-white/80 rounded-full rotate-[-30deg] blur-[0.4px]" />
-                            {/* Embedded Japanese Kanji / Katakana Stamp */}
-                            <span className="relative z-10 text-white font-black text-xs sm:text-sm drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)] tracking-widest select-none">
-                              {filling.japaneseLabel}
+                        <div>
+                          {/* Top Row: Monospace Code & LED Telemetry Dot */}
+                          <div className="flex items-center justify-between gap-2 mb-3">
+                            <span className="font-mono text-[11px] font-bold text-white/40 tracking-wider">
+                              SPEC // {filling.number}
                             </span>
+                            <div className="flex items-center gap-2">
+                              <span
+                                className="w-2.5 h-2.5 rounded-full border border-white/20 shadow-sm"
+                                style={{
+                                  backgroundColor: filling.swatchHex,
+                                  boxShadow: `0 0 10px ${filling.swatchHex}80`
+                                }}
+                              />
+                              <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-white/40 bg-white/[0.05] px-2 py-0.5 rounded">
+                                {filling.tag}
+                              </span>
+                            </div>
                           </div>
-                        </div>
 
-                        {/* Flavour Name & Flavor Profile */}
-                        <div className="text-center my-2">
-                          <h4 className="font-heading font-black text-xl sm:text-2xl text-[#162B3A] group-hover:text-[#DB3E59] transition-colors leading-tight mb-1">
+                          {/* Flavour Name */}
+                          <h4 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#DB3E59] transition-colors tracking-tight mb-1">
                             {filling.name}
                           </h4>
-                          <span className="inline-block text-[11px] font-black uppercase tracking-wider text-[#DB3E59] mb-2 font-mono">
+
+                          {/* Flavor Formulation Profile */}
+                          <span className="block text-[11px] font-mono text-[#50B8B1] tracking-wide mb-2.5">
                             {filling.flavorProfile}
                           </span>
-                          <p className="text-xs sm:text-[13px] text-[#162B3A]/70 font-medium leading-relaxed px-1">
+
+                          {/* Description */}
+                          <p className="text-xs text-white/65 font-normal leading-relaxed mb-4">
                             {filling.description}
                           </p>
                         </div>
 
-                        {/* Bottom Swatch Spec Strip */}
-                        <div className="pt-3 mt-4 border-t border-[#162B3A]/8 flex items-center justify-between text-[11px]">
-                          <span className="inline-flex items-center gap-1.5 font-mono font-bold text-[#162B3A]/60 uppercase">
-                            <span className="w-2.5 h-2.5 rounded-full border border-black/10 shadow-2xs" style={{ backgroundColor: filling.swatchHex }} />
-                            <span>{filling.swatchHex}</span>
+                        {/* Bottom Telemetry Strip */}
+                        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
+                          <span className="text-white/40 text-[10px] uppercase tracking-wider">
+                            PAIR: <span className="text-white/80 font-bold">{filling.bestShellPairing}</span>
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-wider text-[#162B3A]/50">
-                            Pair: <span className="text-[#162B3A]/80 font-bold">{filling.bestShellPairing}</span>
+                          <span className="text-white/70 font-bold tracking-widest text-[11px]">
+                            {filling.japaneseLabel}
                           </span>
                         </div>
-
                       </div>
                     ))}
                   </div>
@@ -702,25 +679,24 @@ export default function FlavoursClient() {
               ))}
             </div>
 
-            {/* Bottom Pairing Summary Card */}
-            <div className="mt-16 p-8 sm:p-10 rounded-[32px] bg-white border border-[#162B3A]/10 shadow-[0_8px_30px_rgba(22,43,58,0.05)] flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] text-xs font-black uppercase tracking-wider mb-2">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>200 FLAVOUR COMBINATIONS</span>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+            {/* Bottom 200 Combinations Telemetry HUD */}
+            <div className="relative z-10 mt-16 p-6 sm:p-8 rounded-3xl bg-white/[0.04] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div>
+                <span className="text-[11px] font-mono font-bold tracking-widest text-[#50B8B1] uppercase block mb-1">
+                  MATRIX // 200 DUAL-CORE CONFIGURATIONS
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold uppercase text-white">
                   8 Crunchy Shells × 25 Cream Fillings
                 </h3>
-                <p className="text-xs sm:text-sm text-[#162B3A]/75 font-medium mt-1 max-w-xl">
-                  Match your favourite crispy Crusté shell with any freshly whipped chilled cream filling for a customized Japanese patisserie experience.
+                <p className="text-xs sm:text-sm text-white/60 font-normal mt-1 max-w-xl">
+                  Engineered for maximum crunch and temperature contrast. Inject freshly chilled cream into any Crusté outer shell.
                 </p>
               </div>
               <Link
                 href="/locations"
-                className="shrink-0 px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md hover:scale-105 active:scale-95"
+                className="shrink-0 px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-mono font-bold uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(219,62,89,0.4)] hover:scale-105 active:scale-95"
               >
-                Find A Store Near You →
+                Locate Nearest Store →
               </Link>
             </div>
 
