@@ -603,13 +603,13 @@ export default function FlavoursClient() {
 
             {/* Section Header */}
             <div className="relative z-10 max-w-4xl mx-auto text-center mb-6 sm:mb-8">
-              <span className="text-white/80 text-xs sm:text-sm font-black uppercase tracking-[0.25em] block mb-2 font-mono">
+              <span className="font-sans text-white/80 text-xs sm:text-sm font-bold uppercase tracking-[0.25em] block mb-2">
                 COLLECTIONS &bull; 25 UNIQUE FILLINGS
               </span>
-              <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-white mb-3 leading-none drop-shadow-sm">
+              <h2 className="font-sans text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-white mb-3 leading-none drop-shadow-sm">
                 CREAM FILLINGS
               </h2>
-              <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 tracking-wide font-medium max-w-3xl mx-auto">
+              <p className="font-sans text-base sm:text-lg lg:text-xl text-white/95 tracking-normal font-medium max-w-3xl mx-auto">
                 Cream fillings made with Japanese imports blended with premium local ingredients
               </p>
             </div>
@@ -628,7 +628,7 @@ export default function FlavoursClient() {
               </div>
 
               {/* Japanese Motto Pill */}
-              <div className="mt-2 px-6 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm font-black uppercase tracking-widest text-center shadow-lg">
+              <div className="mt-2 px-6 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white font-sans text-xs sm:text-sm font-bold uppercase tracking-widest text-center shadow-lg">
                 外はサクッ、中はとろり &bull; Crisp Outside, Cream Inside
               </div>
             </div>
@@ -644,7 +644,7 @@ export default function FlavoursClient() {
                 <button
                   key={tab.label}
                   onClick={() => scrollToCard(idx)}
-                  className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-black tracking-wider uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                  className={`px-4 sm:px-5 py-2.5 rounded-full font-sans text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                     activeCard === idx
                       ? "bg-white text-[#162B3A] shadow-xl scale-105"
                       : "bg-white/15 text-white/85 hover:bg-white/25 hover:text-white border border-white/15"
@@ -655,7 +655,7 @@ export default function FlavoursClient() {
                     style={{ backgroundColor: tab.dot }}
                   />
                   <span>{tab.label}</span>
-                  <span className="opacity-60 text-[11px] font-mono">({tab.count})</span>
+                  <span className="opacity-60 text-[11px] font-sans font-medium">({tab.count})</span>
                 </button>
               ))}
             </div>
@@ -666,19 +666,19 @@ export default function FlavoursClient() {
               {/* ── CARD 0: CLASSIC COLLECTION (Cerulean Indigo) ── */}
               <div 
                 id="cream-card-0"
-                className="sticky top-24 sm:top-28 z-10 rounded-[36px] sm:rounded-[48px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-36 sm:mb-48 transition-all duration-300 min-h-[380px] sm:min-h-[420px] flex flex-col justify-between"
+                className="sticky top-24 sm:top-28 z-10 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-36 sm:mb-48 transition-all duration-300 min-h-[440px] sm:min-h-[460px] flex flex-col"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
-                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF4A6E] tracking-tight uppercase leading-none drop-shadow-sm">
+                    <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF4A6E] tracking-tight uppercase leading-none drop-shadow-sm">
                       CLASSIC COLLECTION
                     </h3>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#164473] bg-white px-3.5 py-1.5 rounded-full shadow-sm font-mono">
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#164473] bg-white px-3.5 py-1.5 rounded-full shadow-sm">
                       CRISP &amp; CREAM
                     </span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1.5 rounded-full font-mono">
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
                       06 Flavours
                     </span>
                   </div>
@@ -698,35 +698,30 @@ export default function FlavoursClient() {
                       className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
                     >
                       <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
+                      <span className="font-sans font-semibold sm:font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
                         {name}
                       </span>
                     </div>
                   ))}
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-mono">
-                  <span>COLLECTION 01 OF 04</span>
-                  <span>JAPANESE CHILLED CREAM</span>
                 </div>
               </div>
 
               {/* ── CARD 1: SIGNATURE CREATIONS (Biscoff Velvet Terracotta) ── */}
               <div 
                 id="cream-card-1"
-                className="sticky top-28 sm:top-32 z-20 rounded-[36px] sm:rounded-[48px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-10 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-36 sm:mb-48 transition-all duration-300 min-h-[460px] sm:min-h-[500px] flex flex-col justify-between"
+                className="sticky top-28 sm:top-32 z-20 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-9 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-36 sm:mb-48 transition-all duration-300 min-h-[440px] sm:min-h-[460px] flex flex-col"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
-                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFE699] tracking-tight uppercase leading-none drop-shadow-sm">
+                    <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFE699] tracking-tight uppercase leading-none drop-shadow-sm">
                       SIGNATURE CREATIONS
                     </h3>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-white bg-[#DB3E59] px-3.5 py-1.5 rounded-full shadow-sm font-mono">
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white bg-[#DB3E59] px-3.5 py-1.5 rounded-full shadow-sm">
                       CRISP &amp; CREAM
                     </span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1.5 rounded-full font-mono">
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
                       09 Flavours
                     </span>
                   </div>
@@ -749,35 +744,30 @@ export default function FlavoursClient() {
                       className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
                     >
                       <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
+                      <span className="font-sans font-semibold sm:font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
                         {name}
                       </span>
                     </div>
                   ))}
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-mono">
-                  <span>COLLECTION 02 OF 04</span>
-                  <span>GLOBAL INGREDIENTS</span>
                 </div>
               </div>
 
               {/* ── CARD 2: ARTISAN SELECTION (Kyoto Uji Matcha Green) ── */}
               <div 
                 id="cream-card-2"
-                className="sticky top-32 sm:top-36 z-30 rounded-[36px] sm:rounded-[48px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-36 sm:mb-48 transition-all duration-300 min-h-[380px] sm:min-h-[420px] flex flex-col justify-between"
+                className="sticky top-32 sm:top-36 z-30 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-9 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-36 sm:mb-48 transition-all duration-300 min-h-[440px] sm:min-h-[460px] flex flex-col"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
-                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#B4F7C3] tracking-tight uppercase leading-none drop-shadow-sm">
+                    <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#B4F7C3] tracking-tight uppercase leading-none drop-shadow-sm">
                       ARTISAN SELECTION
                     </h3>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#143B1F] bg-[#D4F7DC] px-3.5 py-1.5 rounded-full shadow-sm font-mono">
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#143B1F] bg-[#D4F7DC] px-3.5 py-1.5 rounded-full shadow-sm">
                       CRISP &amp; CREAM
                     </span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1.5 rounded-full font-mono">
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
                       06 Flavours
                     </span>
                   </div>
@@ -797,41 +787,36 @@ export default function FlavoursClient() {
                       className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
                     >
                       <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
+                      <span className="font-sans font-semibold sm:font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
                         {name}
                       </span>
                     </div>
                   ))}
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-mono">
-                  <span>COLLECTION 03 OF 04</span>
-                  <span>KYOTO &amp; REGIONAL HERITAGE</span>
                 </div>
               </div>
 
               {/* ── CARD 3: INDIAN INSPIRATIONS (Dolce Tiramisu / Saffron Gold) ── */}
               <div 
                 id="cream-card-3"
-                className="sticky top-36 sm:top-40 z-40 rounded-[36px] sm:rounded-[48px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-10 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300 min-h-[380px] sm:min-h-[420px] flex flex-col justify-between"
+                className="sticky top-36 sm:top-40 z-40 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-9 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300 min-h-[440px] sm:min-h-[460px] flex flex-col"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
-                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFFFFF] tracking-tight uppercase leading-none drop-shadow-sm">
+                    <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFFFFF] tracking-tight uppercase leading-none drop-shadow-sm">
                       INDIAN INSPIRATIONS
                     </h3>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#4A2E03] bg-[#FEF08A] px-3.5 py-1.5 rounded-full shadow-sm font-mono">
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#4A2E03] bg-[#FEF08A] px-3.5 py-1.5 rounded-full shadow-sm">
                       CRISP &amp; CREAM
                     </span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1.5 rounded-full font-mono">
+                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
                       04 Flavours
                     </span>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
                   {[
                     "Banarasi Paan",
                     "Gulab Jamun",
@@ -843,16 +828,11 @@ export default function FlavoursClient() {
                       className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
                     >
                       <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
+                      <span className="font-sans font-semibold sm:font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
                         {name}
                       </span>
                     </div>
                   ))}
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-mono">
-                  <span>COLLECTION 04 OF 04</span>
-                  <span>ROYAL HERITAGE &amp; SPICE</span>
                 </div>
               </div>
 
