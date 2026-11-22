@@ -755,12 +755,12 @@ export default function FlavoursClient() {
                       : idx === 2
                       ? "top-24 z-30 mb-36"
                       : "top-28 z-40 mb-6"
-                  } rounded-[28px] ${col.bgGradient} border border-white/25 p-4 sm:p-5 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] min-h-[490px] h-[490px] flex flex-col justify-between transition-all duration-300`}
+                  } rounded-[28px] ${col.bgGradient} border border-white/25 p-4 sm:p-5 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] min-h-[400px] h-[400px] flex flex-col justify-between transition-all duration-300`}
                 >
                   <div>
                     {/* Mobile Header */}
-                    <div className="flex items-center justify-between gap-2 mb-3 border-b border-white/20 pb-2.5">
-                      <h3 className={`font-sans font-black text-lg sm:text-xl ${col.titleColor} tracking-tight uppercase leading-none`}>
+                    <div className="flex items-center justify-between gap-2 mb-3.5 border-b border-white/20 pb-2.5">
+                      <h3 className={`font-sans font-black text-lg ${col.titleColor} tracking-tight uppercase leading-none`}>
                         {col.title}
                       </h3>
                       <div className="flex items-center gap-1.5">
@@ -773,22 +773,17 @@ export default function FlavoursClient() {
                       </div>
                     </div>
 
-                    {/* 1-Column Full-Width List for Mobile with 100% visible subtext */}
-                    <div className="space-y-2 max-h-[380px] overflow-y-auto pr-1">
+                    {/* 2-Column Names-Only Grid for Mobile */}
+                    <div className="grid grid-cols-2 gap-2">
                       {col.items.map((item) => (
                         <div
                           key={item.name}
-                          className="flex flex-col justify-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-3.5 py-2.5 transition-all"
+                          className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-3 py-2.5"
                         >
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
-                            <span className="font-sans font-bold text-white text-sm leading-tight">
-                              {item.name}
-                            </span>
-                          </div>
-                          <p className="font-sans text-xs text-white/90 leading-relaxed pl-3.5 font-normal">
-                            {item.desc}
-                          </p>
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
+                          <span className="font-sans font-bold text-white text-xs sm:text-sm leading-tight truncate">
+                            {item.name}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -811,7 +806,7 @@ export default function FlavoursClient() {
               {/* ── CARD 0: CLASSIC COLLECTION (Cerulean Indigo) ── */}
               <div 
                 id="cream-card-0"
-                className="sticky top-24 sm:top-28 z-10 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-36 sm:mb-48 transition-all duration-300 min-h-[500px] sm:min-h-[520px] lg:min-h-[540px] flex flex-col"
+                className="sticky top-24 sm:top-28 z-10 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-36 sm:mb-48 transition-all duration-300 min-h-[420px] sm:min-h-[440px] flex flex-col justify-start"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
@@ -829,21 +824,16 @@ export default function FlavoursClient() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
                   {COLLECTIONS_DATA[0].items.map((item) => (
                     <div
                       key={item.name}
-                      className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
+                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
                     >
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <span className="w-2 h-2 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                        <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                          {item.name}
-                        </span>
-                      </div>
-                      <p className="font-sans text-xs sm:text-[13px] text-white/80 leading-relaxed pl-4 font-normal line-clamp-2">
-                        {item.desc}
-                      </p>
+                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                      <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                        {item.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -852,7 +842,7 @@ export default function FlavoursClient() {
               {/* ── CARD 1: SIGNATURE CREATIONS (Biscoff Velvet Terracotta) ── */}
               <div 
                 id="cream-card-1"
-                className="sticky top-28 sm:top-32 z-20 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-9 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-36 sm:mb-48 transition-all duration-300 min-h-[500px] sm:min-h-[520px] lg:min-h-[540px] flex flex-col"
+                className="sticky top-28 sm:top-32 z-20 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-9 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-36 sm:mb-48 transition-all duration-300 min-h-[420px] sm:min-h-[440px] flex flex-col justify-start"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
@@ -870,21 +860,16 @@ export default function FlavoursClient() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
                   {COLLECTIONS_DATA[1].items.map((item) => (
                     <div
                       key={item.name}
-                      className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
+                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
                     >
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <span className="w-2 h-2 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                        <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                          {item.name}
-                        </span>
-                      </div>
-                      <p className="font-sans text-xs sm:text-[13px] text-white/80 leading-relaxed pl-4 font-normal line-clamp-2">
-                        {item.desc}
-                      </p>
+                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                      <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                        {item.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -893,7 +878,7 @@ export default function FlavoursClient() {
               {/* ── CARD 2: ARTISAN SELECTION (Kyoto Uji Matcha Green) ── */}
               <div 
                 id="cream-card-2"
-                className="sticky top-32 sm:top-36 z-30 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-9 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-36 sm:mb-48 transition-all duration-300 min-h-[500px] sm:min-h-[520px] lg:min-h-[540px] flex flex-col"
+                className="sticky top-32 sm:top-36 z-30 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-9 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-36 sm:mb-48 transition-all duration-300 min-h-[420px] sm:min-h-[440px] flex flex-col justify-start"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
@@ -911,21 +896,16 @@ export default function FlavoursClient() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
                   {COLLECTIONS_DATA[2].items.map((item) => (
                     <div
                       key={item.name}
-                      className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
+                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
                     >
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <span className="w-2 h-2 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                        <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                          {item.name}
-                        </span>
-                      </div>
-                      <p className="font-sans text-xs sm:text-[13px] text-white/80 leading-relaxed pl-4 font-normal line-clamp-2">
-                        {item.desc}
-                      </p>
+                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                      <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                        {item.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -934,7 +914,7 @@ export default function FlavoursClient() {
               {/* ── CARD 3: INDIAN INSPIRATIONS (Dolce Tiramisu / Saffron Gold) ── */}
               <div 
                 id="cream-card-3"
-                className="sticky top-36 sm:top-40 z-40 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-9 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300 min-h-[500px] sm:min-h-[520px] lg:min-h-[540px] flex flex-col"
+                className="sticky top-36 sm:top-40 z-40 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-9 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300 min-h-[420px] sm:min-h-[440px] flex flex-col justify-start"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
@@ -952,21 +932,16 @@ export default function FlavoursClient() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
                   {COLLECTIONS_DATA[3].items.map((item) => (
                     <div
                       key={item.name}
-                      className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
+                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
                     >
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <span className="w-2 h-2 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                        <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                          {item.name}
-                        </span>
-                      </div>
-                      <p className="font-sans text-xs sm:text-[13px] text-white/80 leading-relaxed pl-4 font-normal line-clamp-2">
-                        {item.desc}
-                      </p>
+                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                      <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                        {item.name}
+                      </span>
                     </div>
                   ))}
                 </div>
