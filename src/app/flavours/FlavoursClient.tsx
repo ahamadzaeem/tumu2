@@ -33,11 +33,11 @@ interface CreamCollectionGroup {
 }
 
 const CREAM_COLLECTIONS = [
-  { id: "ALL", label: "All 25 Swatches", count: 25 },
-  { id: "Classic Collection", label: "Classic Vol. 01", count: 6 },
-  { id: "Signature Creations", label: "Signature Vol. 02", count: 9 },
-  { id: "Artisan Selection", label: "Artisan Vol. 03", count: 6 },
-  { id: "Indian Inspirations", label: "Indian Vol. 04", count: 4 },
+  { id: "ALL", label: "All Flavours", count: 25 },
+  { id: "Classic Collection", label: "Classic", count: 6 },
+  { id: "Signature Creations", label: "Signature", count: 9 },
+  { id: "Artisan Selection", label: "Artisan", count: 6 },
+  { id: "Indian Inspirations", label: "Indian", count: 4 },
 ];
 
 const CREAM_FILLINGS: CreamFilling[] = [
@@ -404,33 +404,33 @@ const CREAM_COLLECTION_GROUPS: CreamCollectionGroup[] = [
   {
     id: "Classic Collection",
     title: "CLASSIC COLLECTION",
-    japaneseTitle: "クラシック • VOL. 01",
+    japaneseTitle: "クラシック",
     subtitle: "Timeless Japanese & European Creams",
-    countBadge: "6 Swatches",
+    countBadge: "6 Flavours",
     items: CREAM_FILLINGS.filter((f) => f.collection === "Classic Collection"),
   },
   {
     id: "Signature Creations",
     title: "SIGNATURE CREATIONS",
-    japaneseTitle: "贅沢な味 • VOL. 02",
+    japaneseTitle: "シグネチャー",
     subtitle: "Decadent & Globally Celebrated Recipes",
-    countBadge: "9 Swatches",
+    countBadge: "9 Flavours",
     items: CREAM_FILLINGS.filter((f) => f.collection === "Signature Creations"),
   },
   {
     id: "Artisan Selection",
     title: "ARTISAN SELECTION",
-    japaneseTitle: "職人の技 • VOL. 03",
+    japaneseTitle: "職人の技",
     subtitle: "Middle Eastern Luxury & Kyoto Botanicals",
-    countBadge: "6 Swatches",
+    countBadge: "6 Flavours",
     items: CREAM_FILLINGS.filter((f) => f.collection === "Artisan Selection"),
   },
   {
     id: "Indian Inspirations",
     title: "INDIAN INSPIRATIONS",
-    japaneseTitle: "宮廷の香り • VOL. 04",
+    japaneseTitle: "伝統の香り",
     subtitle: "Royal Saffron, Aromatic Rose & Heritage Sweets",
-    countBadge: "4 Swatches",
+    countBadge: "4 Flavours",
     items: CREAM_FILLINGS.filter((f) => f.collection === "Indian Inspirations"),
   },
 ];
@@ -552,155 +552,132 @@ export default function FlavoursClient() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: 25 CHILLED CREAM FILLINGS (Apple / SpaceX Precision Spec Module)
+            SECTION 2: 25 CHILLED CREAM FILLINGS (Concept 1: Apple Studio Clean Grid)
             ══════════════════════════════════════════════════════════════ */}
-        <section className="mt-32 pt-16 border-t border-[#162B3A]/10">
+        <section className="mt-28 pt-16 border-t border-[#162B3A]/10">
           
-          {/* Aerospace Dark Precision Canvas */}
-          <div className="rounded-[40px] bg-[#0B151F] border border-white/10 p-6 sm:p-10 lg:p-14 shadow-[0_25px_80px_rgba(11,21,31,0.4)] relative overflow-hidden text-white">
-            
-            {/* Subtle SpaceX Orbital Grid Glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#DB3E59]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#50B8B1]/10 rounded-full blur-3xl pointer-events-none" />
-
-            {/* Header: Mission Telemetry & Specs */}
-            <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-12 border-b border-white/10">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-mono tracking-widest uppercase mb-3 text-white/70">
-                  <span className="w-2 h-2 rounded-full bg-[#50B8B1] animate-pulse" />
-                  <span>SYSTEM 25 // DUAL-CORE INJECTION</span>
-                </div>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[0.92]">
-                  CREAM FILLINGS
-                </h2>
-                <p className="text-sm sm:text-base lg:text-lg text-white/70 tracking-wide mt-2 font-medium">
-                  Cream fillings made with Japanese imports blended with premium local ingredients
-                </p>
-              </div>
-
-              {/* Apple-Style Segmented Navigation Bar */}
-              <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
-                {CREAM_COLLECTIONS.map((col) => (
-                  <button
-                    key={col.id}
-                    onClick={() => setSelectedCreamCollection(col.id)}
-                    className={`px-4 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-                      selectedCreamCollection === col.id
-                        ? "bg-[#DB3E59] text-white shadow-[0_0_20px_rgba(219,62,89,0.4)]"
-                        : "text-white/60 hover:text-white hover:bg-white/[0.06]"
-                    }`}
-                  >
-                    <span>{col.label}</span>
-                  </button>
-                ))}
-              </div>
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-12 border-b border-[#162B3A]/10">
+            <div>
+              <span className="text-[#DB3E59] text-xs font-black uppercase tracking-[0.2em] block mb-2">
+                CHILLED CREAM FILLINGS
+              </span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#162B3A] leading-[0.95]">
+                CREAM FILLINGS
+              </h2>
+              <p className="font-heading text-base sm:text-lg lg:text-xl text-[#162B3A]/80 tracking-wide mt-2 max-w-3xl font-medium">
+                Cream fillings made with Japanese imports blended with premium local ingredients
+              </p>
             </div>
 
-            {/* 4 Collection Stages */}
-            <div className="relative z-10 space-y-14">
-              {displayedGroups.map((group) => (
-                <div key={group.id} className="relative">
-                  
-                  {/* Collection Header (Bold Red Headline from Client Spec) */}
-                  <div className="flex flex-wrap items-end justify-between gap-3 pb-4 mb-6 border-b border-white/10">
-                    <div>
-                      <span className="text-[11px] font-mono font-bold tracking-widest text-[#50B8B1] uppercase block mb-1">
-                        {group.japaneseTitle} // STAGE SPECIFICATION
-                      </span>
-                      <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#DB3E59] tracking-tight uppercase leading-none">
-                        {group.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-white/50 font-mono tracking-wider mt-1.5">
-                        {group.subtitle}
-                      </p>
-                    </div>
-                    <span className="px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[11px] font-mono font-bold uppercase tracking-widest text-white/80">
-                      {group.countBadge}
-                    </span>
-                  </div>
-
-                  {/* Precision Spec Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                    {group.items.map((filling) => (
-                      <div
-                        key={filling.id}
-                        className="group relative rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-[#DB3E59]/50 transition-all duration-300 p-5 flex flex-col justify-between cursor-pointer hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.5)]"
-                      >
-                        <div>
-                          {/* Top Row: Monospace Code & LED Telemetry Dot */}
-                          <div className="flex items-center justify-between gap-2 mb-3">
-                            <span className="font-mono text-[11px] font-bold text-white/40 tracking-wider">
-                              SPEC // {filling.number}
-                            </span>
-                            <div className="flex items-center gap-2">
-                              <span
-                                className="w-2.5 h-2.5 rounded-full border border-white/20 shadow-sm"
-                                style={{
-                                  backgroundColor: filling.swatchHex,
-                                  boxShadow: `0 0 10px ${filling.swatchHex}80`
-                                }}
-                              />
-                              <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-white/40 bg-white/[0.05] px-2 py-0.5 rounded">
-                                {filling.tag}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Flavour Name */}
-                          <h4 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#DB3E59] transition-colors tracking-tight mb-1">
-                            {filling.name}
-                          </h4>
-
-                          {/* Flavor Formulation Profile */}
-                          <span className="block text-[11px] font-mono text-[#50B8B1] tracking-wide mb-2.5">
-                            {filling.flavorProfile}
-                          </span>
-
-                          {/* Description */}
-                          <p className="text-xs text-white/65 font-normal leading-relaxed mb-4">
-                            {filling.description}
-                          </p>
-                        </div>
-
-                        {/* Bottom Telemetry Strip */}
-                        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
-                          <span className="text-white/40 text-[10px] uppercase tracking-wider">
-                            PAIR: <span className="text-white/80 font-bold">{filling.bestShellPairing}</span>
-                          </span>
-                          <span className="text-white/70 font-bold tracking-widest text-[11px]">
-                            {filling.japaneseLabel}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                </div>
+            {/* Apple-Style Minimalist Filter Tabs */}
+            <div className="flex flex-wrap items-center gap-2">
+              {CREAM_COLLECTIONS.map((col) => (
+                <button
+                  key={col.id}
+                  onClick={() => setSelectedCreamCollection(col.id)}
+                  className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+                    selectedCreamCollection === col.id
+                      ? "bg-[#DB3E59] text-white shadow-sm"
+                      : "bg-white text-[#162B3A]/80 hover:text-[#DB3E59] border border-black/5 hover:border-black/10"
+                  }`}
+                >
+                  <span>{col.label}</span>
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                    selectedCreamCollection === col.id ? "bg-white/20 text-white" : "bg-black/5 text-[#162B3A]/50"
+                  }`}>
+                    {col.count}
+                  </span>
+                </button>
               ))}
             </div>
-
-            {/* Bottom 200 Combinations Telemetry HUD */}
-            <div className="relative z-10 mt-16 p-6 sm:p-8 rounded-3xl bg-white/[0.04] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-              <div>
-                <span className="text-[11px] font-mono font-bold tracking-widest text-[#50B8B1] uppercase block mb-1">
-                  MATRIX // 200 DUAL-CORE CONFIGURATIONS
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold uppercase text-white">
-                  8 Crunchy Shells × 25 Cream Fillings
-                </h3>
-                <p className="text-xs sm:text-sm text-white/60 font-normal mt-1 max-w-xl">
-                  Engineered for maximum crunch and temperature contrast. Inject freshly chilled cream into any Crusté outer shell.
-                </p>
-              </div>
-              <Link
-                href="/locations"
-                className="shrink-0 px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-mono font-bold uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(219,62,89,0.4)] hover:scale-105 active:scale-95"
-              >
-                Locate Nearest Store →
-              </Link>
-            </div>
-
           </div>
+
+          {/* 4 Collections */}
+          <div className="space-y-16">
+            {displayedGroups.map((group) => (
+              <div key={group.id}>
+                
+                {/* Collection Title (Bold Red Header from Specification) */}
+                <div className="flex flex-wrap items-end justify-between gap-3 pb-3 mb-6 border-b border-[#162B3A]/10">
+                  <div className="flex items-center gap-3">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E59]" />
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#DB3E59] tracking-tight uppercase leading-none">
+                      {group.title}
+                    </h3>
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#162B3A]/50">
+                    {group.countBadge}
+                  </span>
+                </div>
+
+                {/* Clean White Tiles Grid (Apple Studio) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                  {group.items.map((filling) => (
+                    <div
+                      key={filling.id}
+                      className="group relative bg-white rounded-2xl p-5 sm:p-6 border border-black/5 shadow-[0_2px_12px_rgba(22,43,58,0.02)] hover:shadow-[0_12px_28px_rgba(22,43,58,0.06)] transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+                    >
+                      <div>
+                        {/* Top Meta: Number & Tag */}
+                        <div className="flex items-center justify-between gap-2 mb-3">
+                          <span className="text-xs font-mono font-bold text-[#162B3A]/40">
+                            {filling.number}
+                          </span>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#162B3A]/60 bg-[#FAF4E7] px-2.5 py-0.5 rounded-full">
+                            {filling.tag}
+                          </span>
+                        </div>
+
+                        {/* Flavour Name */}
+                        <h4 className="font-heading font-black text-lg sm:text-xl text-[#162B3A] group-hover:text-[#DB3E59] transition-colors leading-tight mb-2">
+                          {filling.name}
+                        </h4>
+
+                        {/* Description */}
+                        <p className="text-xs sm:text-[13px] text-[#162B3A]/70 font-medium leading-relaxed">
+                          {filling.description}
+                        </p>
+                      </div>
+
+                      {/* Clean Subtle Footer */}
+                      <div className="pt-3 mt-4 border-t border-black/5 flex items-center justify-between text-[11px] text-[#162B3A]/40">
+                        <span className="font-medium">
+                          Pair: <span className="text-[#162B3A]/70 font-bold">{filling.bestShellPairing}</span>
+                        </span>
+                        <span className="font-medium text-xs">
+                          {filling.japaneseLabel}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+          {/* Clean 200 Combinations Summary Banner */}
+          <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-white border border-black/5 shadow-[0_4px_20px_rgba(22,43,58,0.03)] flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] block mb-1">
+                ENDLESS COMBINATIONS
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                8 Crunchy Shells × 25 Cream Fillings
+              </h3>
+              <p className="text-xs sm:text-sm text-[#162B3A]/70 font-medium mt-1 max-w-xl">
+                Choose any Crusté outer shell and pipe your favourite chilled cream fresh inside.
+              </p>
+            </div>
+            <Link
+              href="/locations"
+              className="shrink-0 px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-sm hover:scale-105 active:scale-95"
+            >
+              Find A Store Near You →
+            </Link>
+          </div>
+
         </section>
 
         {/* Bottom CTA for Franchise & Locations */}
