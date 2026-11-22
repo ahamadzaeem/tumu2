@@ -562,29 +562,11 @@ export default function FlavoursClient() {
 
   const scrollToCard = (idx: number) => {
     setActiveCard(idx);
-    if (typeof window !== "undefined") {
-      if (window.innerWidth >= 768) {
-        const el = document.getElementById(`cream-card-${idx}`);
-        if (el) {
-          const y = el.getBoundingClientRect().top + window.pageYOffset - 140;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        }
-      } else {
-        const mobileEl = document.getElementById(`cream-mobile-card-${idx}`);
-        if (mobileEl) {
-          mobileEl.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        }
-      }
-    }
-  };
-
-  const handleMobileScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const el = e.currentTarget;
-    if (el) {
-      const cardWidth = el.scrollWidth / 4;
-      const index = Math.min(3, Math.max(0, Math.round(el.scrollLeft / cardWidth)));
-      if (index !== activeCard) {
-        setActiveCard(index);
+    if (typeof window !== "undefined" && window.innerWidth >= 768) {
+      const el = document.getElementById(`cream-card-${idx}`);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 140;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
   };
@@ -757,75 +739,71 @@ export default function FlavoursClient() {
             </div>
 
             {/* ══════════════════════════════════════════════════════════════
-                MOBILE VIEW (< md): Swipeable Snap Carousel + Progress Dots
+                MOBILE VIEW (< md): In-Place Interactive Tab Switcher
                 ══════════════════════════════════════════════════════════════ */}
-            <div className="block md:hidden relative z-10 w-full">
-              <div 
-                className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 pb-2 no-scrollbar px-1 -mx-1"
-                onScroll={handleMobileScroll}
-              >
-                {COLLECTIONS_DATA.map((col, idx) => (
-                  <div
-                    key={col.id}
-                    id={`cream-mobile-card-${idx}`}
-                    className={`w-[86vw] max-w-[340px] shrink-0 snap-center rounded-[28px] ${col.bgGradient} border border-white/25 p-5 shadow-2xl flex flex-col justify-between min-h-[490px]`}
-                  >
-                    <div>
-                      {/* Mobile Card Header */}
-                      <div className="flex items-center justify-between gap-2 mb-4 border-b border-white/20 pb-3">
-                        <h3 className={`font-sans font-black text-lg ${col.titleColor} tracking-tight uppercase leading-none`}>
-                          {col.title}
-                        </h3>
-                        <span className={`font-sans text-[10px] font-bold uppercase tracking-wider ${col.badgeBg} ${col.badgeText} px-2.5 py-1 rounded-full shadow-sm shrink-0`}>
-                          {col.badge}
-                        </span>
-                      </div>
-
-                      {/* Mobile Card Flavours List */}
-                      <div className="space-y-2.5 max-h-[350px] overflow-y-auto pr-1">
-                        {col.items.map((item) => (
-                          <div
-                            key={item.name}
-                            className="flex flex-col justify-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3"
-                          >
-                            <div className="flex items-center gap-2 mb-0.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
-                              <span className="font-sans font-bold text-white text-sm tracking-normal leading-tight">
-                                {item.name}
-                              </span>
-                            </div>
-                            <p className="font-sans text-[11px] text-white/80 leading-snug pl-3.5 font-normal line-clamp-2">
-                              {item.desc}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Mobile Card Footer */}
-                    <div className="mt-3 pt-2 border-t border-white/15 flex items-center justify-between text-[11px] text-white/70 font-sans">
-                      <span>{col.count}</span>
-                      <span className="opacity-60">{idx + 1} of 4 &bull; Swipe &rarr;</span>
+            <div className="block md:hidden relative z-10 w-full max-w-lg mx-auto">
+              {COLLECTIONS_DATA.map((col, idx) => (
+                <div
+                  key={col.id}
+                  className={`transition-all duration-300 rounded-[28px] ${col.bgGradient} border border-white/25 p-5 shadow-2xl flex flex-col justify-start ${
+                    activeCard === idx ? "block animate-in fade-in zoom-in-95 duration-200" : "hidden"
+                  }`}
+                >
+                  {/* Mobile Card Header */}
+                  <div className="flex items-center justify-between gap-2 mb-4 border-b border-white/20 pb-3">
+                    <h3 className={`font-sans font-black text-xl ${col.titleColor} tracking-tight uppercase leading-none`}>
+                      {col.title}
+                    </h3>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`font-sans text-[10px] font-bold uppercase tracking-wider ${col.badgeBg} ${col.badgeText} px-2.5 py-1 rounded-full shadow-sm shrink-0`}>
+                        {col.badge}
+                      </span>
+                      <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/85 bg-white/15 px-2 py-1 rounded-full">
+                        {col.items.length}
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
 
-              {/* Mobile Carousel Pagination Dots */}
-              <div className="flex items-center justify-center gap-2 mt-3 mb-2">
-                {COLLECTIONS_DATA.map((col, idx) => (
-                  <button
-                    key={col.id}
-                    onClick={() => scrollToCard(idx)}
-                    className={`transition-all duration-300 rounded-full cursor-pointer ${
-                      activeCard === idx
-                        ? "w-7 h-2 bg-white shadow-sm"
-                        : "w-2 h-2 bg-white/40 hover:bg-white/70"
-                    }`}
-                    aria-label={`Go to ${col.title}`}
-                  />
-                ))}
-              </div>
+                  {/* Mobile Card Flavours List */}
+                  <div className="space-y-2.5">
+                    {col.items.map((item) => (
+                      <div
+                        key={item.name}
+                        className="flex flex-col justify-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3"
+                      >
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
+                          <span className="font-sans font-bold text-white text-sm sm:text-base tracking-normal leading-tight">
+                            {item.name}
+                          </span>
+                        </div>
+                        <p className="font-sans text-[11px] sm:text-xs text-white/80 leading-snug pl-3.5 font-normal">
+                          {item.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Mobile Quick Navigation Footer */}
+                  <div className="mt-4 pt-3 border-t border-white/15 flex items-center justify-between text-xs text-white/70 font-sans">
+                    <button
+                      onClick={() => scrollToCard((activeCard + 3) % 4)}
+                      className="text-white/80 hover:text-white font-bold flex items-center gap-1 cursor-pointer py-1"
+                    >
+                      &larr; Prev
+                    </button>
+                    <span className="text-[11px] opacity-60 font-mono">
+                      {activeCard + 1} of 4
+                    </span>
+                    <button
+                      onClick={() => scrollToCard((activeCard + 1) % 4)}
+                      className="text-white/80 hover:text-white font-bold flex items-center gap-1 cursor-pointer py-1"
+                    >
+                      Next &rarr;
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* ══════════════════════════════════════════════════════════════
