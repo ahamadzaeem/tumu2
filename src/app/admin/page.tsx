@@ -1434,7 +1434,7 @@ export default function AdminPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Bottom Headline (&quot;35 Unique Flavors, Made with Japan&apos;s Finest Ingredients&quot;)
+                    Headline Tagline (&quot;35 Unique Flavours, Made with Japan&apos;s Finest Ingredients&quot;)
                   </label>
                   <input
                     type="text"
@@ -1446,11 +1446,11 @@ export default function AdminPage() {
 
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Button Label (&quot;MORE FLAVORS&quot;)
+                    Button Label (&quot;MORE FLAVOURS&quot;)
                   </label>
                   <input
                     type="text"
-                    value={siteContent.home?.flavoursSection?.btnText || "MORE FLAVORS"}
+                    value={siteContent.home?.flavoursSection?.btnText || "MORE FLAVOURS"}
                     onChange={(e) => updateContentField("home", "flavoursSection", "btnText", e.target.value)}
                     className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
                   />

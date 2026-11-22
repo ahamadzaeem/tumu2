@@ -121,7 +121,7 @@ export const DEFAULT_FLAVORS: Flavor[] = [
     id: "tiramisu_indulgence",
     name: "Tiramisu Indulgence",
     category: "SIGNATURE",
-    description: "Espresso-soaked savoiardi flavor with mascarpone cream and cocoa dust.",
+    description: "Espresso-soaked savoiardi flavour with mascarpone cream and cocoa dust.",
     image: "/images/tumu/flavour_v3_07_tiramisu_indulgence.png",
     color: "bg-[#C68E17]",
     textColor: "text-white",
@@ -129,34 +129,6 @@ export const DEFAULT_FLAVORS: Flavor[] = [
     tagBg: "bg-white",
     tagText: "text-[#C68E17]",
     display_order: 6,
-    is_active: true
-  },
-  {
-    id: "mango_infusion",
-    name: "Mango Infusion",
-    category: "FRUIT BLENDS",
-    description: "Sun-ripened tropical mango puree swirled into refreshing cream.",
-    image: "/images/tumu/flavour_v2_new_mango.png",
-    color: "bg-[#FFE066]",
-    textColor: "text-[#1A2E44]",
-    tag: "Fruit Blends",
-    tagBg: "bg-[#1A2E44]",
-    tagText: "text-white",
-    display_order: 7,
-    is_active: true
-  },
-  {
-    id: "lotus_biscoff",
-    name: "Lotus Biscoff",
-    category: "SIGNATURE",
-    description: "Iconic caramelized biscuit butter topped with crushed crunchy Biscoff.",
-    image: "/images/tumu/flavour_v3_03_lotus_biscoff.png",
-    color: "bg-[#D35400]",
-    textColor: "text-white",
-    tag: "Signature",
-    tagBg: "bg-white",
-    tagText: "text-[#D35400]",
-    display_order: 8,
     is_active: true
   }
 ];
@@ -237,7 +209,8 @@ export async function fetchFlavors(): Promise<Flavor[]> {
       .from("flavors")
       .select("*")
       .eq("is_active", true)
-      .order("display_order", { ascending: true });
+      .order("display_order", { ascending: true })
+      .limit(6);
 
     if (error || !data || data.length === 0) {
       return DEFAULT_FLAVORS;

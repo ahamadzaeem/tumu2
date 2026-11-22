@@ -23,10 +23,10 @@ export default function Flavours() {
 
   const flavoursData = content?.home?.flavoursSection || {
     eyebrow: "FLAVOURS",
-    headingLine1: "A FLAVOUR",
-    headingLine2: "FOR EVERY MOOD",
-    description: "From timeless classics to bold Japanese-inspired creations, each TUMU is made to delight.",
-    btnText: "Explore All 12 Flavours & Matcha Desserts",
+    headingLine1: "CRUSTÉ FLAVOURS",
+    headingLine2: "",
+    description: "35 Unique Flavours, Made with Japan's Finest Ingredients",
+    btnText: "MORE FLAVOURS",
     btnLink: "/flavours"
   };
 
@@ -67,16 +67,49 @@ export default function Flavours() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-20">
         
         {/* Section Header */}
-        <div className="mb-8 text-left">
+        <div className="mb-10 sm:mb-14 text-left">
+          {/* 1. Heading */}
           <h2 className="font-black uppercase tracking-tight leading-[0.92] text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)] text-[#162B3A]">
-            FLAVOURS
+            {content?.home?.flavoursSection?.headingLine1 || "CRUSTÉ FLAVOURS"}
           </h2>
+
+          {/* 2. Tagline directly underneath heading */}
+          {(() => {
+            const rawDesc = content?.home?.flavoursSection?.description || "35 Unique Flavours, Made with Japan's Finest Ingredients";
+            const [headlinePart, subtitlePart] = rawDesc.includes(",")
+              ? rawDesc.split(/,\s*(.+)/)
+              : [rawDesc, ""];
+
+            return (
+              <div className="mt-4 sm:mt-5 space-y-1">
+                <p className="font-heading text-[18px] xs:text-[22px] sm:text-[26px] lg:text-[30px] font-black text-[#162B3A] uppercase tracking-tight leading-tight">
+                  {headlinePart ? `${headlinePart},` : "35 UNIQUE FLAVOURS,"}
+                </p>
+                {subtitlePart ? (
+                  <p className="font-heading text-[14px] xs:text-[16px] sm:text-[20px] lg:text-[22px] text-[#162B3A] uppercase tracking-wide leading-snug opacity-90">
+                    {subtitlePart}
+                  </p>
+                ) : null}
+              </div>
+            );
+          })()}
+
+          {/* 3. More Flavours Tab directly underneath text */}
+          <div className="mt-6 sm:mt-8">
+            <a
+              href={content?.home?.flavoursSection?.btnLink || "/flavours"}
+              className="inline-flex items-center gap-2 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm lg:text-base font-black uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+            >
+              <span>{content?.home?.flavoursSection?.btnText || "MORE FLAVOURS"}</span>
+              <span>→</span>
+            </a>
+          </div>
         </div>
 
         {/* 6 Flavour Product Lineup */}
         <div
           ref={scrollRef}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 pb-12 pt-2 items-end justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 pt-2 items-end justify-items-center"
         >
           {flavours.slice(0, 6).map((item) => (
             <div
@@ -103,37 +136,6 @@ export default function Flavours() {
             </div>
           ))}
         </div>
-
-        {/* Bottom Section - 35 Unique Flavors & MORE FLAVORS Button */}
-        {(() => {
-          const rawDesc = content?.home?.flavoursSection?.description || "35 Unique Flavors, Made with Japan's Finest Ingredients";
-          const [headlinePart, subtitlePart] = rawDesc.includes(",")
-            ? rawDesc.split(/,\s*(.+)/)
-            : [rawDesc, ""];
-
-          return (
-            <div className="mt-12 sm:mt-16 flex flex-col items-center text-center gap-6 sm:gap-8 max-w-3xl mx-auto px-4">
-              <div className="space-y-3 sm:space-y-4">
-                <h3 className="font-black uppercase tracking-tight leading-[0.92] text-[30px] xs:text-[36px] sm:text-[46px] lg:text-[clamp(3.2rem,5.5vw,4.5rem)] text-[#162B3A]">
-                  {headlinePart || "35 UNIQUE FLAVORS"}
-                </h3>
-                {subtitlePart ? (
-                  <p className="font-heading text-[15px] xs:text-[17px] sm:text-xl lg:text-2xl text-[#162B3A] uppercase tracking-wide leading-snug">
-                    {subtitlePart}
-                  </p>
-                ) : null}
-              </div>
-
-              <a
-                href={content?.home?.flavoursSection?.btnLink || "/flavours"}
-                className="inline-flex items-center gap-2 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm lg:text-base font-black uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-              >
-                <span>{content?.home?.flavoursSection?.btnText || "MORE FLAVORS"}</span>
-                <span>→</span>
-              </a>
-            </div>
-          );
-        })()}
       </div>
     </section>
   );
