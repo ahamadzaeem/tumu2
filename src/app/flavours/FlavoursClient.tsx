@@ -435,6 +435,86 @@ const CREAM_COLLECTION_GROUPS: CreamCollectionGroup[] = [
   },
 ];
 
+const COLLECTIONS_DATA = [
+  {
+    id: "classic",
+    title: "CLASSIC COLLECTION",
+    badge: "CRISP & CREAM",
+    count: "06 Flavours",
+    titleColor: "text-[#FF4A6E]",
+    bgGradient: "bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F]",
+    badgeBg: "bg-white",
+    badgeText: "text-[#164473]",
+    dot: "#60A5FA",
+    items: [
+      { name: "Original Custard", desc: "Golden Japanese custard cream with a velvety, comforting finish." },
+      { name: "Madagascar Vanilla", desc: "Rich Hokkaido cream infused with aromatic Madagascar bourbon vanilla beans." },
+      { name: "Belgian Chocolate", desc: "Silky whipped cream folded with melted single-origin Belgian cocoa." },
+      { name: "Strawberry Cream", desc: "Sweet, tangy Japanese strawberry puree swirled into cloud-soft cream." },
+      { name: "Sea Salt Caramel", desc: "Slow-simmered buttery caramel balanced with sea salt flakes." },
+      { name: "Pistachio Praline", desc: "Roasted Mediterranean pistachios stone-ground into a nutty, smooth paste." }
+    ]
+  },
+  {
+    id: "signature",
+    title: "SIGNATURE CREATIONS",
+    badge: "CRISP & CREAM",
+    count: "09 Flavours",
+    titleColor: "text-[#FFE699]",
+    bgGradient: "bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B]",
+    badgeBg: "bg-[#DB3E59]",
+    badgeText: "text-white",
+    dot: "#FB923C",
+    items: [
+      { name: "Dark Cacao", desc: "Intense 70% bittersweet dark cocoa cream for deep chocolate lovers." },
+      { name: "Lotus Biscoff Crumble", desc: "Spiced Belgian caramelized biscuit cream with crunchy cookie crumbles." },
+      { name: "Lotus Caramel", desc: "Decadent fusion of Biscoff spread and golden cooked caramel ribbons." },
+      { name: "Tiramisu Italiano", desc: "Espresso-soaked savoiardi flavor with sweet Italian mascarpone cream." },
+      { name: "Hazelnut Dulcey", desc: "Roasted Piedmont hazelnuts blended with toasted blonde chocolate cream." },
+      { name: "Alphonso Mango", desc: "Sun-ripened Ratnagiri Alphonso mango nectar whipped into silky cream." },
+      { name: "Nutella Supreme", desc: "Generously loaded roasted hazelnut and cocoa spread folded into filling." },
+      { name: "Kinder Bueno Bliss", desc: "Crispy wafer and creamy hazelnut milk chocolate filling." },
+      { name: "Snickers Temptation", desc: "Roasted crunchy peanuts, gooey caramel, and milk chocolate dream." }
+    ]
+  },
+  {
+    id: "artisan",
+    title: "ARTISAN SELECTION",
+    badge: "CRISP & CREAM",
+    count: "06 Flavours",
+    titleColor: "text-[#B4F7C3]",
+    bgGradient: "bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F]",
+    badgeBg: "bg-[#D4F7DC]",
+    badgeText: "text-[#143B1F]",
+    dot: "#4ADE80",
+    items: [
+      { name: "Pistachio Kunafa", desc: "Crispy butter-toasted kataifi kunafa layered with emerald pistachio cream." },
+      { name: "Persian Pistachio", desc: "Rare aromatic Persian green pistachios with delicate floral undertones." },
+      { name: "Omani Halwa", desc: "Traditional Gulf spices with rosewater, saffron, and caramelized cardamom." },
+      { name: "Kyoto Matcha", desc: "First-harvest ceremonial Uji green tea from Kyoto with deep umami sweetness." },
+      { name: "Ferrero Rocher", desc: "Whole roasted hazelnuts, wafer crisp, and velvety chocolate praline." },
+      { name: "Raffaello Coconut", desc: "Silky white chocolate almond cream rolled in fine toasted coconut snow." }
+    ]
+  },
+  {
+    id: "indian",
+    title: "INDIAN INSPIRATIONS",
+    badge: "CRISP & CREAM",
+    count: "04 Flavours",
+    titleColor: "text-[#FFFFFF]",
+    bgGradient: "bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B]",
+    badgeBg: "bg-[#FEF08A]",
+    badgeText: "text-[#4A2E03]",
+    dot: "#FACC15",
+    items: [
+      { name: "Banarasi Paan", desc: "Fragrant sweet betel leaf infused with gulkand rose jam and exotic spices." },
+      { name: "Gulab Jamun", desc: "Warm cardamom-infused mawa cream with sweet rose syrup drizzle notes." },
+      { name: "Kesar Pista Royale", desc: "Royal Kashmiri saffron strands steeped in rich cream with crushed pistachios." },
+      { name: "Madras Filter Coffee", desc: "Authentic South Indian dark chicory roasted brew whipped into coffee cream." }
+    ]
+  }
+];
+
 export default function FlavoursClient() {
   const [flavors, setFlavors] = useState<Flavor[]>(DEFAULT_FLAVORS);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
@@ -481,10 +561,31 @@ export default function FlavoursClient() {
   }, []);
 
   const scrollToCard = (idx: number) => {
-    const el = document.getElementById(`cream-card-${idx}`);
+    setActiveCard(idx);
+    if (typeof window !== "undefined") {
+      if (window.innerWidth >= 768) {
+        const el = document.getElementById(`cream-card-${idx}`);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.pageYOffset - 140;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      } else {
+        const mobileEl = document.getElementById(`cream-mobile-card-${idx}`);
+        if (mobileEl) {
+          mobileEl.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+      }
+    }
+  };
+
+  const handleMobileScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
     if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 140;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      const cardWidth = el.scrollWidth / 4;
+      const index = Math.min(3, Math.max(0, Math.round(el.scrollLeft / cardWidth)));
+      if (index !== activeCard) {
+        setActiveCard(index);
+      }
     }
   };
 
@@ -583,14 +684,14 @@ export default function FlavoursClient() {
         {/* ══════════════════════════════════════════════════════════════
             SECTION 2: CREAM FILLINGS (Interactive Overlapping Cards)
             ══════════════════════════════════════════════════════════════ */}
-        <section className="mt-32 pt-8 pb-12">
+        <section className="mt-24 sm:mt-32 pt-4 sm:pt-8 pb-12">
           
           {/* Outer Blue Showcase Container with Ambient Aura */}
-          <div className="rounded-[44px] sm:rounded-[60px] bg-gradient-to-b from-[#3478BA] via-[#387DBF] to-[#2B6EA9] text-white p-6 sm:p-10 lg:p-14 shadow-2xl border border-white/20 relative overflow-visible transition-all duration-700">
+          <div className="rounded-[32px] sm:rounded-[60px] bg-gradient-to-b from-[#3478BA] via-[#387DBF] to-[#2B6EA9] text-white p-4 sm:p-8 lg:p-14 shadow-2xl border border-white/20 relative overflow-visible transition-all duration-700">
             
             {/* Ambient Background Aura reacting to active collection */}
             <div 
-              className={`pointer-events-none absolute inset-0 rounded-[44px] sm:rounded-[60px] blur-3xl opacity-35 transition-colors duration-1000 ${
+              className={`pointer-events-none absolute inset-0 rounded-[32px] sm:rounded-[60px] blur-3xl opacity-35 transition-colors duration-1000 ${
                 activeCard === 0
                   ? "bg-[#184E82]"
                   : activeCard === 1
@@ -602,21 +703,21 @@ export default function FlavoursClient() {
             />
 
             {/* Section Header */}
-            <div className="relative z-10 max-w-4xl mx-auto text-center mb-6 sm:mb-8">
-              <span className="font-sans text-white/80 text-xs sm:text-sm font-bold uppercase tracking-[0.25em] block mb-2">
+            <div className="relative z-10 max-w-4xl mx-auto text-center mb-4 sm:mb-8">
+              <span className="font-sans text-white/80 text-[11px] sm:text-sm font-bold uppercase tracking-[0.25em] block mb-1.5 sm:mb-2">
                 COLLECTIONS &bull; 25 UNIQUE FILLINGS
               </span>
-              <h2 className="font-sans text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-white mb-3 leading-none drop-shadow-sm">
+              <h2 className="font-sans text-3xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-white mb-2 sm:mb-3 leading-none drop-shadow-sm">
                 CREAM FILLINGS
               </h2>
-              <p className="font-sans text-base sm:text-lg lg:text-xl text-white/95 tracking-normal font-medium max-w-3xl mx-auto">
+              <p className="font-sans text-sm sm:text-lg lg:text-xl text-white/95 tracking-normal font-medium max-w-3xl mx-auto px-2">
                 Cream fillings made with Japanese imports blended with premium local ingredients
               </p>
             </div>
 
             {/* ── Centerpiece: Horizontal TUMU Pastry Stick at the Top ── */}
-            <div className="relative z-10 w-full max-w-4xl mx-auto my-6 sm:my-8 flex flex-col items-center">
-              <div className="relative w-full h-[180px] sm:h-[260px] md:h-[310px] lg:h-[350px] drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:scale-[1.01]">
+            <div className="relative z-10 w-full max-w-4xl mx-auto my-4 sm:my-8 flex flex-col items-center">
+              <div className="relative w-full h-[120px] sm:h-[220px] md:h-[280px] lg:h-[350px] drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:scale-[1.01]">
                 <Image
                   src="/images/tumu/cut_tumu_horizontal.png"
                   alt="TUMU Sliced Crispy Stick with Chilled Cream Filling"
@@ -628,40 +729,109 @@ export default function FlavoursClient() {
               </div>
 
               {/* Japanese Motto Pill */}
-              <div className="mt-2 px-6 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white font-sans text-xs sm:text-sm font-bold uppercase tracking-widest text-center shadow-lg">
+              <div className="mt-2 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white font-sans text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center shadow-lg">
                 外はサクッ、中はとろり &bull; Crisp Outside, Cream Inside
               </div>
             </div>
 
-            {/* Interactive Collection Switcher Pills */}
-            <div className="relative z-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10 sm:mb-14 mt-6">
-              {[
-                { label: "Classic Collection", count: "06", dot: "#60A5FA" },
-                { label: "Signature Creations", count: "09", dot: "#FB923C" },
-                { label: "Artisan Selection", count: "06", dot: "#4ADE80" },
-                { label: "Indian Inspirations", count: "04", dot: "#FACC15" },
-              ].map((tab, idx) => (
+            {/* Interactive Collection Switcher Pills (Horizontal scroll on phone) */}
+            <div className="relative z-10 flex overflow-x-auto no-scrollbar sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-3 mb-6 sm:mb-12 mt-4 sm:mt-6 px-1 py-1">
+              {COLLECTIONS_DATA.map((tab, idx) => (
                 <button
-                  key={tab.label}
+                  key={tab.id}
                   onClick={() => scrollToCard(idx)}
-                  className={`px-4 sm:px-5 py-2.5 rounded-full font-sans text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                  className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full font-sans text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2 shrink-0 cursor-pointer ${
                     activeCard === idx
                       ? "bg-white text-[#162B3A] shadow-xl scale-105"
                       : "bg-white/15 text-white/85 hover:bg-white/25 hover:text-white border border-white/15"
                   }`}
                 >
                   <span
-                    className="w-2.5 h-2.5 rounded-full shadow-sm"
+                    className="w-2.5 h-2.5 rounded-full shadow-sm shrink-0"
                     style={{ backgroundColor: tab.dot }}
                   />
-                  <span>{tab.label}</span>
-                  <span className="opacity-60 text-[11px] font-sans font-medium">({tab.count})</span>
+                  <span>{tab.title.replace(" COLLECTION", "").replace(" CREATIONS", "").replace(" SELECTION", "").replace(" INSPIRATIONS", "")}</span>
+                  <span className="opacity-60 text-[10px] sm:text-[11px] font-sans font-medium">({tab.items.length})</span>
                 </button>
               ))}
             </div>
 
-            {/* ── Main Overlapping Stacking Cards Container (Full Width / Centered) ── */}
-            <div className="relative z-10 max-w-4xl lg:max-w-5xl mx-auto w-full">
+            {/* ══════════════════════════════════════════════════════════════
+                MOBILE VIEW (< md): Swipeable Snap Carousel + Progress Dots
+                ══════════════════════════════════════════════════════════════ */}
+            <div className="block md:hidden relative z-10 w-full">
+              <div 
+                className="flex overflow-x-auto snap-x snap-mandatory gap-3.5 pb-2 no-scrollbar px-1 -mx-1"
+                onScroll={handleMobileScroll}
+              >
+                {COLLECTIONS_DATA.map((col, idx) => (
+                  <div
+                    key={col.id}
+                    id={`cream-mobile-card-${idx}`}
+                    className={`w-[86vw] max-w-[340px] shrink-0 snap-center rounded-[28px] ${col.bgGradient} border border-white/25 p-5 shadow-2xl flex flex-col justify-between min-h-[490px]`}
+                  >
+                    <div>
+                      {/* Mobile Card Header */}
+                      <div className="flex items-center justify-between gap-2 mb-4 border-b border-white/20 pb-3">
+                        <h3 className={`font-sans font-black text-lg ${col.titleColor} tracking-tight uppercase leading-none`}>
+                          {col.title}
+                        </h3>
+                        <span className={`font-sans text-[10px] font-bold uppercase tracking-wider ${col.badgeBg} ${col.badgeText} px-2.5 py-1 rounded-full shadow-sm shrink-0`}>
+                          {col.badge}
+                        </span>
+                      </div>
+
+                      {/* Mobile Card Flavours List */}
+                      <div className="space-y-2.5 max-h-[350px] overflow-y-auto pr-1">
+                        {col.items.map((item) => (
+                          <div
+                            key={item.name}
+                            className="flex flex-col justify-center bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3"
+                          >
+                            <div className="flex items-center gap-2 mb-0.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
+                              <span className="font-sans font-bold text-white text-sm tracking-normal leading-tight">
+                                {item.name}
+                              </span>
+                            </div>
+                            <p className="font-sans text-[11px] text-white/80 leading-snug pl-3.5 font-normal line-clamp-2">
+                              {item.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Mobile Card Footer */}
+                    <div className="mt-3 pt-2 border-t border-white/15 flex items-center justify-between text-[11px] text-white/70 font-sans">
+                      <span>{col.count}</span>
+                      <span className="opacity-60">{idx + 1} of 4 &bull; Swipe &rarr;</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Mobile Carousel Pagination Dots */}
+              <div className="flex items-center justify-center gap-2 mt-3 mb-2">
+                {COLLECTIONS_DATA.map((col, idx) => (
+                  <button
+                    key={col.id}
+                    onClick={() => scrollToCard(idx)}
+                    className={`transition-all duration-300 rounded-full cursor-pointer ${
+                      activeCard === idx
+                        ? "w-7 h-2 bg-white shadow-sm"
+                        : "w-2 h-2 bg-white/40 hover:bg-white/70"
+                    }`}
+                    aria-label={`Go to ${col.title}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* ══════════════════════════════════════════════════════════════
+                DESKTOP VIEW (>= md): Overlapping Stacking Cards Container
+                ══════════════════════════════════════════════════════════════ */}
+            <div className="hidden md:block relative z-10 max-w-4xl lg:max-w-5xl mx-auto w-full">
               
               {/* ── CARD 0: CLASSIC COLLECTION (Cerulean Indigo) ── */}
               <div 
@@ -685,14 +855,7 @@ export default function FlavoursClient() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
-                  {[
-                    { name: "Original Custard", desc: "Golden Japanese custard cream with a velvety, comforting finish." },
-                    { name: "Madagascar Vanilla", desc: "Rich Hokkaido cream infused with aromatic Madagascar bourbon vanilla beans." },
-                    { name: "Belgian Chocolate", desc: "Silky whipped cream folded with melted single-origin Belgian cocoa." },
-                    { name: "Strawberry Cream", desc: "Sweet, tangy Japanese strawberry puree swirled into cloud-soft cream." },
-                    { name: "Sea Salt Caramel", desc: "Slow-simmered buttery caramel balanced with sea salt flakes." },
-                    { name: "Pistachio Praline", desc: "Roasted Mediterranean pistachios stone-ground into a nutty, smooth paste." }
-                  ].map((item) => (
+                  {COLLECTIONS_DATA[0].items.map((item) => (
                     <div
                       key={item.name}
                       className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
@@ -733,17 +896,7 @@ export default function FlavoursClient() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
-                  {[
-                    { name: "Dark Cacao", desc: "Intense 70% bittersweet dark cocoa cream for deep chocolate lovers." },
-                    { name: "Lotus Biscoff Crumble", desc: "Spiced Belgian caramelized biscuit cream with crunchy cookie crumbles." },
-                    { name: "Lotus Caramel", desc: "Decadent fusion of Biscoff spread and golden cooked caramel ribbons." },
-                    { name: "Tiramisu Italiano", desc: "Espresso-soaked savoiardi flavor with sweet Italian mascarpone cream." },
-                    { name: "Hazelnut Dulcey", desc: "Roasted Piedmont hazelnuts blended with toasted blonde chocolate cream." },
-                    { name: "Alphonso Mango", desc: "Sun-ripened Ratnagiri Alphonso mango nectar whipped into silky cream." },
-                    { name: "Nutella Supreme", desc: "Generously loaded roasted hazelnut and cocoa spread folded into filling." },
-                    { name: "Kinder Bueno Bliss", desc: "Crispy wafer and creamy hazelnut milk chocolate filling." },
-                    { name: "Snickers Temptation", desc: "Roasted crunchy peanuts, gooey caramel, and milk chocolate dream." }
-                  ].map((item) => (
+                  {COLLECTIONS_DATA[1].items.map((item) => (
                     <div
                       key={item.name}
                       className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
@@ -784,14 +937,7 @@ export default function FlavoursClient() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
-                  {[
-                    { name: "Pistachio Kunafa", desc: "Crispy butter-toasted kataifi kunafa layered with emerald pistachio cream." },
-                    { name: "Persian Pistachio", desc: "Rare aromatic Persian green pistachios with delicate floral undertones." },
-                    { name: "Omani Halwa", desc: "Traditional Gulf spices with rosewater, saffron, and caramelized cardamom." },
-                    { name: "Kyoto Matcha", desc: "First-harvest ceremonial Uji green tea from Kyoto with deep umami sweetness." },
-                    { name: "Ferrero Rocher", desc: "Whole roasted hazelnuts, wafer crisp, and velvety chocolate praline." },
-                    { name: "Raffaello Coconut", desc: "Silky white chocolate almond cream rolled in fine toasted coconut snow." }
-                  ].map((item) => (
+                  {COLLECTIONS_DATA[2].items.map((item) => (
                     <div
                       key={item.name}
                       className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
@@ -832,12 +978,7 @@ export default function FlavoursClient() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
-                  {[
-                    { name: "Banarasi Paan", desc: "Fragrant sweet betel leaf infused with gulkand rose jam and exotic spices." },
-                    { name: "Gulab Jamun", desc: "Warm cardamom-infused mawa cream with sweet rose syrup drizzle notes." },
-                    { name: "Kesar Pista Royale", desc: "Royal Kashmiri saffron strands steeped in rich cream with crushed pistachios." },
-                    { name: "Madras Filter Coffee", desc: "Authentic South Indian dark chicory roasted brew whipped into coffee cream." }
-                  ].map((item) => (
+                  {COLLECTIONS_DATA[3].items.map((item) => (
                     <div
                       key={item.name}
                       className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
