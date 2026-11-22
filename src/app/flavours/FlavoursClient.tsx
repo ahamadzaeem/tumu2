@@ -552,220 +552,175 @@ export default function FlavoursClient() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: 25 CHILLED CREAM FILLINGS (TUMU Signature Poster Layout)
+            SECTION 2: CREAM FILLINGS (With Sliced TUMU Pastry Stick)
             ══════════════════════════════════════════════════════════════ */}
-        <section className="mt-28 pt-8">
+        <section className="mt-28 pt-12 border-t border-[#162B3A]/10">
           
-          {/* Blue Poster Outer Frame */}
-          <div className="rounded-[40px] sm:rounded-[48px] bg-gradient-to-b from-[#4F8BBE] via-[#5694C8] to-[#5491C7] text-white p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden border border-white/20">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16">
             
-            <div className="flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-14">
-              
-              {/* Left Column: Menu Text & Lists */}
-              <div className="flex-1 max-w-3xl">
-                
-                {/* Main Heading */}
-                <h2 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-none mb-3">
-                  TUMU flavours!
-                </h2>
-                <p className="text-white/90 text-sm sm:text-base font-medium max-w-xl mb-8 leading-relaxed">
-                  Sweet, fruity, or healthy, we stick it with every flavor. With a variety of flavors to choose from you can try a new flavor with every pick.
-                </p>
-
-                {/* Secondary Heading */}
-                <h3 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight leading-snug mb-2">
-                  So many different flavours, what&apos;s your pick?
-                </h3>
-                <p className="text-white/85 text-xs sm:text-sm font-medium mb-6">
-                  Cream fillings made with Japanese imports blended with premium local ingredients.
-                </p>
-
-                {/* Two-Column Quick Picks Bullet List */}
-                <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-8 max-w-md text-sm sm:text-base font-semibold text-white/95">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Original Vanilla</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Custard</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Pistachio</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Chocolate</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Salted Caramel</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Nutella</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Kinder</span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Lotus</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Matcha</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Snickers</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Strawberry</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Ferrero Rocher</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                      <span>Raffaello</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* White Dividing Line */}
-                <div className="border-t border-white/25 my-8" />
-
-                {/* 4 Official Collections */}
-                <div className="space-y-8">
-                  {/* Collection 1: Classic Collection */}
-                  <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <h4 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
-                        CLASSIC COLLECTION
-                      </h4>
-                      <span className="px-3 py-0.5 rounded-full bg-white text-[#4F8BBE] text-[11px] font-black uppercase tracking-wider shadow-xs">
-                        CRISP &amp; CREAM
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm sm:text-base font-semibold text-white/95">
-                      {CREAM_FILLINGS.filter(f => f.collection === "Classic Collection").map((filling) => (
-                        <div key={filling.id} className="flex items-center gap-2.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                          <span>{filling.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Collection 2: Signature Creations */}
-                  <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <h4 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
-                        SIGNATURE CREATIONS
-                      </h4>
-                      <span className="px-3 py-0.5 rounded-full bg-[#DB3E59] text-white text-[11px] font-black uppercase tracking-wider shadow-xs">
-                        CRISP &amp; CREAM
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm sm:text-base font-semibold text-white/95">
-                      {CREAM_FILLINGS.filter(f => f.collection === "Signature Creations").map((filling) => (
-                        <div key={filling.id} className="flex items-center gap-2.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                          <span>{filling.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Collection 3: Artisan Selection */}
-                  <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <h4 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
-                        ARTISAN SELECTION
-                      </h4>
-                      <span className="px-3 py-0.5 rounded-full bg-white text-[#4F8BBE] text-[11px] font-black uppercase tracking-wider shadow-xs">
-                        CRISP &amp; CREAM
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm sm:text-base font-semibold text-white/95">
-                      {CREAM_FILLINGS.filter(f => f.collection === "Artisan Selection").map((filling) => (
-                        <div key={filling.id} className="flex items-center gap-2.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                          <span>{filling.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Collection 4: Indian Inspirations */}
-                  <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <h4 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
-                        INDIAN INSPIRATIONS
-                      </h4>
-                      <span className="px-3 py-0.5 rounded-full bg-[#DB3E59] text-white text-[11px] font-black uppercase tracking-wider shadow-xs">
-                        CRISP &amp; CREAM
-                      </span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm sm:text-base font-semibold text-white/95">
-                      {CREAM_FILLINGS.filter(f => f.collection === "Indian Inspirations").map((filling) => (
-                        <div key={filling.id} className="flex items-center gap-2.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                          <span>{filling.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Right Column: Sliced Pastry Stick Visual */}
-              <div className="w-full lg:w-[320px] xl:w-[360px] shrink-0 flex flex-col items-center justify-center relative">
-                <div className="relative w-full h-[450px] sm:h-[600px] lg:h-full min-h-[500px] rounded-3xl overflow-hidden shadow-xl border border-white/20">
-                  <Image
-                    src="/images/tumu/tumu_sliced_stick.jpg"
-                    alt="TUMU Crispy Shell with Chilled Cream Filling"
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width: 1024px) 100vw, 360px"
-                    priority
-                  />
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* Clean 200 Combinations Summary Banner */}
-          <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-white border border-black/5 shadow-[0_4px_20px_rgba(22,43,58,0.03)] flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] block mb-1">
-                ENDLESS COMBINATIONS
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
-                8 Crunchy Shells × 25 Cream Fillings
-              </h3>
-              <p className="text-xs sm:text-sm text-[#162B3A]/70 font-medium mt-1 max-w-xl">
-                Choose any Crusté outer shell and pipe your favourite chilled cream fresh inside.
+            {/* Left Column: Exact Content from Specification */}
+            <div className="flex-1 w-full max-w-2xl">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#162B3A] mb-2 leading-none">
+                CREAM FILLINGS
+              </h2>
+              <p className="font-heading text-base sm:text-lg lg:text-xl text-[#162B3A]/80 tracking-wide mb-10">
+                Cream fillings made with Japanese imports blended with premium local ingredients
               </p>
+
+              <div className="space-y-10">
+                {/* CLASSIC COLLECTION */}
+                <div>
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl text-[#DB3E59] tracking-tight uppercase mb-4">
+                    CLASSIC COLLECTION
+                  </h3>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-[#162B3A] font-semibold text-base sm:text-lg">
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Original Custard</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Madagascar Vanilla</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Belgian Chocolate</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Strawberry Cream</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Sea Salt Caramel</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Pistachio Praline</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* SIGNATURE CREATIONS */}
+                <div>
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl text-[#DB3E59] tracking-tight uppercase mb-4">
+                    SIGNATURE CREATIONS
+                  </h3>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-[#162B3A] font-semibold text-base sm:text-lg">
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Dark Cacao</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Lotus Biscoff Crumble</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Lotus Caramel</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Tiramisu Italiano</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Hazelnut Dulcey</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Alphonso Mango</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Nutella Supreme</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Kinder Bueno Bliss</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Snickers Temptation</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* ARTISAN SELECTION */}
+                <div>
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl text-[#DB3E59] tracking-tight uppercase mb-4">
+                    ARTISAN SELECTION
+                  </h3>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-[#162B3A] font-semibold text-base sm:text-lg">
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Pistachio Kunafa</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Persian Pistachio</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Omani Halwa</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Kyoto Matcha</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Ferrero Rocher</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Raffaello Coconut</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* INDIAN INSPIRATIONS */}
+                <div>
+                  <h3 className="font-heading font-black text-2xl sm:text-3xl text-[#DB3E59] tracking-tight uppercase mb-4">
+                    INDIAN INSPIRATIONS
+                  </h3>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-[#162B3A] font-semibold text-base sm:text-lg">
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Banarasi Paan</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Gulab Jamun</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Kesar Pista Royale</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span>Madras Filter Coffee</span>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
             </div>
-            <Link
-              href="/locations"
-              className="shrink-0 px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-sm hover:scale-105 active:scale-95"
-            >
-              Find A Store Near You →
-            </Link>
+
+            {/* Right Column: Uploaded TUMU Sliced Pastry Stick */}
+            <div className="w-full lg:w-[360px] xl:w-[420px] shrink-0 flex justify-center items-center lg:sticky lg:top-32">
+              <div className="relative w-[260px] sm:w-[320px] lg:w-[360px] h-[550px] sm:h-[680px] lg:h-[780px] drop-shadow-xl">
+                <Image
+                  src="/images/tumu/cut_tumu_stick.png"
+                  alt="TUMU Crispy Crunchy Stick with Chilled Cream Filling"
+                  fill
+                  className="object-contain object-center"
+                  sizes="(max-width: 1024px) 320px, 420px"
+                  priority
+                />
+              </div>
+            </div>
+
           </div>
 
         </section>
