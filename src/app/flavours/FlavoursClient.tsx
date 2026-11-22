@@ -585,7 +585,7 @@ export default function FlavoursClient() {
   return (
     <main className="min-h-screen bg-[#F8F4EC] flex flex-col selection:bg-[#DB3E59] selection:text-white">
       <Header />
-      <div className="flex-1 pt-32 px-6 lg:px-12 max-w-[1440px] mx-auto w-full pb-20">
+      <div className="flex-1 pt-32 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto w-full pb-20">
         
         {/* Hero Section with Targeted Keywords */}
         <div className="text-center mb-12 max-w-4xl mx-auto">
@@ -627,36 +627,36 @@ export default function FlavoursClient() {
           </p>
         </div>
 
-        {/* Flavors Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-6">
+        {/* Flavors Grid: 2 in a row on phone, 4 on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 pt-4 sm:pt-6">
           {filteredFlavors.map((flavor) => (
             <div 
               key={flavor.id} 
-              className={`group relative ${flavor.color || "bg-white"} rounded-[120px] p-8 pb-16 pt-28 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 flex flex-col items-center text-center border-none mt-28`}
+              className={`group relative ${flavor.color || "bg-white"} rounded-[48px] sm:rounded-[120px] p-3 sm:p-8 pb-7 sm:pb-16 pt-14 sm:pt-28 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-2 flex flex-col items-center text-center border-none mt-14 sm:mt-28`}
             >
               {/* Product Image popping out of the card */}
-              <div className="absolute -top-32 w-full flex justify-center h-[315px] sm:h-[360px] z-20">
-                <div className="relative w-[165px] sm:w-[195px] h-full">
+              <div className="absolute -top-14 sm:-top-32 w-full flex justify-center h-[170px] sm:h-[360px] z-20">
+                <div className="relative w-[100px] sm:w-[195px] h-full">
                   <Image 
                     src={flavor.image} 
                     alt={`${flavor.name} - Japanese cream dessert by TUMU UAE`}
                     fill
                     className="object-contain object-center drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
-                    sizes="200px"
+                    sizes="(max-width: 640px) 120px, 200px"
                   />
                 </div>
               </div>
               
-              <div className="relative z-10 mt-28 flex flex-col items-center">
-                <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-6 ${flavor.tagBg || "bg-[#1A2E44]"} ${flavor.tagText || "text-white"}`}>
+              <div className="relative z-10 mt-12 sm:mt-28 flex flex-col items-center w-full">
+                <span className={`inline-block px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-xs font-bold tracking-wider uppercase mb-2 sm:mb-6 ${flavor.tagBg || "bg-[#1A2E44]"} ${flavor.tagText || "text-white"}`}>
                   {flavor.tag || flavor.category}
                 </span>
                 
-                <h2 className={`text-2xl font-bold mb-4 leading-tight transition-colors duration-300 ${flavor.textColor || "text-[#1A2E44]"}`}>
+                <h2 className={`text-sm sm:text-2xl font-bold mb-1.5 sm:mb-4 leading-tight transition-colors duration-300 ${flavor.textColor || "text-[#1A2E44]"}`}>
                   {flavor.name}
                 </h2>
                 
-                <p className={`${flavor.textColor || "text-[#1A2E44]"} opacity-80 font-medium leading-relaxed px-4 text-sm sm:text-base`}>
+                <p className={`${flavor.textColor || "text-[#1A2E44]"} opacity-80 font-medium leading-normal sm:leading-relaxed px-1 sm:px-4 text-[11px] sm:text-base line-clamp-3 sm:line-clamp-none`}>
                   {flavor.description}
                 </p>
               </div>
