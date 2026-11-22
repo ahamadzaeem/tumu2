@@ -732,14 +732,9 @@ export default function FlavoursClient() {
                       <h3 className={`font-sans font-black text-lg ${col.titleColor} tracking-tight uppercase leading-none`}>
                         {col.title}
                       </h3>
-                      <div className="flex items-center gap-1.5">
-                        <span className={`font-sans text-[9px] font-bold uppercase tracking-wider ${col.badgeBg} ${col.badgeText} px-2.5 py-1 rounded-full shadow-sm shrink-0`}>
-                          {col.badge}
-                        </span>
-                        <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-white/85 bg-white/15 px-2 py-1 rounded-full">
-                          {col.items.length}
-                        </span>
-                      </div>
+                      <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/90 bg-white/15 px-2.5 py-1 rounded-full shrink-0">
+                        {col.items.length} Flavours
+                      </span>
                     </div>
 
                     {/* 2-Column Names-Only Grid for Mobile (Full names visible with natural wrap) */}
@@ -793,11 +788,8 @@ export default function FlavoursClient() {
                           {col.title}
                         </h3>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className={`font-sans text-xs font-bold uppercase tracking-wider ${col.badgeBg} ${col.badgeText} px-3.5 py-1.5 rounded-full shadow-sm`}>
-                          {col.badge}
-                        </span>
-                        <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
+                      <div className="flex items-center">
+                        <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/90 bg-white/15 px-3.5 py-1.5 rounded-full">
                           {col.count}
                         </span>
                       </div>
@@ -821,7 +813,7 @@ export default function FlavoursClient() {
 
                   {/* Card Footer Micro-bar */}
                   <div className="pt-3 border-t border-white/15 flex items-center justify-between text-xs text-white/60 font-mono">
-                    <span>COLLECTION 0{idx + 1} OF 04 &bull; {col.badge}</span>
+                    <span>COLLECTION 0{idx + 1} OF 04</span>
                     <span>CRISP OUTSIDE, CREAM INSIDE</span>
                   </div>
                 </div>
