@@ -724,7 +724,7 @@ export default function FlavoursClient() {
                       : idx === 2
                       ? "top-24 z-30 mb-36"
                       : "top-28 z-40 mb-6"
-                  } rounded-[28px] ${col.bgGradient} border border-white/25 p-4 sm:p-5 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] min-h-[400px] h-[400px] flex flex-col justify-between transition-all duration-300`}
+                  } rounded-[28px] ${col.bgGradient} border border-white/25 p-4 sm:p-5 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] min-h-[420px] h-[420px] flex flex-col justify-between transition-all duration-300`}
                 >
                   <div>
                     {/* Mobile Header */}
@@ -742,15 +742,15 @@ export default function FlavoursClient() {
                       </div>
                     </div>
 
-                    {/* 2-Column Names-Only Grid for Mobile */}
+                    {/* 2-Column Names-Only Grid for Mobile (Full names visible with natural wrap) */}
                     <div className="grid grid-cols-2 gap-2">
                       {col.items.map((item) => (
                         <div
                           key={item.name}
-                          className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-3 py-2.5"
+                          className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-2.5 py-2.5 min-h-[44px]"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0" />
-                          <span className="font-sans font-bold text-white text-xs sm:text-sm leading-tight truncate">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0 self-center" />
+                          <span className="font-sans font-bold text-white text-[11px] sm:text-xs leading-snug break-words">
                             {item.name}
                           </span>
                         </div>
@@ -811,7 +811,7 @@ export default function FlavoursClient() {
                           className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
                         >
                           <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                          <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                          <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight break-words">
                             {item.name}
                           </span>
                         </div>
