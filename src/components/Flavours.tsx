@@ -25,7 +25,7 @@ export default function Flavours() {
     eyebrow: "FLAVOURS",
     headingLine1: "CRUSTÉ FLAVOURS",
     headingLine2: "",
-    description: "35 Unique Flavours, Made with Japan's Finest Ingredients",
+    description: "25 Unique Flavours, Made with Japan's Finest Ingredients",
     btnText: "MORE FLAVOURS",
     btnLink: "/flavours"
   };
@@ -75,7 +75,7 @@ export default function Flavours() {
 
           {/* 2. Tagline directly underneath heading */}
           {(() => {
-            const rawDesc = content?.home?.flavoursSection?.description || "35 Unique Flavours, Made with Japan's Finest Ingredients";
+            const rawDesc = content?.home?.flavoursSection?.description || "25 Unique Flavours, Made with Japan's Finest Ingredients";
             const [headlinePart, subtitlePart] = rawDesc.includes(",")
               ? rawDesc.split(/,\s*(.+)/)
               : [rawDesc, ""];
@@ -83,7 +83,7 @@ export default function Flavours() {
             return (
               <div className="mt-4 sm:mt-5 space-y-1">
                 <p className="font-heading text-[18px] xs:text-[22px] sm:text-[26px] lg:text-[30px] font-black text-[#162B3A] uppercase tracking-tight leading-tight">
-                  {headlinePart ? `${headlinePart},` : "35 UNIQUE FLAVOURS,"}
+                  {headlinePart ? `${headlinePart},` : "25 UNIQUE FLAVOURS,"}
                 </p>
                 {subtitlePart ? (
                   <p className="font-heading text-[14px] xs:text-[16px] sm:text-[20px] lg:text-[22px] text-[#162B3A] uppercase tracking-wide leading-snug opacity-90">

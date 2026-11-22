@@ -1434,7 +1434,7 @@ export default function AdminPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
-                    Headline Tagline (&quot;35 Unique Flavours, Made with Japan&apos;s Finest Ingredients&quot;)
+                    Headline Tagline (&quot;25 Unique Flavours, Made with Japan&apos;s Finest Ingredients&quot;)
                   </label>
                   <input
                     type="text"
