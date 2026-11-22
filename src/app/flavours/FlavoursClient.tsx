@@ -666,7 +666,7 @@ export default function FlavoursClient() {
               {/* ── CARD 0: CLASSIC COLLECTION (Cerulean Indigo) ── */}
               <div 
                 id="cream-card-0"
-                className="sticky top-24 sm:top-28 z-10 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-36 sm:mb-48 transition-all duration-300 min-h-[440px] sm:min-h-[460px] flex flex-col"
+                className="sticky top-24 sm:top-28 z-10 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-36 sm:mb-48 transition-all duration-300 min-h-[500px] sm:min-h-[520px] lg:min-h-[540px] flex flex-col"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
@@ -686,21 +686,26 @@ export default function FlavoursClient() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
                   {[
-                    "Original Custard",
-                    "Madagascar Vanilla",
-                    "Belgian Chocolate",
-                    "Strawberry Cream",
-                    "Sea Salt Caramel",
-                    "Pistachio Praline"
-                  ].map((name) => (
+                    { name: "Original Custard", desc: "Golden Japanese custard cream with a velvety, comforting finish." },
+                    { name: "Madagascar Vanilla", desc: "Rich Hokkaido cream infused with aromatic Madagascar bourbon vanilla beans." },
+                    { name: "Belgian Chocolate", desc: "Silky whipped cream folded with melted single-origin Belgian cocoa." },
+                    { name: "Strawberry Cream", desc: "Sweet, tangy Japanese strawberry puree swirled into cloud-soft cream." },
+                    { name: "Sea Salt Caramel", desc: "Slow-simmered buttery caramel balanced with sea salt flakes." },
+                    { name: "Pistachio Praline", desc: "Roasted Mediterranean pistachios stone-ground into a nutty, smooth paste." }
+                  ].map((item) => (
                     <div
-                      key={name}
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
+                      key={item.name}
+                      className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
                     >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-sans font-semibold sm:font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                        {name}
-                      </span>
+                      <div className="flex items-center gap-2.5 mb-1">
+                        <span className="w-2 h-2 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                        <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                          {item.name}
+                        </span>
+                      </div>
+                      <p className="font-sans text-xs sm:text-[13px] text-white/80 leading-relaxed pl-4 font-normal line-clamp-2">
+                        {item.desc}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -709,7 +714,7 @@ export default function FlavoursClient() {
               {/* ── CARD 1: SIGNATURE CREATIONS (Biscoff Velvet Terracotta) ── */}
               <div 
                 id="cream-card-1"
-                className="sticky top-28 sm:top-32 z-20 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-9 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-36 sm:mb-48 transition-all duration-300 min-h-[440px] sm:min-h-[460px] flex flex-col"
+                className="sticky top-28 sm:top-32 z-20 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-9 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-36 sm:mb-48 transition-all duration-300 min-h-[500px] sm:min-h-[520px] lg:min-h-[540px] flex flex-col"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
@@ -729,24 +734,29 @@ export default function FlavoursClient() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
                   {[
-                    "Dark Cacao",
-                    "Lotus Biscoff Crumble",
-                    "Lotus Caramel",
-                    "Tiramisu Italiano",
-                    "Hazelnut Dulcey",
-                    "Alphonso Mango",
-                    "Nutella Supreme",
-                    "Kinder Bueno Bliss",
-                    "Snickers Temptation"
-                  ].map((name) => (
+                    { name: "Dark Cacao", desc: "Intense 70% bittersweet dark cocoa cream for deep chocolate lovers." },
+                    { name: "Lotus Biscoff Crumble", desc: "Spiced Belgian caramelized biscuit cream with crunchy cookie crumbles." },
+                    { name: "Lotus Caramel", desc: "Decadent fusion of Biscoff spread and golden cooked caramel ribbons." },
+                    { name: "Tiramisu Italiano", desc: "Espresso-soaked savoiardi flavor with sweet Italian mascarpone cream." },
+                    { name: "Hazelnut Dulcey", desc: "Roasted Piedmont hazelnuts blended with toasted blonde chocolate cream." },
+                    { name: "Alphonso Mango", desc: "Sun-ripened Ratnagiri Alphonso mango nectar whipped into silky cream." },
+                    { name: "Nutella Supreme", desc: "Generously loaded roasted hazelnut and cocoa spread folded into filling." },
+                    { name: "Kinder Bueno Bliss", desc: "Crispy wafer and creamy hazelnut milk chocolate filling." },
+                    { name: "Snickers Temptation", desc: "Roasted crunchy peanuts, gooey caramel, and milk chocolate dream." }
+                  ].map((item) => (
                     <div
-                      key={name}
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
+                      key={item.name}
+                      className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
                     >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-sans font-semibold sm:font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                        {name}
-                      </span>
+                      <div className="flex items-center gap-2.5 mb-1">
+                        <span className="w-2 h-2 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                        <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                          {item.name}
+                        </span>
+                      </div>
+                      <p className="font-sans text-xs sm:text-[13px] text-white/80 leading-relaxed pl-4 font-normal line-clamp-2">
+                        {item.desc}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -755,7 +765,7 @@ export default function FlavoursClient() {
               {/* ── CARD 2: ARTISAN SELECTION (Kyoto Uji Matcha Green) ── */}
               <div 
                 id="cream-card-2"
-                className="sticky top-32 sm:top-36 z-30 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-9 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-36 sm:mb-48 transition-all duration-300 min-h-[440px] sm:min-h-[460px] flex flex-col"
+                className="sticky top-32 sm:top-36 z-30 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-9 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-36 sm:mb-48 transition-all duration-300 min-h-[500px] sm:min-h-[520px] lg:min-h-[540px] flex flex-col"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
@@ -775,21 +785,26 @@ export default function FlavoursClient() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
                   {[
-                    "Pistachio Kunafa",
-                    "Persian Pistachio",
-                    "Omani Halwa",
-                    "Kyoto Matcha",
-                    "Ferrero Rocher",
-                    "Raffaello Coconut"
-                  ].map((name) => (
+                    { name: "Pistachio Kunafa", desc: "Crispy butter-toasted kataifi kunafa layered with emerald pistachio cream." },
+                    { name: "Persian Pistachio", desc: "Rare aromatic Persian green pistachios with delicate floral undertones." },
+                    { name: "Omani Halwa", desc: "Traditional Gulf spices with rosewater, saffron, and caramelized cardamom." },
+                    { name: "Kyoto Matcha", desc: "First-harvest ceremonial Uji green tea from Kyoto with deep umami sweetness." },
+                    { name: "Ferrero Rocher", desc: "Whole roasted hazelnuts, wafer crisp, and velvety chocolate praline." },
+                    { name: "Raffaello Coconut", desc: "Silky white chocolate almond cream rolled in fine toasted coconut snow." }
+                  ].map((item) => (
                     <div
-                      key={name}
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
+                      key={item.name}
+                      className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
                     >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-sans font-semibold sm:font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                        {name}
-                      </span>
+                      <div className="flex items-center gap-2.5 mb-1">
+                        <span className="w-2 h-2 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                        <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                          {item.name}
+                        </span>
+                      </div>
+                      <p className="font-sans text-xs sm:text-[13px] text-white/80 leading-relaxed pl-4 font-normal line-clamp-2">
+                        {item.desc}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -798,7 +813,7 @@ export default function FlavoursClient() {
               {/* ── CARD 3: INDIAN INSPIRATIONS (Dolce Tiramisu / Saffron Gold) ── */}
               <div 
                 id="cream-card-3"
-                className="sticky top-36 sm:top-40 z-40 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-9 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300 min-h-[440px] sm:min-h-[460px] flex flex-col"
+                className="sticky top-36 sm:top-40 z-40 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-9 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300 min-h-[500px] sm:min-h-[520px] lg:min-h-[540px] flex flex-col"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
                   <div className="flex items-center gap-3">
@@ -818,19 +833,24 @@ export default function FlavoursClient() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
                   {[
-                    "Banarasi Paan",
-                    "Gulab Jamun",
-                    "Kesar Pista Royale",
-                    "Madras Filter Coffee"
-                  ].map((name) => (
+                    { name: "Banarasi Paan", desc: "Fragrant sweet betel leaf infused with gulkand rose jam and exotic spices." },
+                    { name: "Gulab Jamun", desc: "Warm cardamom-infused mawa cream with sweet rose syrup drizzle notes." },
+                    { name: "Kesar Pista Royale", desc: "Royal Kashmiri saffron strands steeped in rich cream with crushed pistachios." },
+                    { name: "Madras Filter Coffee", desc: "Authentic South Indian dark chicory roasted brew whipped into coffee cream." }
+                  ].map((item) => (
                     <div
-                      key={name}
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
+                      key={item.name}
+                      className="flex flex-col justify-center bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl p-4 transition-all duration-200 group/item min-h-[96px]"
                     >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-sans font-semibold sm:font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                        {name}
-                      </span>
+                      <div className="flex items-center gap-2.5 mb-1">
+                        <span className="w-2 h-2 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                        <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                          {item.name}
+                        </span>
+                      </div>
+                      <p className="font-sans text-xs sm:text-[13px] text-white/80 leading-relaxed pl-4 font-normal line-clamp-2">
+                        {item.desc}
+                      </p>
                     </div>
                   ))}
                 </div>
