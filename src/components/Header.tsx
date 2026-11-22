@@ -48,12 +48,13 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: "Story", href: "/our-story", num: "01" },
-    { label: "Flavours", href: "/flavours", num: "02" },
-    { label: "Process", href: "/process", num: "03" },
-    { label: "Locations", href: "/locations", num: "04" },
-    { label: "Franchise", href: "/franchise", num: "05" },
-    { label: "Contact", href: "/contact", num: "06" },
+    { label: "Home", href: "/", num: "01" },
+    { label: "Story", href: "/our-story", num: "02" },
+    { label: "Flavours", href: "/flavours", num: "03" },
+    { label: "Process", href: "/process", num: "04" },
+    { label: "Locations", href: "/locations", num: "05" },
+    { label: "Franchise", href: "/franchise", num: "06" },
+    { label: "Contact", href: "/contact", num: "07" },
   ];
 
   // Motion Variants
@@ -137,7 +138,7 @@ export default function Header() {
 
         {/* ─── FLOATING PILL NAV BAR (STRICTLY CENTERED HORIZONTALLY) ─── */}
         <nav
-          className={`pointer-events-auto hidden md:flex items-center gap-6 lg:gap-8 bg-white/95 backdrop-blur-md px-6 lg:px-8 py-2.5 rounded-full shadow-[0_10px_35px_rgba(22,43,58,0.1)] border border-[#162B3A]/8 transition-all duration-300 absolute left-1/2 -translate-x-1/2 ${
+          className={`pointer-events-auto hidden md:flex items-center gap-4 md:gap-5 lg:gap-7 bg-white/95 backdrop-blur-md px-5 lg:px-7 py-2.5 rounded-full shadow-[0_10px_35px_rgba(22,43,58,0.1)] border border-[#162B3A]/8 transition-all duration-300 absolute left-1/2 -translate-x-1/2 ${
             scrolled ? "shadow-[0_14px_40px_rgba(22,43,58,0.14)] py-2 scale-[0.98]" : ""
           }`}
         >
