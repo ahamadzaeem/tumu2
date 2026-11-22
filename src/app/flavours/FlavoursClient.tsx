@@ -18,6 +18,14 @@ interface CreamFilling {
   tag: string;
 }
 
+interface CreamCollectionGroup {
+  id: "Classic Collection" | "Signature Creations" | "Artisan Selection" | "Indian Inspirations";
+  title: string;
+  subtitle: string;
+  countBadge: string;
+  items: CreamFilling[];
+}
+
 const CREAM_COLLECTIONS = [
   { id: "ALL", label: "All 25 Fillings", count: 25 },
   { id: "Classic Collection", label: "Classic Collection", count: 6 },
@@ -261,6 +269,37 @@ const CREAM_FILLINGS: CreamFilling[] = [
   }
 ];
 
+const CREAM_COLLECTION_GROUPS: CreamCollectionGroup[] = [
+  {
+    id: "Classic Collection",
+    title: "CLASSIC COLLECTION",
+    subtitle: "Timeless Japanese & European Creams",
+    countBadge: "6 Flavours",
+    items: CREAM_FILLINGS.filter((f) => f.collection === "Classic Collection"),
+  },
+  {
+    id: "Signature Creations",
+    title: "SIGNATURE CREATIONS",
+    subtitle: "Decadent, Rich & Globally Celebrated Recipes",
+    countBadge: "9 Flavours",
+    items: CREAM_FILLINGS.filter((f) => f.collection === "Signature Creations"),
+  },
+  {
+    id: "Artisan Selection",
+    title: "ARTISAN SELECTION",
+    subtitle: "Middle Eastern Luxury & Ceremonial Kyoto Botanicals",
+    countBadge: "6 Flavours",
+    items: CREAM_FILLINGS.filter((f) => f.collection === "Artisan Selection"),
+  },
+  {
+    id: "Indian Inspirations",
+    title: "INDIAN INSPIRATIONS",
+    subtitle: "Royal Saffron, Aromatic Rose & Heritage Sweets",
+    countBadge: "4 Flavours",
+    items: CREAM_FILLINGS.filter((f) => f.collection === "Indian Inspirations"),
+  },
+];
+
 export default function FlavoursClient() {
   const [flavors, setFlavors] = useState<Flavor[]>(DEFAULT_FLAVORS);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
@@ -290,10 +329,10 @@ export default function FlavoursClient() {
       ? flavors
       : flavors.filter((f) => f.category === selectedCategory);
 
-  const filteredCreamFillings =
+  const displayedGroups =
     selectedCreamCollection === "ALL"
-      ? CREAM_FILLINGS
-      : CREAM_FILLINGS.filter((f) => f.collection === selectedCreamCollection);
+      ? CREAM_COLLECTION_GROUPS
+      : CREAM_COLLECTION_GROUPS.filter((g) => g.id === selectedCreamCollection);
 
   return (
     <main className="min-h-screen bg-[#F8F4EC] flex flex-col selection:bg-[#DB3E59] selection:text-white">
@@ -378,7 +417,7 @@ export default function FlavoursClient() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: 25 CHILLED CREAM FILLINGS (Japanese Imports & Local Blends)
+            SECTION 2: 25 CHILLED CREAM FILLINGS (Bento Collection Showcase)
             ══════════════════════════════════════════════════════════════ */}
         <section className="mt-32 pt-16 border-t border-[#162B3A]/10">
           
@@ -405,7 +444,7 @@ export default function FlavoursClient() {
                   onClick={() => setSelectedCreamCollection(col.id)}
                   className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
                     selectedCreamCollection === col.id
-                      ? "bg-[#162B3A] text-white shadow-md scale-105"
+                      ? "bg-[#DB3E59] text-white shadow-md scale-105"
                       : "bg-white text-[#162B3A]/80 hover:bg-[#FAF4E7] hover:text-[#162B3A] border border-black/5"
                   }`}
                 >
@@ -420,58 +459,67 @@ export default function FlavoursClient() {
             </div>
           </div>
 
-          {/* 25 Cream Fillings Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
-            {filteredCreamFillings.map((filling) => (
+          {/* 4 Collection Bento Boxes */}
+          <div className="space-y-8 sm:space-y-10">
+            {displayedGroups.map((group) => (
               <div
-                key={filling.id}
-                className="group relative rounded-3xl bg-white/90 hover:bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(22,43,58,0.08)] border border-black/5 hover:border-[#DB3E59]/30 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
+                key={group.id}
+                className="rounded-[36px] bg-white/80 backdrop-blur-sm p-6 sm:p-8 lg:p-10 border border-black/5 shadow-[0_4px_24px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_36px_rgba(22,43,58,0.06)] transition-all duration-300"
               >
-                {/* Subtle decorative top-right glow */}
-                <div 
-                  className="absolute -top-12 -right-12 w-28 h-28 rounded-full opacity-20 blur-xl pointer-events-none group-hover:opacity-40 transition-opacity"
-                  style={{ backgroundColor: filling.accentColor }}
-                />
-
-                <div>
-                  {/* Top Row: Number & Tag */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span 
-                      className="font-heading text-xs font-black px-2.5 py-1 rounded-full text-white"
-                      style={{ backgroundColor: filling.accentColor }}
-                    >
-                      #{filling.number}
-                    </span>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#162B3A]/50 bg-[#F8F4EC] px-2.5 py-1 rounded-full">
-                      {filling.tag}
-                    </span>
+                {/* Collection Header (Red Headline as in official specification) */}
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-5 mb-6 border-b border-black/5">
+                  <div className="flex items-center gap-3">
+                    <span className="w-3 h-3 rounded-full bg-[#DB3E59]" />
+                    <div>
+                      <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#DB3E59] tracking-tight uppercase leading-none">
+                        {group.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#162B3A]/60 font-bold uppercase tracking-wider mt-1.5">
+                        {group.subtitle}
+                      </p>
+                    </div>
                   </div>
-
-                  {/* Flavor Name */}
-                  <h3 className="text-xl font-black text-[#162B3A] tracking-tight group-hover:text-[#DB3E59] transition-colors mb-2">
-                    {filling.name}
-                  </h3>
-
-                  {/* Flavor Description */}
-                  <p className="text-xs sm:text-sm text-[#162B3A]/70 font-medium leading-relaxed">
-                    {filling.description}
-                  </p>
+                  <span className="px-4 py-1.5 rounded-full bg-[#FAF4E7] border border-black/5 text-xs font-black uppercase tracking-wider text-[#162B3A]">
+                    {group.countBadge}
+                  </span>
                 </div>
 
-                {/* Bottom Row: Collection Identifier Pill */}
-                <div className="mt-5 pt-3 border-t border-black/5 flex items-center justify-between text-[11px] font-bold text-[#162B3A]/60">
-                  <span className="uppercase tracking-wider">{filling.collection}</span>
-                  <span 
-                    className="w-2.5 h-2.5 rounded-full"
-                    style={{ backgroundColor: filling.accentColor }}
-                  />
+                {/* Flavours Grid inside Collection */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+                  {group.items.map((filling) => (
+                    <div
+                      key={filling.id}
+                      className="group/tile relative p-4 sm:p-5 rounded-2xl bg-[#FAF4E7]/70 hover:bg-[#FAF4E7] border border-black/5 hover:border-[#DB3E59]/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-md cursor-pointer flex flex-col justify-between gap-3"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span 
+                            className="w-8 h-8 rounded-xl flex items-center justify-center font-heading font-black text-xs text-white shrink-0 shadow-sm"
+                            style={{ backgroundColor: filling.accentColor }}
+                          >
+                            {filling.number}
+                          </span>
+                          <h4 className="font-black text-base sm:text-lg text-[#162B3A] group-hover/tile:text-[#DB3E59] transition-colors leading-tight">
+                            {filling.name}
+                          </h4>
+                        </div>
+                        <span className="text-[10px] font-black uppercase tracking-wider text-[#162B3A]/60 bg-white/90 px-2.5 py-0.5 rounded-full shrink-0 border border-black/5 shadow-2xs">
+                          {filling.tag}
+                        </span>
+                      </div>
+                      
+                      <p className="text-xs sm:text-[13px] text-[#162B3A]/70 font-medium leading-relaxed">
+                        {filling.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
           </div>
 
           {/* Pairing Highlight Banner */}
-          <div className="mt-16 p-8 sm:p-10 rounded-[32px] bg-gradient-to-r from-[#50B8B1]/15 via-[#FAF4E7] to-[#DB3E59]/15 border border-black/5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+          <div className="mt-14 p-8 sm:p-10 rounded-[32px] bg-gradient-to-r from-[#50B8B1]/15 via-[#FAF4E7] to-[#DB3E59]/15 border border-black/5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
             <div className="text-center md:text-left">
               <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] block mb-1">
                 ENDLESS COMBINATIONS
