@@ -12,7 +12,6 @@ interface CreamFilling {
   id: string;
   number: string;
   name: string;
-  japaneseLabel: string;
   collection: "Classic Collection" | "Signature Creations" | "Artisan Selection" | "Indian Inspirations";
   description: string;
   swatchHex: string;
@@ -26,7 +25,6 @@ interface CreamFilling {
 interface CreamCollectionGroup {
   id: "Classic Collection" | "Signature Creations" | "Artisan Selection" | "Indian Inspirations";
   title: string;
-  japaneseTitle: string;
   subtitle: string;
   countBadge: string;
   items: CreamFilling[];
@@ -46,7 +44,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "original-custard",
     number: "01",
     name: "Original Custard",
-    japaneseLabel: "カスタード",
     collection: "Classic Collection",
     description: "Golden Japanese custard cream with a velvety, comforting finish.",
     swatchHex: "#F7C844",
@@ -60,7 +57,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "madagascar-vanilla",
     number: "02",
     name: "Madagascar Vanilla",
-    japaneseLabel: "バニラ",
     collection: "Classic Collection",
     description: "Rich Hokkaido cream infused with aromatic Madagascar bourbon vanilla beans.",
     swatchHex: "#F2E7D0",
@@ -74,7 +70,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "belgian-chocolate",
     number: "03",
     name: "Belgian Chocolate",
-    japaneseLabel: "ショコラ",
     collection: "Classic Collection",
     description: "Silky whipped cream folded with melted single-origin Belgian cocoa.",
     swatchHex: "#5E3A24",
@@ -88,7 +83,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "strawberry-cream",
     number: "04",
     name: "Strawberry Cream",
-    japaneseLabel: "イチゴ",
     collection: "Classic Collection",
     description: "Sweet, tangy Japanese strawberry puree swirled into cloud-soft cream.",
     swatchHex: "#F27A9B",
@@ -102,7 +96,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "sea-salt-caramel",
     number: "05",
     name: "Sea Salt Caramel",
-    japaneseLabel: "キャラメル",
     collection: "Classic Collection",
     description: "Slow-simmered buttery caramel balanced with sea salt flakes.",
     swatchHex: "#C87A28",
@@ -116,7 +109,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "pistachio-praline",
     number: "06",
     name: "Pistachio Praline",
-    japaneseLabel: "ピスタチオ",
     collection: "Classic Collection",
     description: "Roasted Mediterranean pistachios stone-ground into a nutty, smooth paste.",
     swatchHex: "#8CAE68",
@@ -132,7 +124,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "dark-cacao",
     number: "07",
     name: "Dark Cacao",
-    japaneseLabel: "カカオ",
     collection: "Signature Creations",
     description: "Intense 70% bittersweet dark cocoa cream for deep chocolate lovers.",
     swatchHex: "#301E17",
@@ -146,7 +137,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "lotus-biscoff-crumble",
     number: "08",
     name: "Lotus Biscoff Crumble",
-    japaneseLabel: "ビスコフ",
     collection: "Signature Creations",
     description: "Spiced Belgian caramelized biscuit cream with crunchy cookie crumbles.",
     swatchHex: "#B86227",
@@ -160,7 +150,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "lotus-caramel",
     number: "09",
     name: "Lotus Caramel",
-    japaneseLabel: "キャラメル",
     collection: "Signature Creations",
     description: "Decadent fusion of Biscoff spread and golden cooked caramel ribbons.",
     swatchHex: "#B25B1F",
@@ -174,7 +163,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "tiramisu-italiano",
     number: "10",
     name: "Tiramisu Italiano",
-    japaneseLabel: "ティラミス",
     collection: "Signature Creations",
     description: "Espresso-soaked savoiardi flavor with sweet Italian mascarpone cream.",
     swatchHex: "#6E5039",
@@ -188,7 +176,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "hazelnut-dulcey",
     number: "11",
     name: "Hazelnut Dulcey",
-    japaneseLabel: "ドゥルセ",
     collection: "Signature Creations",
     description: "Roasted Piedmont hazelnuts blended with toasted blonde chocolate cream.",
     swatchHex: "#AF7744",
@@ -202,7 +189,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "alphonso-mango",
     number: "12",
     name: "Alphonso Mango",
-    japaneseLabel: "マンゴー",
     collection: "Signature Creations",
     description: "Sun-ripened Ratnagiri Alphonso mango nectar whipped into silky cream.",
     swatchHex: "#FFAA1D",
@@ -216,7 +202,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "nutella-supreme",
     number: "13",
     name: "Nutella Supreme",
-    japaneseLabel: "ヌテラ",
     collection: "Signature Creations",
     description: "Generously loaded roasted hazelnut and cocoa spread folded into filling.",
     swatchHex: "#4E2A1E",
@@ -230,7 +215,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "kinder-bueno-bliss",
     number: "14",
     name: "Kinder Bueno Bliss",
-    japaneseLabel: "ブエノ",
     collection: "Signature Creations",
     description: "Crispy wafer and creamy hazelnut milk chocolate filling.",
     swatchHex: "#B67E56",
@@ -244,7 +228,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "snickers-temptation",
     number: "15",
     name: "Snickers Temptation",
-    japaneseLabel: "スニッカーズ",
     collection: "Signature Creations",
     description: "Roasted crunchy peanuts, gooey caramel, and milk chocolate dream.",
     swatchHex: "#472818",
@@ -260,7 +243,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "pistachio-kunafa",
     number: "16",
     name: "Pistachio Kunafa",
-    japaneseLabel: "クナファ",
     collection: "Artisan Selection",
     description: "Crispy butter-toasted kataifi kunafa layered with emerald pistachio cream.",
     swatchHex: "#789849",
@@ -274,7 +256,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "persian-pistachio",
     number: "17",
     name: "Persian Pistachio",
-    japaneseLabel: "ピスタチオ",
     collection: "Artisan Selection",
     description: "Rare aromatic Persian green pistachios with delicate floral undertones.",
     swatchHex: "#5E8752",
@@ -288,7 +269,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "omani-halwa",
     number: "18",
     name: "Omani Halwa",
-    japaneseLabel: "ハルワ",
     collection: "Artisan Selection",
     description: "Traditional Gulf spices with rosewater, saffron, and caramelized cardamom.",
     swatchHex: "#934E24",
@@ -302,7 +282,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "kyoto-matcha",
     number: "19",
     name: "Kyoto Matcha",
-    japaneseLabel: "宇治抹茶",
     collection: "Artisan Selection",
     description: "First-harvest ceremonial Uji green tea from Kyoto with deep umami sweetness.",
     swatchHex: "#3E6333",
@@ -316,7 +295,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "ferrero-rocher",
     number: "20",
     name: "Ferrero Rocher",
-    japaneseLabel: "ロシェ",
     collection: "Artisan Selection",
     description: "Whole roasted hazelnuts, wafer crisp, and velvety chocolate praline.",
     swatchHex: "#5E3A24",
@@ -330,7 +308,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "raffaello-coconut",
     number: "21",
     name: "Raffaello Coconut",
-    japaneseLabel: "ココナッツ",
     collection: "Artisan Selection",
     description: "Silky white chocolate almond cream rolled in fine toasted coconut snow.",
     swatchHex: "#E5DFD4",
@@ -346,7 +323,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "banarasi-paan",
     number: "22",
     name: "Banarasi Paan",
-    japaneseLabel: "パーン",
     collection: "Indian Inspirations",
     description: "Fragrant sweet betel leaf infused with gulkand rose jam and exotic spices.",
     swatchHex: "#306B48",
@@ -360,7 +336,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "gulab-jamun",
     number: "23",
     name: "Gulab Jamun",
-    japaneseLabel: "ジャムン",
     collection: "Indian Inspirations",
     description: "Warm cardamom-infused mawa cream with sweet rose syrup drizzle notes.",
     swatchHex: "#8B4520",
@@ -374,7 +349,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "kesar-pista-royale",
     number: "24",
     name: "Kesar Pista Royale",
-    japaneseLabel: "ケサール",
     collection: "Indian Inspirations",
     description: "Royal Kashmiri saffron strands steeped in rich cream with crushed pistachios.",
     swatchHex: "#E28E14",
@@ -388,7 +362,6 @@ const CREAM_FILLINGS: CreamFilling[] = [
     id: "madras-filter-coffee",
     number: "25",
     name: "Madras Filter Coffee",
-    japaneseLabel: "珈琲",
     collection: "Indian Inspirations",
     description: "Authentic South Indian dark chicory roasted brew whipped into coffee cream.",
     swatchHex: "#503322",
@@ -404,7 +377,6 @@ const CREAM_COLLECTION_GROUPS: CreamCollectionGroup[] = [
   {
     id: "Classic Collection",
     title: "CLASSIC COLLECTION",
-    japaneseTitle: "クラシック",
     subtitle: "Timeless Japanese & European Creams",
     countBadge: "6 Flavours",
     items: CREAM_FILLINGS.filter((f) => f.collection === "Classic Collection"),
@@ -412,7 +384,6 @@ const CREAM_COLLECTION_GROUPS: CreamCollectionGroup[] = [
   {
     id: "Signature Creations",
     title: "SIGNATURE CREATIONS",
-    japaneseTitle: "シグネチャー",
     subtitle: "Decadent & Globally Celebrated Recipes",
     countBadge: "9 Flavours",
     items: CREAM_FILLINGS.filter((f) => f.collection === "Signature Creations"),
@@ -420,7 +391,6 @@ const CREAM_COLLECTION_GROUPS: CreamCollectionGroup[] = [
   {
     id: "Artisan Selection",
     title: "ARTISAN SELECTION",
-    japaneseTitle: "職人の技",
     subtitle: "Middle Eastern Luxury & Kyoto Botanicals",
     countBadge: "6 Flavours",
     items: CREAM_FILLINGS.filter((f) => f.collection === "Artisan Selection"),
@@ -428,7 +398,6 @@ const CREAM_COLLECTION_GROUPS: CreamCollectionGroup[] = [
   {
     id: "Indian Inspirations",
     title: "INDIAN INSPIRATIONS",
-    japaneseTitle: "伝統の香り",
     subtitle: "Royal Saffron, Aromatic Rose & Heritage Sweets",
     countBadge: "4 Flavours",
     items: CREAM_FILLINGS.filter((f) => f.collection === "Indian Inspirations"),
@@ -711,9 +680,9 @@ export default function FlavoursClient() {
                 />
               </div>
 
-              {/* Japanese Motto Pill */}
+              {/* Motto Pill */}
               <div className="mt-2 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white font-sans text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center shadow-lg">
-                外はサクッ、中はとろり &bull; Crisp Outside, Cream Inside
+                Crisp Outside, Cream Inside
               </div>
             </div>
 
@@ -853,7 +822,7 @@ export default function FlavoursClient() {
                   {/* Card Footer Micro-bar */}
                   <div className="pt-3 border-t border-white/15 flex items-center justify-between text-xs text-white/60 font-mono">
                     <span>COLLECTION 0{idx + 1} OF 04 &bull; {col.badge}</span>
-                    <span>外はサクッ、中はとろり &bull; CRISP OUTSIDE, CREAM INSIDE</span>
+                    <span>CRISP OUTSIDE, CREAM INSIDE</span>
                   </div>
                 </div>
               ))}
