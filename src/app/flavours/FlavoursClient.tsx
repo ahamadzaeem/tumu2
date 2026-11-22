@@ -552,113 +552,203 @@ export default function FlavoursClient() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: 25 CHILLED CREAM FILLINGS (Concept 1: Apple Studio Clean Grid)
+            SECTION 2: 25 CHILLED CREAM FILLINGS (TUMU Signature Poster Layout)
             ══════════════════════════════════════════════════════════════ */}
-        <section className="mt-28 pt-16 border-t border-[#162B3A]/10">
+        <section className="mt-28 pt-8">
           
-          {/* Header */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-12 border-b border-[#162B3A]/10">
-            <div>
-              <span className="text-[#DB3E59] text-xs font-black uppercase tracking-[0.2em] block mb-2">
-                CHILLED CREAM FILLINGS
-              </span>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#162B3A] leading-[0.95]">
-                CREAM FILLINGS
-              </h2>
-              <p className="font-heading text-base sm:text-lg lg:text-xl text-[#162B3A]/80 tracking-wide mt-2 max-w-3xl font-medium">
-                Cream fillings made with Japanese imports blended with premium local ingredients
-              </p>
-            </div>
-
-            {/* Apple-Style Minimalist Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-2">
-              {CREAM_COLLECTIONS.map((col) => (
-                <button
-                  key={col.id}
-                  onClick={() => setSelectedCreamCollection(col.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
-                    selectedCreamCollection === col.id
-                      ? "bg-[#DB3E59] text-white shadow-sm"
-                      : "bg-white text-[#162B3A]/80 hover:text-[#DB3E59] border border-black/5 hover:border-black/10"
-                  }`}
-                >
-                  <span>{col.label}</span>
-                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                    selectedCreamCollection === col.id ? "bg-white/20 text-white" : "bg-black/5 text-[#162B3A]/50"
-                  }`}>
-                    {col.count}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 4 Collections */}
-          <div className="space-y-16">
-            {displayedGroups.map((group) => (
-              <div key={group.id}>
+          {/* Blue Poster Outer Frame */}
+          <div className="rounded-[40px] sm:rounded-[48px] bg-gradient-to-b from-[#4F8BBE] via-[#5694C8] to-[#5491C7] text-white p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden border border-white/20">
+            
+            <div className="flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-14">
+              
+              {/* Left Column: Menu Text & Lists */}
+              <div className="flex-1 max-w-3xl">
                 
-                {/* Collection Title (Bold Red Header from Specification) */}
-                <div className="flex flex-wrap items-end justify-between gap-3 pb-3 mb-6 border-b border-[#162B3A]/10">
-                  <div className="flex items-center gap-3">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#DB3E59]" />
-                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#DB3E59] tracking-tight uppercase leading-none">
-                      {group.title}
-                    </h3>
+                {/* Main Heading */}
+                <h2 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-none mb-3">
+                  TUMU flavours!
+                </h2>
+                <p className="text-white/90 text-sm sm:text-base font-medium max-w-xl mb-8 leading-relaxed">
+                  Sweet, fruity, or healthy, we stick it with every flavor. With a variety of flavors to choose from you can try a new flavor with every pick.
+                </p>
+
+                {/* Secondary Heading */}
+                <h3 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight leading-snug mb-2">
+                  So many different flavours, what&apos;s your pick?
+                </h3>
+                <p className="text-white/85 text-xs sm:text-sm font-medium mb-6">
+                  Cream fillings made with Japanese imports blended with premium local ingredients.
+                </p>
+
+                {/* Two-Column Quick Picks Bullet List */}
+                <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-8 max-w-md text-sm sm:text-base font-semibold text-white/95">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Original Vanilla</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Custard</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Pistachio</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Chocolate</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Salted Caramel</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Nutella</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Kinder</span>
+                    </div>
                   </div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#162B3A]/50">
-                    {group.countBadge}
-                  </span>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Lotus</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Matcha</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Snickers</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Strawberry</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Ferrero Rocher</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                      <span>Raffaello</span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Clean White Tiles Grid (Apple Studio) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                  {group.items.map((filling) => (
-                    <div
-                      key={filling.id}
-                      className="group relative bg-white rounded-2xl p-5 sm:p-6 border border-black/5 shadow-[0_2px_12px_rgba(22,43,58,0.02)] hover:shadow-[0_12px_28px_rgba(22,43,58,0.06)] transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
-                    >
-                      <div>
-                        {/* Top Meta: Number & Tag */}
-                        <div className="flex items-center justify-between gap-2 mb-3">
-                          <span className="text-xs font-mono font-bold text-[#162B3A]/40">
-                            {filling.number}
-                          </span>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#162B3A]/60 bg-[#FAF4E7] px-2.5 py-0.5 rounded-full">
-                            {filling.tag}
-                          </span>
-                        </div>
+                {/* White Dividing Line */}
+                <div className="border-t border-white/25 my-8" />
 
-                        {/* Flavour Name */}
-                        <h4 className="font-heading font-black text-lg sm:text-xl text-[#162B3A] group-hover:text-[#DB3E59] transition-colors leading-tight mb-2">
-                          {filling.name}
-                        </h4>
-
-                        {/* Description */}
-                        <p className="text-xs sm:text-[13px] text-[#162B3A]/70 font-medium leading-relaxed">
-                          {filling.description}
-                        </p>
-                      </div>
-
-                      {/* Clean Subtle Footer */}
-                      <div className="pt-3 mt-4 border-t border-black/5 flex items-center justify-between text-[11px] text-[#162B3A]/40">
-                        <span className="font-medium">
-                          Pair: <span className="text-[#162B3A]/70 font-bold">{filling.bestShellPairing}</span>
-                        </span>
-                        <span className="font-medium text-xs">
-                          {filling.japaneseLabel}
-                        </span>
-                      </div>
+                {/* 4 Official Collections */}
+                <div className="space-y-8">
+                  {/* Collection 1: Classic Collection */}
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <h4 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
+                        CLASSIC COLLECTION
+                      </h4>
+                      <span className="px-3 py-0.5 rounded-full bg-white text-[#4F8BBE] text-[11px] font-black uppercase tracking-wider shadow-xs">
+                        CRISP &amp; CREAM
+                      </span>
                     </div>
-                  ))}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm sm:text-base font-semibold text-white/95">
+                      {CREAM_FILLINGS.filter(f => f.collection === "Classic Collection").map((filling) => (
+                        <div key={filling.id} className="flex items-center gap-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                          <span>{filling.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Collection 2: Signature Creations */}
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <h4 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
+                        SIGNATURE CREATIONS
+                      </h4>
+                      <span className="px-3 py-0.5 rounded-full bg-[#DB3E59] text-white text-[11px] font-black uppercase tracking-wider shadow-xs">
+                        CRISP &amp; CREAM
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm sm:text-base font-semibold text-white/95">
+                      {CREAM_FILLINGS.filter(f => f.collection === "Signature Creations").map((filling) => (
+                        <div key={filling.id} className="flex items-center gap-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                          <span>{filling.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Collection 3: Artisan Selection */}
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <h4 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
+                        ARTISAN SELECTION
+                      </h4>
+                      <span className="px-3 py-0.5 rounded-full bg-white text-[#4F8BBE] text-[11px] font-black uppercase tracking-wider shadow-xs">
+                        CRISP &amp; CREAM
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm sm:text-base font-semibold text-white/95">
+                      {CREAM_FILLINGS.filter(f => f.collection === "Artisan Selection").map((filling) => (
+                        <div key={filling.id} className="flex items-center gap-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                          <span>{filling.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Collection 4: Indian Inspirations */}
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <h4 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
+                        INDIAN INSPIRATIONS
+                      </h4>
+                      <span className="px-3 py-0.5 rounded-full bg-[#DB3E59] text-white text-[11px] font-black uppercase tracking-wider shadow-xs">
+                        CRISP &amp; CREAM
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm sm:text-base font-semibold text-white/95">
+                      {CREAM_FILLINGS.filter(f => f.collection === "Indian Inspirations").map((filling) => (
+                        <div key={filling.id} className="flex items-center gap-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                          <span>{filling.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
               </div>
-            ))}
+
+              {/* Right Column: Sliced Pastry Stick Visual */}
+              <div className="w-full lg:w-[320px] xl:w-[360px] shrink-0 flex flex-col items-center justify-center relative">
+                <div className="relative w-full h-[450px] sm:h-[600px] lg:h-full min-h-[500px] rounded-3xl overflow-hidden shadow-xl border border-white/20">
+                  <Image
+                    src="/images/tumu/tumu_sliced_stick.jpg"
+                    alt="TUMU Crispy Shell with Chilled Cream Filling"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 1024px) 100vw, 360px"
+                    priority
+                  />
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
           {/* Clean 200 Combinations Summary Banner */}
-          <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-white border border-black/5 shadow-[0_4px_20px_rgba(22,43,58,0.03)] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-white border border-black/5 shadow-[0_4px_20px_rgba(22,43,58,0.03)] flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
               <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] block mb-1">
                 ENDLESS COMBINATIONS
