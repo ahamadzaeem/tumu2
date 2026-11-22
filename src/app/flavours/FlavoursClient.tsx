@@ -552,173 +552,201 @@ export default function FlavoursClient() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: CREAM FILLINGS (With Sliced TUMU Pastry Stick)
+            SECTION 2: CREAM FILLINGS (Blue Container with Overlapping Sticky Sections)
             ══════════════════════════════════════════════════════════════ */}
-        <section className="mt-28 pt-12 border-t border-[#162B3A]/10">
+        <section className="mt-28 pt-8">
           
-          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16">
+          {/* Blue Container Frame */}
+          <div className="rounded-[40px] sm:rounded-[48px] bg-gradient-to-b from-[#4F8BBE] via-[#5694C8] to-[#4882B3] text-white p-6 sm:p-10 lg:p-14 shadow-2xl border border-white/20 relative">
             
-            {/* Left Column: Exact Content from Specification */}
-            <div className="flex-1 w-full max-w-2xl">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#162B3A] mb-2 leading-none">
+            {/* Header: Strict Specified Content */}
+            <div className="max-w-3xl mb-12">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-3 leading-none drop-shadow-sm">
                 CREAM FILLINGS
               </h2>
-              <p className="font-heading text-base sm:text-lg lg:text-xl text-[#162B3A]/80 tracking-wide mb-10">
+              <p className="font-heading text-base sm:text-lg lg:text-xl text-white/90 tracking-wide font-medium">
                 Cream fillings made with Japanese imports blended with premium local ingredients
               </p>
+            </div>
 
-              <div className="space-y-10">
-                {/* CLASSIC COLLECTION */}
-                <div>
-                  <h3 className="font-heading font-black text-2xl sm:text-3xl text-[#DB3E59] tracking-tight uppercase mb-4">
-                    CLASSIC COLLECTION
-                  </h3>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-[#162B3A] font-semibold text-base sm:text-lg">
+            {/* Two-Column Interactive Layout: Sticky Overlapping Cards + Sticky TUMU Stick */}
+            <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-14 relative">
+              
+              {/* Left Column: Overlapping Stacking Cards on Scroll */}
+              <div className="flex-1 w-full max-w-2xl relative pb-16">
+                
+                {/* 1. CLASSIC COLLECTION (Card 1) */}
+                <div className="sticky top-32 z-10 rounded-3xl bg-[#447FA9]/95 backdrop-blur-md border border-white/25 p-6 sm:p-8 shadow-[0_16px_40px_rgba(0,0,0,0.18)] mb-36 transition-all">
+                  <div className="flex items-center justify-between gap-3 mb-5 border-b border-white/15 pb-3">
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF3B62] tracking-tight uppercase leading-none drop-shadow-sm">
+                      CLASSIC COLLECTION
+                    </h3>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1 rounded-full border border-white/20">
+                      06 Flavours
+                    </span>
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-white font-semibold text-base sm:text-lg">
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Original Custard</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Madagascar Vanilla</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Belgian Chocolate</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Strawberry Cream</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Sea Salt Caramel</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Pistachio Praline</span>
                     </li>
                   </ul>
                 </div>
 
-                {/* SIGNATURE CREATIONS */}
-                <div>
-                  <h3 className="font-heading font-black text-2xl sm:text-3xl text-[#DB3E59] tracking-tight uppercase mb-4">
-                    SIGNATURE CREATIONS
-                  </h3>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-[#162B3A] font-semibold text-base sm:text-lg">
+                {/* 2. SIGNATURE CREATIONS (Card 2 - Overlaps Card 1 on Scroll) */}
+                <div className="sticky top-32 z-20 rounded-3xl bg-[#3E77A0]/95 backdrop-blur-md border border-white/25 p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.22)] mb-36 transition-all">
+                  <div className="flex items-center justify-between gap-3 mb-5 border-b border-white/15 pb-3">
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF3B62] tracking-tight uppercase leading-none drop-shadow-sm">
+                      SIGNATURE CREATIONS
+                    </h3>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1 rounded-full border border-white/20">
+                      09 Flavours
+                    </span>
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-white font-semibold text-base sm:text-lg">
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Dark Cacao</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Lotus Biscoff Crumble</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Lotus Caramel</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Tiramisu Italiano</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Hazelnut Dulcey</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Alphonso Mango</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Nutella Supreme</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Kinder Bueno Bliss</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Snickers Temptation</span>
                     </li>
                   </ul>
                 </div>
 
-                {/* ARTISAN SELECTION */}
-                <div>
-                  <h3 className="font-heading font-black text-2xl sm:text-3xl text-[#DB3E59] tracking-tight uppercase mb-4">
-                    ARTISAN SELECTION
-                  </h3>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-[#162B3A] font-semibold text-base sm:text-lg">
+                {/* 3. ARTISAN SELECTION (Card 3 - Overlaps Card 2 on Scroll) */}
+                <div className="sticky top-32 z-30 rounded-3xl bg-[#376F97]/95 backdrop-blur-md border border-white/25 p-6 sm:p-8 shadow-[0_24px_55px_rgba(0,0,0,0.26)] mb-36 transition-all">
+                  <div className="flex items-center justify-between gap-3 mb-5 border-b border-white/15 pb-3">
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF3B62] tracking-tight uppercase leading-none drop-shadow-sm">
+                      ARTISAN SELECTION
+                    </h3>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1 rounded-full border border-white/20">
+                      06 Flavours
+                    </span>
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-white font-semibold text-base sm:text-lg">
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Pistachio Kunafa</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Persian Pistachio</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Omani Halwa</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Kyoto Matcha</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Ferrero Rocher</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Raffaello Coconut</span>
                     </li>
                   </ul>
                 </div>
 
-                {/* INDIAN INSPIRATIONS */}
-                <div>
-                  <h3 className="font-heading font-black text-2xl sm:text-3xl text-[#DB3E59] tracking-tight uppercase mb-4">
-                    INDIAN INSPIRATIONS
-                  </h3>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-[#162B3A] font-semibold text-base sm:text-lg">
+                {/* 4. INDIAN INSPIRATIONS (Card 4 - Overlaps Card 3 on Scroll) */}
+                <div className="sticky top-32 z-40 rounded-3xl bg-[#31678E]/95 backdrop-blur-md border border-white/25 p-6 sm:p-8 shadow-[0_28px_60px_rgba(0,0,0,0.30)] pb-8 transition-all">
+                  <div className="flex items-center justify-between gap-3 mb-5 border-b border-white/15 pb-3">
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF3B62] tracking-tight uppercase leading-none drop-shadow-sm">
+                      INDIAN INSPIRATIONS
+                    </h3>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1 rounded-full border border-white/20">
+                      04 Flavours
+                    </span>
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-white font-semibold text-base sm:text-lg">
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Banarasi Paan</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Gulab Jamun</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Kesar Pista Royale</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-[#162B3A] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-white shrink-0" />
                       <span>Madras Filter Coffee</span>
                     </li>
                   </ul>
                 </div>
 
               </div>
-            </div>
 
-            {/* Right Column: Uploaded TUMU Sliced Pastry Stick */}
-            <div className="w-full lg:w-[360px] xl:w-[420px] shrink-0 flex justify-center items-center lg:sticky lg:top-32">
-              <div className="relative w-[260px] sm:w-[320px] lg:w-[360px] h-[550px] sm:h-[680px] lg:h-[780px] drop-shadow-xl">
-                <Image
-                  src="/images/tumu/cut_tumu_stick.png"
-                  alt="TUMU Crispy Crunchy Stick with Chilled Cream Filling"
-                  fill
-                  className="object-contain object-center"
-                  sizes="(max-width: 1024px) 320px, 420px"
-                  priority
-                />
+              {/* Right Column: Sticky Uploaded TUMU Sliced Pastry Stick */}
+              <div className="w-full lg:w-[360px] xl:w-[420px] shrink-0 flex justify-center items-center lg:sticky lg:top-32">
+                <div className="relative w-[260px] sm:w-[320px] lg:w-[360px] h-[550px] sm:h-[680px] lg:h-[750px] drop-shadow-2xl">
+                  <Image
+                    src="/images/tumu/cut_tumu_stick.png"
+                    alt="TUMU Crispy Crunchy Stick with Chilled Cream Filling"
+                    fill
+                    className="object-contain object-center"
+                    sizes="(max-width: 1024px) 320px, 420px"
+                    priority
+                  />
+                </div>
               </div>
+
             </div>
 
           </div>
