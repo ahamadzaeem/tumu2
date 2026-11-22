@@ -802,151 +802,61 @@ export default function FlavoursClient() {
                 DESKTOP VIEW (>= md): Overlapping Stacking Cards Container
                 ══════════════════════════════════════════════════════════════ */}
             <div className="hidden md:block relative z-10 max-w-4xl lg:max-w-5xl mx-auto w-full">
-              
-              {/* ── CARD 0: CLASSIC COLLECTION (Cerulean Indigo) ── */}
-              <div 
-                id="cream-card-0"
-                className="sticky top-24 sm:top-28 z-10 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-36 sm:mb-48 transition-all duration-300 min-h-[420px] sm:min-h-[440px] flex flex-col justify-start"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF4A6E] tracking-tight uppercase leading-none drop-shadow-sm">
-                      CLASSIC COLLECTION
-                    </h3>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#164473] bg-white px-3.5 py-1.5 rounded-full shadow-sm">
-                      CRISP &amp; CREAM
-                    </span>
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
-                      06 Flavours
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                  {COLLECTIONS_DATA[0].items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
-                    >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                        {item.name}
-                      </span>
+              {COLLECTIONS_DATA.map((col, idx) => (
+                <div
+                  key={col.id}
+                  id={`cream-card-${idx}`}
+                  className={`sticky ${
+                    idx === 0
+                      ? "top-24 z-10 mb-44 sm:mb-48"
+                      : idx === 1
+                      ? "top-28 z-20 mb-44 sm:mb-48"
+                      : idx === 2
+                      ? "top-32 z-30 mb-44 sm:mb-48"
+                      : "top-36 z-40 mb-8"
+                  } rounded-[36px] sm:rounded-[44px] ${col.bgGradient} border border-white/25 p-6 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.35)] transition-all duration-300 h-[440px] sm:h-[450px] flex flex-col justify-between`}
+                >
+                  <div>
+                    {/* Desktop Header */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
+                      <div className="flex items-center gap-3">
+                        <h3 className={`font-sans font-black text-2xl sm:text-3xl lg:text-4xl ${col.titleColor} tracking-tight uppercase leading-none drop-shadow-sm`}>
+                          {col.title}
+                        </h3>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={`font-sans text-xs font-bold uppercase tracking-wider ${col.badgeBg} ${col.badgeText} px-3.5 py-1.5 rounded-full shadow-sm`}>
+                          {col.badge}
+                        </span>
+                        <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
+                          {col.count}
+                        </span>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* ── CARD 1: SIGNATURE CREATIONS (Biscoff Velvet Terracotta) ── */}
-              <div 
-                id="cream-card-1"
-                className="sticky top-28 sm:top-32 z-20 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-9 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-36 sm:mb-48 transition-all duration-300 min-h-[420px] sm:min-h-[440px] flex flex-col justify-start"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFE699] tracking-tight uppercase leading-none drop-shadow-sm">
-                      SIGNATURE CREATIONS
-                    </h3>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white bg-[#DB3E59] px-3.5 py-1.5 rounded-full shadow-sm">
-                      CRISP &amp; CREAM
-                    </span>
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
-                      09 Flavours
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                  {COLLECTIONS_DATA[1].items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
-                    >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                        {item.name}
-                      </span>
+                    {/* 3-Column Names-Only Grid for Desktop */}
+                    <div className="grid grid-cols-3 gap-3 sm:gap-3.5">
+                      {col.items.map((item) => (
+                        <div
+                          key={item.name}
+                          className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
+                        >
+                          <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                          <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
+                            {item.name}
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ── CARD 2: ARTISAN SELECTION (Kyoto Uji Matcha Green) ── */}
-              <div 
-                id="cream-card-2"
-                className="sticky top-32 sm:top-36 z-30 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-9 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-36 sm:mb-48 transition-all duration-300 min-h-[420px] sm:min-h-[440px] flex flex-col justify-start"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#B4F7C3] tracking-tight uppercase leading-none drop-shadow-sm">
-                      ARTISAN SELECTION
-                    </h3>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#143B1F] bg-[#D4F7DC] px-3.5 py-1.5 rounded-full shadow-sm">
-                      CRISP &amp; CREAM
-                    </span>
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
-                      06 Flavours
-                    </span>
+
+                  {/* Card Footer Micro-bar */}
+                  <div className="pt-3 border-t border-white/15 flex items-center justify-between text-xs text-white/60 font-mono">
+                    <span>COLLECTION 0{idx + 1} OF 04 &bull; {col.badge}</span>
+                    <span>外はサクッ、中はとろり &bull; CRISP OUTSIDE, CREAM INSIDE</span>
                   </div>
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                  {COLLECTIONS_DATA[2].items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
-                    >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                        {item.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ── CARD 3: INDIAN INSPIRATIONS (Dolce Tiramisu / Saffron Gold) ── */}
-              <div 
-                id="cream-card-3"
-                className="sticky top-36 sm:top-40 z-40 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-9 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300 min-h-[420px] sm:min-h-[440px] flex flex-col justify-start"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFFFFF] tracking-tight uppercase leading-none drop-shadow-sm">
-                      INDIAN INSPIRATIONS
-                    </h3>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#4A2E03] bg-[#FEF08A] px-3.5 py-1.5 rounded-full shadow-sm">
-                      CRISP &amp; CREAM
-                    </span>
-                    <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/85 bg-white/15 px-3 py-1.5 rounded-full">
-                      04 Flavours
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                  {COLLECTIONS_DATA[3].items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
-                    >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                      <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight">
-                        {item.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
+              ))}
             </div>
 
           </div>
