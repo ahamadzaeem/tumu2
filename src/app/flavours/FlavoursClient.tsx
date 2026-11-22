@@ -41,14 +41,15 @@ export default function FlavoursClient() {
       <div className="flex-1 pt-32 px-6 lg:px-12 max-w-[1440px] mx-auto w-full pb-20">
         
         {/* Hero Section with Targeted Keywords */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 max-w-4xl mx-auto">
           <span className="text-[#DB3E59] text-xs sm:text-sm font-black uppercase tracking-[0.25em] block mb-3">
-            Handcrafted Japanese Desserts in UAE</span>
-          <h1 className="text-5xl lg:text-7xl font-black tracking-tighter text-[#1A2E44] uppercase mb-6 drop-shadow-sm">
-            Our Flavours
+            OUR FLAVOURS
+          </span>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight text-[#162B3A] uppercase mb-6 leading-[0.95] drop-shadow-sm">
+            SO MANY FLAVOURS, WHAT&apos;S YOUR PICK?
           </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-[#1A2E44]/80 max-w-3xl mx-auto font-medium leading-relaxed">
-            Discover our artisanal lineup of <strong>crispy cream-filled desserts</strong> and signature <strong>Japanese cream desserts</strong>. Each stick is freshly baked to golden perfection and piped with silky cream, including authentic <strong>matcha desserts in UAE</strong> using ceremonial grade Uji green tea.
+          <p className="text-base sm:text-lg lg:text-xl text-[#162B3A]/85 max-w-3xl mx-auto font-medium leading-relaxed">
+            Discover the perfect bite with TUMU! Enjoy 8 classic flavours of crunchy outer layers paired with 25 delicious flavours of chilled cream filling. With so many exciting combinations to choose from, there’s a flavour for everyone!
           </p>
 
           {/* Category Filter Pills */}
@@ -69,8 +70,18 @@ export default function FlavoursClient() {
           </div>
         </div>
 
+        {/* Section Header: CRUSTÉ FLAVOURS */}
+        <div className="text-left mt-16 mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#162B3A]">
+            CRUSTÉ FLAVOURS
+          </h2>
+          <p className="font-heading text-base sm:text-lg lg:text-xl text-[#162B3A]/80 tracking-wide mt-1.5">
+            Explore TUMU&apos;s signature crispy shell flavours
+          </p>
+        </div>
+
         {/* Flavors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 pt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-6">
           {filteredFlavors.map((flavor) => (
             <div 
               key={flavor.id} 
