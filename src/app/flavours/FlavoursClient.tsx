@@ -602,20 +602,39 @@ export default function FlavoursClient() {
             />
 
             {/* Section Header */}
-            <div className="relative z-10 max-w-4xl mb-8 sm:mb-10">
+            <div className="relative z-10 max-w-4xl mx-auto text-center mb-6 sm:mb-8">
               <span className="text-white/80 text-xs sm:text-sm font-black uppercase tracking-[0.25em] block mb-2 font-mono">
                 COLLECTIONS &bull; 25 UNIQUE FILLINGS
               </span>
               <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-white mb-3 leading-none drop-shadow-sm">
                 CREAM FILLINGS
               </h2>
-              <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 tracking-wide font-medium max-w-3xl">
+              <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 tracking-wide font-medium max-w-3xl mx-auto">
                 Cream fillings made with Japanese imports blended with premium local ingredients
               </p>
             </div>
 
+            {/* ── Centerpiece: Horizontal TUMU Pastry Stick at the Top ── */}
+            <div className="relative z-10 w-full max-w-4xl mx-auto my-6 sm:my-8 flex flex-col items-center">
+              <div className="relative w-full h-[180px] sm:h-[260px] md:h-[310px] lg:h-[350px] drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:scale-[1.01]">
+                <Image
+                  src="/images/tumu/cut_tumu_horizontal.png"
+                  alt="TUMU Sliced Crispy Stick with Chilled Cream Filling"
+                  fill
+                  className="object-contain object-center"
+                  sizes="(max-width: 1024px) 100vw, 900px"
+                  priority
+                />
+              </div>
+
+              {/* Japanese Motto Pill */}
+              <div className="mt-2 px-6 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm font-black uppercase tracking-widest text-center shadow-lg">
+                外はサクッ、中はとろり &bull; Crisp Outside, Cream Inside
+              </div>
+            </div>
+
             {/* Interactive Collection Switcher Pills */}
-            <div className="relative z-10 flex flex-wrap items-center gap-2.5 sm:gap-3 mb-12 sm:mb-16">
+            <div className="relative z-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10 sm:mb-14 mt-6">
               {[
                 { label: "Classic Collection", count: "06", dot: "#60A5FA" },
                 { label: "Signature Creations", count: "09", dot: "#FB923C" },
@@ -641,207 +660,200 @@ export default function FlavoursClient() {
               ))}
             </div>
 
-            {/* Main Two-Column Row: Left Overlapping Stacking Cards + Right Sticky Sliced Stick */}
-            <div className="relative z-10 flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-14">
+            {/* ── Main Overlapping Stacking Cards Container (Full Width / Centered) ── */}
+            <div className="relative z-10 max-w-4xl lg:max-w-5xl mx-auto w-full">
               
-              {/* Left Column: 4 Stacking Cards that Overlap on Scroll */}
-              <div className="flex-1 w-full max-w-2xl relative">
-                
-                {/* ── CARD 0: CLASSIC COLLECTION (Cerulean Indigo) ── */}
-                <div 
-                  id="cream-card-0"
-                  className="sticky top-28 lg:top-32 z-10 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-40 sm:mb-52 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                    <div className="flex items-center gap-3">
-                      <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF4A6E] tracking-tight uppercase leading-none drop-shadow-sm">
-                        CLASSIC COLLECTION
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#164473] bg-white px-3.5 py-1 rounded-full shadow-sm font-mono">
-                        CRISP &amp; CREAM
-                      </span>
-                      <span className="hidden sm:inline-block text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1 rounded-full font-mono">
-                        06 Flavours
-                      </span>
-                    </div>
+              {/* ── CARD 0: CLASSIC COLLECTION (Cerulean Indigo) ── */}
+              <div 
+                id="cream-card-0"
+                className="sticky top-24 sm:top-28 z-10 rounded-[36px] sm:rounded-[48px] bg-gradient-to-br from-[#164473] via-[#1B528B] to-[#12385F] border border-white/25 p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] mb-36 sm:mb-48 transition-all duration-300 min-h-[380px] sm:min-h-[420px] flex flex-col justify-between"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FF4A6E] tracking-tight uppercase leading-none drop-shadow-sm">
+                      CLASSIC COLLECTION
+                    </h3>
                   </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
-                    {[
-                      "Original Custard",
-                      "Madagascar Vanilla",
-                      "Belgian Chocolate",
-                      "Strawberry Cream",
-                      "Sea Salt Caramel",
-                      "Pistachio Praline"
-                    ].map((name) => (
-                      <div
-                        key={name}
-                        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
-                      >
-                        <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                        <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
-                          {name}
-                        </span>
-                      </div>
-                    ))}
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#164473] bg-white px-3.5 py-1.5 rounded-full shadow-sm font-mono">
+                      CRISP &amp; CREAM
+                    </span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1.5 rounded-full font-mono">
+                      06 Flavours
+                    </span>
                   </div>
                 </div>
 
-                {/* ── CARD 1: SIGNATURE CREATIONS (Biscoff Velvet Terracotta) ── */}
-                <div 
-                  id="cream-card-1"
-                  className="sticky top-32 lg:top-36 z-20 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-9 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-40 sm:mb-52 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                    <div className="flex items-center gap-3">
-                      <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFE699] tracking-tight uppercase leading-none drop-shadow-sm">
-                        SIGNATURE CREATIONS
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-white bg-[#DB3E59] px-3.5 py-1 rounded-full shadow-sm font-mono">
-                        CRISP &amp; CREAM
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
+                  {[
+                    "Original Custard",
+                    "Madagascar Vanilla",
+                    "Belgian Chocolate",
+                    "Strawberry Cream",
+                    "Sea Salt Caramel",
+                    "Pistachio Praline"
+                  ].map((name) => (
+                    <div
+                      key={name}
+                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
+                    >
+                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                      <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
+                        {name}
                       </span>
-                      <span className="hidden sm:inline-block text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1 rounded-full font-mono">
-                        09 Flavours
-                      </span>
                     </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
-                    {[
-                      "Dark Cacao",
-                      "Lotus Biscoff Crumble",
-                      "Lotus Caramel",
-                      "Tiramisu Italiano",
-                      "Hazelnut Dulcey",
-                      "Alphonso Mango",
-                      "Nutella Supreme",
-                      "Kinder Bueno Bliss",
-                      "Snickers Temptation"
-                    ].map((name) => (
-                      <div
-                        key={name}
-                        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
-                      >
-                        <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                        <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
-                          {name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
 
-                {/* ── CARD 2: ARTISAN SELECTION (Kyoto Uji Matcha Green) ── */}
-                <div 
-                  id="cream-card-2"
-                  className="sticky top-36 lg:top-40 z-30 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-9 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-40 sm:mb-52 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                    <div className="flex items-center gap-3">
-                      <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#B4F7C3] tracking-tight uppercase leading-none drop-shadow-sm">
-                        ARTISAN SELECTION
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#143B1F] bg-[#D4F7DC] px-3.5 py-1 rounded-full shadow-sm font-mono">
-                        CRISP &amp; CREAM
-                      </span>
-                      <span className="hidden sm:inline-block text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1 rounded-full font-mono">
-                        06 Flavours
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
-                    {[
-                      "Pistachio Kunafa",
-                      "Persian Pistachio",
-                      "Omani Halwa",
-                      "Kyoto Matcha",
-                      "Ferrero Rocher",
-                      "Raffaello Coconut"
-                    ].map((name) => (
-                      <div
-                        key={name}
-                        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
-                      >
-                        <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                        <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
-                          {name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-mono">
+                  <span>COLLECTION 01 OF 04</span>
+                  <span>JAPANESE CHILLED CREAM</span>
                 </div>
-
-                {/* ── CARD 3: INDIAN INSPIRATIONS (Dolce Tiramisu / Saffron Gold) ── */}
-                <div 
-                  id="cream-card-3"
-                  className="sticky top-40 lg:top-44 z-40 rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-9 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                    <div className="flex items-center gap-3">
-                      <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFFFFF] tracking-tight uppercase leading-none drop-shadow-sm">
-                        INDIAN INSPIRATIONS
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#4A2E03] bg-[#FEF08A] px-3.5 py-1 rounded-full shadow-sm font-mono">
-                        CRISP &amp; CREAM
-                      </span>
-                      <span className="hidden sm:inline-block text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1 rounded-full font-mono">
-                        04 Flavours
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
-                    {[
-                      "Banarasi Paan",
-                      "Gulab Jamun",
-                      "Kesar Pista Royale",
-                      "Madras Filter Coffee"
-                    ].map((name) => (
-                      <div
-                        key={name}
-                        className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
-                      >
-                        <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                        <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
-                          {name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
               </div>
 
-              {/* Right Column: Sticky Uploaded TUMU Pastry Stick */}
-              <div className="w-full lg:w-[380px] xl:w-[440px] shrink-0 flex flex-col items-center lg:sticky lg:top-28 self-start pt-2">
-                
-                {/* Pastry Stick with interactive ambient glow */}
-                <div className="relative w-[280px] sm:w-[340px] lg:w-[380px] h-[520px] sm:h-[640px] lg:h-[720px] drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:scale-[1.02]">
-                  <Image
-                    src="/images/tumu/cut_tumu_stick.png"
-                    alt="TUMU Sliced Pastry Stick with Chilled Cream Filling"
-                    fill
-                    className="object-contain object-center"
-                    sizes="(max-width: 1024px) 340px, 440px"
-                    priority
-                  />
+              {/* ── CARD 1: SIGNATURE CREATIONS (Biscoff Velvet Terracotta) ── */}
+              <div 
+                id="cream-card-1"
+                className="sticky top-28 sm:top-32 z-20 rounded-[36px] sm:rounded-[48px] bg-gradient-to-br from-[#BD4E18] via-[#A84210] to-[#8C340B] border border-white/25 p-6 sm:p-10 shadow-[0_25px_55px_rgba(0,0,0,0.35)] mb-36 sm:mb-48 transition-all duration-300 min-h-[460px] sm:min-h-[500px] flex flex-col justify-between"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFE699] tracking-tight uppercase leading-none drop-shadow-sm">
+                      SIGNATURE CREATIONS
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-white bg-[#DB3E59] px-3.5 py-1.5 rounded-full shadow-sm font-mono">
+                      CRISP &amp; CREAM
+                    </span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1.5 rounded-full font-mono">
+                      09 Flavours
+                    </span>
+                  </div>
                 </div>
 
-                {/* Slogan Pill */}
-                <div className="mt-4 px-6 py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs font-black uppercase tracking-widest text-center shadow-lg">
-                  外はサクッ、中はとろり &bull; Crisp &amp; Cream
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
+                  {[
+                    "Dark Cacao",
+                    "Lotus Biscoff Crumble",
+                    "Lotus Caramel",
+                    "Tiramisu Italiano",
+                    "Hazelnut Dulcey",
+                    "Alphonso Mango",
+                    "Nutella Supreme",
+                    "Kinder Bueno Bliss",
+                    "Snickers Temptation"
+                  ].map((name) => (
+                    <div
+                      key={name}
+                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
+                    >
+                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                      <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
+                        {name}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-mono">
+                  <span>COLLECTION 02 OF 04</span>
+                  <span>GLOBAL INGREDIENTS</span>
+                </div>
+              </div>
+
+              {/* ── CARD 2: ARTISAN SELECTION (Kyoto Uji Matcha Green) ── */}
+              <div 
+                id="cream-card-2"
+                className="sticky top-32 sm:top-36 z-30 rounded-[36px] sm:rounded-[48px] bg-gradient-to-br from-[#235C33] via-[#1C4B29] to-[#143B1F] border border-white/25 p-6 sm:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.40)] mb-36 sm:mb-48 transition-all duration-300 min-h-[380px] sm:min-h-[420px] flex flex-col justify-between"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#B4F7C3] tracking-tight uppercase leading-none drop-shadow-sm">
+                      ARTISAN SELECTION
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#143B1F] bg-[#D4F7DC] px-3.5 py-1.5 rounded-full shadow-sm font-mono">
+                      CRISP &amp; CREAM
+                    </span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1.5 rounded-full font-mono">
+                      06 Flavours
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
+                  {[
+                    "Pistachio Kunafa",
+                    "Persian Pistachio",
+                    "Omani Halwa",
+                    "Kyoto Matcha",
+                    "Ferrero Rocher",
+                    "Raffaello Coconut"
+                  ].map((name) => (
+                    <div
+                      key={name}
+                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
+                    >
+                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                      <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
+                        {name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-mono">
+                  <span>COLLECTION 03 OF 04</span>
+                  <span>KYOTO &amp; REGIONAL HERITAGE</span>
+                </div>
+              </div>
+
+              {/* ── CARD 3: INDIAN INSPIRATIONS (Dolce Tiramisu / Saffron Gold) ── */}
+              <div 
+                id="cream-card-3"
+                className="sticky top-36 sm:top-40 z-40 rounded-[36px] sm:rounded-[48px] bg-gradient-to-br from-[#C8851B] via-[#AE7213] to-[#8E5B0B] border border-white/25 p-6 sm:p-10 shadow-[0_35px_65px_rgba(0,0,0,0.45)] mb-8 transition-all duration-300 min-h-[380px] sm:min-h-[420px] flex flex-col justify-between"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-heading font-black text-2xl sm:text-3xl lg:text-4xl text-[#FFFFFF] tracking-tight uppercase leading-none drop-shadow-sm">
+                      INDIAN INSPIRATIONS
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#4A2E03] bg-[#FEF08A] px-3.5 py-1.5 rounded-full shadow-sm font-mono">
+                      CRISP &amp; CREAM
+                    </span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-white/80 bg-white/15 px-3 py-1.5 rounded-full font-mono">
+                      04 Flavours
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-3.5">
+                  {[
+                    "Banarasi Paan",
+                    "Gulab Jamun",
+                    "Kesar Pista Royale",
+                    "Madras Filter Coffee"
+                  ].map((name) => (
+                    <div
+                      key={name}
+                      className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-3.5 transition-all duration-200 group/item"
+                    >
+                      <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
+                      <span className="font-heading font-bold text-white text-base sm:text-lg tracking-wide leading-tight">
+                        {name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/60 font-mono">
+                  <span>COLLECTION 04 OF 04</span>
+                  <span>ROYAL HERITAGE &amp; SPICE</span>
+                </div>
               </div>
 
             </div>
