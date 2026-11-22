@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,21 +8,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function ProductAnatomy() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoSrc, setVideoSrc] = useState("/videos/tumo_dessert_animation.mp4");
-
-  // Select lightweight mobile-optimized video on phones to prevent GPU memory bottlenecks
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      setVideoSrc("/videos/tumo_dessert_animation_mobile.mp4");
-    }
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // ─── NON-BLOCKING VIDEO SCROLL SCRUBBER (Mobile & iOS Glitch-Proof) ───
+  // ─── HIGH-PRECISION 60FPS VIDEO SCROLL DRIVER (Lag-Free & Full 1080p Quality) ───
   useEffect(() => {
     const video = videoRef.current;
     const container = containerRef.current;
@@ -32,7 +24,7 @@ export default function ProductAnatomy() {
       gsap.registerPlugin(ScrollTrigger);
     }
 
-    // 1. Force iOS & Android WebKit inline muted attributes
+    // 1. Force iOS & Android WebKit inline playback attributes
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
@@ -40,7 +32,7 @@ export default function ProductAnatomy() {
     video.setAttribute("webkit-playsinline", "true");
     video.setAttribute("preload", "auto");
 
-    // 2. Decoder warm-up (without fighting autoplay)
+    // 2. Decoder warm-up on mobile without fighting autoplay
     let isPrimed = false;
     const primeVideo = () => {
       if (isPrimed || !video) return;
@@ -75,43 +67,6 @@ export default function ProductAnatomy() {
     }
 
     let st: ScrollTrigger | null = null;
-    let isSeeking = false;
-    let pendingTargetTime: number | null = null;
-    let targetTime = 0;
-
-    // Smooth non-blocking seek executor
-    const performSeek = () => {
-      if (!video || !video.duration || isNaN(video.duration)) return;
-
-      // If hardware decoder is busy seeking previous frame, queue the latest timestamp
-      if (isSeeking || video.seeking) {
-        pendingTargetTime = targetTime;
-        return;
-      }
-
-      if (Math.abs(video.currentTime - targetTime) > 0.02) {
-        isSeeking = true;
-        pendingTargetTime = null;
-        try {
-          video.currentTime = targetTime;
-        } catch {
-          isSeeking = false;
-        }
-      }
-    };
-
-    // When decoder delivers the seeked frame, immediately process any queued update
-    const onSeeked = () => {
-      isSeeking = false;
-      if (pendingTargetTime !== null && video && !isNaN(video.duration)) {
-        targetTime = pendingTargetTime;
-        performSeek();
-      }
-    };
-
-    video.addEventListener("seeked", onSeeked);
-
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
     const setupVideoScrubber = () => {
       primeVideo();
@@ -122,12 +77,16 @@ export default function ProductAnatomy() {
         trigger: container,
         start: "top top",
         end: "bottom bottom",
-        scrub: isMobile ? true : 0.1, // Directly mirror Lenis on mobile; silky 100ms interpolation on desktop
+        scrub: 0.15, // Responsive 150ms interpolation synchronized with Lenis
         onUpdate: (self) => {
           if (!video.duration || isNaN(video.duration)) return;
           const maxTime = Math.max(0, video.duration - 0.05);
-          targetTime = Math.max(0, Math.min(self.progress * maxTime, maxTime));
-          performSeek();
+          const targetTime = Math.max(0, Math.min(self.progress * maxTime, maxTime));
+
+          // Direct high-precision seeking (no fastSeek jumping, no event throttling)
+          if (Math.abs(video.currentTime - targetTime) > 0.01) {
+            video.currentTime = targetTime;
+          }
         },
       });
     };
@@ -141,14 +100,13 @@ export default function ProductAnatomy() {
 
     return () => {
       if (st) st.kill();
-      video.removeEventListener("seeked", onSeeked);
       window.removeEventListener("touchstart", onUserInteraction);
       window.removeEventListener("pointerdown", onUserInteraction);
       window.removeEventListener("scroll", onUserInteraction);
       video.removeEventListener("loadedmetadata", setupVideoScrubber);
       video.removeEventListener("canplay", setupVideoScrubber);
     };
-  }, [videoSrc]);
+  }, []);
 
   // ─── 3-STEP SCROLL ANIMATIONS (Smooth Non-Glitching Cross-Fades) ───
   // Step 1 [0.08 - 0.38]: Crunchy Almond Topping
@@ -205,15 +163,14 @@ export default function ProductAnatomy() {
   ];
 
   return (
-    <section ref={containerRef} className="relative w-full bg-[#FAF4E7] h-[280vh] sm:h-[380vh]">
+    <section ref={containerRef} className="relative w-full bg-[#FAF4E7] h-[320vh] sm:h-[380vh]">
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center">
         
-        {/* ─── FULL-BLEED 3D PRODUCT ANIMATION VIDEO ─── */}
+        {/* ─── FULL-BLEED 1080P PRODUCT ANIMATION VIDEO (Pristine Original Quality) ─── */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
           <video
             ref={videoRef}
-            key={videoSrc}
-            src={videoSrc}
+            src="/videos/tumo_dessert_animation.mp4"
             poster="/videos/tumu_product_poster.jpg"
             playsInline
             muted
@@ -252,7 +209,7 @@ export default function ProductAnatomy() {
                 {feature.num}
               </div>
               
-              {/* Card Container (Solid performance on mobile, transparent on desktop) */}
+              {/* Card Container (Crisp & lightweight on mobile, transparent on desktop) */}
               <div className="relative z-10 p-4 sm:p-0 sm:pl-2 lg:pl-6 sm:pt-4 bg-[#FAF4E7]/96 sm:bg-transparent rounded-2xl sm:rounded-none border border-black/5 sm:border-0 shadow-lg sm:shadow-none">
                 {/* Mobile Layer Progress Pill Badge */}
                 <div className="flex sm:hidden items-center justify-between mb-2 pb-2 border-b border-black/5">
