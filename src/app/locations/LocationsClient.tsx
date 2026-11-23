@@ -83,23 +83,24 @@ export default function LocationsClient() {
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59]">
-                STORE LOCATOR & ACCESS</span>
+                STORE LOCATOR
+              </span>
               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] tracking-widest uppercase">
-                DUBAI &bull; UAE
+                INDIA
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
               <span className="block text-[#162B3A]">VISIT OUR</span>
               <span className="block text-[#DB3E59]">
-                DUBAI STORES<span className="text-[#DB3E59]">.</span>
+                INDIA STORES
               </span>
             </h1>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px] mb-8">
-              Craving authentic <strong>Japanese desserts in UAE</strong>? Visit our premier <strong>Japanese dessert shop Dubai</strong> boutiques. Fresh-baked <strong>crispy cream-filled desserts</strong> piped with silky cold cream right in front of your eyes.
+              Your TUMU moment starts here. Find your nearest store!
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
