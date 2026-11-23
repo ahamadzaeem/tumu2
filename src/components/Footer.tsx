@@ -21,7 +21,7 @@ export default function Footer() {
   }, []);
 
   const general = content?.general || {
-    description: "Modern Japanese dessert sticks made with golden crisp exterior and chilled smooth cream.",
+    description: "Japan's viral snack sensation. Golden crispy on the outside, chilled creamy perfection on the inside.",
     instagramUrl: "https://instagram.com/tumu_uae",
     facebookUrl: "https://facebook.com/tumuae",
     youtubeUrl: "https://youtube.com/@tumuae",
