@@ -595,7 +595,7 @@ export default function FlavoursClient() {
                   {flavor.tag || flavor.category}
                 </span>
                 
-                <h2 className={`text-sm sm:text-2xl font-bold mb-1.5 sm:mb-4 leading-tight transition-colors duration-300 ${flavor.textColor || "text-[#1A2E44]"}`}>
+                <h2 className={`text-sm sm:text-2xl font-bold uppercase tracking-tight mb-1.5 sm:mb-4 leading-tight transition-colors duration-300 ${flavor.textColor || "text-[#1A2E44]"}`}>
                   {flavor.name}
                 </h2>
                 

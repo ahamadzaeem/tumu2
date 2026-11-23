@@ -136,7 +136,7 @@ export default function Flavours() {
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#162B3A] font-black text-center text-xs sm:text-sm lg:text-[15px] leading-tight px-1 group-hover:text-white transition-colors">
+              <h3 className="text-[#162B3A] font-black uppercase text-center text-xs sm:text-sm lg:text-[15px] leading-tight px-1 group-hover:text-white transition-colors">
                 {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
