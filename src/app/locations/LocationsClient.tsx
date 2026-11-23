@@ -138,22 +138,9 @@ export default function LocationsClient() {
       </section>
 
       {/* ─── SECTION 2: INTERACTIVE STORE LOCATOR & GOOGLE MAPS ─── */}
-      <section id="store-locator-section" className="relative w-full py-20 sm:py-28 bg-[#FAF4E7] border-b border-[#162B3A]/5">
+      <section id="store-locator-section" className="relative w-full py-12 sm:py-16 bg-[#FAF4E7] border-b border-[#162B3A]/5">
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
           
-          {/* Section Header */}
-          <div className="flex flex-col items-start mb-10 sm:mb-14">
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
-              LIVE STORE DIRECTORY</span>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#162B3A] leading-tight">
-              FIND YOUR NEAREST <span className="text-[#DB3E59]">OUTLET.</span>
-            </h2>
-            <div className="w-12 h-1 bg-[#DB3E59] mt-4 mb-4" />
-            <p className="text-[#162B3A]/80 font-semibold text-base sm:text-lg max-w-2xl">
-              Locate our <strong>Japanese dessert shop in Dubai</strong> and across the UAE. Select an outlet below to view operating hours, contact info, and open turn-by-turn GPS navigation in Google Maps.
-            </p>
-          </div>
-
           {/* Two Column Layout: Store List (Left) & Google Maps View (Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             
@@ -161,7 +148,7 @@ export default function LocationsClient() {
             <div className="lg:col-span-5 flex flex-col gap-4 max-h-[820px] overflow-y-auto pr-2 no-scrollbar">
               <div className="flex items-center justify-between px-2 mb-1">
                 <span className="text-xs font-black uppercase tracking-wider text-[#162B3A]/60">
-                  {locations.length} {locations.length === 1 ? "Outlet" : "Outlets"} in UAE
+                  {locations.length} {locations.length === 1 ? "Outlet" : "Outlets"} in India
                 </span>
                 <span className="text-xs font-semibold text-[#DB3E59]">
                   Tap a store to view map
