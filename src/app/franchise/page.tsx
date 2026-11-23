@@ -29,7 +29,7 @@ export default function FranchisePage() {
     company: "",
     contactNumber: "",
     email: "",
-    format: "Kiosk 1",
+    format: "KIOSK – TUMU Premium Island",
     comments: ""
   });
 
@@ -211,7 +211,7 @@ export default function FranchisePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
             <div className="flex flex-col items-start">
               <span className="font-heading text-[18px] xs:text-[20px] sm:text-2xl lg:text-[26px] text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
-                THREE FORMATS.
+                FOUR FORMATS.
               </span>
               <h2 className="text-[34px] xs:text-[38px] sm:text-[46px] lg:text-5xl font-black uppercase tracking-tight leading-tight">
                 <span className="block text-[#162B3A]">ONE VIRAL BRAND.</span>
@@ -225,10 +225,10 @@ export default function FranchisePage() {
               {(
                 [
                   { id: "ALL", label: "All Formats" },
-                  { id: "KIOSK_1", label: "Kiosk 1" },
-                  { id: "KIOSK_2", label: "Kiosk 2" },
-                  { id: "STORE", label: "Store" },
-                  { id: "TRUCK", label: "Outdoor Truck" },
+                  { id: "KIOSK_1", label: "Premium Island" },
+                  { id: "KIOSK_2", label: "Express Stop" },
+                  { id: "STORE", label: "Experience Store" },
+                  { id: "TRUCK", label: "Mobile Truck" },
                 ] as const
               ).map((fmt) => (
                 <button
@@ -263,26 +263,26 @@ export default function FranchisePage() {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      Kiosk 1 <span className="text-[#DB3E59]">- 150 sq. ft. approx.</span>
+                      KIOSK <span className="text-[#DB3E59]">– TUMU Premium Island</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.
                     </p>
                   </div>
 
-                  {/* Quick Specs Badges (Clean & Simple without symbols) */}
+                  {/* Quick Specs Badges */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Footprint: <strong>150 sq. ft. approx.</strong>
+                      Setup: <strong>3–4 Weeks</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Setup: <strong>3 – 4 Weeks</strong>
+                      Staff: <strong>2 + 1 Supervisor</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Staff: <strong>1 – 2 Baristas</strong>
+                      Cost: <strong>Low</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                      Low CapEx &amp; Fast ROI
+                      ROI: <strong>Less than 12 Months</strong>
                     </span>
                   </div>
                 </div>
@@ -320,10 +320,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "Kiosk 1" })}
+                    onClick={() => setFormData({ ...formData, format: "KIOSK – TUMU Premium Island" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Kiosk 1</span>
+                    <span>Apply for Premium Island</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -346,26 +346,26 @@ export default function FranchisePage() {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      Kiosk 2 <span className="text-[#DB3E59]">- 150 sq. ft. approx.</span>
+                      KIOSK <span className="text-[#DB3E59]">– TUMU Express Stop</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.
                     </p>
                   </div>
 
-                  {/* Quick Specs Badges (Clean & Simple without symbols) */}
+                  {/* Quick Specs Badges */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Footprint: <strong>150 sq. ft. approx.</strong>
+                      Setup: <strong>3–4 Weeks</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Setup: <strong>3 – 4 Weeks</strong>
+                      Staff: <strong>2 + 1 Supervisor</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Staff: <strong>1 – 2 Baristas</strong>
+                      Cost: <strong>Low</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                      High-Traffic Mall Turnkey
+                      ROI: <strong>Less than 12 Months</strong>
                     </span>
                   </div>
                 </div>
@@ -403,10 +403,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "Kiosk 2" })}
+                    onClick={() => setFormData({ ...formData, format: "KIOSK – TUMU Express Stop" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Kiosk 2</span>
+                    <span>Apply for Express Stop</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -429,26 +429,23 @@ export default function FranchisePage() {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      Store <span className="text-[#DB3E59]">- 300 sq. ft. approx.</span>
+                      TUMU <span className="text-[#DB3E59]">Experience Store</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
-                      An expanded store format offering enhanced service space and a more immersive TUMU experience.
+                      An expanded flagship store format offering enhanced service space and a more immersive TUMU experience.
                     </p>
                   </div>
 
-                  {/* Quick Specs Badges (Clean & Simple without symbols) */}
+                  {/* Quick Specs Badges */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Footprint: <strong>300 sq. ft. approx.</strong>
+                      Staff: <strong>3 + 1 Supervisor</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Setup: <strong>5 – 8 Weeks</strong>
+                      Cost: <strong>Medium</strong>
                     </span>
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Staff: <strong>2 – 4 Staff</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#55D2DF]/20 text-[#162B3A] border border-[#55D2DF]/40 font-black">
-                      Live Bakery Theater &amp; Cafe Seating
+                    <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                      ROI: <strong>12–15 Months</strong>
                     </span>
                   </div>
                 </div>
@@ -477,10 +474,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "Store" })}
+                    onClick={() => setFormData({ ...formData, format: "TUMU Experience Store" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Store</span>
+                    <span>Apply for Experience Store</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -503,26 +500,26 @@ export default function FranchisePage() {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      Outdoor <span className="text-[#DB3E59]">Truck</span>
+                      TUMU Go <span className="text-[#DB3E59]">– Mobile Truck</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       A versatile mobile concept designed for events, festivals, catering, and outdoor activations.
                     </p>
                   </div>
 
-                  {/* Quick Specs Badges (Clean & Simple without symbols) */}
+                  {/* Quick Specs Badges */}
                   <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Mobility: <strong>Versatile Mobile Concept</strong>
+                      Size: <strong>5 m × 2.5 m</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Setup: <strong>Plug &amp; Play</strong>
+                      Staff: <strong>2</strong>
                     </span>
                     <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Staff: <strong>1 – 2 Operators</strong>
+                      Cost: <strong>Approx. USD 50K</strong>
                     </span>
-                    <span className="px-4 py-2 rounded-full bg-[#55D2DF]/20 text-[#162B3A] border border-[#55D2DF]/40 font-black">
-                      Events, Festivals &amp; Catering
+                    <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                      ROI: <strong>Less than 6 Months</strong>
                     </span>
                   </div>
                 </div>
@@ -531,7 +528,7 @@ export default function FranchisePage() {
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group">
                   <Image
                     src="/images/tumu/formats/truck_trailer.jpg"
-                    alt="TUMU Mobile Food Truck Trailer"
+                    alt="TUMU Go Mobile Food Truck Trailer"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
@@ -540,10 +537,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "Outdoor Truck" })}
+                    onClick={() => setFormData({ ...formData, format: "TUMU Go – Mobile Truck" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Outdoor Truck</span>
+                    <span>Apply for TUMU Go Truck</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -803,10 +800,10 @@ export default function FranchisePage() {
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                         {[
-                          { key: "Kiosk 1", label: "Kiosk 1", sub: "150 sq. ft." },
-                          { key: "Kiosk 2", label: "Kiosk 2", sub: "150 sq. ft." },
-                          { key: "Store", label: "Store", sub: "300 sq. ft." },
-                          { key: "Outdoor Truck", label: "Outdoor Truck", sub: "Mobile Trailer" },
+                          { key: "KIOSK – TUMU Premium Island", label: "Premium Island", sub: "Kiosk" },
+                          { key: "KIOSK – TUMU Express Stop", label: "Express Stop", sub: "Kiosk" },
+                          { key: "TUMU Experience Store", label: "Experience Store", sub: "Flagship" },
+                          { key: "TUMU Go – Mobile Truck", label: "TUMU Go Truck", sub: "Mobile 5m × 2.5m" },
                         ].map((fmt) => {
                           const isActive = formData.format === fmt.key;
                           return (
