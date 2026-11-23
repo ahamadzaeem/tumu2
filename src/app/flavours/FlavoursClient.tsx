@@ -612,31 +612,31 @@ export default function FlavoursClient() {
             ══════════════════════════════════════════════════════════════ */}
         <section className="mt-24 sm:mt-32 pt-4 sm:pt-8 pb-12">
           
-          {/* Outer Blue Showcase Container with Ambient Aura */}
-          <div className="rounded-[32px] sm:rounded-[60px] bg-gradient-to-b from-[#3478BA] via-[#387DBF] to-[#2B6EA9] text-white p-4 sm:p-8 lg:p-14 shadow-2xl border border-white/20 relative overflow-visible transition-all duration-700">
+          {/* Outer Brand Pink Showcase Container with Ambient Aura */}
+          <div className="rounded-[32px] sm:rounded-[60px] bg-gradient-to-b from-[#E24560] via-[#DB3E59] to-[#C9334D] text-white p-4 sm:p-8 lg:p-14 shadow-2xl border border-white/20 relative overflow-visible transition-all duration-700">
             
             {/* Ambient Background Aura reacting to active collection */}
             <div 
-              className={`pointer-events-none absolute inset-0 rounded-[32px] sm:rounded-[60px] blur-3xl opacity-35 transition-colors duration-1000 ${
+              className={`pointer-events-none absolute inset-0 rounded-[32px] sm:rounded-[60px] blur-3xl opacity-25 transition-colors duration-1000 ${
                 activeCard === 0
-                  ? "bg-[#184E82]"
+                  ? "bg-[#FFE4E8]"
                   : activeCard === 1
-                  ? "bg-[#BD4E18]"
+                  ? "bg-[#FFD1DC]"
                   : activeCard === 2
-                  ? "bg-[#235C33]"
-                  : "bg-[#C8851B]"
+                  ? "bg-[#FFF0F3]"
+                  : "bg-[#FFCCD5]"
               }`}
             />
 
             {/* Section Header */}
             <div className="relative z-10 max-w-4xl mx-auto text-center mb-4 sm:mb-8">
-              <span className="font-heading text-white/80 text-[11px] sm:text-sm uppercase tracking-[0.2em] block mb-1.5 sm:mb-2">
+              <span className="font-heading text-white text-base sm:text-xl lg:text-2xl uppercase tracking-[0.2em] block mb-2 sm:mb-3 drop-shadow-sm">
                 COLLECTIONS &bull; 25 UNIQUE FILLINGS
               </span>
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-2 sm:mb-3 leading-none drop-shadow-sm">
+              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white mb-2 sm:mb-3 leading-none drop-shadow-sm">
                 CREAM FILLINGS
               </h2>
-              <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 uppercase tracking-wide max-w-3xl mx-auto px-2 mt-1.5">
+              <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 uppercase tracking-wide max-w-3xl mx-auto px-2 mt-2">
                 CREAM FILLINGS MADE WITH JAPANESE IMPORTS BLENDED WITH PREMIUM LOCAL INGREDIENTS
               </p>
             </div>
@@ -668,7 +668,7 @@ export default function FlavoursClient() {
                   onClick={() => scrollToCard(idx)}
                   className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full font-sans text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2 shrink-0 cursor-pointer ${
                     activeCard === idx
-                      ? "bg-white text-[#162B3A] shadow-xl scale-105"
+                      ? "bg-white text-[#DB3E59] shadow-xl scale-105"
                       : "bg-white/15 text-white/85 hover:bg-white/25 hover:text-white border border-white/15"
                   }`}
                 >
