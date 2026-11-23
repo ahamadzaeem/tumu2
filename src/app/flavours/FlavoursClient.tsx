@@ -656,7 +656,7 @@ export default function FlavoursClient() {
 
             {/* Section Header */}
             <div className="relative z-10 max-w-4xl mx-auto text-center mb-4 sm:mb-8">
-              <span className="font-sans text-white/80 text-[11px] sm:text-sm font-bold uppercase tracking-[0.25em] block mb-1.5 sm:mb-2">
+              <span className="font-heading text-white/80 text-[11px] sm:text-sm uppercase tracking-[0.2em] block mb-1.5 sm:mb-2">
                 COLLECTIONS &bull; 25 UNIQUE FILLINGS
               </span>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-2 sm:mb-3 leading-none drop-shadow-sm">
