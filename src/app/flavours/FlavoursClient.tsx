@@ -486,7 +486,6 @@ const COLLECTIONS_DATA = [
 
 export default function FlavoursClient() {
   const [flavors, setFlavors] = useState<Flavor[]>(DEFAULT_FLAVORS);
-  const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const [activeCard, setActiveCard] = useState<number>(0);
 
   useEffect(() => {
@@ -541,15 +540,7 @@ export default function FlavoursClient() {
     }
   };
 
-  const categories = [
-    "ALL",
-    ...Array.from(new Set(flavors.map((f) => f.category).filter(Boolean))),
-  ];
-
-  const filteredFlavors =
-    selectedCategory === "ALL"
-      ? flavors
-      : flavors.filter((f) => f.category === selectedCategory);
+  const filteredFlavors = flavors;
 
   return (
     <main className="min-h-screen bg-[#F8F4EC] flex flex-col selection:bg-[#DB3E59] selection:text-white">
@@ -567,23 +558,6 @@ export default function FlavoursClient() {
           <p className="text-base sm:text-lg lg:text-xl text-[#162B3A]/85 max-w-3xl mx-auto font-medium leading-relaxed">
             Discover the perfect bite with TUMU! Enjoy 8 classic flavours of crunchy outer layers paired with 25 delicious flavours of chilled cream filling. With so many exciting combinations to choose from, there’s a flavour for everyone!
           </p>
-
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-8">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-black tracking-wider uppercase transition-all duration-300 cursor-pointer ${
-                  selectedCategory === cat
-                    ? "bg-[#DB3E59] text-white shadow-md scale-105"
-                    : "bg-white/80 text-[#162B3A] hover:bg-white hover:text-[#DB3E59] border border-black/5"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Section Header: CRUSTÉ FLAVOURS */}
