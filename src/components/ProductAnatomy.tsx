@@ -137,6 +137,7 @@ export default function ProductAnatomy() {
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]",
       lineWidth: "w-16 sm:w-24 md:w-32 lg:w-44",
+      lineRotation: "rotate-0",
     },
     {
       num: "02",
@@ -148,6 +149,7 @@ export default function ProductAnatomy() {
       color: "text-[#DE3558]", // Brand Pink
       lineBg: "bg-[#DE3558]",
       lineWidth: "w-20 sm:w-28 md:w-36 lg:w-44",
+      lineRotation: "rotate-0",
     },
     {
       num: "03",
@@ -158,7 +160,8 @@ export default function ProductAnatomy() {
       lineScale: lineCream,
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]",
-      lineWidth: "w-40 sm:w-64 md:w-80 lg:w-[360px] xl:w-[440px] 2xl:w-[500px]",
+      lineWidth: "w-48 sm:w-64 md:w-[280px] lg:w-[380px] xl:w-[480px] 2xl:w-[580px]",
+      lineRotation: "rotate-[20deg] sm:rotate-[21deg] lg:rotate-[19deg] xl:rotate-[17.5deg]",
     },
   ];
 
@@ -235,14 +238,14 @@ export default function ProductAnatomy() {
                   </h3>
                   
                   {/* Animated Line Indicator (Desktop/Tablet) */}
-                  <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center shrink-0 pointer-events-none">
+                  <div className={`absolute left-full ml-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center shrink-0 pointer-events-none origin-left ${feature.lineRotation || ""}`}>
                     <motion.div 
                       className={`h-[4px] ${feature.lineWidth} ${feature.lineBg} origin-left rounded-l-full shadow-sm`}
                       style={{ scaleX: feature.lineScale }} 
                     />
                     <div className="relative flex items-center justify-center shrink-0">
                       <motion.div 
-                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full ${feature.lineBg} shadow-md`}
+                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full ${feature.lineBg} shadow-md border-2 border-white`}
                         style={{ scale: feature.lineScale }} 
                       />
                       <motion.div 
