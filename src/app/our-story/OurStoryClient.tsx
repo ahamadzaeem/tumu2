@@ -128,16 +128,16 @@ export default function OurStoryClient() {
             {/* Quick Craft Credentials */}
             <div className="grid grid-cols-3 gap-3 pt-5 mt-5 border-t border-white/20 w-full max-w-[460px]">
               <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-black text-[#DB3E59]">Tokyo</span>
-                <span className="text-[10px] sm:text-xs font-bold text-[#162B3A] uppercase mt-0.5 tracking-wider">Origin</span>
+                <span className="text-xl sm:text-2xl font-black text-[#DB3E59] uppercase">TOKYO</span>
+                <span className="text-[10px] sm:text-xs font-bold text-[#162B3A] uppercase mt-0.5 tracking-wider">ORIGIN</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-black text-[#162B3A]">5 Years</span>
-                <span className="text-[10px] sm:text-xs font-bold text-[#162B3A] uppercase mt-0.5 tracking-wider">Mastery</span>
+                <span className="text-xl sm:text-2xl font-black text-[#162B3A] uppercase">5 YEARS</span>
+                <span className="text-[10px] sm:text-xs font-bold text-[#162B3A] uppercase mt-0.5 tracking-wider">MASTERY</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-black text-[#DB3E59]">100%</span>
-                <span className="text-[10px] sm:text-xs font-bold text-[#162B3A] uppercase mt-0.5 tracking-wider">Artisanal</span>
+                <span className="text-xl sm:text-2xl font-black text-[#DB3E59] uppercase">100%</span>
+                <span className="text-[10px] sm:text-xs font-bold text-[#162B3A] uppercase mt-0.5 tracking-wider">ARTISANAL</span>
               </div>
             </div>
           </motion.div>

@@ -124,13 +124,13 @@ export default function LocationsClient() {
           >
             <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border-2 border-white/60 group">
               <Image
-                src="/images/tumu/formats/outlet_storefront.jpg"
-                alt="TUMU Japanese Dessert Shop Dubai Storefront"
+                src="/images/tumu/formats/kiosk_hero_store.jpg"
+                alt="TUMU Japanese Dessert Shop Storefront"
                 fill
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#162B3A]/70 via-transparent to-black/10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#162B3A]/25 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
 
