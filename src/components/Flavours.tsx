@@ -24,8 +24,9 @@ export default function Flavours() {
   const flavoursData = content?.home?.flavoursSection || {
     eyebrow: "FLAVOURS",
     headingLine1: "CRUSTÉ FLAVOURS",
+    subheading: "EXPLORE TUMU’S SIGNATURE CRISPY SHELL FLAVOURS",
     headingLine2: "",
-    description: "25 Unique Flavours, Made with Japan's Finest Ingredients",
+    description: "25 UNIQUE FLAVOURS, MADE WITH JAPAN'S FINEST INGREDIENTS",
     btnText: "MORE FLAVOURS",
     btnLink: "/flavours"
   };
@@ -69,13 +70,13 @@ export default function Flavours() {
         {/* Section Header */}
         <div className="mb-10 sm:mb-14 text-left">
           {/* 1. Heading */}
-          <h2 className="font-black uppercase tracking-tight leading-[0.92] text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)] text-[#162B3A]">
+          <h2 className="font-black uppercase tracking-tight leading-[0.92] text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)] text-white drop-shadow-sm">
             {content?.home?.flavoursSection?.headingLine1 || "CRUSTÉ FLAVOURS"}
           </h2>
 
           {/* 2. Subtitle */}
-          <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-[#162B3A] tracking-normal mt-2 sm:mt-3">
-            {content?.home?.flavoursSection?.subheading || "Explore TUMU’s signature crispy shell flavours"}
+          <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide mt-2 sm:mt-3">
+            {content?.home?.flavoursSection?.subheading || "EXPLORE TUMU’S SIGNATURE CRISPY SHELL FLAVOURS"}
           </p>
 
           {/* 3. Tagline directly underneath heading */}
@@ -85,13 +86,15 @@ export default function Flavours() {
               ? rawDesc.split(/,\s*(.+)/)
               : [rawDesc, ""];
 
+            const cleanHeadline = (headlinePart || "25 UNIQUE FLAVOURS").replace(/,\s*$/, "");
+
             return (
               <div className="mt-4 sm:mt-5 space-y-1">
-                <p className="font-heading text-[18px] xs:text-[22px] sm:text-[26px] lg:text-[30px] font-black text-[#162B3A] uppercase tracking-tight leading-tight">
-                  {headlinePart ? `${headlinePart},` : "25 UNIQUE FLAVOURS,"}
+                <p className="font-heading text-[18px] xs:text-[22px] sm:text-[26px] lg:text-[30px] font-black text-white uppercase tracking-tight leading-tight">
+                  {cleanHeadline}
                 </p>
                 {subtitlePart ? (
-                  <p className="font-heading text-[14px] xs:text-[16px] sm:text-[20px] lg:text-[22px] text-[#162B3A] uppercase tracking-wide leading-snug opacity-90">
+                  <p className="font-heading text-[14px] xs:text-[16px] sm:text-[20px] lg:text-[22px] text-white/95 uppercase tracking-wide leading-snug">
                     {subtitlePart}
                   </p>
                 ) : null}

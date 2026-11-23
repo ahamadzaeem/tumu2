@@ -591,8 +591,8 @@ export default function FlavoursClient() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#162B3A]">
             CRUSTÉ FLAVOURS
           </h2>
-          <p className="font-heading text-base sm:text-lg lg:text-xl text-[#162B3A]/80 tracking-wide mt-1.5">
-            Explore TUMU&apos;s signature crispy shell flavours
+          <p className="font-heading text-base sm:text-lg lg:text-xl text-[#162B3A]/80 uppercase tracking-wide mt-1.5">
+            EXPLORE TUMU&apos;S SIGNATURE CRISPY SHELL FLAVOURS
           </p>
         </div>
 
