@@ -800,14 +800,11 @@ export default function FlavoursClient() {
 
         {/* Bottom CTA for Franchise & Locations */}
         <div className="mt-24 p-8 sm:p-12 rounded-[36px] bg-white/70 border border-black/5 text-center flex flex-col items-center max-w-4xl mx-auto shadow-sm">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-2">
-            TASTE THE DIFFERENCE
-          </span>
-          <h3 className="text-3xl sm:text-4xl font-black uppercase text-[#162B3A] mb-4">
-            Craving Authentic Japanese Desserts in Dubai?
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#162B3A] mb-4 tracking-tight">
+            GOT A TUMU CRAVING? WE’VE GOT YOU!
           </h3>
-          <p className="text-sm sm:text-base text-[#162B3A]/80 font-medium max-w-xl mb-6">
-            Visit our dessert shops across Dubai and the UAE, or enquire about bringing a TUMU dessert franchise to your territory.
+          <p className="font-heading text-sm sm:text-base lg:text-lg text-[#162B3A]/85 uppercase tracking-wide max-w-2xl mb-8">
+            VISIT ANY OF OUR OUTLETS ACROSS INDIA OR GET IN TOUCH TO EXPLORE BRINGING A TUMU FRANCHISE TO YOUR REGION
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
