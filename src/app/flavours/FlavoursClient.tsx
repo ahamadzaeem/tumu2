@@ -659,7 +659,7 @@ export default function FlavoursClient() {
               <span className="font-sans text-white/80 text-[11px] sm:text-sm font-bold uppercase tracking-[0.25em] block mb-1.5 sm:mb-2">
                 COLLECTIONS &bull; 25 UNIQUE FILLINGS
               </span>
-              <h2 className="font-sans text-3xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-white mb-2 sm:mb-3 leading-none drop-shadow-sm">
+              <h2 className="font-subhead text-4xl sm:text-6xl lg:text-7xl uppercase tracking-normal text-white mb-2 sm:mb-3 leading-none drop-shadow-sm" style={{ fontFamily: "var(--font-sughoiy)" }}>
                 CREAM FILLINGS
               </h2>
               <p className="font-sans text-sm sm:text-lg lg:text-xl text-white/95 tracking-normal font-medium max-w-3xl mx-auto px-2">
