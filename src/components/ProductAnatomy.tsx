@@ -136,7 +136,7 @@ export default function ProductAnatomy() {
       lineScale: lineAlmond,
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]",
-      lineWidth: "w-16 sm:w-24 md:w-32 lg:w-44",
+      lineWidth: "w-16 sm:w-24 md:w-28 lg:w-36",
       lineRotation: "rotate-0",
     },
     {
@@ -148,7 +148,7 @@ export default function ProductAnatomy() {
       lineScale: lineCrunch,
       color: "text-[#DE3558]", // Brand Pink
       lineBg: "bg-[#DE3558]",
-      lineWidth: "w-20 sm:w-28 md:w-36 lg:w-44",
+      lineWidth: "w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24",
       lineRotation: "rotate-0",
     },
     {
@@ -160,8 +160,8 @@ export default function ProductAnatomy() {
       lineScale: lineCream,
       color: "text-[#318EC7]", // Brand Cyan
       lineBg: "bg-[#318EC7]",
-      lineWidth: "w-48 sm:w-64 md:w-[280px] lg:w-[380px] xl:w-[480px] 2xl:w-[580px]",
-      lineRotation: "rotate-[20deg] sm:rotate-[21deg] lg:rotate-[19deg] xl:rotate-[17.5deg]",
+      lineWidth: "w-40 sm:w-[180px] md:w-[210px] lg:w-[270px] xl:w-[340px] 2xl:w-[420px]",
+      lineRotation: "rotate-[28deg] sm:rotate-[29deg] lg:rotate-[28.5deg] xl:rotate-[27deg]",
     },
   ];
 
