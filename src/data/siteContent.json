@@ -175,29 +175,48 @@
       "buttonLink": "#form"
     },
     "formatsHeader": {
-      "headingLine1": "THREE FORMATS.",
+      "headingLine1": "FOUR FORMATS.",
       "headingLine2": "ONE VIRAL BRAND. IT'S TUMU."
     },
     "formats": [
       {
-        "id": "kiosk",
-        "name": "Kiosk",
-        "size": "150 sq. ft. approx.",
+        "id": "kiosk_1",
+        "name": "1. KIOSK – TUMU Premium Island",
+        "setup": "3–4 Weeks",
+        "staff": "2 + 1 Supervisor",
+        "cost": "Low",
+        "roi": "Less than 12 Months",
         "description": "A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.",
+        "image": "/images/tumu/formats/kiosk1_exterior.jpg"
+      },
+      {
+        "id": "kiosk_2",
+        "name": "2. KIOSK – TUMU Express Stop",
+        "setup": "3–4 Weeks",
+        "staff": "2 + 1 Supervisor",
+        "cost": "Low",
+        "roi": "Less than 12 Months",
+        "description": "A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.",
         "image": "/images/tumu/formats/kiosk_elevation.jpg"
       },
       {
         "id": "store",
-        "name": "Store",
-        "size": "300 sq. ft. approx.",
-        "description": "An expanded store format offering enhanced service space and a more immersive TUMU experience.",
+        "name": "3. TUMU Experience Store",
+        "setup": "4–6 Weeks",
+        "staff": "3 + 1 Supervisor",
+        "cost": "Medium",
+        "roi": "12–15 Months",
+        "description": "An expanded flagship store format offering enhanced service space and a more immersive TUMU experience.",
         "image": "/images/tumu/formats/outlet_storefront.jpg"
       },
       {
         "id": "truck",
-        "name": "TUMU outdoor food truck",
-        "size": "Versatile Mobile Concept",
-        "description": "A versatile mobile concept designed for events, festivals, catering, and outdoor activations, bringing TUMU’s freshly baked signature pastries directly to customers.",
+        "name": "4. TUMU Go – Mobile Truck",
+        "size": "5 m × 2.5 m",
+        "staff": "2",
+        "cost": "Approx. USD 50K",
+        "roi": "Less than 6 Months",
+        "description": "A versatile mobile concept designed for events, festivals, catering, and outdoor activations.",
         "image": "/images/tumu/formats/truck_trailer.jpg"
       }
     ],

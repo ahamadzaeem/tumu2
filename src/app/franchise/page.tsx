@@ -29,7 +29,7 @@ export default function FranchisePage() {
     company: "",
     contactNumber: "",
     email: "",
-    format: "KIOSK – TUMU Premium Island",
+    format: "1. KIOSK – TUMU Premium Island",
     comments: ""
   });
 
@@ -225,10 +225,10 @@ export default function FranchisePage() {
               {(
                 [
                   { id: "ALL", label: "All Formats" },
-                  { id: "KIOSK_1", label: "Premium Island" },
-                  { id: "KIOSK_2", label: "Express Stop" },
-                  { id: "STORE", label: "Experience Store" },
-                  { id: "TRUCK", label: "Mobile Truck" },
+                  { id: "KIOSK_1", label: "1. Premium Island" },
+                  { id: "KIOSK_2", label: "2. Express Stop" },
+                  { id: "STORE", label: "3. Experience Store" },
+                  { id: "TRUCK", label: "4. Mobile Truck" },
                 ] as const
               ).map((fmt) => (
                 <button
@@ -244,6 +244,97 @@ export default function FranchisePage() {
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* ════════════════════════════════════════════════════════════
+              SPECIFICATIONS OVERVIEW GRID (ALL 4 FORMATS)
+             ════════════════════════════════════════════════════════════ */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+            {[
+              {
+                id: "KIOSK_1" as const,
+                num: "1",
+                title: "KIOSK – TUMU Premium Island",
+                specs: [
+                  { label: "Setup", value: "3–4 Weeks" },
+                  { label: "Staff", value: "2 + 1 Supervisor" },
+                  { label: "Cost", value: "Low" },
+                  { label: "ROI", value: "Less than 12 Months", highlight: true },
+                ],
+              },
+              {
+                id: "KIOSK_2" as const,
+                num: "2",
+                title: "KIOSK – TUMU Express Stop",
+                specs: [
+                  { label: "Setup", value: "3–4 Weeks" },
+                  { label: "Staff", value: "2 + 1 Supervisor" },
+                  { label: "Cost", value: "Low" },
+                  { label: "ROI", value: "Less than 12 Months", highlight: true },
+                ],
+              },
+              {
+                id: "STORE" as const,
+                num: "3",
+                title: "TUMU Experience Store",
+                specs: [
+                  { label: "Staff", value: "3 + 1 Supervisor" },
+                  { label: "Cost", value: "Medium" },
+                  { label: "ROI", value: "12–15 Months", highlight: true },
+                ],
+              },
+              {
+                id: "TRUCK" as const,
+                num: "4",
+                title: "TUMU Go – Mobile Truck",
+                specs: [
+                  { label: "Size", value: "5 m × 2.5 m" },
+                  { label: "Staff", value: "2" },
+                  { label: "Cost", value: "Approx. USD 50K" },
+                  { label: "ROI", value: "Less than 6 Months", highlight: true },
+                ],
+              },
+            ].map((card) => {
+              const isSelected = selectedFormat === card.id;
+              return (
+                <div
+                  key={card.id}
+                  onClick={() => setSelectedFormat(selectedFormat === card.id ? "ALL" : card.id)}
+                  className={`p-6 rounded-[28px] border transition-all duration-300 cursor-pointer flex flex-col justify-between ${
+                    isSelected
+                      ? "bg-white border-[#DB3E59] shadow-xl ring-2 ring-[#DB3E59]/20 scale-[1.02]"
+                      : "bg-white/80 hover:bg-white border-black/5 hover:border-[#DB3E59]/30 shadow-md hover:shadow-lg"
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center gap-2.5 mb-4">
+                      <span className="w-7 h-7 rounded-full bg-[#DB3E59] text-white text-xs font-black flex items-center justify-center shrink-0 shadow-sm">
+                        {card.num}
+                      </span>
+                      <h4 className="text-sm font-black uppercase tracking-tight text-[#162B3A]">
+                        {card.title}
+                      </h4>
+                    </div>
+
+                    <ul className="flex flex-col gap-2.5 mb-6">
+                      {card.specs.map((s, idx) => (
+                        <li key={idx} className="flex items-center justify-between text-xs">
+                          <span className="text-[#162B3A]/70 font-semibold">• {s.label}:</span>
+                          <span className={s.highlight ? "text-[#DB3E59] font-black" : "text-[#162B3A] font-bold"}>
+                            {s.value}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="pt-3 border-t border-black/5 flex items-center justify-between text-xs font-black uppercase text-[#DB3E59]">
+                    <span>{isSelected ? "Showing Below" : "Filter Showcase"}</span>
+                    <span>→</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           <div className="flex flex-col gap-20 sm:gap-28">
@@ -263,7 +354,7 @@ export default function FranchisePage() {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      KIOSK <span className="text-[#DB3E59]">– TUMU Premium Island</span>
+                      1. KIOSK <span className="text-[#DB3E59]">– TUMU Premium Island</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.
@@ -320,10 +411,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "KIOSK – TUMU Premium Island" })}
+                    onClick={() => setFormData({ ...formData, format: "1. KIOSK – TUMU Premium Island" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Premium Island</span>
+                    <span>Apply for 1. Premium Island</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -346,7 +437,7 @@ export default function FranchisePage() {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      KIOSK <span className="text-[#DB3E59]">– TUMU Express Stop</span>
+                      2. KIOSK <span className="text-[#DB3E59]">– TUMU Express Stop</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.
@@ -403,10 +494,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "KIOSK – TUMU Express Stop" })}
+                    onClick={() => setFormData({ ...formData, format: "2. KIOSK – TUMU Express Stop" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Express Stop</span>
+                    <span>Apply for 2. Express Stop</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -429,7 +520,7 @@ export default function FranchisePage() {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      TUMU <span className="text-[#DB3E59]">Experience Store</span>
+                      3. TUMU <span className="text-[#DB3E59]">Experience Store</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       An expanded flagship store format offering enhanced service space and a more immersive TUMU experience.
@@ -474,10 +565,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "TUMU Experience Store" })}
+                    onClick={() => setFormData({ ...formData, format: "3. TUMU Experience Store" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for Experience Store</span>
+                    <span>Apply for 3. Experience Store</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -500,7 +591,7 @@ export default function FranchisePage() {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
                   <div>
                     <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      TUMU Go <span className="text-[#DB3E59]">– Mobile Truck</span>
+                      4. TUMU Go <span className="text-[#DB3E59]">– Mobile Truck</span>
                     </h3>
                     <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
                       A versatile mobile concept designed for events, festivals, catering, and outdoor activations.
@@ -537,10 +628,10 @@ export default function FranchisePage() {
                 <div className="pt-2 flex justify-end">
                   <a
                     href="#form"
-                    onClick={() => setFormData({ ...formData, format: "TUMU Go – Mobile Truck" })}
+                    onClick={() => setFormData({ ...formData, format: "4. TUMU Go – Mobile Truck" })}
                     className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
                   >
-                    <span>Apply for TUMU Go Truck</span>
+                    <span>Apply for 4. Mobile Truck</span>
                     <span>→</span>
                   </a>
                 </div>
@@ -726,7 +817,7 @@ export default function FranchisePage() {
               <div className="w-14 h-1.5 bg-[#DB3E59] rounded-full mb-6" />
 
               <p className="text-[#162B3A]/85 font-medium text-base sm:text-lg leading-relaxed mb-8">
-                Join Japan’s most exciting artisanal crunchy cream stick phenomenon. Select your preferred concept—<strong>Mall Kiosk</strong>, <strong>Retail Outlet</strong>, or <strong>Food Truck</strong>—and get in touch directly with our business development team.
+                Join Japan’s most exciting artisanal crunchy cream stick phenomenon. Select your preferred concept—<strong>Premium Island</strong>, <strong>Express Stop</strong>, <strong>Experience Store</strong>, or <strong>Mobile Truck</strong>—and get in touch directly with our business development team.
               </p>
 
               {/* Perks Checklist */}
@@ -800,10 +891,10 @@ export default function FranchisePage() {
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                         {[
-                          { key: "KIOSK – TUMU Premium Island", label: "Premium Island", sub: "Kiosk" },
-                          { key: "KIOSK – TUMU Express Stop", label: "Express Stop", sub: "Kiosk" },
-                          { key: "TUMU Experience Store", label: "Experience Store", sub: "Flagship" },
-                          { key: "TUMU Go – Mobile Truck", label: "TUMU Go Truck", sub: "Mobile 5m × 2.5m" },
+                          { key: "1. KIOSK – TUMU Premium Island", label: "1. Premium Island", sub: "Kiosk • Low Cost" },
+                          { key: "2. KIOSK – TUMU Express Stop", label: "2. Express Stop", sub: "Kiosk • Low Cost" },
+                          { key: "3. TUMU Experience Store", label: "3. Experience Store", sub: "Store • Med Cost" },
+                          { key: "4. TUMU Go – Mobile Truck", label: "4. Mobile Truck", sub: "Truck • USD 50K" },
                         ].map((fmt) => {
                           const isActive = formData.format === fmt.key;
                           return (
