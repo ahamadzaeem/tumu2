@@ -1824,11 +1824,11 @@ export default function AdminPage() {
                 FRANCHISE PAGE CONTENT
               </span>
               <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
-                The 4 Business Formats (2 Kiosks, Experience Store, Mobile Truck)
+                The 3 Business Formats (Kiosk, Outlet, Truck)
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {siteContent.franchise?.formats?.map((fmt: any, idx: number) => (
                 <div key={fmt.id || idx} className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-3">
                   <div className="flex items-center justify-between">

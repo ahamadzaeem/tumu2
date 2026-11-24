@@ -23,7 +23,6 @@ import {
 export default function FranchisePage() {
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [selectedFormat, setSelectedFormat] = useState<"ALL" | "KIOSK_1" | "KIOSK_2" | "STORE" | "TRUCK">("ALL");
   const [formData, setFormData] = useState({
     contactPerson: "",
     company: "",
@@ -208,133 +207,15 @@ export default function FranchisePage() {
       <section id="formats" className="relative w-full bg-[#FAF4E7] py-20 sm:py-28 border-b border-[#162B3A]/5 scroll-mt-20">
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
-            <div className="flex flex-col items-start">
-              <span className="font-heading text-[18px] xs:text-[20px] sm:text-2xl lg:text-[26px] text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
-                FOUR FORMATS.
-              </span>
-              <h2 className="text-[34px] xs:text-[38px] sm:text-[46px] lg:text-5xl font-black uppercase tracking-tight leading-tight">
-                <span className="block text-[#162B3A]">ONE VIRAL BRAND.</span>
-                <span className="block text-[#DB3E59]">IT&apos;S TUMU.</span>
-              </h2>
-              <div className="w-12 h-1 bg-[#DB3E59] mt-4" />
-            </div>
-
-            {/* Filter Pills */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-              {(
-                [
-                  { id: "ALL", label: "All Formats" },
-                  { id: "KIOSK_1", label: "1. Premium Island" },
-                  { id: "KIOSK_2", label: "2. Express Stop" },
-                  { id: "STORE", label: "3. Experience Store" },
-                  { id: "TRUCK", label: "4. Mobile Truck" },
-                ] as const
-              ).map((fmt) => (
-                <button
-                  key={fmt.id}
-                  onClick={() => setSelectedFormat(fmt.id)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                    selectedFormat === fmt.id
-                      ? "bg-[#DB3E59] text-white shadow-md scale-105"
-                      : "bg-white/80 hover:bg-white text-[#162B3A] border border-black/5"
-                  }`}
-                >
-                  {fmt.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* ════════════════════════════════════════════════════════════
-              SPECIFICATIONS OVERVIEW GRID (ALL 4 FORMATS)
-             ════════════════════════════════════════════════════════════ */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
-            {[
-              {
-                id: "KIOSK_1" as const,
-                num: "1",
-                title: "KIOSK – TUMU Premium Island",
-                specs: [
-                  { label: "Setup", value: "3–4 Weeks" },
-                  { label: "Staff", value: "2 + 1 Supervisor" },
-                  { label: "Cost", value: "Low" },
-                  { label: "ROI", value: "Less than 12 Months", highlight: true },
-                ],
-              },
-              {
-                id: "KIOSK_2" as const,
-                num: "2",
-                title: "KIOSK – TUMU Express Stop",
-                specs: [
-                  { label: "Setup", value: "3–4 Weeks" },
-                  { label: "Staff", value: "2 + 1 Supervisor" },
-                  { label: "Cost", value: "Low" },
-                  { label: "ROI", value: "Less than 12 Months", highlight: true },
-                ],
-              },
-              {
-                id: "STORE" as const,
-                num: "3",
-                title: "TUMU Experience Store",
-                specs: [
-                  { label: "Staff", value: "3 + 1 Supervisor" },
-                  { label: "Cost", value: "Medium" },
-                  { label: "ROI", value: "12–15 Months", highlight: true },
-                ],
-              },
-              {
-                id: "TRUCK" as const,
-                num: "4",
-                title: "TUMU Go – Mobile Truck",
-                specs: [
-                  { label: "Size", value: "5 m × 2.5 m" },
-                  { label: "Staff", value: "2" },
-                  { label: "Cost", value: "Approx. USD 50K" },
-                  { label: "ROI", value: "Less than 6 Months", highlight: true },
-                ],
-              },
-            ].map((card) => {
-              const isSelected = selectedFormat === card.id;
-              return (
-                <div
-                  key={card.id}
-                  onClick={() => setSelectedFormat(selectedFormat === card.id ? "ALL" : card.id)}
-                  className={`p-6 rounded-[28px] border transition-all duration-300 cursor-pointer flex flex-col justify-between ${
-                    isSelected
-                      ? "bg-white border-[#DB3E59] shadow-xl ring-2 ring-[#DB3E59]/20 scale-[1.02]"
-                      : "bg-white/80 hover:bg-white border-black/5 hover:border-[#DB3E59]/30 shadow-md hover:shadow-lg"
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center gap-2.5 mb-4">
-                      <span className="w-7 h-7 rounded-full bg-[#DB3E59] text-white text-xs font-black flex items-center justify-center shrink-0 shadow-sm">
-                        {card.num}
-                      </span>
-                      <h4 className="text-sm font-black uppercase tracking-tight text-[#162B3A]">
-                        {card.title}
-                      </h4>
-                    </div>
-
-                    <ul className="flex flex-col gap-2.5 mb-6">
-                      {card.specs.map((s, idx) => (
-                        <li key={idx} className="flex items-center justify-between text-xs">
-                          <span className="text-[#162B3A]/70 font-semibold">• {s.label}:</span>
-                          <span className={s.highlight ? "text-[#DB3E59] font-black" : "text-[#162B3A] font-bold"}>
-                            {s.value}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="pt-3 border-t border-black/5 flex items-center justify-between text-xs font-black uppercase text-[#DB3E59]">
-                    <span>{isSelected ? "Showing Below" : "Filter Showcase"}</span>
-                    <span>→</span>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="flex flex-col items-start mb-12 sm:mb-16">
+            <span className="font-heading text-[18px] xs:text-[20px] sm:text-2xl lg:text-[26px] text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
+              FOUR FORMATS.
+            </span>
+            <h2 className="text-[34px] xs:text-[38px] sm:text-[46px] lg:text-5xl font-black uppercase tracking-tight leading-tight">
+              <span className="block text-[#162B3A]">ONE VIRAL BRAND.</span>
+              <span className="block text-[#DB3E59]">IT&apos;S TUMU.</span>
+            </h2>
+            <div className="w-12 h-1 bg-[#DB3E59] mt-4" />
           </div>
 
           <div className="flex flex-col gap-20 sm:gap-28">
@@ -342,301 +223,249 @@ export default function FranchisePage() {
             {/* ════════════════════════════════════════════════════════════
                 FORMAT 1: KIOSK 1 (Island Concept)
                ════════════════════════════════════════════════════════════ */}
-            {(selectedFormat === "ALL" || selectedFormat === "KIOSK_1") && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
-              >
-                {/* Header & Badges */}
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
-                  <div>
-                    <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      1. KIOSK <span className="text-[#DB3E59]">– TUMU Premium Island</span>
-                    </h3>
-                    <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
-                      A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.
-                    </p>
-                  </div>
-
-                  {/* Quick Specs Badges */}
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Setup: <strong>3–4 Weeks</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Staff: <strong>2 + 1 Supervisor</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Cost: <strong>Low</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                      ROI: <strong>Less than 12 Months</strong>
-                    </span>
-                  </div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
+            >
+              {/* Header & Badges */}
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                <div>
+                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                    1. KIOSK <span className="text-[#DB3E59]">– TUMU Premium Island</span>
+                  </h3>
+                  <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                    A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.
+                  </p>
                 </div>
 
-                {/* Visual Showcase (All 3 Relevant Images) */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/kiosk1_exterior.jpg"
-                      alt="TUMU Kiosk 1 Branded Corner & Neon Logo"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/kiosk1_counter.jpg"
-                      alt="TUMU Kiosk 1 Service Counter Perspective"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/kiosk1_front.jpg"
-                      alt="TUMU Kiosk 1 Front Elevation & Service Window"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
+                {/* Quick Specs Badges */}
+                <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Setup: <strong>3–4 Weeks</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Staff: <strong>2 + 1 Supervisor</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Cost: <strong>Low</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                    ROI: <strong>Less than 12 Months</strong>
+                  </span>
                 </div>
+              </div>
 
-                <div className="pt-2 flex justify-end">
-                  <a
-                    href="#form"
-                    onClick={() => setFormData({ ...formData, format: "1. KIOSK – TUMU Premium Island" })}
-                    className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
-                  >
-                    <span>Apply for 1. Premium Island</span>
-                    <span>→</span>
-                  </a>
-                </div>
-              </motion.div>
-            )}
-
-
-            {/* ════════════════════════════════════════════════════════════
-                FORMAT 2: KIOSK 2 (Canopy Design)
-               ════════════════════════════════════════════════════════════ */}
-            {(selectedFormat === "ALL" || selectedFormat === "KIOSK_2") && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
-              >
-                {/* Header & Badges */}
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
-                  <div>
-                    <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      2. KIOSK <span className="text-[#DB3E59]">– TUMU Express Stop</span>
-                    </h3>
-                    <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
-                      A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.
-                    </p>
-                  </div>
-
-                  {/* Quick Specs Badges */}
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Setup: <strong>3–4 Weeks</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Staff: <strong>2 + 1 Supervisor</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Cost: <strong>Low</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                      ROI: <strong>Less than 12 Months</strong>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Visual Showcase (All 3 Relevant Images) */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/kiosk_elevation.jpg"
-                      alt="TUMU Kiosk 2 Front Elevation"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/kiosk_perspective.jpg"
-                      alt="TUMU Kiosk 2 3D Perspective"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/kiosk_side.jpg"
-                      alt="TUMU Kiosk 2 Canopy & Vertical Neon"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-2 flex justify-end">
-                  <a
-                    href="#form"
-                    onClick={() => setFormData({ ...formData, format: "2. KIOSK – TUMU Express Stop" })}
-                    className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
-                  >
-                    <span>Apply for 2. Express Stop</span>
-                    <span>→</span>
-                  </a>
-                </div>
-              </motion.div>
-            )}
-
-
-            {/* ════════════════════════════════════════════════════════════
-                FORMAT 3: STORE (Retail Outlet)
-               ════════════════════════════════════════════════════════════ */}
-            {(selectedFormat === "ALL" || selectedFormat === "STORE") && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
-              >
-                {/* Header & Badges */}
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
-                  <div>
-                    <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      3. TUMU <span className="text-[#DB3E59]">Experience Store</span>
-                    </h3>
-                    <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
-                      An expanded flagship store format offering enhanced service space and a more immersive TUMU experience.
-                    </p>
-                  </div>
-
-                  {/* Quick Specs Badges */}
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Staff: <strong>3 + 1 Supervisor</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Cost: <strong>Medium</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                      ROI: <strong>12–15 Months</strong>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Visual Showcase (2 Best Images) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/outlet_storefront.jpg"
-                      alt="TUMU Retail Outlet Storefront"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-
-                  <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                    <Image
-                      src="/images/tumu/formats/outlet_counter.jpg"
-                      alt="TUMU Retail Outlet Service Counter"
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-2 flex justify-end">
-                  <a
-                    href="#form"
-                    onClick={() => setFormData({ ...formData, format: "3. TUMU Experience Store" })}
-                    className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
-                  >
-                    <span>Apply for 3. Experience Store</span>
-                    <span>→</span>
-                  </a>
-                </div>
-              </motion.div>
-            )}
-
-
-            {/* ════════════════════════════════════════════════════════════
-                FORMAT 4: OUTDOOR TRUCK
-               ════════════════════════════════════════════════════════════ */}
-            {(selectedFormat === "ALL" || selectedFormat === "TRUCK") && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
-              >
-                {/* Header & Badges */}
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
-                  <div>
-                    <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                      4. TUMU Go <span className="text-[#DB3E59]">– Mobile Truck</span>
-                    </h3>
-                    <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
-                      A versatile mobile concept designed for events, festivals, catering, and outdoor activations.
-                    </p>
-                  </div>
-
-                  {/* Quick Specs Badges */}
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Size: <strong>5 m × 2.5 m</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Staff: <strong>2</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                      Cost: <strong>Approx. USD 50K</strong>
-                    </span>
-                    <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                      ROI: <strong>Less than 6 Months</strong>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Visual Showcase (Only 1 Image) */}
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group">
+              {/* Visual Showcase (All 3 Relevant Images) */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
                   <Image
-                    src="/images/tumu/formats/truck_trailer.jpg"
-                    alt="TUMU Go Mobile Food Truck Trailer"
+                    src="/images/tumu/formats/kiosk1_exterior.jpg"
+                    alt="TUMU Kiosk 1 Branded Corner & Neon Logo"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 </div>
 
-                <div className="pt-2 flex justify-end">
-                  <a
-                    href="#form"
-                    onClick={() => setFormData({ ...formData, format: "4. TUMU Go – Mobile Truck" })}
-                    className="px-7 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95 flex items-center gap-2"
-                  >
-                    <span>Apply for 4. Mobile Truck</span>
-                    <span>→</span>
-                  </a>
+                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                  <Image
+                    src="/images/tumu/formats/kiosk1_counter.jpg"
+                    alt="TUMU Kiosk 1 Service Counter Perspective"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
                 </div>
-              </motion.div>
-            )}
+
+                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                  <Image
+                    src="/images/tumu/formats/kiosk1_front.jpg"
+                    alt="TUMU Kiosk 1 Front Elevation & Service Window"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+
+            {/* ════════════════════════════════════════════════════════════
+                FORMAT 2: KIOSK 2 (Canopy Design)
+               ════════════════════════════════════════════════════════════ */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
+            >
+              {/* Header & Badges */}
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                <div>
+                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                    2. KIOSK <span className="text-[#DB3E59]">– TUMU Express Stop</span>
+                  </h3>
+                  <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                    A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.
+                  </p>
+                </div>
+
+                {/* Quick Specs Badges */}
+                <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Setup: <strong>3–4 Weeks</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Staff: <strong>2 + 1 Supervisor</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Cost: <strong>Low</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                    ROI: <strong>Less than 12 Months</strong>
+                  </span>
+                </div>
+              </div>
+
+              {/* Visual Showcase (All 3 Relevant Images) */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                  <Image
+                    src="/images/tumu/formats/kiosk_elevation.jpg"
+                    alt="TUMU Kiosk 2 Front Elevation"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
+
+                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                  <Image
+                    src="/images/tumu/formats/kiosk_perspective.jpg"
+                    alt="TUMU Kiosk 2 3D Perspective"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
+
+                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                  <Image
+                    src="/images/tumu/formats/kiosk_side.jpg"
+                    alt="TUMU Kiosk 2 Canopy & Vertical Neon"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+
+            {/* ════════════════════════════════════════════════════════════
+                FORMAT 3: STORE (Retail Outlet)
+               ════════════════════════════════════════════════════════════ */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
+            >
+              {/* Header & Badges */}
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                <div>
+                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                    3. TUMU <span className="text-[#DB3E59]">Experience Store</span>
+                  </h3>
+                  <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                    An expanded flagship store format offering enhanced service space and a more immersive TUMU experience.
+                  </p>
+                </div>
+
+                {/* Quick Specs Badges */}
+                <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Staff: <strong>3 + 1 Supervisor</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Cost: <strong>Medium</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                    ROI: <strong>12–15 Months</strong>
+                  </span>
+                </div>
+              </div>
+
+              {/* Visual Showcase (2 Best Images) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                  <Image
+                    src="/images/tumu/formats/outlet_storefront.jpg"
+                    alt="TUMU Retail Outlet Storefront"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
+
+                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
+                  <Image
+                    src="/images/tumu/formats/outlet_counter.jpg"
+                    alt="TUMU Retail Outlet Service Counter"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+
+            {/* ════════════════════════════════════════════════════════════
+                FORMAT 4: OUTDOOR TRUCK
+               ════════════════════════════════════════════════════════════ */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
+            >
+              {/* Header & Badges */}
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                <div>
+                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                    4. TUMU Go <span className="text-[#DB3E59]">– Mobile Truck</span>
+                  </h3>
+                  <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                    A versatile mobile concept designed for events, festivals, catering, and outdoor activations.
+                  </p>
+                </div>
+
+                {/* Quick Specs Badges */}
+                <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Size: <strong>5 m × 2.5 m</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Staff: <strong>2</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                    Cost: <strong>Approx. USD 50K</strong>
+                  </span>
+                  <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                    ROI: <strong>Less than 6 Months</strong>
+                  </span>
+                </div>
+              </div>
+
+              {/* Visual Showcase (Only 1 Image) */}
+              <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group">
+                <Image
+                  src="/images/tumu/formats/truck_trailer.jpg"
+                  alt="TUMU Go Mobile Food Truck Trailer"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
+            </motion.div>
 
           </div>
 
