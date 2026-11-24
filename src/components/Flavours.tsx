@@ -75,7 +75,7 @@ export default function Flavours() {
           </h2>
 
           {/* 2. Subtitle */}
-          <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide mt-2 sm:mt-3">
+          <p className="font-sans font-black text-[15px] xs:text-[17px] sm:text-[19px] lg:text-[21px] text-white/95 uppercase tracking-wider mt-2.5 sm:mt-3">
             {content?.home?.flavoursSection?.subheading || "EXPLORE TUMU’S SIGNATURE CRISPY SHELL FLAVOURS"}
           </p>
 
@@ -90,11 +90,11 @@ export default function Flavours() {
 
             return (
               <div className="mt-2 sm:mt-2.5 space-y-1">
-                <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide">
+                <p className="font-sans font-black text-[15px] xs:text-[17px] sm:text-[19px] lg:text-[21px] text-white/95 uppercase tracking-wider">
                   {cleanHeadline}
                 </p>
                 {subtitlePart ? (
-                  <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide">
+                  <p className="font-sans font-black text-[15px] xs:text-[17px] sm:text-[19px] lg:text-[21px] text-white/95 uppercase tracking-wider">
                     {subtitlePart}
                   </p>
                 ) : null}
