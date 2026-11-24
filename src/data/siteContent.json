@@ -65,6 +65,16 @@
       "btnText": "MORE FLAVOURS",
       "btnLink": "/flavours"
     },
+    "freshFromOven": {
+      "eyebrow": "FRESH FROM OUR OVEN",
+      "headlineLine1": "BAKED",
+      "headlineLine2": "PERFECTION.",
+      "headlineLine3": "FILLED",
+      "headlineLine4": "HAPPINESS.",
+      "description": "Every TUMU stick is freshly baked to a golden crunch and filled with smooth, chilled cream — so you can enjoy the perfect balance of crisp outside, creamy inside, every time.",
+      "buttonText": "Explore TUMU",
+      "buttonLink": "/our-story"
+    },
     "happinessSection": {
       "headingLine1": "TASTE IT ONCE.",
       "headingLine2": "CRAVE IT FOREVER.",

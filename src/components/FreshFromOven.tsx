@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Sparkles, Utensils, Clock } from "lucide-react";
+import Link from "next/link";
+import PillButton from "./PillButton";
 import { getSiteContent } from "@/lib/cms";
 
 export default function FreshFromOven() {
@@ -19,96 +20,80 @@ export default function FreshFromOven() {
 
   const fresh = (content?.home as any)?.freshFromOven || {
     eyebrow: "FRESH FROM OUR OVEN",
-    heading: "WHY SO FRESH!?",
-    pillar1Title: "FAST AND EASY",
-    pillar1Desc: "Baking process for a perfectly crunchy puff every time at every single store.",
-    pillar2Title: "THE FINEST INGREDIENTS",
-    pillar2Desc: "Using only the freshest and highest quality milk and butter.",
-    pillar3Title: "FRESHLY SERVED",
-    pillar3Desc: "Filling freshly prepared cream into crunchy puffs with every single order."
+    headlineLine1: "BAKED TO",
+    headlineLine2: "PERFECTION.",
+    headlineLine3: "FILLED WITH",
+    headlineLine4: "HAPPINESS.",
+    description:
+      "Every TUMU stick is freshly baked to a golden crunch and filled with smooth, chilled cream — so you can enjoy the perfect balance of crisp outside, creamy inside, every time.",
+    buttonText: "Explore TUMU",
+    buttonLink: "/our-story",
   };
 
-  const pillars = [
-    {
-      icon: Clock,
-      title: fresh.pillar1Title || "FAST AND EASY",
-      description: fresh.pillar1Desc || "Baking process for a perfectly crunchy puff every time at every single store."
-    },
-    {
-      icon: Sparkles,
-      title: fresh.pillar2Title || "THE FINEST INGREDIENTS",
-      description: fresh.pillar2Desc || "Using only the freshest and highest quality milk and butter."
-    },
-    {
-      icon: Utensils,
-      title: fresh.pillar3Title || "FRESHLY SERVED",
-      description: fresh.pillar3Desc || "Filling freshly prepared cream into crunchy puffs with every single order."
-    }
-  ];
-
   return (
-    <section className="relative w-full min-h-[680px] lg:min-h-[750px] flex flex-col lg:flex-row bg-[#F8F4EC] overflow-hidden">
+    <section className="relative w-full min-h-[600px] lg:min-h-[720px] flex flex-col lg:flex-row bg-[#F8F4EC] overflow-hidden">
       {/* Decorative Brand Stripes (Top Edge) */}
       <div 
-        className="absolute top-0 left-1/2 w-48 h-full z-0 opacity-30 pointer-events-none"
+        className="absolute top-0 left-1/2 w-48 h-full z-0 opacity-80 pointer-events-none"
         style={{
           background: "repeating-linear-gradient(90deg, #6ECBE0 0px, #6ECBE0 24px, #FFFFFF 24px, #FFFFFF 48px, #DB3E59 48px, #DB3E59 72px, #FFFFFF 72px, #FFFFFF 96px)",
-          clipPath: "polygon(30% 0, 100% 0, 100% 100%, 0 100%)"
+          clipPath: "polygon(30% 0, 100% 0, 100% 100%, 0 100%)",
+        }}
+      />
+      {/* Decorative Brand Stripes (Bottom Right Corner) */}
+      <div 
+        className="absolute bottom-0 right-0 w-64 h-32 z-20 opacity-90 pointer-events-none hidden lg:block"
+        style={{
+          background: "repeating-linear-gradient(90deg, #DB3E59 0px, #DB3E59 24px, #FFFFFF 24px, #FFFFFF 48px, #6ECBE0 48px, #6ECBE0 72px, #FFFFFF 72px, #FFFFFF 96px)",
+          clipPath: "polygon(100% 0, 100% 100%, 0 100%)",
         }}
       />
 
-      {/* Left Content Card / Column */}
-      <div className="w-full lg:w-[48%] flex flex-col justify-center px-6 sm:px-10 lg:pl-[7vw] lg:pr-8 py-16 lg:py-20 z-20 bg-[#F8F4EC] lg:bg-transparent">
+      {/* Left Content Column */}
+      <div className="w-full lg:w-[48%] flex flex-col justify-center px-6 sm:px-12 lg:pl-[8vw] lg:pr-10 py-16 sm:py-20 z-20 bg-[#F8F4EC] lg:bg-transparent">
+        <span className="text-[#DB3E59] text-xs sm:text-sm tracking-[0.25em] font-black uppercase mb-4 block">
+          {fresh.eyebrow || "FRESH FROM OUR OVEN"}
+        </span>
+        <h2 className="text-[44px] sm:text-[56px] lg:text-[70px] font-black tracking-tight leading-[0.93] uppercase mb-6 text-[#162B3A]">
+          {fresh.headlineLine1 || "BAKED"} <span className="text-[#DB3E59]">TO</span><br />
+          {fresh.headlineLine2 || "PERFECTION."}<br />
+          {fresh.headlineLine3 || "FILLED"} <span className="text-[#DB3E59]">WITH</span><br />
+          <span className="text-[#DB3E59]">{fresh.headlineLine4 || "HAPPINESS."}</span>
+        </h2>
         
-        {/* Why So Fresh Card */}
-        <div className="bg-[#DB3E59] text-white p-8 sm:p-10 lg:p-12 rounded-[36px] shadow-2xl relative overflow-hidden border border-white/10">
-          <span className="text-white/80 text-xs sm:text-sm tracking-[0.25em] font-extrabold uppercase mb-2 block">
-            {fresh.eyebrow}
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase mb-8 leading-tight">
-            {fresh.heading}
-          </h2>
+        <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
-          <div className="space-y-8">
-            {pillars.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-4 group">
-                <div className="w-10 h-10 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center shrink-0 mt-0.5 border border-white/20">
-                  <item.icon className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-1 text-white">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/90 text-sm sm:text-base font-medium leading-relaxed max-w-[380px]">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <p className="text-[#162B3A]/80 text-sm sm:text-base lg:text-lg font-semibold leading-relaxed max-w-[460px] mb-8">
+          {fresh.description ||
+            "Every TUMU stick is freshly baked to a golden crunch and filled with smooth, chilled cream — so you can enjoy the perfect balance of crisp outside, creamy inside, every time."}
+        </p>
 
+        <Link href={fresh.buttonLink || "/our-story"} className="w-fit">
+          <PillButton variant="pink" showArrow className="px-8 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider">
+            {fresh.buttonText || "Explore TUMU"}
+          </PillButton>
+        </Link>
       </div>
 
       {/* Right Image Container */}
-      <div className="relative w-full h-[450px] lg:h-auto lg:absolute lg:top-0 lg:right-0 lg:w-[58%] lg:bottom-0 z-10">
+      <div className="relative w-full h-[400px] sm:h-[480px] lg:h-auto lg:absolute lg:top-0 lg:right-0 lg:w-[58%] lg:bottom-0 z-10">
         <div 
           className="absolute inset-0 w-full h-full hidden lg:block"
-          style={{ clipPath: "polygon(10% 0, 100% 0, 100% 100%, 0 100%)" }}
+          style={{ clipPath: "polygon(12% 0, 100% 0, 100% 100%, 0 100%)" }}
         >
           <Image 
             src="/images/tumu/artisanal_rack.png" 
-            alt="TUMU sticks freshly baked on a rack" 
+            alt="TUMU sticks baked to perfection on an artisanal rack" 
             fill 
             className="object-cover object-center"
             priority
           />
         </div>
-        {/* Mobile image */}
+        {/* Mobile image without diagonal clip-path */}
         <div className="absolute inset-0 w-full h-full lg:hidden">
           <Image 
             src="/images/tumu/artisanal_rack.png" 
-            alt="TUMU sticks freshly baked on a rack" 
+            alt="TUMU sticks baked to perfection on an artisanal rack" 
             fill 
             className="object-cover object-center"
           />

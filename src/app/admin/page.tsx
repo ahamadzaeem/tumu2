@@ -1457,6 +1457,56 @@ export default function AdminPage() {
               </div>
             </div>
 
+            {/* Section 6: Fresh From Our Oven ("BAKED TO PERFECTION") */}
+            <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
+              <div className="border-b border-black/10 pb-4">
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                  HOME SECTION 6 OF 8
+                </span>
+                <h3 className="text-2xl font-black uppercase text-[#162B3A]">
+                  Fresh From Our Oven (&quot;BAKED TO PERFECTION&quot;)
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Eyebrow (&quot;FRESH FROM OUR OVEN&quot;)
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.freshFromOven?.eyebrow || ""}
+                    onChange={(e) => updateContentField("home", "freshFromOven", "eyebrow", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Button Text (&quot;Explore TUMU&quot;)
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.freshFromOven?.buttonText || ""}
+                    onChange={(e) => updateContentField("home", "freshFromOven", "buttonText", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Description
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={siteContent.home?.freshFromOven?.description || ""}
+                    onChange={(e) => updateContentField("home", "freshFromOven", "description", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+              </div>
+            </div>
+
             {/* Section 6: Happiness Section ("TASTE IT ONCE. CRAVE IT FOREVER. LET HAPPINESS FLOW") */}
             <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-6">
               <div className="border-b border-black/10 pb-4">
