@@ -32,23 +32,6 @@ export default function FreshFromOven() {
 
   return (
     <section className="relative w-full min-h-[600px] lg:min-h-[720px] flex flex-col lg:flex-row bg-[#F8F4EC] overflow-hidden">
-      {/* Decorative Brand Stripes (Top Edge) */}
-      <div 
-        className="absolute top-0 left-1/2 w-48 h-full z-0 opacity-80 pointer-events-none"
-        style={{
-          background: "repeating-linear-gradient(90deg, #6ECBE0 0px, #6ECBE0 24px, #FFFFFF 24px, #FFFFFF 48px, #DB3E59 48px, #DB3E59 72px, #FFFFFF 72px, #FFFFFF 96px)",
-          clipPath: "polygon(30% 0, 100% 0, 100% 100%, 0 100%)",
-        }}
-      />
-      {/* Decorative Brand Stripes (Bottom Right Corner) */}
-      <div 
-        className="absolute bottom-0 right-0 w-64 h-32 z-20 opacity-90 pointer-events-none hidden lg:block"
-        style={{
-          background: "repeating-linear-gradient(90deg, #DB3E59 0px, #DB3E59 24px, #FFFFFF 24px, #FFFFFF 48px, #6ECBE0 48px, #6ECBE0 72px, #FFFFFF 72px, #FFFFFF 96px)",
-          clipPath: "polygon(100% 0, 100% 100%, 0 100%)",
-        }}
-      />
-
       {/* Left Content Column */}
       <div className="w-full lg:w-[48%] flex flex-col justify-center px-6 sm:px-12 lg:pl-[8vw] lg:pr-10 py-16 sm:py-20 z-20 bg-[#F8F4EC] lg:bg-transparent">
         <span className="text-[#DB3E59] text-xs sm:text-sm tracking-[0.25em] font-black uppercase mb-4 block">
