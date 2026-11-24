@@ -34,9 +34,6 @@ export default function FreshFromOven() {
     <section className="relative w-full min-h-[600px] lg:min-h-[720px] flex flex-col lg:flex-row bg-[#F8F4EC] overflow-hidden">
       {/* Left Content Column */}
       <div className="w-full lg:w-[48%] flex flex-col justify-center px-6 sm:px-12 lg:pl-[8vw] lg:pr-10 py-16 sm:py-20 z-20 bg-[#F8F4EC] lg:bg-transparent">
-        <span className="text-[#DB3E59] text-xs sm:text-sm tracking-[0.25em] font-black uppercase mb-4 block">
-          {fresh.eyebrow || "FRESH FROM OUR OVEN"}
-        </span>
         <h2 className="text-[44px] sm:text-[56px] lg:text-[70px] font-black tracking-tight leading-[0.93] uppercase mb-6 text-[#162B3A]">
           {fresh.headlineLine1 || "BAKED"} <span className="text-[#DB3E59]">TO</span><br />
           {fresh.headlineLine2 || "PERFECTION."}<br />
