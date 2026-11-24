@@ -64,7 +64,7 @@ export default function Flavours() {
   };
 
   return (
-    <section id="flavours" className="relative w-full bg-[#50B8B1] scroll-mt-20 pt-28 pb-24 lg:scroll-mt-24 lg:pt-36 lg:pb-32 overflow-hidden">
+    <section id="flavours" className="relative w-full bg-[#DB3E59] scroll-mt-20 pt-28 pb-24 lg:scroll-mt-24 lg:pt-36 lg:pb-32 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-20">
         
         {/* Section Header */}
@@ -106,7 +106,7 @@ export default function Flavours() {
           <div className="mt-6 sm:mt-8">
             <a
               href={content?.home?.flavoursSection?.btnLink || "/flavours"}
-              className="inline-flex items-center gap-2 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs sm:text-sm lg:text-base font-black uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-2 px-8 py-3.5 sm:px-10 sm:py-4 rounded-full bg-[#50B8B1] hover:bg-[#43A29B] text-white text-xs sm:text-sm lg:text-base font-black uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
             >
               <span>{content?.home?.flavoursSection?.btnText || "MORE FLAVOURS"}</span>
               <span>→</span>
@@ -136,7 +136,7 @@ export default function Flavours() {
               </div>
 
               {/* Product Name */}
-              <h3 className="text-[#162B3A] font-black uppercase text-center text-xs sm:text-sm lg:text-[15px] leading-tight px-1 group-hover:text-white transition-colors">
+              <h3 className="text-white font-black uppercase text-center text-xs sm:text-sm lg:text-[15px] leading-tight px-1 group-hover:text-[#162B3A] transition-colors drop-shadow-sm">
                 {item.name.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
                 ))}
