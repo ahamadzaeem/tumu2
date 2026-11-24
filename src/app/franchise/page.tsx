@@ -57,7 +57,7 @@ export default function FranchisePage() {
     {
       question: "How do I become a franchise partner?",
       answer:
-        "Fill out our franchise enquiry form or reach out to our team directly at franchise@tumu.com. We'll schedule an initial discussion and guide you through our 5-step onboarding process."
+        "Fill out our franchise enquiry form or reach out to our team directly at franchise@tumuofficial.com. We'll schedule an initial discussion and guide you through our 5-step onboarding process."
     },
     {
       question: "What is the initial investment?",

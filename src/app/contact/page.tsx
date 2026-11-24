@@ -205,7 +205,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:col-span-5 flex flex-col items-start pt-2"
           >
-            <div className="flex flex-col items-start mb-8 sm:mb-10">
+            <div className="flex flex-col items-start mb-6 sm:mb-8">
               <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
                 GET IN <span className="text-[#DB3E59]">TOUCH</span>
               </h2>
@@ -214,71 +214,124 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-8 w-full">
-              {/* Channel 1: Phone */}
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-full bg-[#FFEBEF] text-[#DB3E59] flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5 stroke-[2.2]" />
+            <div className="flex flex-col gap-6 w-full">
+              {/* Quick Communication Channels */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4 border-b border-black/10">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-full bg-[#FFEBEF] text-[#DB3E59] flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4 stroke-[2.2]" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#162B3A]/60">
+                      Franchise Enquiry
+                    </span>
+                    <a
+                      href="mailto:franchise@tumuofficial.com"
+                      className="text-xs sm:text-sm font-bold text-[#162B3A] hover:text-[#DB3E59] transition-colors"
+                    >
+                      franchise@tumuofficial.com
+                    </a>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-base font-black text-[#162B3A] mb-0.5">
-                    Phone
-                  </span>
-                  <a
-                    href="tel:+6581234567"
-                    className="text-sm sm:text-base font-semibold text-[#162B3A]/80 hover:text-[#DB3E59] transition-colors"
-                  >
-                    +65 8123 4567
-                  </a>
+
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-full bg-[#FFEBEF] text-[#DB3E59] flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4 stroke-[2.2]" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#162B3A]/60">
+                      Media &amp; Press
+                    </span>
+                    <a
+                      href="mailto:media@tumuofficial.com"
+                      className="text-xs sm:text-sm font-bold text-[#162B3A] hover:text-[#DB3E59] transition-colors"
+                    >
+                      media@tumuofficial.com
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              {/* Channel 2: Email */}
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-full bg-[#FFEBEF] text-[#DB3E59] flex items-center justify-center shrink-0">
-                  <Mail className="w-5 h-5 stroke-[2.2]" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-base font-black text-[#162B3A] mb-0.5">
-                    Email
-                  </span>
-                  <a
-                    href="mailto:franchise@tumu.com"
-                    className="text-sm sm:text-base font-semibold text-[#162B3A]/80 hover:text-[#DB3E59] transition-colors"
-                  >
-                    franchise@tumu.com
-                  </a>
-                </div>
-              </div>
+              {/* Regional Corporate Offices */}
+              <div className="flex flex-col gap-4 w-full">
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59]">
+                  REGIONAL OFFICES
+                </span>
 
-              {/* Channel 3: Head Office */}
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-full bg-[#FFEBEF] text-[#DB3E59] flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5 stroke-[2.2]" />
+                {/* 1. INDIA */}
+                <div className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
+                      INDIA
+                    </span>
+                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Regional Headquarters</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
+                    Starhub Food Works Pvt Ltd
+                  </h4>
+                  <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
+                    <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
+                    <span>No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
+                    <a href="mailto:franchise@tumuofficial.com" className="text-[#DB3E59] hover:underline">
+                      franchise@tumuofficial.com
+                    </a>
+                    <span className="text-[#162B3A]/30">•</span>
+                    <a href="mailto:media@tumuofficial.com" className="text-[#162B3A]/70 hover:text-[#DB3E59]">
+                      media@tumuofficial.com
+                    </a>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-base font-black text-[#162B3A] mb-0.5">
-                    Head Office
-                  </span>
-                  <p className="text-sm sm:text-base font-semibold text-[#162B3A]/80 max-w-[280px] leading-relaxed">
-                    10 Anson Road, #24-15 International Plaza, Singapore 079903
-                  </p>
-                </div>
-              </div>
 
-              {/* Channel 4: Business Hours */}
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-full bg-[#FFEBEF] text-[#DB3E59] flex items-center justify-center shrink-0">
-                  <Clock className="w-5 h-5 stroke-[2.2]" />
+                {/* 2. UAE */}
+                <div className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
+                      UAE
+                    </span>
+                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Middle East Office</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
+                    Al Zarouni Business Centre
+                  </h4>
+                  <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
+                    <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
+                    <span>Office : 401 | Al Zarouni Business Centre, Al Barsha 1st, Dubai, UAE</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
+                    <a href="mailto:franchise@tumuofficial.com" className="text-[#DB3E59] hover:underline">
+                      franchise@tumuofficial.com
+                    </a>
+                    <span className="text-[#162B3A]/30">•</span>
+                    <a href="mailto:media@tumuofficial.com" className="text-[#162B3A]/70 hover:text-[#DB3E59]">
+                      media@tumuofficial.com
+                    </a>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-base font-black text-[#162B3A] mb-0.5">
-                    Business Hours
-                  </span>
-                  <p className="text-sm sm:text-base font-semibold text-[#162B3A]/80 leading-relaxed">
-                    Mon – Fri: 9:00 AM – 6:00 PM (SGT)
-                  </p>
+
+                {/* 3. JAPAN */}
+                <div className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
+                      JAPAN
+                    </span>
+                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Global Heritage &amp; R&amp;D</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
+                    Marunouchi Trust Tower Main
+                  </h4>
+                  <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
+                    <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
+                    <span>22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold pt-2 border-t border-black/5">
+                    <a href="mailto:enquiry@tumuofficial.jp" className="text-[#DB3E59] hover:underline">
+                      enquiry@tumuofficial.jp
+                    </a>
+                  </div>
                 </div>
+
               </div>
             </div>
 
@@ -304,11 +357,13 @@ export default function ContactPage() {
               </span>
             </h2>
 
-            <div className="w-10 h-1 bg-[#DB3E59] mb-4" />
+            <div className="w-10 h-1 bg-[#DB3E59] mb-5" />
 
-            <p className="text-[#162B3A]/85 font-semibold text-sm sm:text-base leading-relaxed">
-              Be part of a fast-growing dessert brand with a strong identity, loyal customers, and high returns.
-            </p>
+            <div className="text-[#162B3A] font-black text-base sm:text-lg lg:text-xl uppercase tracking-tight leading-snug space-y-1">
+              <p>BE THE TALK OF THE TOWN.</p>
+              <p>DON&apos;T JUST BE A FAN OF THE NEXT BIG THING.</p>
+              <p className="text-[#DB3E59]">BE PART OF IT. BE TUMU!</p>
+            </div>
           </div>
 
           <div className="shrink-0">
