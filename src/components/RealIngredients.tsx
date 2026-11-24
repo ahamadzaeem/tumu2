@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import CircleArrow from "./CircleArrow";
-import BrandStripes from "./BrandStripes";
 import { getSiteContent } from "@/lib/cms";
 
 export default function RealIngredients() {
@@ -73,11 +72,6 @@ export default function RealIngredients() {
         <Link href="/our-story" aria-label="Learn about our story">
           <CircleArrow variant="cyan-outline" size="md" />
         </Link>
-
-        {/* Far Right Vertical Blue Stripes */}
-        <div className="absolute right-[4%] top-0 bottom-[15%] w-12 hidden lg:block pointer-events-none z-10">
-          <BrandStripes color="blue" direction="vertical" stripeWidth={5} gap={6} className="h-full w-full" />
-        </div>
 
         {/* Bottom Right Pink Wedge Corner Accent */}
         <div 
