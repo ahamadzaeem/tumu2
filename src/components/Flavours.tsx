@@ -89,12 +89,12 @@ export default function Flavours() {
             const cleanHeadline = (headlinePart || "25 UNIQUE FLAVOURS").replace(/,\s*$/, "");
 
             return (
-              <div className="mt-4 sm:mt-5 space-y-1">
-                <p className="text-sm xs:text-base sm:text-lg lg:text-xl font-medium text-white/90 uppercase tracking-widest leading-relaxed">
+              <div className="mt-2 sm:mt-2.5 space-y-1">
+                <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide">
                   {cleanHeadline}
                 </p>
                 {subtitlePart ? (
-                  <p className="text-xs xs:text-sm sm:text-base text-white/80 uppercase tracking-wider leading-snug">
+                  <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide">
                     {subtitlePart}
                   </p>
                 ) : null}
@@ -117,21 +117,21 @@ export default function Flavours() {
         {/* 8 Flavour Product Lineup */}
         <div
           ref={scrollRef}
-          className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 pt-4 items-end justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 pt-2 items-end justify-items-center"
         >
           {flavours.slice(0, 8).map((item) => (
             <div
               key={item.id}
-              className="relative shrink-0 flex flex-col items-center group cursor-pointer w-full max-w-[180px] xl:max-w-[200px]"
+              className="relative shrink-0 flex flex-col items-center group cursor-pointer w-full max-w-[155px]"
             >
               {/* Product Image */}
-              <div className="relative w-full h-[280px] sm:h-[340px] lg:h-[400px] xl:h-[440px] mb-3 flex justify-center">
+              <div className="relative w-full h-[220px] sm:h-[260px] lg:h-[300px] mb-3 flex justify-center">
                 <Image
                   src={item.image}
                   alt={item.name}
                   fill
-                  className="object-contain object-bottom drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)] transition-transform duration-500 group-hover:scale-108 group-hover:-translate-y-2"
-                  sizes="(max-width: 640px) 180px, (max-width: 1024px) 240px, 280px"
+                  className="object-contain object-center drop-shadow-[0_16px_24px_rgba(0,0,0,0.2)] transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
+                  sizes="(max-width: 640px) 140px, (max-width: 1024px) 180px, 220px"
                 />
               </div>
 
