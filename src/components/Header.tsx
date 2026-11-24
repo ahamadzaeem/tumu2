@@ -51,10 +51,9 @@ export default function Header() {
     { label: "Home", href: "/", num: "01" },
     { label: "Story", href: "/our-story", num: "02" },
     { label: "Flavours", href: "/flavours", num: "03" },
-    { label: "Process", href: "/process", num: "04" },
-    { label: "Locations", href: "/locations", num: "05" },
-    { label: "Franchise", href: "/franchise", num: "06" },
-    { label: "Contact", href: "/contact", num: "07" },
+    { label: "Locations", href: "/locations", num: "04" },
+    { label: "Franchise", href: "/franchise", num: "05" },
+    { label: "Contact", href: "/contact", num: "06" },
   ];
 
   // Motion Variants

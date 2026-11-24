@@ -80,11 +80,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/process" className="hover:text-[#DB3E59] transition-colors">
-                  Our Process
-                </Link>
-              </li>
-              <li>
                 <Link href="/locations" className="hover:text-[#DB3E59] transition-colors">
                   Store Locations
                 </Link>

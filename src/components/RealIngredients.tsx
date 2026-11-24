@@ -70,7 +70,7 @@ export default function RealIngredients() {
           ))}
         </div>
 
-        <Link href="/process" aria-label="Learn about our 3-step process">
+        <Link href="/our-story" aria-label="Learn about our story">
           <CircleArrow variant="cyan-outline" size="md" />
         </Link>
 

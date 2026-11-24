@@ -179,10 +179,10 @@ export default function OurStoryClient() {
 
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/process"
+                href="/flavours"
                 className="px-8 py-3.5 rounded-full bg-[#162B3A] hover:bg-black text-white text-xs sm:text-sm font-black uppercase tracking-wider transition-all shadow-md active:scale-95"
               >
-                Discover Our Process →
+                Explore Our Flavours →
               </Link>
               <Link
                 href="/locations"

@@ -40,19 +40,6 @@
       "robots": "index, follow"
     },
     {
-      "id": "process",
-      "slug": "/process",
-      "name": "Our Process",
-      "metaTitle": "Our Process | Artisanal Japanese Baking & Fresh Chilled Cream",
-      "metaDescription": "Discover the 5-step craftsmanship behind TUMU's crispy cream-filled desserts in the UAE. From golden convection baking to piping fresh chilled cream to order in Dubai.",
-      "metaKeywords": "Crispy cream-filled desserts, Japanese cream desserts, Japanese desserts in UAE, Japanese dessert shop Dubai, TUMU baking process",
-      "canonicalUrl": "https://tumu.ae/process",
-      "ogTitle": "Our Process | TUMU UAE - The Art of Crispy Cream Desserts",
-      "ogDescription": "Explore how TUMU crafts its iconic crispy cream dessert sticks. Baked golden, crusted with almonds, and filled fresh to order in UAE.",
-      "ogImage": "/images/tumu/process_01_bake.jpg",
-      "robots": "index, follow"
-    },
-    {
       "id": "locations",
       "slug": "/locations",
       "name": "Store Locations",

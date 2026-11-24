@@ -68,7 +68,7 @@ export default function AdminPage() {
 
   // Active Tab
   const [activeTab, setActiveTab] = useState<
-    "seo" | "general" | "home" | "story" | "process" | "franchise" | "faqs" | "flavors" | "locations"
+    "seo" | "general" | "home" | "story" | "franchise" | "faqs" | "flavors" | "locations"
   >("seo");
 
   // Data states
@@ -614,7 +614,6 @@ export default function AdminPage() {
             { id: "general", label: "Site & Header/Footer", icon: Sliders },
             { id: "home", label: "Home Page", icon: Home },
             { id: "story", label: "Our Story", icon: BookOpen },
-            { id: "process", label: "Our Process", icon: Cog },
             { id: "franchise", label: "Franchise & Formats", icon: Briefcase },
             { id: "faqs", label: "FAQs Manager", icon: HelpCircle },
             { id: "flavors", label: "Flavours Lineup", icon: IceCream },
@@ -1810,97 +1809,6 @@ export default function AdminPage() {
               >
                 <Save className="w-4 h-4" />
                 <span>Save Story Content</span>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* ══════════════════════════════════════════════════════════════
-            TAB 5: OUR PROCESS PAGE CONTENT
-           ══════════════════════════════════════════════════════════════ */}
-        {activeTab === "process" && (
-          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-8">
-            <div className="border-b border-black/10 pb-4">
-              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
-                OUR PROCESS PAGE CONTENT
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
-                The 5 Japanese Crafting Steps
-              </h2>
-            </div>
-
-            {/* Steps list */}
-            <div className="flex flex-col gap-4">
-              {siteContent.process?.steps?.map((stepItem: any, idx: number) => (
-                <div key={idx} className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-3">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full bg-[#DB3E59] text-white text-xs font-black">
-                      Step {stepItem.step}
-                    </span>
-                    <span className="text-xs font-bold text-[#162B3A]/60 font-mono">
-                      {stepItem.kanji}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <input
-                      type="text"
-                      placeholder="Title"
-                      value={stepItem.title}
-                      onChange={(e) => {
-                        const copy = [...siteContent.process.steps];
-                        copy[idx].title = e.target.value;
-                        setSiteContent({ ...siteContent, process: { ...siteContent.process, steps: copy } });
-                      }}
-                      className="px-3.5 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Japanese Kanji"
-                      value={stepItem.kanji}
-                      onChange={(e) => {
-                        const copy = [...siteContent.process.steps];
-                        copy[idx].kanji = e.target.value;
-                        setSiteContent({ ...siteContent, process: { ...siteContent.process, steps: copy } });
-                      }}
-                      className="px-3.5 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Subtitle"
-                      value={stepItem.subtitle}
-                      onChange={(e) => {
-                        const copy = [...siteContent.process.steps];
-                        copy[idx].subtitle = e.target.value;
-                        setSiteContent({ ...siteContent, process: { ...siteContent.process, steps: copy } });
-                      }}
-                      className="px-3.5 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
-                    />
-                  </div>
-
-                  <textarea
-                    rows={2}
-                    placeholder="Step Description"
-                    value={stepItem.description}
-                    onChange={(e) => {
-                      const copy = [...siteContent.process.steps];
-                      copy[idx].description = e.target.value;
-                      setSiteContent({ ...siteContent, process: { ...siteContent.process, steps: copy } });
-                    }}
-                    className="px-3.5 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
-                  />
-                </div>
-              ))}
-            </div>
-
-            <div className="pt-2 flex justify-end">
-              <button
-                onClick={saveCmsChanges}
-                disabled={saving}
-                className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
-              >
-                <Save className="w-4 h-4" />
-                <span>Save Process Content</span>
               </button>
             </div>
           </div>
