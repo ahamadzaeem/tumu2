@@ -166,9 +166,9 @@ export default function Header() {
           {/* CTA Button Inside Floating Pill - Straight to Franchise Form */}
           <Link
             href="/franchise#form"
-            className="ml-2 px-5 py-2.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs font-black uppercase tracking-wider transition-all shadow-sm hover:shadow active:scale-95 flex items-center gap-1.5 group"
+            className="ml-2 px-5 py-2.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white text-xs font-black uppercase tracking-wider transition-all shadow-sm hover:shadow active:scale-95 flex items-center gap-1.5 group shrink-0 whitespace-nowrap"
           >
-            <span>Franchise Now</span>
+            <span className="whitespace-nowrap">Franchise Now</span>
             <span className="text-sm transition-transform duration-200 group-hover:translate-x-0.5">→</span>
           </Link>
         </nav>
