@@ -718,7 +718,7 @@ export default function FlavoursClient() {
 
             {/* Bottom Brand Sign-off */}
             <div className="relative z-10 mt-10 sm:mt-12 pt-2 flex justify-end">
-              <span className="font-heading text-xl sm:text-2xl text-white/95 tracking-wide">
+              <span className="font-subhead text-2xl sm:text-3xl text-white/95 tracking-wide">
                 All the way from Japan!
               </span>
             </div>
