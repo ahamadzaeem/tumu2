@@ -73,7 +73,7 @@ export default function ContactPage() {
             <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[460px]">
-              We&apos;re here to answer your questions, discuss franchise opportunities, or simply share more about TUMU.
+              We&apos;re here to answer your questions, explore franchise opportunities, and tell you more about TUMU
             </p>
           </motion.div>
         </div>
