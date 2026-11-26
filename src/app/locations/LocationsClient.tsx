@@ -85,9 +85,6 @@ export default function LocationsClient() {
               <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59]">
                 STORE LOCATOR
               </span>
-              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] tracking-widest uppercase">
-                INDIA
-              </span>
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
