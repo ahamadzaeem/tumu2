@@ -486,11 +486,11 @@ const COLLECTIONS_DATA = [
 ];
 
 const STICK_PIECES = [
-  { src: "/images/tumu/cut_piece_1.png", range: [0.0, 0.35] as [number, number], startX: -45, startY: -65, startRotate: -6 },
-  { src: "/images/tumu/cut_piece_2.png", range: [0.15, 0.5] as [number, number], startX: 0, startY: 75, startRotate: 8 },
-  { src: "/images/tumu/cut_piece_3.png", range: [0.3, 0.65] as [number, number], startX: 0, startY: -75, startRotate: -5 },
-  { src: "/images/tumu/cut_piece_4.png", range: [0.45, 0.8] as [number, number], startX: 0, startY: 75, startRotate: 7 },
-  { src: "/images/tumu/cut_piece_5.png", range: [0.6, 0.95] as [number, number], startX: 45, startY: -65, startRotate: 6 },
+  { src: "/images/tumu/cut_piece_1.png", range: [0.0, 0.35] as [number, number], startX: -140, startY: 0, startRotate: 0 },
+  { src: "/images/tumu/cut_piece_2.png", range: [0.15, 0.5] as [number, number], startX: -140, startY: 0, startRotate: 0 },
+  { src: "/images/tumu/cut_piece_3.png", range: [0.3, 0.65] as [number, number], startX: -140, startY: 0, startRotate: 0 },
+  { src: "/images/tumu/cut_piece_4.png", range: [0.45, 0.8] as [number, number], startX: -140, startY: 0, startRotate: 0 },
+  { src: "/images/tumu/cut_piece_5.png", range: [0.6, 0.95] as [number, number], startX: -140, startY: 0, startRotate: 0 },
 ];
 
 function StickPieceLayer({
@@ -542,7 +542,7 @@ function AnimatedCutStick() {
   return (
     <div
       ref={containerRef}
-      className="relative z-10 w-full max-w-6xl mx-auto my-6 sm:my-10 flex flex-col items-center"
+      className="relative z-10 w-full max-w-4xl mx-auto my-6 sm:my-8 flex flex-col items-center"
     >
       <div className="relative w-full aspect-[1024/237] drop-shadow-[0_28px_40px_rgba(0,0,0,0.32)]">
         {STICK_PIECES.map((piece, idx) => (
