@@ -264,7 +264,7 @@ export default function ContactPage() {
                     <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
                       INDIA
                     </span>
-                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Regional Headquarters</span>
+                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Asia-Pacific Office</span>
                   </div>
                   <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
                     Starhub Food Works Pvt Ltd
@@ -290,7 +290,7 @@ export default function ContactPage() {
                     <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
                       UAE
                     </span>
-                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Middle East Office</span>
+                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">MEA &amp; Europe Office</span>
                   </div>
                   <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
                     Al Zarouni Business Centre
@@ -316,7 +316,7 @@ export default function ContactPage() {
                     <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
                       JAPAN
                     </span>
-                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Global Heritage &amp; R&amp;D</span>
+                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Global R&amp;D Office</span>
                   </div>
                   <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
                     Marunouchi Trust Tower Main
@@ -328,6 +328,32 @@ export default function ContactPage() {
                   <div className="flex items-center gap-2 text-xs font-bold pt-2 border-t border-black/5">
                     <a href="mailto:enquiry@tumuofficial.jp" className="text-[#DB3E59] hover:underline">
                       enquiry@tumuofficial.jp
+                    </a>
+                  </div>
+                </div>
+
+                {/* 4. UNITED KINGDOM */}
+                <div className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
+                      UNITED KINGDOM
+                    </span>
+                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">UK Regional Office</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
+                    London Office
+                  </h4>
+                  <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
+                    <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
+                    <span>5 Brayford Square, London E1 0SG, United Kingdom</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
+                    <a href="mailto:franchise@tumuglobal.com" className="text-[#DB3E59] hover:underline">
+                      franchise@tumuglobal.com
+                    </a>
+                    <span className="text-[#162B3A]/30">•</span>
+                    <a href="mailto:media@tumuglobal.com" className="text-[#162B3A]/70 hover:text-[#DB3E59]">
+                      media@tumuglobal.com
                     </a>
                   </div>
                 </div>
