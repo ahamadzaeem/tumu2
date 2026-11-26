@@ -110,7 +110,7 @@ export default function OurStoryClient() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="max-w-[420px] sm:max-w-[460px] lg:max-w-[490px] xl:max-w-[510px] flex flex-col items-start bg-[#79D2D9]/90 sm:bg-transparent p-6 sm:p-0 rounded-3xl backdrop-blur-sm sm:backdrop-blur-none"
           >
-            <span className="font-heading text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-2 sm:mb-3 font-black">
+            <span className="font-sans text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-2 sm:mb-3 font-black">
               {story.section2?.eyebrow || "THE ARTIST BEHIND TUMU"}
             </span>
 
