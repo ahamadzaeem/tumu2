@@ -119,14 +119,14 @@ export default function OurStoryClient() {
               <span className="block text-[#DB3E59]">{story.section2?.headingLine2 || "CHEF REN"}</span>
             </h2>
 
-            <div className="w-14 h-1.5 bg-white mb-5" />
+            <div className="w-14 h-1.5 bg-[#162B3A] mb-5" />
 
-            <p className="text-white text-sm sm:text-base lg:text-[17px] leading-relaxed font-bold drop-shadow-sm max-w-[460px]">
+            <p className="text-[#162B3A] text-sm sm:text-base lg:text-[17px] leading-relaxed font-bold max-w-[460px]">
               {story.section2?.description}
             </p>
 
             {/* Quick Craft Credentials */}
-            <div className="grid grid-cols-3 gap-3 pt-5 mt-5 border-t border-white/20 w-full max-w-[460px]">
+            <div className="grid grid-cols-3 gap-3 pt-5 mt-5 border-t border-[#162B3A]/15 w-full max-w-[460px]">
               <div className="flex flex-col">
                 <span className="text-xl sm:text-2xl font-black text-[#DB3E59] uppercase">TOKYO</span>
                 <span className="text-[10px] sm:text-xs font-bold text-[#162B3A] uppercase mt-0.5 tracking-wider">ORIGIN</span>
