@@ -66,12 +66,6 @@ export default function LocationsClient() {
 
       {/* ─── SECTION 1: HERO (COME FIND US IN PERSON) ─── */}
       <section className="relative w-full min-h-[660px] sm:min-h-[740px] lg:min-h-[820px] bg-[#FAF4E7] overflow-hidden flex items-center pt-24 sm:pt-28 lg:pt-32 border-b border-[#162B3A]/5">
-        
-        {/* Soft Background Accent Pill / Ambient Shapes */}
-        <div className="absolute top-0 right-0 w-[55%] h-full pointer-events-none z-0 overflow-hidden">
-          <div className="absolute -top-12 -right-24 sm:-top-16 sm:-right-16 lg:-top-20 lg:right-0 w-[480px] sm:w-[640px] lg:w-[820px] h-[280px] sm:h-[360px] lg:h-[440px] bg-gradient-to-r from-[#FF6B8B]/15 via-[#FF8EA4]/20 to-transparent rounded-full rotate-[-22deg] blur-2xl opacity-80" />
-        </div>
-
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center z-10 relative">
           
           {/* Left Text Overlay */}
