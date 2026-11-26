@@ -53,6 +53,19 @@ export default function FranchisePage() {
   const franchiseHero = (content?.franchise as any)?.hero || {};
   const cmsFormats = (content?.franchise as any)?.formats || [];
 
+  const getFormatMeta = (formatId: string, fallback: { name: string; setup?: string; size?: string; staff: string; cost: string; roi: string; description: string }) => {
+    const fmt = cmsFormats.find((f: any) => f.id === formatId);
+    return {
+      name: fmt?.name || fallback.name,
+      setup: fmt?.setup || fallback.setup,
+      size: fmt?.size || fallback.size,
+      staff: fmt?.staff || fallback.staff,
+      cost: fmt?.cost || fallback.cost,
+      roi: fmt?.roi || fallback.roi,
+      description: fmt?.description || fallback.description,
+    };
+  };
+
   const getFormatGallery = (formatId: string, fallbackIndices: number[]) => {
     const fmt = cmsFormats.find((f: any) => f.id === formatId);
     if (fmt?.gallery && Array.isArray(fmt.gallery) && fmt.gallery.length > 0) {
@@ -305,32 +318,45 @@ export default function FranchisePage() {
               className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
             >
               {/* Header & Badges */}
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
-                <div>
-                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                    1. KIOSK <span className="text-[#DB3E59]">– TUMU Premium Island</span>
-                  </h3>
-                  <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
-                    A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.
-                  </p>
-                </div>
+              {(() => {
+                const f1 = getFormatMeta("kiosk_1", {
+                  name: "1. KIOSK – TUMU Premium Island",
+                  setup: "3–4 Weeks",
+                  staff: "2 + 1 Supervisor",
+                  cost: "Low",
+                  roi: "Less than 12 Months",
+                  description: "A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.",
+                });
+                const [prefix, suffix] = f1.name.includes("–") ? f1.name.split("–") : [f1.name, ""];
+                return (
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                    <div>
+                      <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                        {prefix.trim()}{suffix ? <> <span className="text-[#DB3E59]">– {suffix.trim()}</span></> : null}
+                      </h3>
+                      <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                        {f1.description}
+                      </p>
+                    </div>
 
-                {/* Quick Specs Badges */}
-                <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Setup: <strong>3–4 Weeks</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Staff: <strong>2 + 1 Supervisor</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Cost: <strong>Low</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                    ROI: <strong>Less than 12 Months</strong>
-                  </span>
-                </div>
-              </div>
+                    {/* Quick Specs Badges */}
+                    <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Setup: <strong>{f1.setup}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Staff: <strong>{f1.staff}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Cost: <strong>{f1.cost}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                        ROI: <strong>{f1.roi}</strong>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Visual Showcase (Dynamic Gallery Images) */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
@@ -368,32 +394,45 @@ export default function FranchisePage() {
               className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
             >
               {/* Header & Badges */}
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
-                <div>
-                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                    2. KIOSK <span className="text-[#DB3E59]">– TUMU Express Stop</span>
-                  </h3>
-                  <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
-                    A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.
-                  </p>
-                </div>
+              {(() => {
+                const f2 = getFormatMeta("kiosk_2", {
+                  name: "2. KIOSK – TUMU Express Stop",
+                  setup: "3–4 Weeks",
+                  staff: "2 + 1 Supervisor",
+                  cost: "Low",
+                  roi: "Less than 12 Months",
+                  description: "A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.",
+                });
+                const [prefix, suffix] = f2.name.includes("–") ? f2.name.split("–") : [f2.name, ""];
+                return (
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                    <div>
+                      <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                        {prefix.trim()}{suffix ? <> <span className="text-[#DB3E59]">– {suffix.trim()}</span></> : null}
+                      </h3>
+                      <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                        {f2.description}
+                      </p>
+                    </div>
 
-                {/* Quick Specs Badges */}
-                <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Setup: <strong>3–4 Weeks</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Staff: <strong>2 + 1 Supervisor</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Cost: <strong>Low</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                    ROI: <strong>Less than 12 Months</strong>
-                  </span>
-                </div>
-              </div>
+                    {/* Quick Specs Badges */}
+                    <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Setup: <strong>{f2.setup}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Staff: <strong>{f2.staff}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Cost: <strong>{f2.cost}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                        ROI: <strong>{f2.roi}</strong>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Visual Showcase (Dynamic Gallery Images) */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
@@ -491,32 +530,45 @@ export default function FranchisePage() {
               className="flex flex-col gap-8 bg-white/70 backdrop-blur-sm p-6 sm:p-10 lg:p-12 rounded-[36px] border border-black/5 shadow-xl"
             >
               {/* Header & Badges */}
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
-                <div>
-                  <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                    4. TUMU Go <span className="text-[#DB3E59]">– Mobile Truck</span>
-                  </h3>
-                  <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
-                    A versatile mobile concept designed for events, festivals, catering, and outdoor activations.
-                  </p>
-                </div>
+              {(() => {
+                const f4 = getFormatMeta("truck", {
+                  name: "4. TUMU Go – Mobile Truck",
+                  size: "5 m × 2.5 m",
+                  staff: "2",
+                  cost: "Approx. USD 50K",
+                  roi: "Less than 6 Months",
+                  description: "A versatile mobile concept designed for events, festivals, catering, and outdoor activations.",
+                });
+                const [prefix, suffix] = f4.name.includes("–") ? f4.name.split("–") : [f4.name, ""];
+                return (
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-black/10">
+                    <div>
+                      <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
+                        {prefix.trim()}{suffix ? <> <span className="text-[#DB3E59]">– {suffix.trim()}</span></> : null}
+                      </h3>
+                      <p className="text-sm font-semibold text-[#162B3A]/70 mt-1">
+                        {f4.description}
+                      </p>
+                    </div>
 
-                {/* Quick Specs Badges */}
-                <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Size: <strong>5 m × 2.5 m</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Staff: <strong>2</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
-                    Cost: <strong>Approx. USD 50K</strong>
-                  </span>
-                  <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
-                    ROI: <strong>Less than 6 Months</strong>
-                  </span>
-                </div>
-              </div>
+                    {/* Quick Specs Badges */}
+                    <div className="flex flex-wrap gap-2.5 sm:gap-3 text-xs font-bold text-[#162B3A]">
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Size: <strong>{f4.size}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Staff: <strong>{f4.staff}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#FAF4E7] border border-black/5">
+                        Cost: <strong>{f4.cost}</strong>
+                      </span>
+                      <span className="px-4 py-2 rounded-full bg-[#DB3E59]/10 text-[#DB3E59] border border-[#DB3E59]/20 font-black">
+                        ROI: <strong>{f4.roi}</strong>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Visual Showcase (Dynamic Gallery Images) */}
               {(() => {
