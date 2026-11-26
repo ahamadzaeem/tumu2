@@ -140,7 +140,7 @@ export default function VideoScrollHero() {
           <div className="w-full max-w-[640px] mx-auto flex flex-col items-center text-center">
             
             {/* Standardised Hero Typography */}
-            <h1 className="font-subhead text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black uppercase tracking-tight leading-[0.95] mb-5 text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.7)]">
+            <h1 className="font-heading text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black uppercase tracking-tight leading-[0.95] mb-5 text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.7)]">
               <span className="block text-white">{heroData.phase1Headline1 || "a unique viral concept"}</span>
               <span className="block text-white">
                 {heroData.phase1Headline2 || "crafted by a japanese chef"}
