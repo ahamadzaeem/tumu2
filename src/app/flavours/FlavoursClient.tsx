@@ -486,7 +486,6 @@ const COLLECTIONS_DATA = [
 
 export default function FlavoursClient() {
   const [flavors, setFlavors] = useState<Flavor[]>(DEFAULT_FLAVORS);
-  const [activeCard, setActiveCard] = useState<number>(0);
 
   useEffect(() => {
     let isMounted = true;
@@ -501,44 +500,6 @@ export default function FlavoursClient() {
       isMounted = false;
     };
   }, []);
-
-  // Track active collection on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 768;
-      const prefix = isMobile ? "cream-card-mobile-" : "cream-card-";
-      const threshold = window.innerHeight * 0.45;
-      let current = 0;
-      [0, 1, 2, 3].forEach((idx) => {
-        const el = document.getElementById(`${prefix}${idx}`);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= threshold) {
-            current = idx;
-          }
-        }
-      });
-      setActiveCard(current);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToCard = (idx: number) => {
-    setActiveCard(idx);
-    if (typeof window !== "undefined") {
-      const isMobile = window.innerWidth < 768;
-      const prefix = isMobile ? "cream-card-mobile-" : "cream-card-";
-      const el = document.getElementById(`${prefix}${idx}`);
-      if (el) {
-        const offset = isMobile ? 70 : 140;
-        const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    }
-  };
 
   const filteredFlavors = flavors;
 
@@ -608,42 +569,41 @@ export default function FlavoursClient() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            SECTION 2: CREAM FILLINGS (Interactive Overlapping Cards)
+            SECTION 2: CREAM FILLINGS (Poster Theme: Pink + Teal + Pastel Yellow)
             ══════════════════════════════════════════════════════════════ */}
-        <section className="mt-24 sm:mt-32 pt-4 sm:pt-8 pb-12">
-          
-          {/* Outer Brand Pink Showcase Container with Ambient Aura */}
-          <div className="rounded-[32px] sm:rounded-[60px] bg-gradient-to-b from-[#E24560] via-[#DB3E59] to-[#C9334D] text-white p-4 sm:p-8 lg:p-14 shadow-2xl border border-white/20 relative overflow-visible transition-all duration-700">
+        <section className="mt-20 sm:mt-28 pt-4 sm:pt-8 pb-12">
+          <div className="rounded-[32px] sm:rounded-[52px] bg-[#E93556] text-white p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden">
             
-            {/* Ambient Background Aura reacting to active collection */}
-            <div 
-              className={`pointer-events-none absolute inset-0 rounded-[32px] sm:rounded-[60px] blur-3xl opacity-25 transition-colors duration-1000 ${
-                activeCard === 0
-                  ? "bg-[#FFE4E8]"
-                  : activeCard === 1
-                  ? "bg-[#FFD1DC]"
-                  : activeCard === 2
-                  ? "bg-[#FFF0F3]"
-                  : "bg-[#FFCCD5]"
-              }`}
-            />
+            {/* Top Header Row: Title Left + 25 Unique Fillings Badge Right */}
+            <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
+              <div>
+                <span className="inline-block border border-white/60 rounded-full px-4 py-1 text-[10px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] text-white/95 mb-4">
+                  JAPANESE CREAM PUFFS
+                </span>
+                <h2 className="font-heading text-4xl sm:text-6xl lg:text-[68px] text-white leading-[0.94] tracking-tight">
+                  Cream<br />
+                  Filling<br />
+                  Flavours
+                </h2>
+                <p className="font-sans font-bold text-xs sm:text-sm text-white/90 uppercase tracking-wider mt-4 max-w-xl leading-relaxed">
+                  CREAM FILLINGS MADE WITH JAPANESE IMPORTS BLENDED WITH PREMIUM LOCAL INGREDIENTS
+                </p>
+              </div>
 
-            {/* Section Header */}
-            <div className="relative z-10 max-w-4xl mx-auto text-center mb-4 sm:mb-8">
-              <span className="font-heading text-white text-base sm:text-xl lg:text-2xl uppercase tracking-[0.2em] block mb-2 sm:mb-3 drop-shadow-sm">
-                COLLECTIONS &bull; 25 UNIQUE FILLINGS
-              </span>
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white mb-2 sm:mb-3 leading-none drop-shadow-sm">
-                CREAM FILLINGS
-              </h2>
-              <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 uppercase tracking-wide max-w-3xl mx-auto px-2 mt-2">
-                CREAM FILLINGS MADE WITH JAPANESE IMPORTS BLENDED WITH PREMIUM LOCAL INGREDIENTS
-              </p>
+              {/* Pastel Yellow 25 Unique Fillings Badge */}
+              <div className="bg-[#FDE67B] rounded-2xl px-7 py-4 sm:px-9 sm:py-5 text-center shadow-lg shrink-0 self-start md:self-end">
+                <span className="font-heading text-4xl sm:text-5xl text-[#E93556] leading-none block">
+                  25
+                </span>
+                <span className="font-sans font-black text-[10px] sm:text-xs tracking-[0.15em] uppercase text-[#162B3A] mt-1 block">
+                  UNIQUE FILLINGS
+                </span>
+              </div>
             </div>
 
-            {/* ── Centerpiece: Horizontal TUMU Pastry Stick at the Top ── */}
-            <div className="relative z-10 w-full max-w-4xl mx-auto my-4 sm:my-8 flex flex-col items-center">
-              <div className="relative w-full h-[120px] sm:h-[220px] md:h-[280px] lg:h-[350px] drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:scale-[1.01]">
+            {/* Centerpiece: Horizontal TUMU Pastry Stick */}
+            <div className="relative z-10 w-full max-w-4xl mx-auto mb-10 sm:mb-12 flex flex-col items-center">
+              <div className="relative w-full h-[130px] sm:h-[210px] md:h-[260px] lg:h-[310px] drop-shadow-[0_24px_34px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:scale-[1.01]">
                 <Image
                   src="/images/tumu/cut_tumu_horizontal.png"
                   alt="TUMU Sliced Crispy Stick with Chilled Cream Filling"
@@ -653,149 +613,69 @@ export default function FlavoursClient() {
                   priority
                 />
               </div>
-
-              {/* Motto Pill */}
-              <div className="mt-2 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white font-sans text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center shadow-lg">
+              <div className="mt-2 px-5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white font-sans text-[11px] font-bold uppercase tracking-widest text-center shadow-sm">
                 Crisp Outside, Cream Inside
               </div>
             </div>
 
-            {/* Interactive Collection Switcher Pills (Horizontal scroll on phone) */}
-            <div className="relative z-10 flex overflow-x-auto no-scrollbar sm:flex-wrap items-center justify-start sm:justify-center gap-2 sm:gap-3 mb-6 sm:mb-12 mt-4 sm:mt-6 px-1 py-1">
-              {COLLECTIONS_DATA.map((tab, idx) => (
-                <button
-                  key={tab.id}
-                  onClick={() => scrollToCard(idx)}
-                  className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full font-sans text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2 shrink-0 cursor-pointer ${
-                    activeCard === idx
-                      ? "bg-white text-[#DB3E59] shadow-xl scale-105"
-                      : "bg-white/15 text-white/85 hover:bg-white/25 hover:text-white border border-white/15"
-                  }`}
-                >
-                  <span
-                    className="w-2.5 h-2.5 rounded-full shadow-sm shrink-0"
-                    style={{ backgroundColor: tab.dot }}
-                  />
-                  <span>{tab.title.replace(" COLLECTION", "").replace(" CREATIONS", "").replace(" SELECTION", "").replace(" INSPIRATIONS", "")}</span>
-                  <span className="opacity-60 text-[10px] sm:text-[11px] font-sans font-medium">({tab.items.length})</span>
-                </button>
-              ))}
-            </div>
-
-            {/* ══════════════════════════════════════════════════════════════
-                MOBILE VIEW (< md): Dedicated Scroll Card Overlapping Stack
-                ══════════════════════════════════════════════════════════════ */}
-            <div className="block md:hidden relative z-10 w-full max-w-md mx-auto">
-              {COLLECTIONS_DATA.map((col, idx) => (
-                <div
-                  key={col.id}
-                  id={`cream-card-mobile-${idx}`}
-                  className={`sticky ${
-                    idx === 0
-                      ? "top-16 z-10 mb-36"
-                      : idx === 1
-                      ? "top-20 z-20 mb-36"
-                      : idx === 2
-                      ? "top-24 z-30 mb-36"
-                      : "top-28 z-40 mb-6"
-                  } rounded-[28px] ${col.bgGradient} border border-white/25 p-4 sm:p-5 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] min-h-[420px] h-[420px] flex flex-col justify-between transition-all duration-300`}
-                >
-                  <div>
-                    {/* Mobile Header */}
-                    <div className="flex items-center justify-between gap-2 mb-3.5 border-b border-white/20 pb-2.5">
-                      <h3 className={`font-sans font-black text-lg ${col.titleColor} tracking-tight uppercase leading-none`}>
-                        {col.title}
-                      </h3>
-                      <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-white/90 bg-white/15 px-2.5 py-1 rounded-full shrink-0">
-                        {col.items.length} Flavours
-                      </span>
-                    </div>
-
-                    {/* 2-Column Names-Only Grid for Mobile (Full names visible with natural wrap) */}
-                    <div className="grid grid-cols-2 gap-2">
-                      {col.items.map((item) => (
-                        <div
-                          key={item.name}
-                          className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-2.5 py-2.5 min-h-[44px]"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-white/90 shrink-0 self-center" />
-                          <span className="font-sans font-bold text-white text-[11px] sm:text-xs leading-snug break-words">
-                            {item.name}
+            {/* 2x2 Collection Cards Grid */}
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+              {COLLECTIONS_DATA.map((col, idx) => {
+                const isTealHighlight = idx === 3;
+                return (
+                  <div
+                    key={col.id}
+                    className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
+                      isTealHighlight
+                        ? "bg-[#28B4AB] border border-[#28B4AB] shadow-xl"
+                        : "bg-white/[0.12] border border-white/35 shadow-lg backdrop-blur-sm"
+                    }`}
+                  >
+                    <div>
+                      {/* Card Header */}
+                      <div className="flex items-start justify-between gap-4 mb-5">
+                        <div>
+                          <h3 className="font-heading text-2xl sm:text-3xl text-white leading-tight capitalize">
+                            {col.title.toLowerCase()}
+                          </h3>
+                          <span className="font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-white/85 mt-1 block">
+                            CHOOSE ANY FILLINGS
                           </span>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Card Footer Micro-bar */}
-                  <div className="pt-2 border-t border-white/15 flex items-center justify-between text-[10px] text-white/65 font-mono">
-                    <span>COLLECTION 0{idx + 1} OF 04</span>
-                    <span>SCROLL TO OVERLAP &darr;</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* ══════════════════════════════════════════════════════════════
-                DESKTOP VIEW (>= md): Overlapping Stacking Cards Container
-                ══════════════════════════════════════════════════════════════ */}
-            <div className="hidden md:block relative z-10 max-w-4xl lg:max-w-5xl mx-auto w-full">
-              {COLLECTIONS_DATA.map((col, idx) => (
-                <div
-                  key={col.id}
-                  id={`cream-card-${idx}`}
-                  className={`sticky ${
-                    idx === 0
-                      ? "top-24 z-10 mb-44 sm:mb-48"
-                      : idx === 1
-                      ? "top-28 z-20 mb-44 sm:mb-48"
-                      : idx === 2
-                      ? "top-32 z-30 mb-44 sm:mb-48"
-                      : "top-36 z-40 mb-8"
-                  } rounded-[36px] sm:rounded-[44px] ${col.bgGradient} border border-white/25 p-6 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.35)] transition-all duration-300 h-[440px] sm:h-[450px] flex flex-col justify-between`}
-                >
-                  <div>
-                    {/* Desktop Header */}
-                    <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/20 pb-4">
-                      <div className="flex items-center gap-3">
-                        <h3 className={`font-sans font-black text-2xl sm:text-3xl lg:text-4xl ${col.titleColor} tracking-tight uppercase leading-none drop-shadow-sm`}>
-                          {col.title}
-                        </h3>
-                      </div>
-                      <div className="flex items-center">
-                        <span className="font-sans text-xs font-bold uppercase tracking-wider text-white/90 bg-white/15 px-3.5 py-1.5 rounded-full">
+                        <span className="bg-[#FDE67B] text-[#E93556] font-sans font-black text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shrink-0 shadow-sm">
                           {col.count}
                         </span>
                       </div>
-                    </div>
 
-                    {/* 3-Column Names-Only Grid for Desktop */}
-                    <div className="grid grid-cols-3 gap-3 sm:gap-3.5">
-                      {col.items.map((item) => (
-                        <div
-                          key={item.name}
-                          className="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-4 transition-all duration-200 group/item"
-                        >
-                          <span className="w-2.5 h-2.5 rounded-full bg-white/90 group-hover/item:scale-125 transition-transform shrink-0 shadow-sm" />
-                          <span className="font-sans font-bold text-white text-base sm:text-lg tracking-normal leading-tight break-words">
-                            {item.name}
-                          </span>
-                        </div>
-                      ))}
+                      {/* 2-Column Bulleted List */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 pt-2">
+                        {col.items.map((item) => (
+                          <div key={item.name} className="flex items-center gap-2.5">
+                            <span className="w-2 h-2 rounded-full bg-[#FDE67B] shrink-0" />
+                            <span className="font-sans font-semibold text-white text-sm sm:text-[15px] leading-snug">
+                              {item.name}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  {/* Card Footer Micro-bar */}
-                  <div className="pt-3 border-t border-white/15 flex items-center justify-between text-xs text-white/60 font-mono">
-                    <span>COLLECTION 0{idx + 1} OF 04</span>
-                    <span>CRISP OUTSIDE, CREAM INSIDE</span>
-                  </div>
-                </div>
-              ))}
+            {/* Bottom Decorative Bars & Brand Sign-off */}
+            <div className="relative z-10 mt-10 sm:mt-12 pt-4 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+              <div className="flex flex-col gap-2.5">
+                <div className="h-2.5 w-48 sm:w-72 rounded-full bg-[#FDE67B]" />
+                <div className="h-2.5 w-36 sm:w-56 rounded-full bg-[#28B4AB]" />
+              </div>
+              <span className="font-heading text-xl sm:text-2xl text-white/95 tracking-wide">
+                All the way from Japan!
+              </span>
             </div>
 
           </div>
-
         </section>
 
         {/* Bottom CTA for Franchise & Locations */}
