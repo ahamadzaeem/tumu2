@@ -130,29 +130,17 @@ export default function FranchisePage() {
       {/* Navigation Header */}
       <Header />
 
-      {/* ─── SECTION 1: HERO (A SWEET BUSINESS OPPORTUNITY.) ─── */}
-      <section className="relative w-full min-h-[680px] sm:min-h-[760px] lg:min-h-[840px] bg-[#FAF4E7] overflow-hidden flex items-center pt-24 sm:pt-28 lg:pt-32">
-        {/* Widescreen Background Composition (Mall Kiosk Render) */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Image
-            src="/images/tumu/franchise_hero_kiosk.png"
-            alt="TUMU Kiosk Franchise Opportunity"
-            fill
-            className="object-cover object-center"
-            priority
-            unoptimized
-          />
-        </div>
-
-        {/* Text Overlay (Left Aligned - STRICTLY CONTAINED WITHIN OFF-WHITE AREA) */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
+      {/* ─── SECTION 1: HERO (WHO SAYS NO TO A VIRAL FRANCHISE?) ─── */}
+      <section className="relative w-full bg-[#FAF4E7] overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 lg:pb-24 border-b border-[#162B3A]/5">
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column: Franchise Headline & CTA */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-[340px] sm:max-w-[380px] lg:max-w-[400px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
+            className="lg:col-span-6 flex flex-col items-start"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-[46px] font-black uppercase tracking-tight leading-[0.95] mb-5">
+            <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-black uppercase tracking-tight leading-[0.94] mb-5">
               <span className="block text-[#162B3A]">WHO SAYS NO</span>
               <span className="block text-[#DB3E59]">TO A VIRAL</span>
               <span className="block text-[#162B3A]">
@@ -160,9 +148,9 @@ export default function FranchisePage() {
               </span>
             </h1>
 
-            <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
+            <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
-            <p className="text-[#162B3A] font-semibold text-sm sm:text-base leading-relaxed max-w-[340px] sm:max-w-[370px] mb-8">
+            <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg leading-relaxed max-w-[500px] mb-8">
               Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.
             </p>
 
@@ -171,6 +159,25 @@ export default function FranchisePage() {
                 Get Franchise Profile
               </PillButton>
             </a>
+          </motion.div>
+
+          {/* Right Column: Rounded Kiosk Store Composition */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, x: 30 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="lg:col-span-6 relative flex items-center justify-center"
+          >
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border-2 border-white/60 group">
+              <Image
+                src="/images/tumu/formats/kiosk_hero_store.jpg"
+                alt="TUMU Kiosk Franchise Opportunity"
+                fill
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#162B3A]/20 via-transparent to-transparent pointer-events-none" />
+            </div>
           </motion.div>
         </div>
       </section>
