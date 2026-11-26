@@ -41,9 +41,21 @@ export default function FreshFromOven() {
           <span className="text-[#DB3E59]">{fresh.headlineLine4 || "HAPPINESS."}</span>
         </h2>
 
-        <p className="font-sans text-[#162B3A] text-base sm:text-lg lg:text-xl font-black uppercase tracking-tight leading-snug max-w-[480px] mb-8">
-          {fresh.description ||
-            "Every TUMU stick is freshly baked to a golden crunch and filled with smooth, chilled cream — so you can enjoy the perfect balance of crisp outside, creamy inside, every time."}
+        <p className="font-sans text-[#162B3A] text-sm sm:text-base lg:text-[17px] font-bold leading-relaxed max-w-[410px] mb-8">
+          {(() => {
+            const desc =
+              fresh.description ||
+              "Every TUMU stick is freshly baked to a golden crunch and filled with smooth, chilled cream — so you can enjoy the perfect balance of crisp outside, creamy inside, every time.";
+            if (desc.includes("— so ")) {
+              const [first, second] = desc.split("— so ");
+              return (
+                <>
+                  {first}—<br className="hidden sm:inline" /> so {second}
+                </>
+              );
+            }
+            return desc;
+          })()}
         </p>
 
         <Link href={fresh.buttonLink || "/our-story"} className="w-fit">
