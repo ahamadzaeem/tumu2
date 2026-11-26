@@ -694,7 +694,7 @@ export default function FlavoursClient() {
                     <div>
                       {/* Card Header */}
                       <div className="mb-5">
-                        <h3 className="font-heading text-2xl sm:text-3xl text-white leading-tight capitalize">
+                        <h3 className="font-heading text-3xl sm:text-4xl lg:text-[40px] text-white leading-tight capitalize">
                           {col.title.toLowerCase()}
                         </h3>
                       </div>
