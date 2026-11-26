@@ -40,8 +40,6 @@ export default function FreshFromOven() {
           {fresh.headlineLine3 || "FILLED"} <span className="text-[#DB3E59]">WITH</span><br />
           <span className="text-[#DB3E59]">{fresh.headlineLine4 || "HAPPINESS."}</span>
         </h2>
-        
-        <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
         <p className="text-[#162B3A]/80 text-sm sm:text-base lg:text-lg font-semibold leading-relaxed max-w-[460px] mb-8">
           {fresh.description ||
