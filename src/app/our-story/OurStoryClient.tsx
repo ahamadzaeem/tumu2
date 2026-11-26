@@ -26,7 +26,7 @@ export default function OurStoryClient() {
       p1: "What began as a dream in the mind of a Japanese chef became a five-year journey of passion, creativity and countless experiments.",
       p2: "Every detail perfected. Every bite imagined differently.",
       p3: "Meet TUMU – where crispy warmth meets creamy sweetness, bringing together hot and cold, crisp and smooth in one unforgettable bite.",
-      tagline: "Hot. Crispy. Sweet. Creamy. Simply TUMU.",
+      tagline: "HOT. CRISPY. SWEET. CREAMY. SIMPLY TUMU.",
     },
     section2: {
       eyebrow: "THE ARTIST BEHIND TUMU",
@@ -79,8 +79,8 @@ export default function OurStoryClient() {
               <p>{story.section1?.p1}</p>
               <p className="text-[#DB3E59] font-bold">{story.section1?.p2}</p>
               <p>{story.section1?.p3}</p>
-              <p className="text-lg sm:text-xl lg:text-2xl font-black text-[#162B3A] tracking-tight pt-2">
-                {story.section1?.tagline || "Hot. Crispy. Sweet. Creamy. Simply TUMU."}
+              <p className="text-lg sm:text-xl lg:text-2xl font-black uppercase text-[#162B3A] tracking-tight pt-2">
+                {story.section1?.tagline || "HOT. CRISPY. SWEET. CREAMY. SIMPLY TUMU."}
               </p>
             </div>
           </motion.div>
