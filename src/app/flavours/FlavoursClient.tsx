@@ -577,12 +577,10 @@ export default function FlavoursClient() {
             {/* Top Header Row: Title Left + 25 Unique Fillings Badge Right */}
             <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
               <div>
-                <h2 className="font-heading text-4xl sm:text-6xl lg:text-[68px] text-white leading-[0.94] tracking-tight">
-                  Cream<br />
-                  Filling<br />
-                  Flavours
+                <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl xl:text-[54px] text-white leading-none tracking-tight">
+                  Cream Filling Flavours
                 </h2>
-                <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 uppercase tracking-wide mt-4 max-w-2xl leading-relaxed">
+                <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 uppercase tracking-wide mt-3 max-w-3xl leading-relaxed">
                   CREAM FILLINGS MADE WITH JAPANESE IMPORTS BLENDED WITH PREMIUM LOCAL INGREDIENTS
                 </p>
               </div>
