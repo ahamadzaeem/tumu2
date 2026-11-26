@@ -38,7 +38,7 @@ export default function OurStoryClient() {
     section3: {
       heading: "80% JAPANESE INGREDIENTS. DELICIOUSLY TUMU!",
       description:
-        "made with ingredients sourced from japan for authentic japanese quality. so, bite with caution! smooth, chilled cream is about to ooze out and create a deliciously messy experience",
+        "Made with ingredients sourced from Japan for authentic Japanese quality. So, bite with caution! Smooth, chilled cream is about to ooze out and create a deliciously messy experience.",
     },
   };
 
@@ -173,7 +173,7 @@ export default function OurStoryClient() {
 
             <div className="w-14 h-1.5 bg-[#E52D50] mb-5" />
 
-            <p className="text-[#162B3A] font-bold text-xs sm:text-sm lg:text-[15px] leading-relaxed mb-8 max-w-[420px]">
+            <p className="text-[#162B3A] font-bold text-base sm:text-lg lg:text-[18px] leading-relaxed mb-8 max-w-[460px]">
               {story.section3?.description}
             </p>
 
