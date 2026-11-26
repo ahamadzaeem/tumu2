@@ -693,13 +693,10 @@ export default function FlavoursClient() {
                   >
                     <div>
                       {/* Card Header */}
-                      <div className="flex items-center justify-between gap-4 mb-5">
+                      <div className="mb-5">
                         <h3 className="font-heading text-2xl sm:text-3xl text-white leading-tight capitalize">
                           {col.title.toLowerCase()}
                         </h3>
-                        <span className="bg-[#FDE67B] text-[#DB3E59] font-sans font-black text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shrink-0 shadow-sm">
-                          {col.count}
-                        </span>
                       </div>
 
                       {/* 2-Column Bulleted List */}
