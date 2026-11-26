@@ -577,9 +577,6 @@ export default function FlavoursClient() {
             {/* Top Header Row: Title Left + 25 Unique Fillings Badge Right */}
             <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
               <div>
-                <span className="inline-block border border-white/60 rounded-full px-4 py-1 text-[10px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] text-white/95 mb-4">
-                  JAPANESE CREAM PUFFS
-                </span>
                 <h2 className="font-heading text-4xl sm:text-6xl lg:text-[68px] text-white leading-[0.94] tracking-tight">
                   Cream<br />
                   Filling<br />
@@ -612,9 +609,6 @@ export default function FlavoursClient() {
                   sizes="(max-width: 1024px) 100vw, 900px"
                   priority
                 />
-              </div>
-              <div className="mt-2 px-5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white font-sans text-[11px] font-bold uppercase tracking-widest text-center shadow-sm">
-                Crisp Outside, Cream Inside
               </div>
             </div>
 
