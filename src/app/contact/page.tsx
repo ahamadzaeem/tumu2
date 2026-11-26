@@ -267,11 +267,11 @@ export default function ContactPage() {
                     <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Asia-Pacific Office</span>
                   </div>
                   <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
-                    Starhub Food Works Pvt Ltd
+                    Bengaluru
                   </h4>
                   <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
                     <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
-                    <span>No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043</span>
+                    <span>Starhub Food Works Pvt Ltd, No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043</span>
                   </div>
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
                     <a href="mailto:franchise@tumuofficial.com" className="text-[#DB3E59] hover:underline">
@@ -293,7 +293,7 @@ export default function ContactPage() {
                     <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">MEA &amp; Europe Office</span>
                   </div>
                   <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
-                    Al Zarouni Business Centre
+                    Dubai
                   </h4>
                   <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
                     <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
@@ -319,11 +319,11 @@ export default function ContactPage() {
                     <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Global R&amp;D Office</span>
                   </div>
                   <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
-                    Marunouchi Trust Tower Main
+                    Tokyo
                   </h4>
                   <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
                     <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
-                    <span>22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan</span>
+                    <span>Marunouchi Trust Tower Main, 22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-bold pt-2 border-t border-black/5">
                     <a href="mailto:enquiry@tumuofficial.jp" className="text-[#DB3E59] hover:underline">
@@ -341,7 +341,7 @@ export default function ContactPage() {
                     <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">UK Regional Office</span>
                   </div>
                   <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
-                    London Office
+                    London
                   </h4>
                   <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
                     <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
