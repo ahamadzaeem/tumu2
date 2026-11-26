@@ -183,7 +183,7 @@ export default function FranchisePage() {
       <Header />
 
       {/* ─── SECTION 1: HERO (WHO SAYS NO TO A VIRAL FRANCHISE?) ─── */}
-      <section className="relative w-full bg-[#FAF4E7] overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 lg:pb-24 border-b border-[#162B3A]/5">
+      <section className="relative w-full bg-[#FAF4E7] overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 lg:pb-24">
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Franchise Headline & CTA */}
           <motion.div
@@ -236,7 +236,7 @@ export default function FranchisePage() {
 
 
       {/* ─── SECTION 2: WHY TUMU / ROI ─── */}
-      <section className="relative w-full min-h-[680px] sm:min-h-[760px] lg:min-h-[840px] bg-[#FAF4E7] overflow-hidden flex items-center py-16 sm:py-24 border-b border-[#162B3A]/5">
+      <section className="relative w-full min-h-[680px] sm:min-h-[760px] lg:min-h-[840px] bg-[#FAF4E7] overflow-hidden flex items-center py-16 sm:py-24">
         {/* Background Image Composition (Left diagonal pastry layout) */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
@@ -291,7 +291,7 @@ export default function FranchisePage() {
 
 
       {/* ─── SECTION 3: 3 HIGH-IMPACT FRANCHISE FORMATS: KIOSK, OUTLET & TRUCK ─── */}
-      <section id="formats" className="relative w-full bg-[#FAF4E7] py-20 sm:py-28 border-b border-[#162B3A]/5 scroll-mt-20">
+      <section id="formats" className="relative w-full bg-[#FAF4E7] py-20 sm:py-28 scroll-mt-20">
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
           
           <div className="flex flex-col items-start mb-12 sm:mb-16">
@@ -604,7 +604,7 @@ export default function FranchisePage() {
         </div>
       </section>
       {/* ─── SECTION 4: COMPREHENSIVE SUPPORT ─── */}
-      <section className="relative w-full bg-[#FAF4E7] py-16 sm:py-24 overflow-hidden border-b border-[#162B3A]/5">
+      <section className="relative w-full bg-[#FAF4E7] py-16 sm:py-24 overflow-hidden">
         <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Left Text Column with Right Border Divider */}
