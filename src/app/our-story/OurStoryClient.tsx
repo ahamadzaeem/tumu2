@@ -33,7 +33,7 @@ export default function OurStoryClient() {
       headingLine1: "JAPANESE PASTRY ARTIST |",
       headingLine2: "CHEF REN",
       description:
-        "The art of sweetness, perfected. Crafted by Tokyo-based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses.",
+        "The art of sweetness, perfected. Crafted by Tokyo based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses.",
     },
     section3: {
       heading: "80% JAPANESE INGREDIENTS DELICIOUSLY TUMU!",
