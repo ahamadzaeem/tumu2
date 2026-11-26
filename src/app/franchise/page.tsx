@@ -51,6 +51,32 @@ export default function FranchisePage() {
   }, []);
 
   const franchiseHero = (content?.franchise as any)?.hero || {};
+  const cmsFormats = (content?.franchise as any)?.formats || [];
+
+  const getFormatGallery = (formatId: string, fallbackIndices: number[]) => {
+    const fmt = cmsFormats.find((f: any) => f.id === formatId);
+    if (fmt?.gallery && Array.isArray(fmt.gallery) && fmt.gallery.length > 0) {
+      return fmt.gallery.map((g: any) => ({
+        src: g.src,
+        alt: g.alt || fmt.name,
+        label: fmt.name,
+      }));
+    }
+    return fallbackIndices.map((idx) => FORMAT_GALLERY[idx]);
+  };
+
+  const galleryItems = React.useMemo(() => {
+    const f1 = getFormatGallery("kiosk_1", [0, 1, 2]);
+    const f2 = getFormatGallery("kiosk_2", [3, 4, 5]);
+    const f3 = getFormatGallery("store", [6, 7]);
+    const f4 = getFormatGallery("truck", [8]);
+    return [...f1, ...f2, ...f3, ...f4];
+  }, [cmsFormats]);
+
+  const openLightboxBySrc = (src: string) => {
+    const idx = galleryItems.findIndex((item) => item.src === src);
+    setLightboxIndex(idx >= 0 ? idx : 0);
+  };
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [formData, setFormData] = useState({
@@ -66,12 +92,12 @@ export default function FranchisePage() {
     if (lightboxIndex === null) return;
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setLightboxIndex(null);
-      if (e.key === "ArrowRight") setLightboxIndex((prev) => (prev === null ? null : (prev + 1) % FORMAT_GALLERY.length));
-      if (e.key === "ArrowLeft") setLightboxIndex((prev) => (prev === null ? null : (prev - 1 + FORMAT_GALLERY.length) % FORMAT_GALLERY.length));
+      if (e.key === "ArrowRight") setLightboxIndex((prev) => (prev === null ? null : (prev + 1) % galleryItems.length));
+      if (e.key === "ArrowLeft") setLightboxIndex((prev) => (prev === null ? null : (prev - 1 + galleryItems.length) % galleryItems.length));
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [lightboxIndex]);
+  }, [lightboxIndex, galleryItems.length]);
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -306,19 +332,20 @@ export default function FranchisePage() {
                 </div>
               </div>
 
-              {/* Visual Showcase (All 3 Relevant Images) */}
+              {/* Visual Showcase (Dynamic Gallery Images) */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                {[0, 1, 2].map((idx) => (
+                {getFormatGallery("kiosk_1", [0, 1, 2]).map((img: any, idx: number) => (
                   <button
-                    key={FORMAT_GALLERY[idx].src}
+                    key={`${img.src}-${idx}`}
                     type="button"
-                    onClick={() => setLightboxIndex(idx)}
+                    onClick={() => openLightboxBySrc(img.src)}
                     className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group cursor-zoom-in text-left"
                   >
                     <Image
-                      src={FORMAT_GALLERY[idx].src}
-                      alt={FORMAT_GALLERY[idx].alt}
+                      src={img.src}
+                      alt={img.alt}
                       fill
+                      unoptimized={img.src?.startsWith("data:")}
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
@@ -368,19 +395,20 @@ export default function FranchisePage() {
                 </div>
               </div>
 
-              {/* Visual Showcase (All 3 Relevant Images) */}
+              {/* Visual Showcase (Dynamic Gallery Images) */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                {[3, 4, 5].map((idx) => (
+                {getFormatGallery("kiosk_2", [3, 4, 5]).map((img: any, idx: number) => (
                   <button
-                    key={FORMAT_GALLERY[idx].src}
+                    key={`${img.src}-${idx}`}
                     type="button"
-                    onClick={() => setLightboxIndex(idx)}
+                    onClick={() => openLightboxBySrc(img.src)}
                     className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group cursor-zoom-in text-left"
                   >
                     <Image
-                      src={FORMAT_GALLERY[idx].src}
-                      alt={FORMAT_GALLERY[idx].alt}
+                      src={img.src}
+                      alt={img.alt}
                       fill
+                      unoptimized={img.src?.startsWith("data:")}
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
@@ -427,19 +455,20 @@ export default function FranchisePage() {
                 </div>
               </div>
 
-              {/* Visual Showcase (2 Best Images) */}
+              {/* Visual Showcase (Dynamic Gallery Images) */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                {[6, 7].map((idx) => (
+                {getFormatGallery("store", [6, 7]).map((img: any, idx: number) => (
                   <button
-                    key={FORMAT_GALLERY[idx].src}
+                    key={`${img.src}-${idx}`}
                     type="button"
-                    onClick={() => setLightboxIndex(idx)}
+                    onClick={() => openLightboxBySrc(img.src)}
                     className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group cursor-zoom-in text-left"
                   >
                     <Image
-                      src={FORMAT_GALLERY[idx].src}
-                      alt={FORMAT_GALLERY[idx].alt}
+                      src={img.src}
+                      alt={img.alt}
                       fill
+                      unoptimized={img.src?.startsWith("data:")}
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
@@ -489,22 +518,33 @@ export default function FranchisePage() {
                 </div>
               </div>
 
-              {/* Visual Showcase (Only 1 Image) */}
-              <button
-                type="button"
-                onClick={() => setLightboxIndex(8)}
-                className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group cursor-zoom-in text-left w-full"
-              >
-                <Image
-                  src={FORMAT_GALLERY[8].src}
-                  alt={FORMAT_GALLERY[8].alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <span className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
-                  <Maximize2 className="w-4 h-4" />
-                </span>
-              </button>
+              {/* Visual Showcase (Dynamic Gallery Images) */}
+              {(() => {
+                const truckImgs = getFormatGallery("truck", [8]);
+                return (
+                  <div className={truckImgs.length === 1 ? "" : "grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"}>
+                    {truckImgs.map((img: any, idx: number) => (
+                      <button
+                        key={`${img.src}-${idx}`}
+                        type="button"
+                        onClick={() => openLightboxBySrc(img.src)}
+                        className={`relative ${truckImgs.length === 1 ? "aspect-[16/10] sm:aspect-[16/9]" : "aspect-[16/11]"} rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group cursor-zoom-in text-left w-full`}
+                      >
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          fill
+                          unoptimized={img.src?.startsWith("data:")}
+                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        />
+                        <span className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                          <Maximize2 className="w-4 h-4" />
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                );
+              })()}
             </motion.div>
 
           </div>
@@ -911,7 +951,7 @@ export default function FranchisePage() {
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                setLightboxIndex((lightboxIndex - 1 + FORMAT_GALLERY.length) % FORMAT_GALLERY.length);
+                setLightboxIndex((lightboxIndex - 1 + galleryItems.length) % galleryItems.length);
               }}
               aria-label="Previous image"
               className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#DB3E59] text-white flex items-center justify-center transition-colors cursor-pointer z-20"
@@ -930,9 +970,10 @@ export default function FranchisePage() {
               className="relative w-full max-w-6xl h-[70vh] sm:h-[78vh] rounded-2xl overflow-hidden"
             >
               <Image
-                src={FORMAT_GALLERY[lightboxIndex].src}
-                alt={FORMAT_GALLERY[lightboxIndex].alt}
+                src={galleryItems[lightboxIndex].src}
+                alt={galleryItems[lightboxIndex].alt}
                 fill
+                unoptimized={galleryItems[lightboxIndex].src?.startsWith("data:")}
                 className="object-contain"
                 sizes="100vw"
                 priority
@@ -945,10 +986,10 @@ export default function FranchisePage() {
               className="mt-4 text-center px-4"
             >
               <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] block">
-                {FORMAT_GALLERY[lightboxIndex].label}
+                {galleryItems[lightboxIndex].label}
               </span>
               <p className="text-sm sm:text-base font-semibold text-white/90 mt-1">
-                {FORMAT_GALLERY[lightboxIndex].alt} ({lightboxIndex + 1} / {FORMAT_GALLERY.length})
+                {galleryItems[lightboxIndex].alt} ({lightboxIndex + 1} / {galleryItems.length})
               </p>
             </div>
 
@@ -957,7 +998,7 @@ export default function FranchisePage() {
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                setLightboxIndex((lightboxIndex + 1) % FORMAT_GALLERY.length);
+                setLightboxIndex((lightboxIndex + 1) % galleryItems.length);
               }}
               aria-label="Next image"
               className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#DB3E59] text-white flex items-center justify-center transition-colors cursor-pointer z-20"

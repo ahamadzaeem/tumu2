@@ -45,7 +45,7 @@
       "headingLine1": "UNIQUELY",
       "headingLine2": "DELICIOUS",
       "subtitle": "Bake It • Fill It • Serve It",
-      "description": "Bake It • Fill It • Serve It",
+      "description": "Bake It • Fill It • Serve",
       "step1": "Bake It",
       "step2": "Fill It",
       "step3": "Serve It"
@@ -57,7 +57,7 @@
       "headingLine2": "A TUMU",
       "subtitle": "Hot, Golden & Crispy Outer Layer with Smooth Chilled Cream",
       "layer1Title": "Crunchy Almond Topping",
-      "layer1Desc": "Specially crafted almond crunch with our secret recipe for an irresistibly crispy bite",
+      "layer1Desc": "Specially crafted almond crunch with our secret recipe for an irresistibly crispy bite and asssis",
       "layer2Title": "Hot, Golden & Crispy Outer Layer",
       "layer2Desc": "Oven-baked to a rich golden crunch every single order.",
       "layer3Title": "Smooth and Chilled Cream",
@@ -222,7 +222,21 @@
         "cost": "Low",
         "roi": "Less than 12 Months",
         "description": "A compact, eye-catching island concept designed for high visibility, quick service, and maximum customer engagement.",
-        "image": "/images/tumu/formats/kiosk1_exterior.jpg"
+        "image": "/images/tumu/formats/kiosk1_exterior.jpg",
+        "gallery": [
+          {
+            "src": "/images/tumu/formats/kiosk1_exterior.jpg",
+            "alt": "TUMU Kiosk 1 Branded Corner & Neon Logo"
+          },
+          {
+            "src": "/images/tumu/formats/kiosk1_counter.jpg",
+            "alt": "TUMU Kiosk 1 Service Counter Perspective"
+          },
+          {
+            "src": "/images/tumu/formats/kiosk1_front.jpg",
+            "alt": "TUMU Kiosk 1 Front Elevation & Service Window"
+          }
+        ]
       },
       {
         "id": "kiosk_2",
@@ -232,7 +246,21 @@
         "cost": "Low",
         "roi": "Less than 12 Months",
         "description": "A vibrant signature kiosk featuring curved canopy architecture and prominent vertical neon signage.",
-        "image": "/images/tumu/formats/kiosk_elevation.jpg"
+        "image": "/images/tumu/formats/kiosk_elevation.jpg",
+        "gallery": [
+          {
+            "src": "/images/tumu/formats/kiosk_elevation.jpg",
+            "alt": "TUMU Kiosk 2 Front Elevation"
+          },
+          {
+            "src": "/images/tumu/formats/kiosk_perspective.jpg",
+            "alt": "TUMU Kiosk 2 3D Perspective"
+          },
+          {
+            "src": "/images/tumu/formats/kiosk_side.jpg",
+            "alt": "TUMU Kiosk 2 Canopy & Vertical Neon"
+          }
+        ]
       },
       {
         "id": "store",
@@ -242,7 +270,17 @@
         "cost": "Medium",
         "roi": "12–15 Months",
         "description": "An expanded flagship store format offering enhanced service space and a more immersive TUMU experience.",
-        "image": "/images/tumu/formats/outlet_storefront.jpg"
+        "image": "/images/tumu/formats/outlet_storefront.jpg",
+        "gallery": [
+          {
+            "src": "/images/tumu/formats/outlet_storefront.jpg",
+            "alt": "TUMU Retail Outlet Storefront"
+          },
+          {
+            "src": "/images/tumu/formats/outlet_counter.jpg",
+            "alt": "TUMU Retail Outlet Service Counter"
+          }
+        ]
       },
       {
         "id": "truck",
@@ -252,7 +290,13 @@
         "cost": "Approx. USD 50K",
         "roi": "Less than 6 Months",
         "description": "A versatile mobile concept designed for events, festivals, catering, and outdoor activations.",
-        "image": "/images/tumu/formats/truck_trailer.jpg"
+        "image": "/images/tumu/formats/truck_trailer.jpg",
+        "gallery": [
+          {
+            "src": "/images/tumu/formats/truck_trailer.jpg",
+            "alt": "TUMU Go Mobile Food Truck Trailer"
+          }
+        ]
       }
     ],
     "support": {

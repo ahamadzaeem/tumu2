@@ -2049,6 +2049,87 @@ export default function AdminPage() {
                       className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
                     />
                   </div>
+
+                  {/* Format Gallery Images Manager */}
+                  <div className="pt-2 border-t border-black/10 flex flex-col gap-2">
+                    <div className="flex items-center justify-between">
+                      <label className="text-[10px] font-black uppercase text-[#162B3A]/70">
+                        Gallery Images ({(fmt.gallery || []).length})
+                      </label>
+                      <label className="px-3 py-1.5 rounded-full bg-[#162B3A] hover:bg-black text-white text-[10px] font-black uppercase tracking-wider cursor-pointer transition-colors flex items-center gap-1">
+                        <Plus className="w-3 h-3" />
+                        <span>Add Image</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (!file) return;
+                            try {
+                              const form = new FormData();
+                              form.append("file", file);
+                              const res = await fetch("/api/upload", { method: "POST", body: form });
+                              const data = await res.json();
+                              if (data?.success && data.url) {
+                                const copy = [...siteContent.franchise.formats];
+                                const existing = Array.isArray(copy[idx].gallery) ? copy[idx].gallery : [];
+                                copy[idx].gallery = [...existing, { src: data.url, alt: fmt.name || "TUMU Franchise Format" }];
+                                setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
+                                notify("Image added! Click Save Franchise Content to publish.");
+                              } else {
+                                notify(data?.message || "Upload failed");
+                              }
+                            } catch {
+                              notify("Image upload failed");
+                            }
+                            e.target.value = "";
+                          }}
+                        />
+                      </label>
+                    </div>
+
+                    <div className="flex flex-col gap-2 max-h-48 overflow-y-auto pr-1">
+                      {(fmt.gallery || []).map((img: any, imgIdx: number) => (
+                        <div key={`${img.src}-${imgIdx}`} className="flex items-center gap-2 bg-white p-2 rounded-xl border border-black/5">
+                          <div className="relative w-12 h-9 rounded-lg overflow-hidden shrink-0 bg-black/5">
+                            <Image
+                              src={img.src}
+                              alt={img.alt || ""}
+                              fill
+                              unoptimized={img.src?.startsWith("data:")}
+                              className="object-cover"
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            value={img.alt || ""}
+                            placeholder="Image caption"
+                            onChange={(e) => {
+                              const copy = [...siteContent.franchise.formats];
+                              const gal = [...(copy[idx].gallery || [])];
+                              gal[imgIdx] = { ...gal[imgIdx], alt: e.target.value };
+                              copy[idx].gallery = gal;
+                              setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
+                            }}
+                            className="flex-1 min-w-0 px-2.5 py-1 rounded-lg bg-[#FAF4E7] border border-black/5 text-[11px] font-semibold"
+                          />
+                          <button
+                            type="button"
+                            title="Remove image"
+                            onClick={() => {
+                              const copy = [...siteContent.franchise.formats];
+                              copy[idx].gallery = (copy[idx].gallery || []).filter((_: any, i: number) => i !== imgIdx);
+                              setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
+                            }}
+                            className="p-1.5 rounded-full bg-red-50 hover:bg-red-100 text-red-600 transition-colors shrink-0 cursor-pointer"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
