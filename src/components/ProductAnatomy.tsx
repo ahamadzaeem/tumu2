@@ -1,13 +1,36 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getSiteContent } from "@/lib/cms";
 
 export default function ProductAnatomy() {
+  const [content, setContent] = useState(getSiteContent());
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const anatomy = content?.home?.productAnatomy || {
+    eyebrow: "ANATOMY OF PERFECTION",
+    headingLine1: "WHAT'S INSIDE",
+    headingLine2: "A TUMU",
+    layer1Title: "Crunchy Almond Topping",
+    layer1Desc: "Specially crafted almond crunch with our secret recipe for an irresistibly crispy bite",
+    layer2Title: "Hot, Golden & Crispy Outer Layer",
+    layer2Desc: "Oven-baked to a rich golden crunch every single order.",
+    layer3Title: "Smooth and Chilled Cream",
+    layer3Desc: "Velvety Japanese cream piped fresh into the warm crust.",
+  };
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -129,8 +152,8 @@ export default function ProductAnatomy() {
   const features = [
     {
       num: "01",
-      title: "Crunchy Almond Topping",
-      description: "Specially crafted almond crunch with our secret recipe for an irresistibly crispy bite",
+      title: anatomy.layer1Title || "Crunchy Almond Topping",
+      description: anatomy.layer1Desc || "Specially crafted almond crunch with our secret recipe for an irresistibly crispy bite",
       opacity: opacityAlmond,
       yPos: yAlmond,
       lineScale: lineAlmond,
@@ -141,8 +164,8 @@ export default function ProductAnatomy() {
     },
     {
       num: "02",
-      title: "Hot, Golden & Crispy Outer Layer",
-      description: "Oven-baked to a rich golden crunch every single order.",
+      title: anatomy.layer2Title || "Hot, Golden & Crispy Outer Layer",
+      description: anatomy.layer2Desc || "Oven-baked to a rich golden crunch every single order.",
       opacity: opacityCrunch,
       yPos: yCrunch,
       lineScale: lineCrunch,
@@ -153,8 +176,8 @@ export default function ProductAnatomy() {
     },
     {
       num: "03",
-      title: "Smooth and Chilled Cream",
-      description: "Velvety Japanese cream piped fresh into the warm crust.",
+      title: anatomy.layer3Title || "Smooth and Chilled Cream",
+      description: anatomy.layer3Desc || "Velvety Japanese cream piped fresh into the warm crust.",
       opacity: opacityCream,
       yPos: yCream,
       lineScale: lineCream,
@@ -190,11 +213,11 @@ export default function ProductAnatomy() {
           className="absolute right-4 sm:right-12 lg:right-16 xl:right-20 top-20 sm:top-24 lg:top-28 z-30 pointer-events-none flex flex-col items-end text-right"
         >
           <span className="font-heading text-[16px] xs:text-[18px] sm:text-2xl lg:text-[26px] text-[#DB3E59] uppercase tracking-wide leading-tight mb-2 sm:mb-3 block">
-            ANATOMY OF PERFECTION
+            {anatomy.eyebrow || "ANATOMY OF PERFECTION"}
           </span>
           <h2 className="font-black uppercase tracking-tight leading-[0.92] mb-4 sm:mb-6 text-[32px] xs:text-[38px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)]">
-            <span className="block text-[#162B3A]">WHAT&apos;S INSIDE</span>
-            <span className="block text-[#DB3E59]">A TUMU</span>
+            <span className="block text-[#162B3A]">{(anatomy as any).headingLine1 || "WHAT'S INSIDE"}</span>
+            <span className="block text-[#DB3E59]">{(anatomy as any).headingLine2 || "A TUMU"}</span>
           </h2>
           <div className="w-12 sm:w-20 h-1 sm:h-1.5 bg-[#DB3E59]" />
         </motion.div>

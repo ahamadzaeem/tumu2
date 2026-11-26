@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { getSiteContent } from "@/lib/cms";
 import {
   Phone,
   Mail,
@@ -15,7 +16,57 @@ import {
 } from "lucide-react";
 
 export default function ContactPage() {
+  const [content, setContent] = useState(getSiteContent());
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const contactData = (content as any)?.contact || {};
+  const hero = contactData.hero || {};
+  const formSection = contactData.formSection || {};
+  const getInTouch = contactData.getInTouch || {};
+  const offices = contactData.offices || [
+    {
+      id: "india",
+      country: "INDIA",
+      role: "Asia-Pacific Office",
+      city: "Bengaluru",
+      address: "Starhub Food Works Pvt Ltd, No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043",
+      emails: ["franchise@tumuofficial.com", "media@tumuofficial.com"],
+    },
+    {
+      id: "uae",
+      country: "UAE",
+      role: "MEA & Europe Office",
+      city: "Dubai",
+      address: "Office : 401 | Al Zarouni Business Centre, Al Barsha 1, Dubai, UAE",
+      emails: ["franchise@tumuofficial.com", "media@tumuofficial.com"],
+    },
+    {
+      id: "japan",
+      country: "JAPAN",
+      role: "Global R&D Office",
+      city: "Tokyo",
+      address: "Marunouchi Trust Tower Main, 22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan",
+      emails: ["enquiry@tumuofficial.jp"],
+    },
+    {
+      id: "uk",
+      country: "UNITED KINGDOM",
+      role: "UK Regional Office",
+      city: "London",
+      address: "5 Brayford Square, London E1 0SG, United Kingdom",
+      emails: ["franchise@tumuglobal.com", "media@tumuglobal.com"],
+    },
+  ];
+  const cta = contactData.cta || {};
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,18 +113,18 @@ export default function ContactPage() {
             className="max-w-[540px] flex flex-col items-start"
           >
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
-              LET&apos;S CONNECT
+              {hero.eyebrow || "LET'S CONNECT"}
             </span>
 
             <h1 className="text-5xl sm:text-6xl lg:text-[76px] font-black uppercase tracking-tight leading-[0.92] mb-4">
-              <span className="block text-[#162B3A]">CONTACT</span>
-              <span className="block text-[#DB3E59]">US</span>
+              <span className="block text-[#162B3A]">{hero.headingLine1 || "CONTACT"}</span>
+              <span className="block text-[#DB3E59]">{hero.headingLine2 || "US"}</span>
             </h1>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[460px]">
-              We&apos;re here to answer your questions, explore franchise opportunities, and tell you more about TUMU
+              {hero.description || "We're here to answer your questions, explore franchise opportunities, and tell you more about TUMU"}
             </p>
           </motion.div>
         </div>
@@ -93,10 +144,10 @@ export default function ContactPage() {
           >
             <div className="flex flex-col items-start mb-7">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                SEND US <span className="text-[#DB3E59]">A MESSAGE</span>
+                {formSection.headingLine1 || "SEND US"} <span className="text-[#DB3E59]">{formSection.headingLine2 || "A MESSAGE"}</span>
               </h2>
               <p className="text-xs sm:text-sm font-semibold text-[#162B3A]/60 mt-1.5">
-                Complete the form, and our team will get back to you shortly
+                {formSection.subtitle || "Complete the form, and our team will get back to you shortly"}
               </p>
             </div>
 
@@ -207,10 +258,10 @@ export default function ContactPage() {
           >
             <div className="flex flex-col items-start mb-6 sm:mb-8">
               <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#162B3A]">
-                GET IN <span className="text-[#DB3E59]">TOUCH</span>
+                {getInTouch.headingLine1 || "GET IN"} <span className="text-[#DB3E59]">{getInTouch.headingLine2 || "TOUCH"}</span>
               </h2>
               <p className="text-xs sm:text-sm font-semibold text-[#162B3A]/60 mt-1.5">
-                Reach out to us directly through any of the channels below.
+                {getInTouch.subtitle || "Reach out to us directly through any of the channels below."}
               </p>
             </div>
 
@@ -221,105 +272,36 @@ export default function ContactPage() {
                   REGIONAL OFFICES
                 </span>
 
-                {/* 1. INDIA */}
-                <div className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
-                      INDIA
-                    </span>
-                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Asia-Pacific Office</span>
+                {offices.map((office: any) => (
+                  <div key={office.id || office.country} className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
+                        {office.country}
+                      </span>
+                      <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">{office.role}</span>
+                    </div>
+                    <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
+                      {office.city}
+                    </h4>
+                    <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
+                      <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
+                      <span>{office.address}</span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
+                      {(office.emails || []).map((em: string, idx: number) => (
+                        <React.Fragment key={em}>
+                          {idx > 0 && <span className="text-[#162B3A]/30">•</span>}
+                          <a
+                            href={`mailto:${em}`}
+                            className={idx === 0 ? "text-[#DB3E59] hover:underline" : "text-[#162B3A]/70 hover:text-[#DB3E59]"}
+                          >
+                            {em}
+                          </a>
+                        </React.Fragment>
+                      ))}
+                    </div>
                   </div>
-                  <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
-                    Bengaluru
-                  </h4>
-                  <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
-                    <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
-                    <span>Starhub Food Works Pvt Ltd, No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
-                    <a href="mailto:franchise@tumuofficial.com" className="text-[#DB3E59] hover:underline">
-                      franchise@tumuofficial.com
-                    </a>
-                    <span className="text-[#162B3A]/30">•</span>
-                    <a href="mailto:media@tumuofficial.com" className="text-[#162B3A]/70 hover:text-[#DB3E59]">
-                      media@tumuofficial.com
-                    </a>
-                  </div>
-                </div>
-
-                {/* 2. UAE */}
-                <div className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
-                      UAE
-                    </span>
-                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">MEA &amp; Europe Office</span>
-                  </div>
-                  <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
-                    Dubai
-                  </h4>
-                  <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
-                    <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
-                    <span>Office : 401 | Al Zarouni Business Centre, Al Barsha 1, Dubai, UAE</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
-                    <a href="mailto:franchise@tumuofficial.com" className="text-[#DB3E59] hover:underline">
-                      franchise@tumuofficial.com
-                    </a>
-                    <span className="text-[#162B3A]/30">•</span>
-                    <a href="mailto:media@tumuofficial.com" className="text-[#162B3A]/70 hover:text-[#DB3E59]">
-                      media@tumuofficial.com
-                    </a>
-                  </div>
-                </div>
-
-                {/* 3. JAPAN */}
-                <div className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
-                      JAPAN
-                    </span>
-                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">Global R&amp;D Office</span>
-                  </div>
-                  <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
-                    Tokyo
-                  </h4>
-                  <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
-                    <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
-                    <span>Marunouchi Trust Tower Main, 22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-bold pt-2 border-t border-black/5">
-                    <a href="mailto:enquiry@tumuofficial.jp" className="text-[#DB3E59] hover:underline">
-                      enquiry@tumuofficial.jp
-                    </a>
-                  </div>
-                </div>
-
-                {/* 4. UNITED KINGDOM */}
-                <div className="p-5 rounded-2xl bg-white border border-[#162B3A]/10 shadow-sm flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-black uppercase tracking-wider text-[#DB3E59] bg-[#DB3E59]/10 px-2.5 py-0.5 rounded-full">
-                      UNITED KINGDOM
-                    </span>
-                    <span className="text-[11px] font-bold text-[#162B3A]/60 uppercase">UK Regional Office</span>
-                  </div>
-                  <h4 className="text-sm sm:text-base font-black text-[#162B3A] uppercase mt-0.5">
-                    London
-                  </h4>
-                  <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
-                    <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
-                    <span>5 Brayford Square, London E1 0SG, United Kingdom</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
-                    <a href="mailto:franchise@tumuglobal.com" className="text-[#DB3E59] hover:underline">
-                      franchise@tumuglobal.com
-                    </a>
-                    <span className="text-[#162B3A]/30">•</span>
-                    <a href="mailto:media@tumuglobal.com" className="text-[#162B3A]/70 hover:text-[#DB3E59]">
-                      media@tumuglobal.com
-                    </a>
-                  </div>
-                </div>
+                ))}
 
               </div>
             </div>
@@ -336,22 +318,22 @@ export default function ContactPage() {
           
           <div className="flex flex-col items-start max-w-[540px]">
             <span className="font-black text-xs sm:text-sm uppercase tracking-[0.2em] text-[#DB3E59] mb-3">
-              LET&apos;S GROW TOGETHER
+              {cta.eyebrow || "LET'S GROW TOGETHER"}
             </span>
 
             <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-4">
-              <span className="block text-[#162B3A]">BRING TUMU</span>
+              <span className="block text-[#162B3A]">{cta.headingLine1 || "BRING TUMU"}</span>
               <span className="block text-[#162B3A]">
-                TO <span className="text-[#DB3E59]">YOUR CITY</span>
+                {cta.headingLine2 || "TO YOUR CITY"}
               </span>
             </h2>
 
             <div className="w-10 h-1 bg-[#DB3E59] mb-5" />
 
             <div className="text-[#162B3A] font-black text-base sm:text-lg lg:text-xl uppercase tracking-tight leading-snug space-y-1">
-              <p>BE THE TALK OF THE TOWN.</p>
-              <p>DON&apos;T JUST BE A FAN OF THE NEXT BIG THING.</p>
-              <p className="text-[#DB3E59]">BE PART OF IT. BE TUMU!</p>
+              <p>{cta.line1 || "BE THE TALK OF THE TOWN."}</p>
+              <p>{cta.line2 || "DON'T JUST BE A FAN OF THE NEXT BIG THING."}</p>
+              <p className="text-[#DB3E59]">{cta.line3 || "BE PART OF IT. BE TUMU!"}</p>
             </div>
           </div>
 
@@ -360,7 +342,7 @@ export default function ContactPage() {
               href="/franchise"
               className="px-8 py-4 sm:px-10 sm:py-5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-base uppercase tracking-wide transition-all shadow-lg hover:shadow-xl active:scale-95 flex items-center gap-3"
             >
-              <span>Enquire Now</span>
+              <span>{cta.buttonText || "Enquire Now"}</span>
               <span className="text-lg">→</span>
             </Link>
           </div>

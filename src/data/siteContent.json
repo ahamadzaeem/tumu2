@@ -42,12 +42,19 @@
     "realIngredients": {
       "eyebrow": "JUST 3 STEPS",
       "heading": "UNIQUELY DELICIOUS",
+      "headingLine1": "UNIQUELY",
+      "headingLine2": "DELICIOUS",
       "subtitle": "Bake It • Fill It • Serve It",
-      "description": "Bake It • Fill It • Serve It"
+      "description": "Bake It • Fill It • Serve It",
+      "step1": "Bake It",
+      "step2": "Fill It",
+      "step3": "Serve It"
     },
     "productAnatomy": {
       "eyebrow": "ANATOMY OF PERFECTION",
       "heading": "WHAT'S INSIDE A TUMU",
+      "headingLine1": "WHAT'S INSIDE",
+      "headingLine2": "A TUMU",
       "subtitle": "Hot, Golden & Crispy Outer Layer with Smooth Chilled Cream",
       "layer1Title": "Crunchy Almond Topping",
       "layer1Desc": "Specially crafted almond crunch with our secret recipe for an irresistibly crispy bite",
@@ -61,7 +68,7 @@
       "headingLine1": "CRUSTÉ FLAVOURS",
       "subheading": "EXPLORE TUMU’S SIGNATURE CRISPY SHELL FLAVOURS",
       "headingLine2": "",
-      "description": "25 UNIQUE FLAVOURS MADE WITH JAPAN'S FINEST INGREDIENTS",
+      "description": "25 UNIQUE FLAVOURS, MADE WITH JAPAN'S FINEST INGREDIENTS",
       "btnText": "MORE FLAVOURS",
       "btnLink": "/flavours"
     },
@@ -113,12 +120,29 @@
     "section3": {
       "heading": "80% JAPANESE INGREDIENTS DELICIOUSLY TUMU!",
       "description": "Made with ingredients sourced from Japan for authentic Japanese quality. So, bite with caution! Smooth, chilled cream is about to ooze out and create a deliciously messy experience."
-    },
-    "chefSection": {
-      "eyebrow": "THE ARTIST BEHIND TUMU",
-      "subheading": "Japanese Pastry Artist | Chef Ren",
-      "description": "The art of sweetness, perfected. Crafted by Tokyo-based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses."
     }
+  },
+  "flavoursPage": {
+    "eyebrow": "OUR FLAVOURS",
+    "heading": "SO MANY FLAVOURS, WHAT'S YOUR PICK?",
+    "description": "Discover the perfect bite with TUMU! Enjoy 8 classic flavours of crunchy outer layers paired with 25 delicious flavours of chilled cream filling. With so many exciting combinations to choose from, there’s a flavour for everyone!",
+    "crustHeading": "CRUSTÉ FLAVOURS",
+    "crustSubheading": "EXPLORE TUMU'S SIGNATURE CRISPY SHELL FLAVOURS",
+    "creamHeadingLine1": "Cream Filling",
+    "creamHeadingLine2": "Flavours",
+    "creamSubheading": "CREAM FILLINGS MADE WITH JAPANESE IMPORTS BLENDED WITH PREMIUM LOCAL INGREDIENTS",
+    "creamCount": "25",
+    "creamCountLabel": "UNIQUE FILLINGS",
+    "creamSignoff": "All the way from Japan!",
+    "ctaHeadingLine1": "GOT A TUMU CRAVING?",
+    "ctaHeadingLine2": "WE’VE GOT YOU!",
+    "ctaDescription": "VISIT ANY OF OUR OUTLETS ACROSS INDIA OR GET IN TOUCH TO EXPLORE BRINGING A TUMU FRANCHISE TO YOUR REGION"
+  },
+  "locationsPage": {
+    "eyebrow": "STORE LOCATOR",
+    "headingLine1": "VISIT OUR",
+    "headingLine2": "INDIA STORES",
+    "description": "Your TUMU moment starts here. Find your nearest store!"
   },
   "process": {
     "hero": {
@@ -168,8 +192,9 @@
   "franchise": {
     "hero": {
       "eyebrow": "WHO SAYS NO TO A VIRAL FRANCHISE?",
-      "headingLine1": "BRING THE JAPAN-MADE",
-      "headingLine2": "TUMU EXPERIENCE",
+      "headingLine1": "WHO SAYS NO",
+      "headingLine2": "TO A VIRAL",
+      "headingLine3": "FRANCHISE?",
       "description": "Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.",
       "buttonText": "Get Franchise Profile",
       "buttonLink": "#form"
@@ -250,9 +275,73 @@
   "contact": {
     "hero": {
       "eyebrow": "LET'S CONNECT",
-      "headingLine1": "WE WOULD LOVE",
-      "headingLine2": "TO HEAR FROM YOU",
-      "description": "Whether you are interested in a franchise opportunity, private event catering, or simply sharing feedback, our team is always ready to assist."
+      "headingLine1": "CONTACT",
+      "headingLine2": "US",
+      "description": "We're here to answer your questions, explore franchise opportunities, and tell you more about TUMU"
+    },
+    "formSection": {
+      "headingLine1": "SEND US",
+      "headingLine2": "A MESSAGE",
+      "subtitle": "Complete the form, and our team will get back to you shortly"
+    },
+    "getInTouch": {
+      "headingLine1": "GET IN",
+      "headingLine2": "TOUCH",
+      "subtitle": "Reach out to us directly through any of the channels below."
+    },
+    "offices": [
+      {
+        "id": "india",
+        "country": "INDIA",
+        "role": "Asia-Pacific Office",
+        "city": "Bengaluru",
+        "address": "Starhub Food Works Pvt Ltd, No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043",
+        "emails": [
+          "franchise@tumuofficial.com",
+          "media@tumuofficial.com"
+        ]
+      },
+      {
+        "id": "uae",
+        "country": "UAE",
+        "role": "MEA & Europe Office",
+        "city": "Dubai",
+        "address": "Office : 401 | Al Zarouni Business Centre, Al Barsha 1, Dubai, UAE",
+        "emails": [
+          "franchise@tumuofficial.com",
+          "media@tumuofficial.com"
+        ]
+      },
+      {
+        "id": "japan",
+        "country": "JAPAN",
+        "role": "Global R&D Office",
+        "city": "Tokyo",
+        "address": "Marunouchi Trust Tower Main, 22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan",
+        "emails": [
+          "enquiry@tumuofficial.jp"
+        ]
+      },
+      {
+        "id": "uk",
+        "country": "UNITED KINGDOM",
+        "role": "UK Regional Office",
+        "city": "London",
+        "address": "5 Brayford Square, London E1 0SG, United Kingdom",
+        "emails": [
+          "franchise@tumuglobal.com",
+          "media@tumuglobal.com"
+        ]
+      }
+    ],
+    "cta": {
+      "eyebrow": "LET'S GROW TOGETHER",
+      "headingLine1": "BRING TUMU",
+      "headingLine2": "TO YOUR CITY",
+      "line1": "BE THE TALK OF THE TOWN.",
+      "line2": "DON'T JUST BE A FAN OF THE NEXT BIG THING.",
+      "line3": "BE PART OF IT. BE TUMU!",
+      "buttonText": "Enquire Now"
     }
   }
 }

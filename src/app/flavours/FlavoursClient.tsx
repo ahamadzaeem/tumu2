@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { fetchFlavors, Flavor, DEFAULT_FLAVORS } from "@/lib/supabase";
+import { getSiteContent } from "@/lib/cms";
 
 interface CreamFilling {
   id: string;
@@ -564,6 +565,18 @@ function AnimatedCutStick() {
 
 export default function FlavoursClient() {
   const [flavors, setFlavors] = useState<Flavor[]>(DEFAULT_FLAVORS);
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const fp = (content as any)?.flavoursPage || {};
 
   useEffect(() => {
     let isMounted = true;
@@ -589,23 +602,23 @@ export default function FlavoursClient() {
         {/* Hero Section with Targeted Keywords */}
         <div className="text-center mb-12 max-w-4xl mx-auto">
           <span className="text-[#DB3E59] text-xs sm:text-sm font-black uppercase tracking-[0.25em] block mb-3">
-            OUR FLAVOURS
+            {fp.eyebrow || "OUR FLAVOURS"}
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight text-[#162B3A] uppercase mb-6 leading-[0.95] drop-shadow-sm">
-            SO MANY FLAVOURS, WHAT&apos;S YOUR PICK?
+            {fp.heading || "SO MANY FLAVOURS, WHAT'S YOUR PICK?"}
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-[#162B3A]/85 max-w-3xl mx-auto font-medium leading-relaxed">
-            Discover the perfect bite with TUMU! Enjoy 8 classic flavours of crunchy outer layers paired with 25 delicious flavours of chilled cream filling. With so many exciting combinations to choose from, there’s a flavour for everyone!
+            {fp.description || "Discover the perfect bite with TUMU! Enjoy 8 classic flavours of crunchy outer layers paired with 25 delicious flavours of chilled cream filling. With so many exciting combinations to choose from, there’s a flavour for everyone!"}
           </p>
         </div>
 
         {/* Section Header: CRUSTÉ FLAVOURS */}
         <div className="text-left mt-16 mb-4">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#162B3A]">
-            CRUSTÉ FLAVOURS
+            {fp.crustHeading || "CRUSTÉ FLAVOURS"}
           </h2>
           <p className="font-heading text-base sm:text-lg lg:text-xl text-[#162B3A]/80 uppercase tracking-wide mt-1.5">
-            EXPLORE TUMU&apos;S SIGNATURE CRISPY SHELL FLAVOURS
+            {fp.crustSubheading || "EXPLORE TUMU'S SIGNATURE CRISPY SHELL FLAVOURS"}
           </p>
         </div>
 
@@ -656,21 +669,21 @@ export default function FlavoursClient() {
             <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
               <div>
                 <h2 className="font-heading text-4xl sm:text-5xl lg:text-[60px] text-white leading-[0.96] tracking-tight">
-                  Cream Filling<br />
-                  Flavours
+                  {fp.creamHeadingLine1 || "Cream Filling"}<br />
+                  {fp.creamHeadingLine2 || "Flavours"}
                 </h2>
                 <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 uppercase tracking-wide mt-3 max-w-3xl leading-relaxed">
-                  CREAM FILLINGS MADE WITH JAPANESE IMPORTS BLENDED WITH PREMIUM LOCAL INGREDIENTS
+                  {fp.creamSubheading || "CREAM FILLINGS MADE WITH JAPANESE IMPORTS BLENDED WITH PREMIUM LOCAL INGREDIENTS"}
                 </p>
               </div>
 
               {/* Pastel Yellow 25 Unique Fillings Badge */}
               <div className="bg-[#FDE67B] rounded-2xl px-7 py-4 sm:px-9 sm:py-5 text-center shadow-lg shrink-0 self-start md:self-end">
                 <span className="font-heading text-4xl sm:text-5xl text-[#DB3E59] leading-none block">
-                  25
+                  {fp.creamCount || "25"}
                 </span>
                 <span className="font-sans font-black text-[10px] sm:text-xs tracking-[0.15em] uppercase text-[#162B3A] mt-1 block">
-                  UNIQUE FILLINGS
+                  {fp.creamCountLabel || "UNIQUE FILLINGS"}
                 </span>
               </div>
             </div>
@@ -719,7 +732,7 @@ export default function FlavoursClient() {
             {/* Bottom Brand Sign-off */}
             <div className="relative z-10 mt-10 sm:mt-12 pt-2 flex justify-end">
               <span className="font-subhead text-2xl sm:text-3xl text-white/95 tracking-wide">
-                All the way from Japan!
+                {fp.creamSignoff || "All the way from Japan!"}
               </span>
             </div>
 
@@ -729,11 +742,11 @@ export default function FlavoursClient() {
         {/* Bottom CTA for Franchise & Locations */}
         <div className="mt-24 p-8 sm:p-12 rounded-[36px] bg-white/70 border border-black/5 text-center flex flex-col items-center max-w-4xl mx-auto shadow-sm">
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#162B3A] mb-4 tracking-tight">
-            GOT A TUMU CRAVING?<br />
-            WE’VE GOT YOU!
+            {fp.ctaHeadingLine1 || "GOT A TUMU CRAVING?"}<br />
+            {fp.ctaHeadingLine2 || "WE’VE GOT YOU!"}
           </h3>
           <p className="font-heading text-sm sm:text-base lg:text-lg text-[#162B3A]/85 uppercase tracking-wide max-w-2xl mb-8">
-            VISIT ANY OF OUR OUTLETS ACROSS INDIA OR GET IN TOUCH TO EXPLORE BRINGING A TUMU FRANCHISE TO YOUR REGION
+            {fp.ctaDescription || "VISIT ANY OF OUR OUTLETS ACROSS INDIA OR GET IN TOUCH TO EXPLORE BRINGING A TUMU FRANCHISE TO YOUR REGION"}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link

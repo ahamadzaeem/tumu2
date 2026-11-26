@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PillButton from "@/components/PillButton";
 import { fetchLocations, StoreLocation, DEFAULT_LOCATIONS } from "@/lib/supabase";
+import { getSiteContent } from "@/lib/cms";
 import {
   MapPin,
   Clock,
@@ -27,6 +28,18 @@ export default function LocationsClient() {
   const [locations, setLocations] = useState<StoreLocation[]>(DEFAULT_LOCATIONS);
   const [activeLocationId, setActiveLocationId] = useState<string>(DEFAULT_LOCATIONS[0].id);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [content, setContent] = useState(getSiteContent());
+
+  useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const lp = (content as any)?.locationsPage || {};
 
   useEffect(() => {
     let isMounted = true;
@@ -77,21 +90,21 @@ export default function LocationsClient() {
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59]">
-                STORE LOCATOR
+                {lp.eyebrow || "STORE LOCATOR"}
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
-              <span className="block text-[#162B3A]">VISIT OUR</span>
+              <span className="block text-[#162B3A]">{lp.headingLine1 || "VISIT OUR"}</span>
               <span className="block text-[#DB3E59]">
-                INDIA STORES
+                {lp.headingLine2 || "INDIA STORES"}
               </span>
             </h1>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px] mb-8">
-              Your TUMU moment starts here. Find your nearest store!
+              {lp.description || "Your TUMU moment starts here. Find your nearest store!"}
             </p>
 
             <div className="flex flex-wrap items-center gap-4">

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PillButton from "@/components/PillButton";
+import { getSiteContent } from "@/lib/cms";
 import {
   Gem,
   Heart,
@@ -37,7 +38,19 @@ const FORMAT_GALLERY = [
 ];
 
 export default function FranchisePage() {
+  const [content, setContent] = useState(getSiteContent());
   const [submitted, setSubmitted] = useState(false);
+
+  React.useEffect(() => {
+    fetch("/api/cms")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.content) setContent(data.content);
+      })
+      .catch(() => {});
+  }, []);
+
+  const franchiseHero = (content?.franchise as any)?.hero || {};
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [formData, setFormData] = useState({
@@ -141,22 +154,22 @@ export default function FranchisePage() {
             className="lg:col-span-6 flex flex-col items-start"
           >
             <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-black uppercase tracking-tight leading-[0.94] mb-5">
-              <span className="block text-[#162B3A]">WHO SAYS NO</span>
-              <span className="block text-[#DB3E59]">TO A VIRAL</span>
+              <span className="block text-[#162B3A]">{franchiseHero.headingLine1 || "WHO SAYS NO"}</span>
+              <span className="block text-[#DB3E59]">{franchiseHero.headingLine2 || "TO A VIRAL"}</span>
               <span className="block text-[#162B3A]">
-                FRANCHISE<span className="text-[#DB3E59]">?</span>
+                {(franchiseHero.headingLine3 || "FRANCHISE?").replace(/\?$/, "")}<span className="text-[#DB3E59]">?</span>
               </span>
             </h1>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg leading-relaxed max-w-[500px] mb-8">
-              Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.
+              {franchiseHero.description || "Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations."}
             </p>
 
-            <a href="#form">
+            <a href={franchiseHero.buttonLink || "#form"}>
               <PillButton variant="pink" showArrow>
-                Get Franchise Profile
+                {franchiseHero.buttonText || "Get Franchise Profile"}
               </PillButton>
             </a>
           </motion.div>

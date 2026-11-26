@@ -68,7 +68,7 @@ export default function AdminPage() {
 
   // Active Tab
   const [activeTab, setActiveTab] = useState<
-    "seo" | "general" | "home" | "story" | "franchise" | "faqs" | "flavors" | "locations"
+    "seo" | "general" | "home" | "story" | "franchise" | "contact" | "faqs" | "flavors" | "locations"
   >("seo");
 
   // Data states
@@ -615,6 +615,7 @@ export default function AdminPage() {
             { id: "home", label: "Home Page", icon: Home },
             { id: "story", label: "Our Story", icon: BookOpen },
             { id: "franchise", label: "Franchise & Formats", icon: Briefcase },
+            { id: "contact", label: "Contact Page", icon: FileText },
             { id: "faqs", label: "FAQs Manager", icon: HelpCircle },
             { id: "flavors", label: "Flavours Lineup", icon: IceCream },
             { id: "locations", label: "Store Locations", icon: MapPin },
@@ -1037,6 +1038,18 @@ export default function AdminPage() {
 
               <div className="md:col-span-2">
                 <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Brand Description (Footer)
+                </label>
+                <textarea
+                  rows={2}
+                  value={siteContent.general?.description || ""}
+                  onChange={(e) => updateGeneralField("description", e.target.value)}
+                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A] focus:outline-none focus:border-[#DB3E59]"
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
                   Footer Copyright Text
                 </label>
                 <input
@@ -1433,6 +1446,30 @@ export default function AdminPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Heading (&quot;CRUSTÉ FLAVOURS&quot;)
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.flavoursSection?.headingLine1 || ""}
+                    onChange={(e) => updateContentField("home", "flavoursSection", "headingLine1", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Subheading (&quot;EXPLORE TUMU’S SIGNATURE...&quot;)
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.flavoursSection?.subheading || ""}
+                    onChange={(e) => updateContentField("home", "flavoursSection", "subheading", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
                     Headline Tagline (&quot;25 Unique Flavours, Made with Japan&apos;s Finest Ingredients&quot;)
                   </label>
                   <input
@@ -1477,6 +1514,54 @@ export default function AdminPage() {
                     type="text"
                     value={siteContent.home?.freshFromOven?.eyebrow || ""}
                     onChange={(e) => updateContentField("home", "freshFromOven", "eyebrow", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Headline Word 1 (&quot;BAKED&quot;)
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.freshFromOven?.headlineLine1 || ""}
+                    onChange={(e) => updateContentField("home", "freshFromOven", "headlineLine1", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Headline Word 2 (&quot;PERFECTION&quot;)
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.freshFromOven?.headlineLine2 || ""}
+                    onChange={(e) => updateContentField("home", "freshFromOven", "headlineLine2", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Headline Word 3 (&quot;FILLED&quot;)
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.freshFromOven?.headlineLine3 || ""}
+                    onChange={(e) => updateContentField("home", "freshFromOven", "headlineLine3", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Headline Word 4 (&quot;HAPPINESS&quot;)
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.freshFromOven?.headlineLine4 || ""}
+                    onChange={(e) => updateContentField("home", "freshFromOven", "headlineLine4", e.target.value)}
                     className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
                   />
                 </div>
@@ -1697,7 +1782,7 @@ export default function AdminPage() {
                   />
                 </div>
 
-                <div className="md:col-span-2">
+                <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
                     Format Badge 3
                   </label>
@@ -1705,6 +1790,18 @@ export default function AdminPage() {
                     type="text"
                     value={siteContent.home?.franchiseCta?.format3 || ""}
                     onChange={(e) => updateContentField("home", "franchiseCta", "format3", e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                    Format Badge 4
+                  </label>
+                  <input
+                    type="text"
+                    value={siteContent.home?.franchiseCta?.format4 || ""}
+                    onChange={(e) => updateContentField("home", "franchiseCta", "format4", e.target.value)}
                     className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-bold text-[#162B3A]"
                   />
                 </div>
@@ -1741,36 +1838,48 @@ export default function AdminPage() {
 
             {/* Chapter 1 */}
             <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
-              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 1: A Simple Idea</span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Eyebrow"
-                  value={siteContent.story?.section1?.eyebrow || ""}
-                  onChange={(e) => updateContentField("story", "section1", "eyebrow", e.target.value)}
-                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
-                />
-                <input
-                  type="text"
-                  placeholder="Headline"
-                  value={siteContent.story?.section1?.headingLine1 || ""}
-                  onChange={(e) => updateContentField("story", "section1", "headingLine1", e.target.value)}
-                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
-                />
-              </div>
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 1: Five Years of Mixing, Baking, Testing &amp; Dreaming</span>
+              <input
+                type="text"
+                placeholder="Section Heading"
+                value={siteContent.story?.section1?.heading || ""}
+                onChange={(e) => updateContentField("story", "section1", "heading", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+              />
               <textarea
-                rows={3}
-                placeholder="Story description"
-                value={siteContent.story?.section1?.description || ""}
-                onChange={(e) => updateContentField("story", "section1", "description", e.target.value)}
+                rows={2}
+                placeholder="Paragraph 1"
+                value={siteContent.story?.section1?.p1 || ""}
+                onChange={(e) => updateContentField("story", "section1", "p1", e.target.value)}
                 className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
+              />
+              <input
+                type="text"
+                placeholder="Paragraph 2 (Pink Highlight)"
+                value={siteContent.story?.section1?.p2 || ""}
+                onChange={(e) => updateContentField("story", "section1", "p2", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-bold text-[#DB3E59]"
+              />
+              <textarea
+                rows={2}
+                placeholder="Paragraph 3"
+                value={siteContent.story?.section1?.p3 || ""}
+                onChange={(e) => updateContentField("story", "section1", "p3", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
+              />
+              <input
+                type="text"
+                placeholder="Tagline (HOT. CRISPY. SWEET. CREAMY. SIMPLY TUMU.)"
+                value={siteContent.story?.section1?.tagline || ""}
+                onChange={(e) => updateContentField("story", "section1", "tagline", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black uppercase"
               />
             </div>
 
             {/* Chapter 2 */}
             <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
-              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 2: Tradition Meets Innovation (Blue BG)</span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 2: The Artist Behind TUMU (Blue BG)</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <input
                   type="text"
                   placeholder="Eyebrow"
@@ -1785,6 +1894,13 @@ export default function AdminPage() {
                   onChange={(e) => updateContentField("story", "section2", "headingLine1", e.target.value)}
                   className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
                 />
+                <input
+                  type="text"
+                  placeholder="Headline Line 2 (CHEF REN)"
+                  value={siteContent.story?.section2?.headingLine2 || ""}
+                  onChange={(e) => updateContentField("story", "section2", "headingLine2", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
               </div>
               <textarea
                 rows={3}
@@ -1795,53 +1911,16 @@ export default function AdminPage() {
               />
             </div>
 
-            {/* Chef Ren Section */}
-            <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
-              <span className="text-xs font-black text-[#DB3E59] uppercase">Chef Ren Section: The Artist Behind TUMU</span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Eyebrow"
-                  value={siteContent.story?.chefSection?.eyebrow || ""}
-                  onChange={(e) => updateContentField("story", "chefSection", "eyebrow", e.target.value)}
-                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
-                />
-                <input
-                  type="text"
-                  placeholder="Subheading / Title"
-                  value={siteContent.story?.chefSection?.subheading || ""}
-                  onChange={(e) => updateContentField("story", "chefSection", "subheading", e.target.value)}
-                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
-                />
-              </div>
-              <textarea
-                rows={3}
-                placeholder="Chef description"
-                value={siteContent.story?.chefSection?.description || ""}
-                onChange={(e) => updateContentField("story", "chefSection", "description", e.target.value)}
-                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
-              />
-            </div>
-
             {/* Chapter 3 */}
             <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
-              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 3: All The Way From Japan</span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Eyebrow"
-                  value={siteContent.story?.section3?.eyebrow || ""}
-                  onChange={(e) => updateContentField("story", "section3", "eyebrow", e.target.value)}
-                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
-                />
-                <input
-                  type="text"
-                  placeholder="Headline"
-                  value={siteContent.story?.section3?.heading || ""}
-                  onChange={(e) => updateContentField("story", "section3", "heading", e.target.value)}
-                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
-                />
-              </div>
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Chapter 3: 80% Japanese Ingredients</span>
+              <input
+                type="text"
+                placeholder="Headline"
+                value={siteContent.story?.section3?.heading || ""}
+                onChange={(e) => updateContentField("story", "section3", "heading", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+              />
               <textarea
                 rows={3}
                 placeholder="Story description"
@@ -1874,28 +1953,62 @@ export default function AdminPage() {
                 FRANCHISE PAGE CONTENT
               </span>
               <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
-                The 3 Business Formats (Kiosk, Outlet, Truck)
+                Hero &amp; 4 Business Formats
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Franchise Hero */}
+            <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Franchise Hero Section</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <input
+                  type="text"
+                  placeholder="Headline Line 1"
+                  value={siteContent.franchise?.hero?.headingLine1 || ""}
+                  onChange={(e) => updateContentField("franchise", "hero", "headingLine1", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+                <input
+                  type="text"
+                  placeholder="Headline Line 2"
+                  value={siteContent.franchise?.hero?.headingLine2 || ""}
+                  onChange={(e) => updateContentField("franchise", "hero", "headingLine2", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+                <input
+                  type="text"
+                  placeholder="Headline Line 3"
+                  value={siteContent.franchise?.hero?.headingLine3 || ""}
+                  onChange={(e) => updateContentField("franchise", "hero", "headingLine3", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+              </div>
+              <textarea
+                rows={3}
+                placeholder="Franchise hero description"
+                value={siteContent.franchise?.hero?.description || ""}
+                onChange={(e) => updateContentField("franchise", "hero", "description", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {siteContent.franchise?.formats?.map((fmt: any, idx: number) => (
                 <div key={fmt.id || idx} className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-3">
                   <div className="flex items-center justify-between">
                     <span className="px-3 py-1 rounded-full bg-[#162B3A] text-white text-[11px] font-black uppercase">
                       {fmt.name}
                     </span>
-                    <span className="text-xs font-bold text-[#DB3E59]">{fmt.kanji}</span>
                   </div>
 
                   <div>
-                    <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Subtitle</label>
+                    <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Format Name</label>
                     <input
                       type="text"
-                      value={fmt.subtitle}
+                      value={fmt.name || ""}
                       onChange={(e) => {
                         const copy = [...siteContent.franchise.formats];
-                        copy[idx].subtitle = e.target.value;
+                        copy[idx].name = e.target.value;
                         setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
                       }}
                       className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-semibold"
@@ -1904,26 +2017,29 @@ export default function AdminPage() {
 
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div>
-                      <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-0.5">Footprint</label>
+                      <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-0.5">
+                        {fmt.size ? "Size" : "Setup Time"}
+                      </label>
                       <input
                         type="text"
-                        value={fmt.footprint}
+                        value={fmt.setup || fmt.size || ""}
                         onChange={(e) => {
                           const copy = [...siteContent.franchise.formats];
-                          copy[idx].footprint = e.target.value;
+                          if (copy[idx].size !== undefined) copy[idx].size = e.target.value;
+                          else copy[idx].setup = e.target.value;
                           setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
                         }}
                         className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-black/10 text-xs font-bold"
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-0.5">Setup Time</label>
+                      <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-0.5">ROI</label>
                       <input
                         type="text"
-                        value={fmt.setupTime}
+                        value={fmt.roi || ""}
                         onChange={(e) => {
                           const copy = [...siteContent.franchise.formats];
-                          copy[idx].setupTime = e.target.value;
+                          copy[idx].roi = e.target.value;
                           setSiteContent({ ...siteContent, franchise: { ...siteContent.franchise, formats: copy } });
                         }}
                         className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-black/10 text-xs font-bold"
@@ -1934,8 +2050,8 @@ export default function AdminPage() {
                   <div>
                     <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Description</label>
                     <textarea
-                      rows={4}
-                      value={fmt.description}
+                      rows={3}
+                      value={fmt.description || ""}
                       onChange={(e) => {
                         const copy = [...siteContent.franchise.formats];
                         copy[idx].description = e.target.value;
@@ -1955,7 +2071,151 @@ export default function AdminPage() {
                 className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
               >
                 <Save className="w-4 h-4" />
-                <span>Save Franchise Formats Content</span>
+                <span>Save Franchise Content</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+            TAB 7: CONTACT PAGE & REGIONAL OFFICES
+           ══════════════════════════════════════════════════════════════ */}
+        {activeTab === "contact" && (
+          <div className="bg-white rounded-[32px] p-6 sm:p-10 border border-black/5 shadow-sm flex flex-col gap-8">
+            <div className="border-b border-black/10 pb-4">
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-1 block">
+                CONTACT PAGE CONTENT
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#162B3A]">
+                Hero, Form Copy &amp; Regional Offices
+              </h2>
+            </div>
+
+            {/* Hero & Form Copy */}
+            <div className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-4">
+              <span className="text-xs font-black text-[#DB3E59] uppercase">Contact Hero &amp; Form</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <input
+                  type="text"
+                  placeholder="Eyebrow"
+                  value={siteContent.contact?.hero?.eyebrow || ""}
+                  onChange={(e) => updateContentField("contact", "hero", "eyebrow", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-bold"
+                />
+                <input
+                  type="text"
+                  placeholder="Heading Line 1"
+                  value={siteContent.contact?.hero?.headingLine1 || ""}
+                  onChange={(e) => updateContentField("contact", "hero", "headingLine1", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+                <input
+                  type="text"
+                  placeholder="Heading Line 2"
+                  value={siteContent.contact?.hero?.headingLine2 || ""}
+                  onChange={(e) => updateContentField("contact", "hero", "headingLine2", e.target.value)}
+                  className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black"
+                />
+              </div>
+              <textarea
+                rows={2}
+                placeholder="Contact Hero Description"
+                value={siteContent.contact?.hero?.description || ""}
+                onChange={(e) => updateContentField("contact", "hero", "description", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium resize-none"
+              />
+              <input
+                type="text"
+                placeholder="Form Subtitle"
+                value={siteContent.contact?.formSection?.subtitle || ""}
+                onChange={(e) => updateContentField("contact", "formSection", "subtitle", e.target.value)}
+                className="px-4 py-2.5 rounded-xl bg-white border border-black/10 text-sm font-medium"
+              />
+            </div>
+
+            {/* Regional Offices */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {(siteContent.contact?.offices || []).map((office: any, idx: number) => (
+                <div key={office.id || idx} className="p-6 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Country Pill</label>
+                      <input
+                        type="text"
+                        value={office.country || ""}
+                        onChange={(e) => {
+                          const copy = [...(siteContent.contact?.offices || [])];
+                          copy[idx].country = e.target.value;
+                          setSiteContent({ ...siteContent, contact: { ...siteContent.contact, offices: copy } });
+                        }}
+                        className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-black"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Office Role</label>
+                      <input
+                        type="text"
+                        value={office.role || ""}
+                        onChange={(e) => {
+                          const copy = [...(siteContent.contact?.offices || [])];
+                          copy[idx].role = e.target.value;
+                          setSiteContent({ ...siteContent, contact: { ...siteContent.contact, offices: copy } });
+                        }}
+                        className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-semibold"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">City Heading</label>
+                    <input
+                      type="text"
+                      value={office.city || ""}
+                      onChange={(e) => {
+                        const copy = [...(siteContent.contact?.offices || [])];
+                        copy[idx].city = e.target.value;
+                        setSiteContent({ ...siteContent, contact: { ...siteContent.contact, offices: copy } });
+                      }}
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-black"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Address</label>
+                    <textarea
+                      rows={2}
+                      value={office.address || ""}
+                      onChange={(e) => {
+                        const copy = [...(siteContent.contact?.offices || [])];
+                        copy[idx].address = e.target.value;
+                        setSiteContent({ ...siteContent, contact: { ...siteContent.contact, offices: copy } });
+                      }}
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-medium resize-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-black uppercase text-[#162B3A]/60 block mb-1">Emails (comma separated)</label>
+                    <input
+                      type="text"
+                      value={(office.emails || []).join(", ")}
+                      onChange={(e) => {
+                        const copy = [...(siteContent.contact?.offices || [])];
+                        copy[idx].emails = e.target.value.split(",").map((s: string) => s.trim()).filter(Boolean);
+                        setSiteContent({ ...siteContent, contact: { ...siteContent.contact, offices: copy } });
+                      }}
+                      className="w-full px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-mono"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={saveCmsChanges}
+                disabled={saving}
+                className="px-8 py-3.5 rounded-full bg-[#DB3E59] hover:bg-[#D81F51] text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2"
+              >
+                <Save className="w-4 h-4" />
+                <span>Save Contact Page Content</span>
               </button>
             </div>
           </div>

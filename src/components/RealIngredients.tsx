@@ -19,9 +19,14 @@ export default function RealIngredients() {
   }, []);
 
   const real = content?.home?.realIngredients || {
-    eyebrow: "JUST 3 STEPS.",
-    heading: "UNIQUELY DELICIOUS.",
+    eyebrow: "JUST 3 STEPS",
+    heading: "UNIQUELY DELICIOUS",
+    headingLine1: "UNIQUELY",
+    headingLine2: "DELICIOUS",
     description: "Bake It • Fill It • Serve It",
+    step1: "Bake It",
+    step2: "Fill It",
+    step3: "Serve It",
   };
 
   return (
@@ -47,16 +52,16 @@ export default function RealIngredients() {
 
         {/* Main Heading - Matching Hero font format */}
         <h2 className="font-black uppercase tracking-tight leading-[0.92] mb-6 text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)]">
-          <span className="block text-[#162B3A]">UNIQUELY</span>
-          <span className="block text-[#DB3E59]">DELICIOUS</span>
+          <span className="block text-[#162B3A]">{(real as any).headingLine1 || "UNIQUELY"}</span>
+          <span className="block text-[#DB3E59]">{(real as any).headingLine2 || "DELICIOUS"}</span>
         </h2>
 
         {/* The 3 Steps */}
         <div className="flex flex-col gap-3.5 mb-10 w-full">
           {[
-            { num: "01", label: "Bake It", desc: "Golden crust baked crunchy to perfection" },
-            { num: "02", label: "Fill It", desc: "Fresh chilled cream piped inside on order" },
-            { num: "03", label: "Serve It", desc: "Served immediately at peak freshness" },
+            { num: "01", label: (real as any).step1 || "Bake It", desc: "Golden crust baked crunchy to perfection" },
+            { num: "02", label: (real as any).step2 || "Fill It", desc: "Fresh chilled cream piped inside on order" },
+            { num: "03", label: (real as any).step3 || "Serve It", desc: "Served immediately at peak freshness" },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-3.5 group">
               <span className="w-8 h-8 rounded-full bg-[#162B3A] text-white text-xs font-black flex items-center justify-center shrink-0 group-hover:bg-[#DB3E59] transition-colors">
