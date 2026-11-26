@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import CircleArrow from "./CircleArrow";
 import { getSiteContent } from "@/lib/cms";
 
 export default function RealIngredients() {
@@ -57,7 +55,7 @@ export default function RealIngredients() {
         </h2>
 
         {/* The 3 Steps */}
-        <div className="flex flex-col gap-3.5 mb-10 w-full">
+        <div className="flex flex-col gap-3.5 w-full">
           {[
             { num: "01", label: (real as any).step1 || "Bake It", desc: "Golden crust baked crunchy to perfection" },
             { num: "02", label: (real as any).step2 || "Fill It", desc: "Fresh chilled cream piped inside on order" },
@@ -73,10 +71,6 @@ export default function RealIngredients() {
             </div>
           ))}
         </div>
-
-        <Link href="/our-story" aria-label="Learn about our story">
-          <CircleArrow variant="cyan-outline" size="md" />
-        </Link>
 
         {/* Bottom Right Pink Wedge Corner Accent */}
         <div 
