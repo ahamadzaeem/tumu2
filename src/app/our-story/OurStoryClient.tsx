@@ -73,8 +73,6 @@ export default function OurStoryClient() {
               {story.section1?.heading || "FIVE YEARS OF MIXING, BAKING, TESTING & DREAMING"}
             </h1>
 
-            <div className="w-14 h-1.5 bg-[#DB3E59] mb-6" />
-
             <div className="flex flex-col gap-4 text-[#162B3A] text-base sm:text-lg lg:text-[19px] leading-relaxed font-semibold">
               <p>{story.section1?.p1}</p>
               <p className="text-[#DB3E59] font-bold">{story.section1?.p2}</p>
@@ -118,8 +116,6 @@ export default function OurStoryClient() {
               <span className="block text-[#162B3A]">{story.section2?.headingLine1 || "JAPANESE PASTRY ARTIST |"}</span>
               <span className="block text-[#DB3E59]">{story.section2?.headingLine2 || "CHEF REN"}</span>
             </h2>
-
-            <div className="w-14 h-1.5 bg-[#162B3A] mb-5" />
 
             <p className="text-[#162B3A] text-sm sm:text-base lg:text-[17px] leading-relaxed font-bold max-w-[460px]">
               {story.section2?.description}

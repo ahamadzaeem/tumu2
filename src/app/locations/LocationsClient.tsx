@@ -101,8 +101,6 @@ export default function LocationsClient() {
               </span>
             </h1>
 
-            <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
-
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px] mb-8">
               {lp.description || "Your TUMU moment starts here. Find your nearest store!"}
             </p>
@@ -430,8 +428,7 @@ export default function LocationsClient() {
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#162B3A]">
               THE TUMU IN-STORE <span className="text-[#DB3E59]">EXPERIENCE</span>
             </h2>
-            <div className="w-12 h-1 bg-[#DB3E59] mt-4 mb-4" />
-            <p className="text-[#162B3A]/80 font-semibold text-base sm:text-lg max-w-2xl">
+            <p className="text-[#162B3A]/80 font-semibold text-base sm:text-lg max-w-2xl mt-4">
               From the irresistible aroma of freshly baked TUMU to the magic of chilled cream piped right before your eyes, every moment is a treat for the senses.
             </p>
           </div>

@@ -219,7 +219,6 @@ export default function ProductAnatomy() {
             <span className="block text-[#162B3A]">{(anatomy as any).headingLine1 || "WHAT'S INSIDE"}</span>
             <span className="block text-[#DB3E59]">{(anatomy as any).headingLine2 || "A TUMU"}</span>
           </h2>
-          <div className="w-12 sm:w-20 h-1 sm:h-1.5 bg-[#DB3E59]" />
         </motion.div>
 
         {/* ─── 3-STEP FEATURE ANNOTATIONS OVERLAY (Docked bottom on mobile, left on desktop) ─── */}

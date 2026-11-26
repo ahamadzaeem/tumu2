@@ -121,8 +121,6 @@ export default function ContactPage() {
               <span className="block text-[#DB3E59]">{hero.headingLine2 || "US"}</span>
             </h1>
 
-            <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
-
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[460px]">
               {hero.description || "We're here to answer your questions, explore franchise opportunities, and tell you more about TUMU"}
             </p>
@@ -327,8 +325,6 @@ export default function ContactPage() {
                 {cta.headingLine2 || "TO YOUR CITY"}
               </span>
             </h2>
-
-            <div className="w-10 h-1 bg-[#DB3E59] mb-5" />
 
             <div className="text-[#162B3A] font-black text-base sm:text-lg lg:text-xl uppercase tracking-tight leading-snug space-y-1">
               <p>{cta.line1 || "BE THE TALK OF THE TOWN."}</p>

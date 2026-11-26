@@ -39,7 +39,6 @@ export default function FaqClient() {
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#162B3A] mb-6">
           FREQUENTLY ASKED <span className="text-[#DB3E59]">QUESTIONS</span>
         </h1>
-        <div className="w-16 h-1.5 bg-[#DB3E59] mx-auto rounded-full mb-6" />
         <p className="text-[#162B3A]/80 text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
           Everything you need to know about our authentic <strong>Japanese desserts in UAE</strong>, fresh ingredients, <strong>matcha desserts</strong>, store locations in Dubai, and <strong>dessert franchise UAE</strong> opportunities.
         </p>
