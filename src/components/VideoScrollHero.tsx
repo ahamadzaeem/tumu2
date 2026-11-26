@@ -21,7 +21,7 @@ export default function VideoScrollHero() {
   }, []);
 
   const heroData = content?.home?.videoScrollHero || {
-    phase1Headline1: "a unique viral concept.",
+    phase1Headline1: "a unique viral concept",
     phase1Headline2: "crafted by a japanese chef",
     phase1Btn1Text: "Own a Franchise.",
     phase1Btn1Link: "/franchise#form",
