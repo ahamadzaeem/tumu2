@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
@@ -484,6 +485,83 @@ const COLLECTIONS_DATA = [
   }
 ];
 
+const STICK_PIECES = [
+  { src: "/images/tumu/cut_piece_1.png", range: [0.0, 0.35] as [number, number], startX: -45, startY: -65, startRotate: -6 },
+  { src: "/images/tumu/cut_piece_2.png", range: [0.15, 0.5] as [number, number], startX: 0, startY: 75, startRotate: 8 },
+  { src: "/images/tumu/cut_piece_3.png", range: [0.3, 0.65] as [number, number], startX: 0, startY: -75, startRotate: -5 },
+  { src: "/images/tumu/cut_piece_4.png", range: [0.45, 0.8] as [number, number], startX: 0, startY: 75, startRotate: 7 },
+  { src: "/images/tumu/cut_piece_5.png", range: [0.6, 0.95] as [number, number], startX: 45, startY: -65, startRotate: 6 },
+];
+
+function StickPieceLayer({
+  src,
+  progress,
+  range,
+  startX,
+  startY,
+  startRotate,
+  index,
+}: {
+  src: string;
+  progress: ReturnType<typeof useScroll>["scrollYProgress"];
+  range: [number, number];
+  startX: number;
+  startY: number;
+  startRotate: number;
+  index: number;
+}) {
+  const x = useTransform(progress, range, [startX, 0]);
+  const y = useTransform(progress, range, [startY, 0]);
+  const rotate = useTransform(progress, range, [startRotate, 0]);
+  const opacity = useTransform(progress, [range[0], range[0] + 0.12], [0, 1]);
+
+  return (
+    <motion.div
+      style={{ x, y, rotate, opacity }}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+    >
+      <Image
+        src={src}
+        alt={`TUMU Sliced Stick Piece ${index + 1}`}
+        fill
+        className="object-contain object-center"
+        sizes="(max-width: 1024px) 100vw, 1200px"
+        priority
+      />
+    </motion.div>
+  );
+}
+
+function AnimatedCutStick() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 90%", "center 45%"],
+  });
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative z-10 w-full max-w-6xl mx-auto my-6 sm:my-10 flex flex-col items-center"
+    >
+      <div className="relative w-full aspect-[1024/237] drop-shadow-[0_28px_40px_rgba(0,0,0,0.32)]">
+        {STICK_PIECES.map((piece, idx) => (
+          <StickPieceLayer
+            key={piece.src}
+            src={piece.src}
+            progress={scrollYProgress}
+            range={piece.range}
+            startX={piece.startX}
+            startY={piece.startY}
+            startRotate={piece.startRotate}
+            index={idx}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function FlavoursClient() {
   const [flavors, setFlavors] = useState<Flavor[]>(DEFAULT_FLAVORS);
 
@@ -597,19 +675,8 @@ export default function FlavoursClient() {
               </div>
             </div>
 
-            {/* Centerpiece: Horizontal TUMU Pastry Stick */}
-            <div className="relative z-10 w-full max-w-6xl mx-auto mb-8 sm:mb-12 flex flex-col items-center">
-              <div className="relative w-full h-[180px] sm:h-[280px] md:h-[360px] lg:h-[440px] xl:h-[480px] drop-shadow-[0_28px_40px_rgba(0,0,0,0.32)] transition-transform duration-500 hover:scale-[1.02]">
-                <Image
-                  src="/images/tumu/cut_tumu_horizontal.png"
-                  alt="TUMU Sliced Crispy Stick with Chilled Cream Filling"
-                  fill
-                  className="object-contain object-center"
-                  sizes="(max-width: 1024px) 100vw, 1200px"
-                  priority
-                />
-              </div>
-            </div>
+            {/* Centerpiece: Scroll-Animated Sliced TUMU Pastry Stick */}
+            <AnimatedCutStick />
 
             {/* 2x2 Collection Cards Grid */}
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
