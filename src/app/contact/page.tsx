@@ -215,43 +215,6 @@ export default function ContactPage() {
             </div>
 
             <div className="flex flex-col gap-6 w-full">
-              {/* Quick Communication Channels */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4 border-b border-black/10">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-full bg-[#FFEBEF] text-[#DB3E59] flex items-center justify-center shrink-0">
-                    <Mail className="w-4 h-4 stroke-[2.2]" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-black uppercase tracking-wider text-[#162B3A]/60">
-                      Franchise Enquiry
-                    </span>
-                    <a
-                      href="mailto:franchise@tumuofficial.com"
-                      className="text-xs sm:text-sm font-bold text-[#162B3A] hover:text-[#DB3E59] transition-colors"
-                    >
-                      franchise@tumuofficial.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-full bg-[#FFEBEF] text-[#DB3E59] flex items-center justify-center shrink-0">
-                    <Mail className="w-4 h-4 stroke-[2.2]" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-black uppercase tracking-wider text-[#162B3A]/60">
-                      Media &amp; Press
-                    </span>
-                    <a
-                      href="mailto:media@tumuofficial.com"
-                      className="text-xs sm:text-sm font-bold text-[#162B3A] hover:text-[#DB3E59] transition-colors"
-                    >
-                      media@tumuofficial.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-
               {/* Regional Corporate Offices */}
               <div className="flex flex-col gap-4 w-full">
                 <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59]">
