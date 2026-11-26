@@ -96,7 +96,7 @@ export default function ContactPage() {
                 SEND US <span className="text-[#DB3E59]">A MESSAGE</span>
               </h2>
               <p className="text-xs sm:text-sm font-semibold text-[#162B3A]/60 mt-1.5">
-                Fill in the form and our team will get back to you shortly.
+                Complete the form, and our team will get back to you shortly
               </p>
             </div>
 
