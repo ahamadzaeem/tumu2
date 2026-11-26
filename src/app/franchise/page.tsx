@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PillButton from "@/components/PillButton";
@@ -17,12 +17,29 @@ import {
   BarChart3,
   CheckCircle2,
   Plus,
-  Minus
+  Minus,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2
 } from "lucide-react";
+
+const FORMAT_GALLERY = [
+  { src: "/images/tumu/formats/kiosk1_exterior.jpg", alt: "TUMU Kiosk 1 Branded Corner & Neon Logo", label: "1. KIOSK – TUMU Premium Island" },
+  { src: "/images/tumu/formats/kiosk1_counter.jpg", alt: "TUMU Kiosk 1 Service Counter Perspective", label: "1. KIOSK – TUMU Premium Island" },
+  { src: "/images/tumu/formats/kiosk1_front.jpg", alt: "TUMU Kiosk 1 Front Elevation & Service Window", label: "1. KIOSK – TUMU Premium Island" },
+  { src: "/images/tumu/formats/kiosk_elevation.jpg", alt: "TUMU Kiosk 2 Front Elevation", label: "2. KIOSK – TUMU Express Stop" },
+  { src: "/images/tumu/formats/kiosk_perspective.jpg", alt: "TUMU Kiosk 2 3D Perspective", label: "2. KIOSK – TUMU Express Stop" },
+  { src: "/images/tumu/formats/kiosk_side.jpg", alt: "TUMU Kiosk 2 Canopy & Vertical Neon", label: "2. KIOSK – TUMU Express Stop" },
+  { src: "/images/tumu/formats/outlet_storefront.jpg", alt: "TUMU Retail Outlet Storefront", label: "3. TUMU Experience Store" },
+  { src: "/images/tumu/formats/outlet_counter.jpg", alt: "TUMU Retail Outlet Service Counter", label: "3. TUMU Experience Store" },
+  { src: "/images/tumu/formats/truck_trailer.jpg", alt: "TUMU Go Mobile Food Truck Trailer", label: "4. TUMU Go – Mobile Truck" },
+];
 
 export default function FranchisePage() {
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     contactPerson: "",
     company: "",
@@ -31,6 +48,17 @@ export default function FranchisePage() {
     format: "1. KIOSK – TUMU Premium Island",
     comments: ""
   });
+
+  React.useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex((prev) => (prev === null ? null : (prev + 1) % FORMAT_GALLERY.length));
+      if (e.key === "ArrowLeft") setLightboxIndex((prev) => (prev === null ? null : (prev - 1 + FORMAT_GALLERY.length) % FORMAT_GALLERY.length));
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [lightboxIndex]);
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -260,32 +288,24 @@ export default function FranchisePage() {
 
               {/* Visual Showcase (All 3 Relevant Images) */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                  <Image
-                    src="/images/tumu/formats/kiosk1_exterior.jpg"
-                    alt="TUMU Kiosk 1 Branded Corner & Neon Logo"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
-
-                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                  <Image
-                    src="/images/tumu/formats/kiosk1_counter.jpg"
-                    alt="TUMU Kiosk 1 Service Counter Perspective"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
-
-                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                  <Image
-                    src="/images/tumu/formats/kiosk1_front.jpg"
-                    alt="TUMU Kiosk 1 Front Elevation & Service Window"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
+                {[0, 1, 2].map((idx) => (
+                  <button
+                    key={FORMAT_GALLERY[idx].src}
+                    type="button"
+                    onClick={() => setLightboxIndex(idx)}
+                    className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group cursor-zoom-in text-left"
+                  >
+                    <Image
+                      src={FORMAT_GALLERY[idx].src}
+                      alt={FORMAT_GALLERY[idx].alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                      <Maximize2 className="w-4 h-4" />
+                    </span>
+                  </button>
+                ))}
               </div>
             </motion.div>
 
@@ -330,32 +350,24 @@ export default function FranchisePage() {
 
               {/* Visual Showcase (All 3 Relevant Images) */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                  <Image
-                    src="/images/tumu/formats/kiosk_elevation.jpg"
-                    alt="TUMU Kiosk 2 Front Elevation"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
-
-                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                  <Image
-                    src="/images/tumu/formats/kiosk_perspective.jpg"
-                    alt="TUMU Kiosk 2 3D Perspective"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
-
-                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                  <Image
-                    src="/images/tumu/formats/kiosk_side.jpg"
-                    alt="TUMU Kiosk 2 Canopy & Vertical Neon"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
+                {[3, 4, 5].map((idx) => (
+                  <button
+                    key={FORMAT_GALLERY[idx].src}
+                    type="button"
+                    onClick={() => setLightboxIndex(idx)}
+                    className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group cursor-zoom-in text-left"
+                  >
+                    <Image
+                      src={FORMAT_GALLERY[idx].src}
+                      alt={FORMAT_GALLERY[idx].alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                      <Maximize2 className="w-4 h-4" />
+                    </span>
+                  </button>
+                ))}
               </div>
             </motion.div>
 
@@ -397,23 +409,24 @@ export default function FranchisePage() {
 
               {/* Visual Showcase (2 Best Images) */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                  <Image
-                    src="/images/tumu/formats/outlet_storefront.jpg"
-                    alt="TUMU Retail Outlet Storefront"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
-
-                <div className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group">
-                  <Image
-                    src="/images/tumu/formats/outlet_counter.jpg"
-                    alt="TUMU Retail Outlet Service Counter"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                </div>
+                {[6, 7].map((idx) => (
+                  <button
+                    key={FORMAT_GALLERY[idx].src}
+                    type="button"
+                    onClick={() => setLightboxIndex(idx)}
+                    className="relative aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-black/10 group cursor-zoom-in text-left"
+                  >
+                    <Image
+                      src={FORMAT_GALLERY[idx].src}
+                      alt={FORMAT_GALLERY[idx].alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <span className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                      <Maximize2 className="w-4 h-4" />
+                    </span>
+                  </button>
+                ))}
               </div>
             </motion.div>
 
@@ -457,14 +470,21 @@ export default function FranchisePage() {
               </div>
 
               {/* Visual Showcase (Only 1 Image) */}
-              <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(8)}
+                className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/10 group cursor-zoom-in text-left w-full"
+              >
                 <Image
-                  src="/images/tumu/formats/truck_trailer.jpg"
-                  alt="TUMU Go Mobile Food Truck Trailer"
+                  src={FORMAT_GALLERY[8].src}
+                  alt={FORMAT_GALLERY[8].alt}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-              </div>
+                <span className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                  <Maximize2 className="w-4 h-4" />
+                </span>
+              </button>
             </motion.div>
 
           </div>
@@ -845,6 +865,88 @@ export default function FranchisePage() {
         </div>
       </section>
 
+
+      {/* Fullscreen Image Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxIndex(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8"
+          >
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(null)}
+              aria-label="Close image viewer"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-white/15 hover:bg-[#DB3E59] text-white flex items-center justify-center transition-colors cursor-pointer z-20"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Previous Arrow */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxIndex((lightboxIndex - 1 + FORMAT_GALLERY.length) % FORMAT_GALLERY.length);
+              }}
+              aria-label="Previous image"
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#DB3E59] text-white flex items-center justify-center transition-colors cursor-pointer z-20"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Main Image Container */}
+            <motion.div
+              key={lightboxIndex}
+              initial={{ scale: 0.94, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.94, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-6xl h-[70vh] sm:h-[78vh] rounded-2xl overflow-hidden"
+            >
+              <Image
+                src={FORMAT_GALLERY[lightboxIndex].src}
+                alt={FORMAT_GALLERY[lightboxIndex].alt}
+                fill
+                className="object-contain"
+                sizes="100vw"
+                priority
+              />
+            </motion.div>
+
+            {/* Caption */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="mt-4 text-center px-4"
+            >
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] block">
+                {FORMAT_GALLERY[lightboxIndex].label}
+              </span>
+              <p className="text-sm sm:text-base font-semibold text-white/90 mt-1">
+                {FORMAT_GALLERY[lightboxIndex].alt} ({lightboxIndex + 1} / {FORMAT_GALLERY.length})
+              </p>
+            </div>
+
+            {/* Next Arrow */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxIndex((lightboxIndex + 1) % FORMAT_GALLERY.length);
+              }}
+              aria-label="Next image"
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#DB3E59] text-white flex items-center justify-center transition-colors cursor-pointer z-20"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Footer */}
       <Footer />
