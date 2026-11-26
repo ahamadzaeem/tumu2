@@ -41,7 +41,7 @@ export default function FreshFromOven() {
           <span className="text-[#DB3E59]">{fresh.headlineLine4 || "HAPPINESS."}</span>
         </h2>
 
-        <p className="text-[#162B3A]/80 text-sm sm:text-base lg:text-lg font-semibold leading-relaxed max-w-[460px] mb-8">
+        <p className="font-sans text-[#162B3A] text-base sm:text-lg lg:text-xl font-black uppercase tracking-tight leading-snug max-w-[480px] mb-8">
           {fresh.description ||
             "Every TUMU stick is freshly baked to a golden crunch and filled with smooth, chilled cream — so you can enjoy the perfect balance of crisp outside, creamy inside, every time."}
         </p>
