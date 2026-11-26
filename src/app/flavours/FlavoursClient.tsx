@@ -626,15 +626,10 @@ export default function FlavoursClient() {
                   >
                     <div>
                       {/* Card Header */}
-                      <div className="flex items-start justify-between gap-4 mb-5">
-                        <div>
-                          <h3 className="font-heading text-2xl sm:text-3xl text-white leading-tight capitalize">
-                            {col.title.toLowerCase()}
-                          </h3>
-                          <span className="font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-white/85 mt-1 block">
-                            CHOOSE ANY FILLINGS
-                          </span>
-                        </div>
+                      <div className="flex items-center justify-between gap-4 mb-5">
+                        <h3 className="font-heading text-2xl sm:text-3xl text-white leading-tight capitalize">
+                          {col.title.toLowerCase()}
+                        </h3>
                         <span className="bg-[#FDE67B] text-[#E93556] font-sans font-black text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shrink-0 shadow-sm">
                           {col.count}
                         </span>
