@@ -719,12 +719,8 @@ export default function FlavoursClient() {
               })}
             </div>
 
-            {/* Bottom Decorative Bars & Brand Sign-off */}
-            <div className="relative z-10 mt-10 sm:mt-12 pt-4 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-              <div className="flex flex-col gap-2.5">
-                <div className="h-2.5 w-48 sm:w-72 rounded-full bg-[#FDE67B]" />
-                <div className="h-2.5 w-36 sm:w-56 rounded-full bg-[#28B4AB]" />
-              </div>
+            {/* Bottom Brand Sign-off */}
+            <div className="relative z-10 mt-10 sm:mt-12 pt-2 flex justify-end">
               <span className="font-heading text-xl sm:text-2xl text-white/95 tracking-wide">
                 All the way from Japan!
               </span>
