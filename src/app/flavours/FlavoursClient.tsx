@@ -694,8 +694,8 @@ export default function FlavoursClient() {
                     <div>
                       {/* Card Header */}
                       <div className="mb-5">
-                        <h3 className="font-heading text-3xl sm:text-4xl lg:text-[40px] text-white leading-tight capitalize">
-                          {col.title.toLowerCase()}
+                        <h3 className="font-heading text-3xl sm:text-4xl lg:text-[40px] text-white leading-tight uppercase">
+                          {col.title}
                         </h3>
                       </div>
 
@@ -704,7 +704,7 @@ export default function FlavoursClient() {
                         {col.items.map((item) => (
                           <div key={item.name} className="flex items-center gap-2.5">
                             <span className="w-2 h-2 rounded-full bg-[#FDE67B] shrink-0" />
-                            <span className="font-sans font-semibold text-white text-sm sm:text-[15px] leading-snug">
+                            <span className="font-sans font-bold uppercase tracking-wide text-white text-xs sm:text-sm leading-snug">
                               {item.name}
                             </span>
                           </div>
@@ -729,7 +729,8 @@ export default function FlavoursClient() {
         {/* Bottom CTA for Franchise & Locations */}
         <div className="mt-24 p-8 sm:p-12 rounded-[36px] bg-white/70 border border-black/5 text-center flex flex-col items-center max-w-4xl mx-auto shadow-sm">
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#162B3A] mb-4 tracking-tight">
-            GOT A TUMU CRAVING? WE’VE GOT YOU!
+            GOT A TUMU CRAVING?<br />
+            WE’VE GOT YOU!
           </h3>
           <p className="font-heading text-sm sm:text-base lg:text-lg text-[#162B3A]/85 uppercase tracking-wide max-w-2xl mb-8">
             VISIT ANY OF OUR OUTLETS ACROSS INDIA OR GET IN TOUCH TO EXPLORE BRINGING A TUMU FRANCHISE TO YOUR REGION
