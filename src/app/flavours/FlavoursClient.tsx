@@ -598,14 +598,14 @@ export default function FlavoursClient() {
             </div>
 
             {/* Centerpiece: Horizontal TUMU Pastry Stick */}
-            <div className="relative z-10 w-full max-w-4xl mx-auto mb-10 sm:mb-12 flex flex-col items-center">
-              <div className="relative w-full h-[130px] sm:h-[210px] md:h-[260px] lg:h-[310px] drop-shadow-[0_24px_34px_rgba(0,0,0,0.3)] transition-transform duration-500 hover:scale-[1.01]">
+            <div className="relative z-10 w-full max-w-6xl mx-auto mb-8 sm:mb-12 flex flex-col items-center">
+              <div className="relative w-full h-[180px] sm:h-[280px] md:h-[360px] lg:h-[440px] xl:h-[480px] drop-shadow-[0_28px_40px_rgba(0,0,0,0.32)] transition-transform duration-500 hover:scale-[1.02]">
                 <Image
                   src="/images/tumu/cut_tumu_horizontal.png"
                   alt="TUMU Sliced Crispy Stick with Chilled Cream Filling"
                   fill
                   className="object-contain object-center"
-                  sizes="(max-width: 1024px) 100vw, 900px"
+                  sizes="(max-width: 1024px) 100vw, 1200px"
                   priority
                 />
               </div>
