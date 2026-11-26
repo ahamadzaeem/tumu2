@@ -1178,68 +1178,6 @@ export default function AdminPage() {
                     </div>
                   </div>
                 </div>
-
-                <div className="p-5 rounded-2xl bg-[#FAF4E7] border border-black/5 flex flex-col gap-3 md:col-span-2">
-                  <span className="text-xs font-black uppercase text-[#DB3E59]">Phase 3: Climax Reveal Headlines &amp; Buttons</span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[11px] font-bold text-[#162B3A] mb-1">Climax Line 1 (Cyan)</label>
-                      <input
-                        type="text"
-                        value={siteContent.home?.videoScrollHero?.phase3Headline1 || ""}
-                        onChange={(e) => updateContentField("home", "videoScrollHero", "phase3Headline1", e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black text-[#162B3A]"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-bold text-[#162B3A] mb-1">Climax Line 2 (Pink)</label>
-                      <input
-                        type="text"
-                        value={siteContent.home?.videoScrollHero?.phase3Headline2 || ""}
-                        onChange={(e) => updateContentField("home", "videoScrollHero", "phase3Headline2", e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl bg-white border border-black/10 text-xs font-black text-[#DB3E59]"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-bold text-[#162B3A] mb-1">Climax Button 1 Text &amp; Link</label>
-                      <div className="flex gap-2">
-                        <input
-                          type="text"
-                          placeholder="Label"
-                          value={siteContent.home?.videoScrollHero?.phase3Btn1Text || ""}
-                          onChange={(e) => updateContentField("home", "videoScrollHero", "phase3Btn1Text", e.target.value)}
-                          className="w-1/2 px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-bold"
-                        />
-                        <input
-                          type="text"
-                          placeholder="Link"
-                          value={siteContent.home?.videoScrollHero?.phase3Btn1Link || ""}
-                          onChange={(e) => updateContentField("home", "videoScrollHero", "phase3Btn1Link", e.target.value)}
-                          className="w-1/2 px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-mono"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-bold text-[#162B3A] mb-1">Climax Button 2 Text &amp; Link</label>
-                      <div className="flex gap-2">
-                        <input
-                          type="text"
-                          placeholder="Label"
-                          value={siteContent.home?.videoScrollHero?.phase3Btn2Text || ""}
-                          onChange={(e) => updateContentField("home", "videoScrollHero", "phase3Btn2Text", e.target.value)}
-                          className="w-1/2 px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-bold"
-                        />
-                        <input
-                          type="text"
-                          placeholder="Link"
-                          value={siteContent.home?.videoScrollHero?.phase3Btn2Link || ""}
-                          onChange={(e) => updateContentField("home", "videoScrollHero", "phase3Btn2Link", e.target.value)}
-                          className="w-1/2 px-3 py-2 rounded-xl bg-white border border-black/10 text-xs font-mono"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
