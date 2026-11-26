@@ -297,7 +297,7 @@ export default function ContactPage() {
                   </h4>
                   <div className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-[#162B3A]/80 leading-relaxed">
                     <MapPin className="w-4 h-4 text-[#DB3E59] shrink-0 mt-0.5" />
-                    <span>Office : 401 | Al Zarouni Business Centre, Al Barsha 1st, Dubai, UAE</span>
+                    <span>Office : 401 | Al Zarouni Business Centre, Al Barsha 1, Dubai, UAE</span>
                   </div>
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-bold pt-2 border-t border-black/5">
                     <a href="mailto:franchise@tumuofficial.com" className="text-[#DB3E59] hover:underline">
