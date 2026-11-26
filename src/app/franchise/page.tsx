@@ -200,6 +200,8 @@ export default function FranchisePage() {
               </span>
             </h1>
 
+            <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
+
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg leading-relaxed max-w-[500px] mb-8">
               {franchiseHero.description || "Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations."}
             </p>
@@ -263,6 +265,8 @@ export default function FranchisePage() {
               <span className="block text-[#162B3A] whitespace-nowrap">THAT&apos;S OUR PROMISE</span>
             </h2>
 
+            <div className="w-12 h-1 bg-[#DB3E59] mb-4" />
+
             <p className="text-[#162B3A] font-semibold text-xs sm:text-sm leading-relaxed max-w-[380px] sm:max-w-[410px] mb-6">
               This promise is not just a verdict. It is the result of hours of research, strategic homework, and industry expertise. Crafted by chef ren and backed by a team with 22 years of hands-on experience in f&b operations, franchising, and marketing.we understand the business. We know the numbers. We know what it takes to make it work.
             </p>
@@ -298,6 +302,7 @@ export default function FranchisePage() {
               <span className="block text-[#162B3A]">ONE VIRAL BRAND</span>
               <span className="block text-[#DB3E59]">IT&apos;S TUMU</span>
             </h2>
+            <div className="w-12 h-1 bg-[#DB3E59] mt-4" />
           </div>
 
           <div className="flex flex-col gap-20 sm:gap-28">
@@ -617,6 +622,8 @@ export default function FranchisePage() {
               WE&apos;RE WITH YOU EVERY STEP OF YOUR FRANCHISE JOURNEY
             </h3>
 
+            <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
+
             <p className="text-[#162B3A]/85 font-semibold text-sm sm:text-base leading-relaxed max-w-[500px] mb-6">
               From day one to every day after. TUMU stands by you with continuous, hands-on support beyond training, every step of your franchise journey
             </p>
@@ -709,6 +716,8 @@ export default function FranchisePage() {
               <span className="text-[#162B3A]">QUEST</span>
               <span className="text-[#DB3E59]">IONS</span>
             </h2>
+
+            <div className="w-12 h-1 bg-[#DB3E59]" />
           </div>
 
           {/* Right Column: FAQ Accordion */}
@@ -765,6 +774,8 @@ export default function FranchisePage() {
                   TO <span className="text-[#DB3E59]">YOUR CITY</span>
                 </span>
               </h2>
+
+              <div className="w-14 h-1.5 bg-[#DB3E59] rounded-full mb-6" />
 
               <p className="text-[#162B3A]/85 font-medium text-base sm:text-lg leading-relaxed mb-8">
                 Join Japan’s most exciting artisanal crunchy cream stick phenomenon. Select your preferred concept—<strong>Premium Island</strong>, <strong>Express Stop</strong>, <strong>Experience Store</strong>, or <strong>Mobile Truck</strong>—and get in touch directly with our business development team.
