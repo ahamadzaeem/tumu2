@@ -49,9 +49,9 @@ export default function ContactPage() {
       {/* ─── SECTION 1: HERO (LET'S CONNECT - CONTACT US.) ─── */}
       <section className="relative w-full min-h-[500px] sm:min-h-[560px] lg:min-h-[620px] bg-[#FAF5EB] overflow-hidden flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12">
         
-        {/* Soft Vibrant Pink Pill Shape in Top Right Background (Matching Mockup Angle & Scale) */}
-        <div className="absolute top-0 right-0 w-[55%] h-full pointer-events-none z-0 overflow-hidden">
-          <div className="absolute -top-10 -right-20 sm:-top-16 sm:-right-16 lg:-top-20 lg:right-0 w-[460px] sm:w-[620px] lg:w-[780px] h-[260px] sm:h-[340px] lg:h-[420px] bg-gradient-to-r from-[#FF6B8B] to-[#FF8EA4] rounded-full rotate-[-22deg] opacity-90 shadow-2xl transition-all" />
+        {/* Solid Vibrant Pink Finger/Capsule Shape on Right Side (Matching Mockup Angle & Scale) */}
+        <div className="absolute top-0 right-0 w-[60%] h-full pointer-events-none z-0 overflow-hidden">
+          <div className="absolute top-[42%] sm:top-[38%] lg:top-[36%] -right-28 sm:-right-24 lg:-right-20 w-[360px] sm:w-[480px] lg:w-[600px] h-[120px] sm:h-[165px] lg:h-[200px] bg-[#EB2B53] rounded-full rotate-[-28deg] transition-all" />
         </div>
 
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
