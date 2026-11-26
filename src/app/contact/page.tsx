@@ -49,9 +49,9 @@ export default function ContactPage() {
       {/* ─── SECTION 1: HERO (LET'S CONNECT - CONTACT US.) ─── */}
       <section className="relative w-full min-h-[500px] sm:min-h-[560px] lg:min-h-[620px] bg-[#FAF5EB] overflow-hidden flex items-center pt-28 sm:pt-32 lg:pt-36 pb-12">
         
-        {/* Solid Vibrant Pink Finger/Capsule Shape on Right Side (Matching Mockup Angle & Scale) */}
+        {/* Solid Brand Pink Finger/Capsule Shape on Right Side (Matching Mockup Angle & Scale) */}
         <div className="absolute top-0 right-0 w-[60%] h-full pointer-events-none z-0 overflow-hidden">
-          <div className="absolute top-[42%] sm:top-[38%] lg:top-[36%] -right-28 sm:-right-24 lg:-right-20 w-[360px] sm:w-[480px] lg:w-[600px] h-[120px] sm:h-[165px] lg:h-[200px] bg-[#EB2B53] rounded-full rotate-[-28deg] transition-all" />
+          <div className="absolute top-[42%] sm:top-[38%] lg:top-[36%] -right-28 sm:-right-24 lg:-right-20 w-[360px] sm:w-[480px] lg:w-[600px] h-[120px] sm:h-[165px] lg:h-[200px] bg-[#DB3E59] rounded-full rotate-[-28deg] transition-all" />
         </div>
 
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
