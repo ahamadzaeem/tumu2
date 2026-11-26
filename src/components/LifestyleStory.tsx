@@ -32,7 +32,7 @@ export default function LifestyleStory() {
             <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-black tracking-tight leading-[0.92] uppercase mb-4">
               <span className="block text-[#162B3A]">A LITTLE</span>
               <span className="block text-[#162B3A]">HAPPINESS</span>
-              <span className="block text-[#5CBEB3]">IN EVERY BITE.</span>
+              <span className="block text-[#5CBEB3]">IN EVERY BITE</span>
             </h2>
 
             <p className="text-[#162B3A] font-bold text-base sm:text-lg mb-8 leading-snug">

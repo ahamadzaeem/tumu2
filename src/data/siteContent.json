@@ -16,23 +16,23 @@
   "home": {
     "videoScrollHero": {
       "eyebrow": "PREMIERE FOOD CINEMA",
-      "phase1Headline1": "a unique viral concept.",
+      "phase1Headline1": "a unique viral concept",
       "phase1Headline2": "crafted by a japanese chef",
       "phase1Btn1Text": "Own a Franchise.",
       "phase1Btn1Link": "/franchise#form",
       "phase1Btn2Text": "",
       "phase1Btn2Link": "",
       "phase3Headline1": "EVERY BITE,",
-      "phase3Headline2": "PURE HAPPINESS.",
+      "phase3Headline2": "PURE HAPPINESS",
       "phase3Btn1Text": "What is TUMU",
       "phase3Btn1Link": "/our-story",
       "phase3Btn2Text": "Own a Franchise",
       "phase3Btn2Link": "/franchise#form"
     },
     "hero": {
-      "eyebrow": "Five Years. Countless Experiments.\nOne Vision. Tumu Is Finally Here\nall the way from JAPAN",
-      "headlineLine1": "CRISP OUTSIDE.",
-      "headlineLine2": "CREAMY INSIDE.",
+      "eyebrow": "Five Years Countless Experiments\nOne Vision Tumu Is Finally Here\nall the way from JAPAN",
+      "headlineLine1": "CRISP OUTSIDE",
+      "headlineLine2": "CREAMY INSIDE",
       "description": "",
       "primaryBtnText": "Explore TUMU",
       "primaryBtnLink": "/our-story",
@@ -40,8 +40,8 @@
       "secondaryBtnLink": ""
     },
     "realIngredients": {
-      "eyebrow": "JUST 3 STEPS.",
-      "heading": "UNIQUELY DELICIOUS.",
+      "eyebrow": "JUST 3 STEPS",
+      "heading": "UNIQUELY DELICIOUS",
       "subtitle": "Bake It • Fill It • Serve It",
       "description": "Bake It • Fill It • Serve It"
     },
@@ -68,16 +68,16 @@
     "freshFromOven": {
       "eyebrow": "FRESH FROM OUR OVEN",
       "headlineLine1": "BAKED",
-      "headlineLine2": "PERFECTION.",
+      "headlineLine2": "PERFECTION",
       "headlineLine3": "FILLED",
-      "headlineLine4": "HAPPINESS.",
+      "headlineLine4": "HAPPINESS",
       "description": "Every TUMU stick is freshly baked to a golden crunch and filled with smooth, chilled cream — so you can enjoy the perfect balance of crisp outside, creamy inside, every time.",
       "buttonText": "Explore TUMU",
       "buttonLink": "/our-story"
     },
     "happinessSection": {
-      "headingLine1": "TASTE IT ONCE.",
-      "headingLine2": "CRAVE IT FOREVER.",
+      "headingLine1": "TASTE IT ONCE",
+      "headingLine2": "CRAVE IT FOREVER",
       "headingLine3": "LET HAPPINESS FLOW",
       "japaneseText": "、。",
       "btnText": "Our Story",
@@ -111,7 +111,7 @@
       "description": "The art of sweetness, perfected. Crafted by Tokyo-based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses."
     },
     "section3": {
-      "heading": "80% JAPANESE INGREDIENTS. DELICIOUSLY TUMU!",
+      "heading": "80% JAPANESE INGREDIENTS DELICIOUSLY TUMU!",
       "description": "Made with ingredients sourced from Japan for authentic Japanese quality. So, bite with caution! Smooth, chilled cream is about to ooze out and create a deliciously messy experience."
     },
     "chefSection": {
@@ -124,7 +124,7 @@
     "hero": {
       "eyebrow": "ARTISANAL CRAFTSMANSHIP",
       "headingLine1": "FROM OUR OVEN",
-      "headingLine2": "TO YOU.",
+      "headingLine2": "TO YOU",
       "description": "The secret behind the finest crispy cream-filled desserts and Japanese desserts in UAE: an obsession with texture, temperature contrast, and zero compromise on fresh ingredients."
     },
     "steps": [
@@ -169,15 +169,15 @@
     "hero": {
       "eyebrow": "WHO SAYS NO TO A VIRAL FRANCHISE?",
       "headingLine1": "BRING THE JAPAN-MADE",
-      "headingLine2": "TUMU EXPERIENCE.",
+      "headingLine2": "TUMU EXPERIENCE",
       "description": "Bring the Japan-made TUMU experience to your market and become part of a brand people love and remember. With simple operations, attractive profit potential, and appeal across all age groups, TUMU is designed to fit into high-traffic locations and everyday destinations.",
       "buttonText": "Get Franchise Profile",
       "buttonLink": "#form"
     },
     "promise": {
-      "headingLine1": "ROI WITHIN 12 MONTHS.",
-      "headingLine2": "WE DON'T JUST SAY IT. WE STAND BY IT.",
-      "headingLine3": "THAT'S OUR PROMISE.",
+      "headingLine1": "ROI WITHIN 12 MONTHS",
+      "headingLine2": "WE DON'T JUST SAY IT WE STAND BY IT",
+      "headingLine3": "THAT'S OUR PROMISE",
       "description": "This promise is not just a verdict. It is the result of hours of research, strategic homework, and industry expertise. Crafted by chef ren and backed by a team with 22 years of hands-on experience in f&b operations, franchising, and marketing.we understand the business. We know the numbers. We know what it takes to make it work.",
       "tagline1": "NO SPECULATION. NO EMPTY CLAIMS. NO EXCUSES.",
       "tagline2": "JUST EXPERIENCE, STRATEGY, AND ACCOUNTABILITY",
@@ -185,8 +185,8 @@
       "buttonLink": "#form"
     },
     "formatsHeader": {
-      "headingLine1": "FOUR FORMATS.",
-      "headingLine2": "ONE VIRAL BRAND. IT'S TUMU."
+      "headingLine1": "FOUR FORMATS",
+      "headingLine2": "ONE VIRAL BRAND IT'S TUMU"
     },
     "formats": [
       {
@@ -232,8 +232,8 @@
     ],
     "support": {
       "headingLine1": "NO RETAIL EXPERIENCE?",
-      "headingLine2": "NO WORRIES. YOU'RE NEVER IN BUSINESS ALONE.",
-      "headingLine3": "WE'RE WITH YOU EVERY STEP OF YOUR FRANCHISE JOURNEY.",
+      "headingLine2": "NO WORRIES YOU'RE NEVER IN BUSINESS ALONE",
+      "headingLine3": "WE'RE WITH YOU EVERY STEP OF YOUR FRANCHISE JOURNEY",
       "description": "From day one to every day after.TUMU stands by you with continuous, hands-on support beyond training, every step of your franchise journey",
       "pillars": [
         "SITE SELECTION",
@@ -251,7 +251,7 @@
     "hero": {
       "eyebrow": "LET'S CONNECT",
       "headingLine1": "WE WOULD LOVE",
-      "headingLine2": "TO HEAR FROM YOU.",
+      "headingLine2": "TO HEAR FROM YOU",
       "description": "Whether you are interested in a franchise opportunity, private event catering, or simply sharing feedback, our team is always ready to assist."
     }
   }

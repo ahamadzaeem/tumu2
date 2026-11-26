@@ -67,7 +67,7 @@ export default function ContactPage() {
 
             <h1 className="text-5xl sm:text-6xl lg:text-[76px] font-black uppercase tracking-tight leading-[0.92] mb-4">
               <span className="block text-[#162B3A]">CONTACT</span>
-              <span className="block text-[#DB3E59]">US<span className="text-[#DB3E59]">.</span></span>
+              <span className="block text-[#DB3E59]">US</span>
             </h1>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
@@ -353,7 +353,7 @@ export default function ContactPage() {
             <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-4">
               <span className="block text-[#162B3A]">BRING TUMU</span>
               <span className="block text-[#162B3A]">
-                TO <span className="text-[#DB3E59]">YOUR CITY.</span>
+                TO <span className="text-[#DB3E59]">YOUR CITY</span>
               </span>
             </h2>
 

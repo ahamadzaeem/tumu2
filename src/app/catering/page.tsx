@@ -73,7 +73,7 @@ export default function CateringPage() {
               <span className="block text-white">SWEET</span>
               <span className="block text-white">MOMENTS</span>
               <span className="block text-[#DB3E59]">FOR EVERY</span>
-              <span className="block text-[#DB3E59]">OCCASION<span className="text-[#DB3E59]">.</span></span>
+              <span className="block text-[#DB3E59]">OCCASION</span>
             </h1>
 
             <p className="text-white/95 font-semibold text-base sm:text-lg lg:text-xl leading-relaxed max-w-[460px] mb-8">
@@ -130,7 +130,7 @@ export default function CateringPage() {
             <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-6">
               <span className="block text-[#162B3A]">EVENTS</span>
               <span className="block text-[#162B3A]">
-                WE <span className="text-[#DB3E59]">CATER.</span>
+                WE <span className="text-[#DB3E59]">CATER</span>
               </span>
             </h2>
 
@@ -225,7 +225,7 @@ export default function CateringPage() {
 
             <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-6">
               <span className="block text-[#162B3A]">PLAN YOUR</span>
-              <span className="block text-[#DB3E59]">EVENT WITH TUMU<span className="text-[#DB3E59]">.</span></span>
+              <span className="block text-[#DB3E59]">EVENT WITH TUMU</span>
             </h2>
 
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg leading-relaxed max-w-[440px]">

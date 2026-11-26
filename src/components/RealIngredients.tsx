@@ -42,13 +42,13 @@ export default function RealIngredients() {
         
         {/* Eyebrow - Matching Hero font format */}
         <span className="font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
-          {real.eyebrow || "JUST 3 STEPS."}
+          {real.eyebrow || "JUST 3 STEPS"}
         </span>
 
         {/* Main Heading - Matching Hero font format */}
         <h2 className="font-black uppercase tracking-tight leading-[0.92] mb-6 text-[36px] xs:text-[40px] sm:text-[46px] lg:text-[clamp(3.4rem,6vw,5rem)]">
           <span className="block text-[#162B3A]">UNIQUELY</span>
-          <span className="block text-[#DB3E59]">DELICIOUS.</span>
+          <span className="block text-[#DB3E59]">DELICIOUS</span>
         </h2>
 
         {/* The 3 Steps */}

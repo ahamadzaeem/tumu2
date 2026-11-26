@@ -144,7 +144,7 @@ export default function Footer() {
           <div className="lg:col-span-3 flex flex-col items-start">
             <h4 className="text-lg font-black uppercase tracking-tight leading-tight mb-3">
               <span className="text-[#DB3E59]">SWEET UPDATES </span>
-              <span className="text-[#5CBEB3]">IN YOUR INBOX.</span>
+              <span className="text-[#5CBEB3]">IN YOUR INBOX</span>
             </h4>
 
             {subscribed ? (

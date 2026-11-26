@@ -21,8 +21,8 @@ export default function Hero() {
 
   const hero = content?.home?.hero || {
     eyebrow: "Five Years. Countless Experiments.\nOne Vision. Tumu Is Finally Here\nall the way from JAPAN",
-    headlineLine1: "CRISP OUTSIDE.",
-    headlineLine2: "CREAMY INSIDE.",
+    headlineLine1: "CRISP OUTSIDE",
+    headlineLine2: "CREAMY INSIDE",
     description: "",
     primaryBtnText: "Explore TUMU",
     primaryBtnLink: "/our-story",

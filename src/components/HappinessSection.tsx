@@ -19,8 +19,8 @@ export default function HappinessSection() {
   }, []);
 
   const happiness = content?.home?.happinessSection || {
-    headingLine1: "TASTE IT ONCE.",
-    headingLine2: "CRAVE IT FOREVER.",
+    headingLine1: "TASTE IT ONCE",
+    headingLine2: "CRAVE IT FOREVER",
     headingLine3: "LET HAPPINESS FLOW",
     btnText: "Our Story",
     btnLink: "/our-story",

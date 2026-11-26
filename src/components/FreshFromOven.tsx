@@ -20,10 +20,10 @@ export default function FreshFromOven() {
 
   const fresh = (content?.home as any)?.freshFromOven || {
     eyebrow: "FRESH FROM OUR OVEN",
-    headlineLine1: "BAKED TO",
-    headlineLine2: "PERFECTION.",
-    headlineLine3: "FILLED WITH",
-    headlineLine4: "HAPPINESS.",
+    headlineLine1: "BAKED",
+    headlineLine2: "PERFECTION",
+    headlineLine3: "FILLED",
+    headlineLine4: "HAPPINESS",
     description:
       "Every TUMU stick is freshly baked to a golden crunch and filled with smooth, chilled cream — so you can enjoy the perfect balance of crisp outside, creamy inside, every time.",
     buttonText: "Explore TUMU",
@@ -36,9 +36,9 @@ export default function FreshFromOven() {
       <div className="w-full lg:w-[48%] flex flex-col justify-center px-6 sm:px-12 lg:pl-[8vw] lg:pr-10 py-16 sm:py-20 z-20 bg-[#F8F4EC] lg:bg-transparent">
         <h2 className="text-[44px] sm:text-[56px] lg:text-[70px] font-black tracking-tight leading-[0.93] uppercase mb-6 text-[#162B3A]">
           {fresh.headlineLine1 || "BAKED"} <span className="text-[#DB3E59]">TO</span><br />
-          {fresh.headlineLine2 || "PERFECTION."}<br />
+          {fresh.headlineLine2 || "PERFECTION"}<br />
           {fresh.headlineLine3 || "FILLED"} <span className="text-[#DB3E59]">WITH</span><br />
-          <span className="text-[#DB3E59]">{fresh.headlineLine4 || "HAPPINESS."}</span>
+          <span className="text-[#DB3E59]">{fresh.headlineLine4 || "HAPPINESS"}</span>
         </h2>
 
         <p className="font-sans text-[#162B3A] text-sm sm:text-base lg:text-[17px] font-bold leading-relaxed max-w-[410px] mb-8">

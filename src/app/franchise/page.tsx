@@ -207,10 +207,10 @@ export default function FranchisePage() {
             className="max-w-[380px] xs:max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] flex flex-col items-start max-sm:bg-[#FAF4E7]/95 max-sm:p-6 max-sm:rounded-3xl max-sm:shadow-xl max-sm:backdrop-blur-md max-sm:border max-sm:border-black/5"
           >
             <h2 className="text-[20px] xs:text-[23px] sm:text-[29px] lg:text-[34px] xl:text-[38px] font-black uppercase tracking-tight leading-[1.05] mb-4">
-              <span className="block text-[#DB3E59] whitespace-nowrap">ROI WITHIN 12 MONTHS.</span>
-              <span className="block text-[#162B3A] whitespace-nowrap">WE DON&apos;T JUST SAY IT.</span>
-              <span className="block text-[#DB3E59] whitespace-nowrap">WE STAND BY IT.</span>
-              <span className="block text-[#162B3A] whitespace-nowrap">THAT&apos;S OUR PROMISE.</span>
+              <span className="block text-[#DB3E59] whitespace-nowrap">ROI WITHIN 12 MONTHS</span>
+              <span className="block text-[#162B3A] whitespace-nowrap">WE DON&apos;T JUST SAY IT</span>
+              <span className="block text-[#DB3E59] whitespace-nowrap">WE STAND BY IT</span>
+              <span className="block text-[#162B3A] whitespace-nowrap">THAT&apos;S OUR PROMISE</span>
             </h2>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-4" />
@@ -244,11 +244,11 @@ export default function FranchisePage() {
           
           <div className="flex flex-col items-start mb-12 sm:mb-16">
             <span className="font-heading text-[18px] xs:text-[20px] sm:text-2xl lg:text-[26px] text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
-              FOUR FORMATS.
+              FOUR FORMATS
             </span>
             <h2 className="text-[34px] xs:text-[38px] sm:text-[46px] lg:text-5xl font-black uppercase tracking-tight leading-tight">
-              <span className="block text-[#162B3A]">ONE VIRAL BRAND.</span>
-              <span className="block text-[#DB3E59]">IT&apos;S TUMU.</span>
+              <span className="block text-[#162B3A]">ONE VIRAL BRAND</span>
+              <span className="block text-[#DB3E59]">IT&apos;S TUMU</span>
             </h2>
             <div className="w-12 h-1 bg-[#DB3E59] mt-4" />
           </div>
@@ -509,12 +509,12 @@ export default function FranchisePage() {
             </span>
 
             <h2 className="text-[28px] xs:text-[32px] sm:text-[38px] lg:text-[42px] font-black uppercase tracking-tight leading-[0.98] mb-3">
-              <span className="block text-[#162B3A]">NO WORRIES.</span>
-              <span className="block text-[#DB3E59]">YOU&apos;RE NEVER IN BUSINESS ALONE.</span>
+              <span className="block text-[#162B3A]">NO WORRIES</span>
+              <span className="block text-[#DB3E59]">YOU&apos;RE NEVER IN BUSINESS ALONE</span>
             </h2>
 
             <h3 className="text-lg xs:text-xl sm:text-2xl font-black uppercase tracking-tight leading-snug text-[#162B3A] mb-4">
-              WE&apos;RE WITH YOU EVERY STEP OF YOUR FRANCHISE JOURNEY.
+              WE&apos;RE WITH YOU EVERY STEP OF YOUR FRANCHISE JOURNEY
             </h3>
 
             <div className="w-12 h-1 bg-[#DB3E59] mb-5" />
@@ -609,7 +609,7 @@ export default function FranchisePage() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-4 whitespace-nowrap">
               <span className="text-[#162B3A]">QUEST</span>
-              <span className="text-[#DB3E59]">IONS.</span>
+              <span className="text-[#DB3E59]">IONS</span>
             </h2>
 
             <div className="w-12 h-1 bg-[#DB3E59]" />
@@ -666,7 +666,7 @@ export default function FranchisePage() {
               <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black uppercase tracking-tight leading-[0.95] mb-5">
                 <span className="block text-[#162B3A]">BRING TUMU</span>
                 <span className="block text-[#162B3A]">
-                  TO <span className="text-[#DB3E59]">YOUR CITY.</span>
+                  TO <span className="text-[#DB3E59]">YOUR CITY</span>
                 </span>
               </h2>
 

@@ -141,7 +141,7 @@ export default function VideoScrollHero() {
             
             {/* Standardised Hero Typography */}
             <h1 className="text-[34px] xs:text-[38px] sm:text-[44px] lg:text-5xl font-black uppercase tracking-tight leading-[0.92] mb-5 text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.7)]">
-              <span className="block text-white">{heroData.phase1Headline1 || "a unique viral concept."}</span>
+              <span className="block text-white">{heroData.phase1Headline1 || "a unique viral concept"}</span>
               <span className="block text-white">
                 {heroData.phase1Headline2 || "crafted by a japanese chef"}
               </span>

@@ -36,7 +36,7 @@ export default function OurStoryClient() {
         "The art of sweetness, perfected. Crafted by Tokyo-based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses.",
     },
     section3: {
-      heading: "80% JAPANESE INGREDIENTS. DELICIOUSLY TUMU!",
+      heading: "80% JAPANESE INGREDIENTS DELICIOUSLY TUMU!",
       description:
         "Made with ingredients sourced from Japan for authentic Japanese quality. So, bite with caution! Smooth, chilled cream is about to ooze out and create a deliciously messy experience.",
     },
@@ -168,7 +168,7 @@ export default function OurStoryClient() {
             className="max-w-[440px] sm:max-w-[460px] lg:max-w-[480px] flex flex-col items-start bg-[#FACDD1]/90 sm:bg-transparent p-6 sm:p-0 rounded-3xl backdrop-blur-sm sm:backdrop-blur-none"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[52px] font-black uppercase tracking-tight leading-[1.02] mb-4 text-[#E52D50]">
-              {story.section3?.heading || "80% JAPANESE INGREDIENTS. DELICIOUSLY TUMU!"}
+              {story.section3?.heading || "80% JAPANESE INGREDIENTS DELICIOUSLY TUMU!"}
             </h2>
 
             <div className="w-14 h-1.5 bg-[#E52D50] mb-5" />
