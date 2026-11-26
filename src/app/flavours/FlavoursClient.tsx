@@ -582,7 +582,7 @@ export default function FlavoursClient() {
                   Filling<br />
                   Flavours
                 </h2>
-                <p className="font-sans font-bold text-xs sm:text-sm text-white/90 uppercase tracking-wider mt-4 max-w-xl leading-relaxed">
+                <p className="font-heading text-base sm:text-lg lg:text-xl text-white/95 uppercase tracking-wide mt-4 max-w-2xl leading-relaxed">
                   CREAM FILLINGS MADE WITH JAPANESE IMPORTS BLENDED WITH PREMIUM LOCAL INGREDIENTS
                 </p>
               </div>
