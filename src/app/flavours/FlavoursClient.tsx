@@ -650,7 +650,7 @@ export default function FlavoursClient() {
             SECTION 2: CREAM FILLINGS (Poster Theme: Pink + Teal + Pastel Yellow)
             ══════════════════════════════════════════════════════════════ */}
         <section className="mt-20 sm:mt-28 pt-4 sm:pt-8 pb-12">
-          <div className="rounded-[32px] sm:rounded-[52px] bg-[#E93556] text-white p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden">
+          <div className="rounded-[32px] sm:rounded-[52px] bg-[#DB3E59] text-white p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden">
             
             {/* Top Header Row: Title Left + 25 Unique Fillings Badge Right */}
             <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
@@ -666,7 +666,7 @@ export default function FlavoursClient() {
 
               {/* Pastel Yellow 25 Unique Fillings Badge */}
               <div className="bg-[#FDE67B] rounded-2xl px-7 py-4 sm:px-9 sm:py-5 text-center shadow-lg shrink-0 self-start md:self-end">
-                <span className="font-heading text-4xl sm:text-5xl text-[#E93556] leading-none block">
+                <span className="font-heading text-4xl sm:text-5xl text-[#DB3E59] leading-none block">
                   25
                 </span>
                 <span className="font-sans font-black text-[10px] sm:text-xs tracking-[0.15em] uppercase text-[#162B3A] mt-1 block">
@@ -697,7 +697,7 @@ export default function FlavoursClient() {
                         <h3 className="font-heading text-2xl sm:text-3xl text-white leading-tight capitalize">
                           {col.title.toLowerCase()}
                         </h3>
-                        <span className="bg-[#FDE67B] text-[#E93556] font-sans font-black text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shrink-0 shadow-sm">
+                        <span className="bg-[#FDE67B] text-[#DB3E59] font-sans font-black text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shrink-0 shadow-sm">
                           {col.count}
                         </span>
                       </div>
