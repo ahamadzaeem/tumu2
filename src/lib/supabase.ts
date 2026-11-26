@@ -228,6 +228,41 @@ export const DEFAULT_LOCATIONS: StoreLocation[] = [
   }
 ];
 
+export function extractFlavorHex(color?: string): string {
+  if (!color) return "#FFFFFF";
+  const trimmed = color.trim();
+  if (/^#[0-9a-fA-F]{3,8}$/.test(trimmed)) return trimmed;
+  const match = trimmed.match(/bg-\[(#[0-9a-fA-F]{3,8})\]/);
+  if (match) return match[1];
+  if (trimmed === "bg-white") return "#FFFFFF";
+  return "#FFFFFF";
+}
+
+export function isLightHex(hex: string): boolean {
+  const clean = hex.replace("#", "");
+  const full = clean.length === 3
+    ? clean.split("").map((c) => c + c).join("")
+    : clean.padEnd(6, "F").slice(0, 6);
+  const r = parseInt(full.slice(0, 2), 16);
+  const g = parseInt(full.slice(2, 4), 16);
+  const b = parseInt(full.slice(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.58;
+}
+
+function normalizeFlavor(row: any): Flavor {
+  const color = row.color || "bg-white";
+  const hex = extractFlavorHex(color);
+  const light = isLightHex(hex);
+  return {
+    ...row,
+    color,
+    textColor: row.textColor || row.text_color || (light ? "text-[#1A2E44]" : "text-white"),
+    tagBg: row.tagBg || row.tag_bg || (light ? "bg-[#1A2E44]" : "bg-white"),
+    tagText: row.tagText || row.tag_text || (light ? "text-white" : "text-[#1A2E44]"),
+  };
+}
+
 // Helper Fetch Functions
 export async function fetchFlavors(): Promise<Flavor[]> {
   if (!supabase) return DEFAULT_FLAVORS;
@@ -243,7 +278,7 @@ export async function fetchFlavors(): Promise<Flavor[]> {
     if (error || !data || data.length === 0) {
       return DEFAULT_FLAVORS;
     }
-    return data as Flavor[];
+    return data.map(normalizeFlavor);
   } catch (err) {
     console.error("Failed to fetch flavors from Supabase, using defaults:", err);
     return DEFAULT_FLAVORS;
@@ -262,7 +297,7 @@ export async function fetchAllFlavorsAdmin(): Promise<Flavor[]> {
     if (error || !data) {
       return DEFAULT_FLAVORS;
     }
-    return data as Flavor[];
+    return data.map(normalizeFlavor);
   } catch (err) {
     console.error("Failed to fetch admin flavors:", err);
     return DEFAULT_FLAVORS;

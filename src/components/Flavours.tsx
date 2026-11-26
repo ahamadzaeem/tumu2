@@ -130,6 +130,7 @@ export default function Flavours() {
                   src={item.image}
                   alt={item.name}
                   fill
+                  unoptimized={item.image?.startsWith("data:")}
                   className="object-contain object-center drop-shadow-[0_16px_24px_rgba(0,0,0,0.2)] transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
                   sizes="(max-width: 640px) 140px, (max-width: 1024px) 180px, 220px"
                 />

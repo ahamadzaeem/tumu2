@@ -11,6 +11,8 @@ import {
   DEFAULT_LOCATIONS,
   fetchAllFlavorsAdmin,
   fetchAllLocationsAdmin,
+  extractFlavorHex,
+  isLightHex,
 } from "@/lib/supabase";
 import { FAQ_ITEMS as initialFaqItems, FaqItem } from "@/data/faq";
 import defaultSeoData from "@/data/seoContent.json";
@@ -86,6 +88,7 @@ export default function AdminPage() {
   // Flavor Modal state
   const [flavorModalOpen, setFlavorModalOpen] = useState(false);
   const [editingFlavor, setEditingFlavor] = useState<Flavor | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [flavorForm, setFlavorForm] = useState<Partial<Flavor>>({
     name: "",
     category: "SIGNATURE",
@@ -316,23 +319,71 @@ export default function AdminPage() {
     setFlavorModalOpen(true);
   };
 
+  const handleFlavorImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingImage(true);
+    try {
+      const form = new FormData();
+      form.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body: form });
+      const data = await res.json();
+      if (data?.success && data.url) {
+        setFlavorForm((prev) => ({ ...prev, image: data.url }));
+        notify("Flavour image uploaded!");
+      } else {
+        notify(data?.message || "Failed to upload image");
+      }
+    } catch (err) {
+      console.error(err);
+      notify("Image upload failed");
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
   const handleSaveFlavor = async (e: React.FormEvent) => {
     e.preventDefault();
+    const rawColor = flavorForm.color || "bg-white";
+    const hex = extractFlavorHex(rawColor);
+    const normalizedColor = rawColor.startsWith("#") ? `bg-[${rawColor}]` : rawColor;
+    const light = isLightHex(hex);
+    const textColor = light ? "text-[#1A2E44]" : "text-white";
+    const tagBg = light ? "bg-[#1A2E44]" : "bg-white";
+    const tagText = light ? "text-white" : `text-[${hex}]`;
+
     const finalFlavor: Flavor = {
       id: editingFlavor ? editingFlavor.id : flavorForm.id || "flavor_" + Date.now(),
       name: flavorForm.name || "Untitled Flavor",
       category: flavorForm.category || "CLASSIC",
       description: flavorForm.description || "",
       image: flavorForm.image || "/images/tumu/flavour_v3_02_vanilla.png",
-      color: flavorForm.color || "bg-white",
+      color: normalizedColor,
+      textColor,
       tag: flavorForm.tag || flavorForm.category,
+      tagBg,
+      tagText,
       display_order: Number(flavorForm.display_order) || 1,
       is_active: flavorForm.is_active !== false,
     };
 
     if (supabase) {
       try {
-        const { error } = await supabase.from("flavors").upsert(finalFlavor);
+        const dbPayload = {
+          id: finalFlavor.id,
+          name: finalFlavor.name,
+          category: finalFlavor.category,
+          description: finalFlavor.description,
+          image: finalFlavor.image,
+          color: finalFlavor.color,
+          text_color: finalFlavor.textColor,
+          tag: finalFlavor.tag,
+          tag_bg: finalFlavor.tagBg,
+          tag_text: finalFlavor.tagText,
+          display_order: finalFlavor.display_order,
+          is_active: finalFlavor.is_active,
+        };
+        const { error } = await supabase.from("flavors").upsert(dbPayload);
         if (error) {
           console.error("Supabase error:", error);
           notify("Error saving to Supabase: " + error.message);
@@ -2252,11 +2303,15 @@ export default function AdminPage() {
                   className="p-5 rounded-3xl bg-[#FAF4E7] border border-black/5 shadow-sm flex flex-col justify-between group hover:shadow-md transition-all"
                 >
                   <div className="flex flex-col items-center text-center">
-                    <div className="relative w-28 h-36 mb-4">
+                    <div
+                      style={{ backgroundColor: extractFlavorHex(flavor.color) }}
+                      className="relative w-28 h-36 mb-4 rounded-3xl p-2"
+                    >
                       <Image
                         src={flavor.image}
                         alt={flavor.name}
                         fill
+                        unoptimized={flavor.image?.startsWith("data:")}
                         className="object-contain group-hover:scale-105 transition-transform"
                       />
                     </div>
@@ -2455,14 +2510,94 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1">
-                  Image URL / Asset Path
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Cutout Card Color (Flavour Section Theme)
                 </label>
+                <div className="flex flex-wrap items-center gap-2 mb-2.5">
+                  {[
+                    { label: "Matcha", hex: "#98FF98" },
+                    { label: "Vanilla", hex: "#FFFFFF" },
+                    { label: "Pistachio", hex: "#93C572" },
+                    { label: "Strawberry", hex: "#FF9999" },
+                    { label: "Cacao", hex: "#3D1C00" },
+                    { label: "Tiramisu", hex: "#C68E17" },
+                    { label: "Mango", hex: "#FFE066" },
+                    { label: "Biscoff", hex: "#D35400" },
+                    { label: "Brand Pink", hex: "#DB3E59" },
+                    { label: "Brand Teal", hex: "#28B4AB" },
+                  ].map((swatch) => {
+                    const currentHex = extractFlavorHex(flavorForm.color).toUpperCase();
+                    const isSelected = currentHex === swatch.hex.toUpperCase();
+                    return (
+                      <button
+                        key={swatch.hex}
+                        type="button"
+                        title={`${swatch.label} (${swatch.hex})`}
+                        onClick={() => setFlavorForm({ ...flavorForm, color: `bg-[${swatch.hex}]` })}
+                        style={{ backgroundColor: swatch.hex }}
+                        className={`w-7 h-7 rounded-full border-2 transition-transform cursor-pointer ${
+                          isSelected ? "border-[#162B3A] scale-110 ring-2 ring-[#DB3E59]" : "border-black/15 hover:scale-105"
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="color"
+                    value={extractFlavorHex(flavorForm.color)}
+                    onChange={(e) => setFlavorForm({ ...flavorForm, color: `bg-[${e.target.value.toUpperCase()}]` })}
+                    className="w-11 h-11 rounded-xl border border-black/10 cursor-pointer bg-white p-1 shrink-0"
+                  />
+                  <input
+                    type="text"
+                    value={extractFlavorHex(flavorForm.color)}
+                    onChange={(e) => {
+                      const val = e.target.value.trim();
+                      setFlavorForm({ ...flavorForm, color: val.startsWith("#") ? `bg-[${val}]` : val });
+                    }}
+                    placeholder="#FFE066"
+                    className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono uppercase"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-black uppercase tracking-wider text-[#162B3A] mb-1.5">
+                  Flavour Image (Upload or Asset Path)
+                </label>
+                <div className="flex items-center gap-3 mb-2">
+                  {flavorForm.image && (
+                    <div
+                      style={{ backgroundColor: extractFlavorHex(flavorForm.color) }}
+                      className="relative w-14 h-14 rounded-2xl border border-black/10 shrink-0 overflow-hidden flex items-center justify-center p-1"
+                    >
+                      <Image
+                        src={flavorForm.image}
+                        alt="Preview"
+                        fill
+                        unoptimized={flavorForm.image.startsWith("data:")}
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
+                  <label className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#162B3A] hover:bg-black text-white text-xs font-black uppercase tracking-wider cursor-pointer transition-colors">
+                    <span>{uploadingImage ? "Uploading..." : "Upload Image"}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFlavorImageUpload}
+                      disabled={uploadingImage}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
                 <input
                   type="text"
                   value={flavorForm.image || ""}
                   onChange={(e) => setFlavorForm({ ...flavorForm, image: e.target.value })}
-                  className="w-full px-4 py-3 rounded-2xl bg-[#FAF4E7] border border-black/10 text-sm font-mono"
+                  placeholder="/images/tumu/flavour_v2_new_mango.png"
+                  className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF4E7] border border-black/10 text-xs font-mono"
                 />
               </div>
 
