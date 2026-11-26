@@ -117,7 +117,7 @@ export default function Flavours() {
         {/* 8 Flavour Product Lineup */}
         <div
           ref={scrollRef}
-          className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 pt-2 items-end justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-6 pt-2 items-start justify-items-center"
         >
           {flavours.slice(0, 8).map((item) => (
             <div
