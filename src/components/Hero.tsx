@@ -50,8 +50,15 @@ export default function Hero() {
           
           {/* Eyebrow / Story Prelude - Enlarged as requested */}
           <div className="mb-3 lg:mb-4">
-            <p className="font-heading text-[15px] xs:text-[17px] sm:text-xl lg:text-2xl xl:text-[26px] text-[#162B3A] uppercase tracking-tight leading-snug whitespace-pre-line drop-shadow-sm">
-              {hero.eyebrow}
+            <p className="font-heading text-[15px] xs:text-[17px] sm:text-xl lg:text-2xl xl:text-[26px] text-[#162B3A] uppercase tracking-tight leading-snug drop-shadow-sm">
+              {(hero.eyebrow || "").split("\n").map((line: string, i: number) => (
+                <span
+                  key={i}
+                  className={`block ${line.toLowerCase().includes("japan") ? "font-subhead tracking-normal" : ""}`}
+                >
+                  {line}
+                </span>
+              ))}
             </p>
           </div>
 
