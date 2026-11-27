@@ -722,9 +722,8 @@ export default function FranchisePage() {
               FREQUENTLY ASKED
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-4 whitespace-nowrap">
-              <span className="text-[#162B3A]">QUEST</span>
-              <span className="text-[#DB3E59]">IONS</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-4 whitespace-nowrap text-[#DB3E59]">
+              QUESTIONS
             </h2>
 
             <div className="w-12 h-1 bg-[#DB3E59]" />
