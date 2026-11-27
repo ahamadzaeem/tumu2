@@ -26,7 +26,7 @@ export default function Flavours() {
     headingLine1: "CRUSTÉ FLAVOURS",
     subheading: "EXPLORE TUMU’S SIGNATURE CRISPY SHELL FLAVOURS",
     headingLine2: "",
-    description: "25 UNIQUE FLAVOURS, MADE WITH JAPAN'S FINEST INGREDIENTS",
+    description: "8 Signature Outer Crust Flavors. 25 Flavorful Fillings. Endless Combinations",
     btnText: "MORE FLAVOURS",
     btnLink: "/flavours"
   };
@@ -80,27 +80,11 @@ export default function Flavours() {
           </p>
 
           {/* 3. Tagline directly underneath heading */}
-          {(() => {
-            const rawDesc = content?.home?.flavoursSection?.description || "25 Unique Flavours, Made with Japan's Finest Ingredients";
-            const [headlinePart, subtitlePart] = rawDesc.includes(",")
-              ? rawDesc.split(/,\s*(.+)/)
-              : [rawDesc, ""];
-
-            const cleanHeadline = (headlinePart || "25 UNIQUE FLAVOURS").replace(/,\s*$/, "");
-
-            return (
-              <div className="mt-2 sm:mt-2.5 space-y-1">
-                <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide">
-                  {cleanHeadline}
-                </p>
-                {subtitlePart ? (
-                  <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide">
-                    {subtitlePart}
-                  </p>
-                ) : null}
-              </div>
-            );
-          })()}
+          <div className="mt-2 sm:mt-2.5">
+            <p className="font-heading text-[16px] xs:text-[18px] sm:text-[22px] lg:text-[24px] text-white/95 uppercase tracking-wide">
+              {content?.home?.flavoursSection?.description || "8 Signature Outer Crust Flavors. 25 Flavorful Fillings. Endless Combinations"}
+            </p>
+          </div>
 
           {/* 4. More Flavours Tab directly underneath text */}
           <div className="mt-6 sm:mt-8">
