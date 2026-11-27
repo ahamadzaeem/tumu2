@@ -605,7 +605,21 @@ export default function FlavoursClient() {
             {fp.heading || "SO MANY FLAVOURS WHAT'S YOUR PICK?"}
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-[#162B3A]/85 max-w-3xl mx-auto font-medium leading-relaxed">
-            {fp.description || "Discover the perfect bite with TUMU! Enjoy 8 classic flavours of crunchy outer layers paired with 25 delicious flavours of chilled cream filling. With so many exciting combinations to choose from, there’s a flavour for everyone!"}
+            {(() => {
+              const desc = fp.description || "Discover the perfect bite with TUMU! Enjoy 8 classic flavours of crunchy outer layers paired with 25 delicious flavours of chilled cream filling. With so many exciting combinations to choose from, there’s a flavour for everyone!";
+              const match = desc.match(/^(Discover the perfect bite)(.*?)(Enjoy 8.*)$/i);
+              if (match) {
+                return (
+                  <>
+                    <span className="text-[#DB3E59] font-black">{match[1]}</span>
+                    {match[2]}
+                    <br />
+                    {match[3]}
+                  </>
+                );
+              }
+              return desc;
+            })()}
           </p>
         </div>
 
