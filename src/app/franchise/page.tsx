@@ -223,22 +223,21 @@ export default function FranchisePage() {
             </a>
           </motion.div>
 
-          {/* Right Column: Rounded Kiosk Store Composition */}
+          {/* Right Column: Cutout Kiosk Outlet with Lady */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
             className="lg:col-span-6 relative flex items-center justify-center"
           >
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border-2 border-white/60 group">
+            <div className="relative w-full aspect-[772/650] max-w-[620px]">
               <Image
-                src="/images/tumu/formats/kiosk_hero_store.jpg"
-                alt="TUMU Kiosk Franchise Opportunity"
+                src="/images/tumu/formats/kiosk_hero_cutout.png"
+                alt="TUMU Kiosk Franchise Outlet"
                 fill
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-contain object-center drop-shadow-[0_24px_40px_rgba(0,0,0,0.18)]"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#162B3A]/20 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
         </div>
