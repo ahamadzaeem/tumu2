@@ -619,13 +619,13 @@ export default function FranchisePage() {
           
           {/* Left Text Column with Right Border Divider */}
           <div className="lg:col-span-7 flex flex-col items-start lg:pr-12 lg:border-r border-[#DB3E59]/20">
-            <span className="font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
+            <span className="font-heading text-[28px] xs:text-[32px] sm:text-[38px] lg:text-[42px] text-[#DB3E59] uppercase tracking-tight leading-[0.98] mb-3 block">
               NO RETAIL EXPERIENCE?
             </span>
 
-            <h2 className="text-[28px] xs:text-[32px] sm:text-[38px] lg:text-[42px] font-black uppercase tracking-tight leading-[0.98] mb-3">
-              <span className="block text-[#162B3A]">NO WORRIES</span>
-              <span className="block text-[#DB3E59]">YOU&apos;RE NEVER IN BUSINESS ALONE</span>
+            <h2 className="font-black uppercase tracking-tight leading-[0.98] mb-3">
+              <span className="block font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#162B3A] tracking-wide mb-2">NO WORRIES</span>
+              <span className="block text-[28px] xs:text-[32px] sm:text-[38px] lg:text-[42px] text-[#DB3E59]">YOU&apos;RE NEVER IN BUSINESS ALONE</span>
             </h2>
 
             <h3 className="text-lg xs:text-xl sm:text-2xl font-black uppercase tracking-tight leading-snug text-[#162B3A] mb-4">
