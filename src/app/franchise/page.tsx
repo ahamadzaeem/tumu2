@@ -133,31 +133,41 @@ export default function FranchisePage() {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const faqList = [
+  const faqList: { question: string; answer: string; bullets?: string[] }[] = [
     {
-      question: "How do I become a franchise partner?",
+      question: "How can I become a franchise partner?",
       answer:
-        "Fill out our franchise enquiry form or reach out to our team directly at franchise@tumuofficial.com. We'll schedule an initial discussion and guide you through our 5-step onboarding process."
+        "To get started, simply fill out our franchise enquiry form or contact our team directly at franchise@tumuofficial.com Once we receive your enquiry, we'll arrange an initial discussion to learn more about your goals and guide you through our simple 5-step franchise onboarding process."
     },
     {
       question: "What is the initial investment?",
       answer:
-        "Initial investment varies based on store location and format (kiosk vs standalone outlet). Entry budgets typically range from $50,000 to $150,000 with high gross margins (up to 82%)."
+        "The initial investment varies depending on the store location and format (kiosk or full-sized store). Entry-level investment typically starts from USD 150,000. The projected ROI is designed to be achieved within 12 months, subject to the outlet's size and location."
     },
     {
-      question: "Do you provide training and support?",
+      question: "What kind of support do franchise partners receive?",
       answer:
-        "Yes! We provide complete end-to-end support including site selection, store layout design, team training, operational SOPs, branded packaging, and launch marketing."
+        "Yes! We provide comprehensive end-to-end support, covering every stage of your franchise journey, including site selection, store layout and design, team recruitment and training, operational SOPs, financial planning, and launch marketing."
     },
     {
-      question: "Where can I open a TUMU outlet?",
+      question: "Where Can I Open a TUMU Outlet?",
       answer:
-        "We target high foot-traffic locations including premium shopping malls, transit hubs, commercial dining centers, and popular retail strips across Asia-Pacific and global key markets."
+        "TUMU is ideal for high-footfall locations where customers seek a quick, affordable treat. Our preferred locations include:",
+      bullets: [
+        "Shopping malls and food courts",
+        "Metro stations and airports",
+        "Cinemas and entertainment centers",
+        "Hotels and petrol stations",
+        "Universities and campuses",
+        "Theme parks and attractions",
+        "Sports venues and event spaces",
+        "Beaches, waterfronts, and popular retail streets"
+      ]
     },
     {
-      question: "How soon can I start?",
+      question: "How long does it take to open a TUMU franchise?",
       answer:
-        "From agreement signing to grand opening, the onboarding process typically takes between 4 to 8 weeks depending on site readiness and local municipal approvals."
+        "From signing the franchise agreement to the grand opening, the process typically takes 4 to 8 weeks, depending on site readiness, fit-out completion, and local municipal approvals."
     }
   ];
 
@@ -741,12 +751,28 @@ export default function FranchisePage() {
                 </button>
 
                 {openFaq === idx && (
-                  <p className="mt-3 text-sm sm:text-base font-medium text-[#162B3A]/80 leading-relaxed pr-8 animate-in fade-in duration-200">
-                    {item.answer}
-                  </p>
+                  <div className="mt-3 text-sm sm:text-base font-medium text-[#162B3A]/80 leading-relaxed pr-8 animate-in fade-in duration-200">
+                    <p>{item.answer}</p>
+                    {item.bullets && item.bullets.length > 0 && (
+                      <ul className="mt-3 space-y-1.5 list-disc pl-5 text-[#162B3A]/85">
+                        {item.bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 )}
               </div>
             ))}
+
+            <div className="pt-8">
+              <a
+                href="#form"
+                className="inline-block text-xs sm:text-sm font-black uppercase tracking-wide text-[#162B3A] hover:text-[#DB3E59] transition-colors"
+              >
+                REQUEST THE FULL FINANCIAL REPORT AND DETAILED FRANCHISE INVESTMENT PROFILE BY CLICKING THE LINK BELOW →
+              </a>
+            </div>
           </div>
 
         </div>
