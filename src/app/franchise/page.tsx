@@ -718,7 +718,7 @@ export default function FranchisePage() {
           
           {/* Left Title Column */}
           <div className="lg:col-span-5 flex flex-col items-start">
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
+            <span className="font-heading text-[15px] xs:text-[17px] sm:text-lg lg:text-xl text-[#DB3E59] uppercase tracking-wide leading-tight mb-3 block">
               FREQUENTLY ASKED
             </span>
 
