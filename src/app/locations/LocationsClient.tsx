@@ -474,13 +474,13 @@ export default function LocationsClient() {
                 <Award className="w-7 h-7" />
               </div>
               <span className="text-xs font-black uppercase tracking-[0.2em] text-[#DB3E59] mb-2">
-                ON-THE-GO CONVENIENCE
+                DESSERT ON THE GO
               </span>
               <h3 className="text-2xl font-black text-[#162B3A] uppercase tracking-tight mb-3">
-                MESS-FREE DESSERT
+                SWEET. SIMPLE. MADE TO MOVE WITH YOU
               </h3>
               <p className="text-sm font-medium text-[#162B3A]/70 leading-relaxed">
-                Engineered with our signature Japanese stick format and custom wrapper, TUMU is made for effortless snacking as you stroll through Dubai.
+                TUMU’s custom-designed packaging makes every bite mess-free and easy to enjoy on the go
               </p>
             </div>
 
