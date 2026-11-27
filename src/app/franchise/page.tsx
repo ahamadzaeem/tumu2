@@ -206,7 +206,7 @@ export default function FranchisePage() {
               <span className="block text-[#162B3A]">{franchiseHero.headingLine1 || "WHO SAYS NO"}</span>
               <span className="block text-[#DB3E59]">{franchiseHero.headingLine2 || "TO A VIRAL"}</span>
               <span className="block text-[#162B3A]">
-                {(franchiseHero.headingLine3 || "FRANCHISE?").replace(/\?$/, "")}<span className="text-[#DB3E59]">?</span>
+                {(franchiseHero.headingLine3 || "FRANCHISE?").replace(/\?$/, "")}?
               </span>
             </h1>
 
