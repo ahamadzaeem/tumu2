@@ -34,12 +34,12 @@ export default function ContactPage() {
   const getInTouch = contactData.getInTouch || {};
   const offices = contactData.offices || [
     {
-      id: "india",
-      country: "INDIA",
-      role: "Asia-Pacific Office",
-      city: "Bengaluru",
-      address: "Starhub Food Works Pvt Ltd, No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043",
-      emails: ["franchise@tumuofficial.com", "media@tumuofficial.com"],
+      id: "japan",
+      country: "JAPAN",
+      role: "Global R&D Office",
+      city: "Tokyo",
+      address: "Marunouchi Trust Tower Main, 22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan",
+      emails: ["enquiry@tumuofficial.jp"],
     },
     {
       id: "uae",
@@ -50,12 +50,12 @@ export default function ContactPage() {
       emails: ["franchise@tumuofficial.com", "media@tumuofficial.com"],
     },
     {
-      id: "japan",
-      country: "JAPAN",
-      role: "Global R&D Office",
-      city: "Tokyo",
-      address: "Marunouchi Trust Tower Main, 22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan",
-      emails: ["enquiry@tumuofficial.jp"],
+      id: "india",
+      country: "INDIA",
+      role: "Asia-Pacific Office",
+      city: "Bengaluru",
+      address: "Starhub Food Works Pvt Ltd, No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043",
+      emails: ["franchise@tumuofficial.com", "media@tumuofficial.com"],
     },
     {
       id: "uk",

@@ -335,14 +335,13 @@
     },
     "offices": [
       {
-        "id": "india",
-        "country": "INDIA",
-        "role": "Asia-Pacific Office",
-        "city": "Bengaluru",
-        "address": "Starhub Food Works Pvt Ltd, No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043",
+        "id": "japan",
+        "country": "JAPAN",
+        "role": "Global R&D Office",
+        "city": "Tokyo",
+        "address": "Marunouchi Trust Tower Main, 22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan",
         "emails": [
-          "franchise@tumuofficial.com",
-          "media@tumuofficial.com"
+          "enquiry@tumuofficial.jp"
         ]
       },
       {
@@ -357,13 +356,14 @@
         ]
       },
       {
-        "id": "japan",
-        "country": "JAPAN",
-        "role": "Global R&D Office",
-        "city": "Tokyo",
-        "address": "Marunouchi Trust Tower Main, 22nd Floor, 1-8-3 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan",
+        "id": "india",
+        "country": "INDIA",
+        "role": "Asia-Pacific Office",
+        "city": "Bengaluru",
+        "address": "Starhub Food Works Pvt Ltd, No.1, BC, 212, East of NGEF, Kasturi Nagar, Bengaluru 560043",
         "emails": [
-          "enquiry@tumuofficial.jp"
+          "franchise@tumuofficial.com",
+          "media@tumuofficial.com"
         ]
       },
       {
