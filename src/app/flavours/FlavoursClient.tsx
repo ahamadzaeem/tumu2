@@ -766,7 +766,7 @@ export default function FlavoursClient() {
             {fp.ctaHeadingLine2 || "WE’VE GOT YOU"}
           </h3>
           <p className="font-heading text-sm sm:text-base lg:text-lg text-[#162B3A]/85 uppercase tracking-wide max-w-2xl mb-8">
-            {fp.ctaDescription || "VISIT ANY OF OUR OUTLETS ACROSS INDIA OR GET IN TOUCH TO EXPLORE BRINGING A TUMU FRANCHISE TO YOUR REGION"}
+            {fp.ctaDescription || "LOVE TUMU? GET IN TOUCH AND EXPLORE BRINGING US TO YOUR REGION"}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
