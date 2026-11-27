@@ -97,7 +97,7 @@ export default function LocationsClient() {
             <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-black uppercase tracking-tight leading-[0.92] mb-5">
               <span className="block text-[#162B3A]">{lp.headingLine1 || "VISIT OUR"}</span>
               <span className="block text-[#DB3E59]">
-                {lp.headingLine2 || "INDIA STORES"}
+                {lp.headingLine2 || "STORES"}
               </span>
             </h1>
 
