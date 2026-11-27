@@ -465,7 +465,7 @@ export default function LocationsClient() {
                 PIPED TO ORDER
               </h3>
               <p className="text-sm font-medium text-[#162B3A]/70 leading-relaxed">
-                We never pre-fill our pastries. Your stick is filled cold right before your eyes, maintaining the contrast between warm crunch and chilled cream.
+                TUMU is never pre-filled. Every piece is filled fresh to order right in front of you for the perfect crunch outside and a creamy cold delight inside.
               </p>
             </div>
 
