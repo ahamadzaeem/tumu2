@@ -22,8 +22,8 @@ export default function FranchiseSection() {
 
   const franchiseCta = content?.home?.franchiseCta || {
     eyebrow: "TUMU FRANCHISE",
-    headingLine1: "Be Part of a Growing,",
-    headingLine2: "Viral & Unique Brand from Japan!",
+    headingLine1: "Be Part of a Growing",
+    headingLine2: "Viral & Unique Brand from Japan",
     description: "",
     buttonText: "Join Our Growing Franchise Family",
     buttonLink: "/franchise#form",

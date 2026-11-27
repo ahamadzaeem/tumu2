@@ -333,7 +333,7 @@ export default function ContactPage() {
             <div className="text-[#162B3A] font-black text-base sm:text-lg lg:text-xl uppercase tracking-tight leading-snug space-y-1">
               <p>{cta.line1 || "BE THE TALK OF THE TOWN."}</p>
               <p>{cta.line2 || "DON'T JUST BE A FAN OF THE NEXT BIG THING."}</p>
-              <p className="text-[#DB3E59]">{cta.line3 || "BE PART OF IT. BE TUMU!"}</p>
+              <p className="text-[#DB3E59]">{cta.line3 || "BE PART OF IT. BE TUMU"}</p>
             </div>
           </div>
 

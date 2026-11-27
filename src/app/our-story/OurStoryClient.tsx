@@ -36,7 +36,7 @@ export default function OurStoryClient() {
         "The art of sweetness, perfected. Crafted by Tokyo based Chef Ren, TUMU combines Japanese precision with irresistible indulgence. From its delicate crisp shell to its smooth, rich cream, every detail is made to delight the senses.",
     },
     section3: {
-      heading: "80% JAPANESE INGREDIENTS DELICIOUSLY TUMU!",
+      heading: "80% JAPANESE INGREDIENTS DELICIOUSLY TUMU",
       description:
         "Made with ingredients sourced from Japan for authentic Japanese quality. So, bite with caution! Smooth, chilled cream is about to ooze out and create a deliciously messy experience.",
     },

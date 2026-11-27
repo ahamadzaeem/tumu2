@@ -605,7 +605,7 @@ export default function FlavoursClient() {
             {fp.eyebrow || "OUR FLAVOURS"}
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight text-[#162B3A] uppercase mb-6 leading-[0.95] drop-shadow-sm">
-            {fp.heading || "SO MANY FLAVOURS, WHAT'S YOUR PICK?"}
+            {fp.heading || "SO MANY FLAVOURS WHAT'S YOUR PICK?"}
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-[#162B3A]/85 max-w-3xl mx-auto font-medium leading-relaxed">
             {fp.description || "Discover the perfect bite with TUMU! Enjoy 8 classic flavours of crunchy outer layers paired with 25 delicious flavours of chilled cream filling. With so many exciting combinations to choose from, there’s a flavour for everyone!"}
@@ -741,7 +741,7 @@ export default function FlavoursClient() {
             {/* Bottom Brand Sign-off */}
             <div className="relative z-10 mt-10 sm:mt-12 pt-2 flex justify-end">
               <span className="font-subhead text-2xl sm:text-3xl text-white/95 tracking-wide">
-                {fp.creamSignoff || "All the way from Japan!"}
+                {fp.creamSignoff || "All the way from Japan"}
               </span>
             </div>
 
@@ -752,7 +752,7 @@ export default function FlavoursClient() {
         <div className="mt-24 p-8 sm:p-12 rounded-[36px] bg-white/70 border border-black/5 text-center flex flex-col items-center max-w-4xl mx-auto shadow-sm">
           <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#162B3A] mb-4 tracking-tight">
             {fp.ctaHeadingLine1 || "GOT A TUMU CRAVING?"}<br />
-            {fp.ctaHeadingLine2 || "WE’VE GOT YOU!"}
+            {fp.ctaHeadingLine2 || "WE’VE GOT YOU"}
           </h3>
           <p className="font-heading text-sm sm:text-base lg:text-lg text-[#162B3A]/85 uppercase tracking-wide max-w-2xl mb-8">
             {fp.ctaDescription || "VISIT ANY OF OUR OUTLETS ACROSS INDIA OR GET IN TOUCH TO EXPLORE BRINGING A TUMU FRANCHISE TO YOUR REGION"}

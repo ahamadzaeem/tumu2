@@ -104,7 +104,7 @@ export default function LocationsClient() {
             <div className="w-12 h-1 bg-[#DB3E59] mb-6" />
 
             <p className="text-[#162B3A]/85 font-semibold text-base sm:text-lg lg:text-[19px] leading-relaxed max-w-[480px] mb-8">
-              {lp.description || "Your TUMU moment starts here. Find your nearest store!"}
+              {lp.description || "Your TUMU moment starts here. Find your nearest store"}
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
