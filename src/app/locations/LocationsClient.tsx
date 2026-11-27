@@ -450,7 +450,7 @@ export default function LocationsClient() {
                 BAKED FRESH DAILY
               </h3>
               <p className="text-sm font-medium text-[#162B3A]/70 leading-relaxed">
-                Our pastry sticks are baked in small batches throughout the day in our open-view ovens, keeping the caramelized crunch at its absolute peak.
+                TUMU is freshly baked in small batches throughout the day in our open-view ovens for that signature caramelized crunch at its very best.
               </p>
             </div>
 
