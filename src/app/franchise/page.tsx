@@ -223,14 +223,17 @@ export default function FranchisePage() {
             </a>
           </motion.div>
 
-          {/* Right Column: Cutout Kiosk Outlet with Lady */}
+          {/* Right Column: Cutout Kiosk Outlet with Lady + Brand Teal Capsule Backdrop */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
             className="lg:col-span-6 relative flex items-center justify-center"
           >
-            <div className="relative w-full aspect-[772/650] max-w-[620px]">
+            {/* Solid Brand Teal Finger/Capsule Shape Behind Outlet (Different Angle & Brand Color) */}
+            <div className="absolute -right-24 sm:-right-28 lg:-right-32 top-1/2 -translate-y-1/2 w-[380px] sm:w-[500px] lg:w-[620px] h-[150px] sm:h-[200px] lg:h-[240px] bg-[#28B4AB] rounded-full rotate-[22deg] pointer-events-none z-0" />
+
+            <div className="relative z-10 w-full aspect-[772/650] max-w-[620px]">
               <Image
                 src="/images/tumu/formats/kiosk_hero_cutout.png"
                 alt="TUMU Kiosk Franchise Outlet"
