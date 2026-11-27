@@ -112,10 +112,6 @@ export default function ContactPage() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="max-w-[540px] flex flex-col items-start"
           >
-            <span className="font-black text-xs sm:text-sm uppercase tracking-[0.25em] text-[#DB3E59] mb-3">
-              {hero.eyebrow || "LET'S CONNECT"}
-            </span>
-
             <h1 className="text-5xl sm:text-6xl lg:text-[76px] font-black uppercase tracking-tight leading-[0.92] mb-4">
               <span className="block text-[#162B3A]">{hero.headingLine1 || "CONTACT"}</span>
               <span className="block text-[#DB3E59]">{hero.headingLine2 || "US"}</span>
