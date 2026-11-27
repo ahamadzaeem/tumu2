@@ -601,9 +601,6 @@ export default function FlavoursClient() {
         
         {/* Hero Section with Targeted Keywords */}
         <div className="text-center mb-12 max-w-4xl mx-auto">
-          <span className="text-[#DB3E59] text-xs sm:text-sm font-black uppercase tracking-[0.25em] block mb-3">
-            {fp.eyebrow || "OUR FLAVOURS"}
-          </span>
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight text-[#162B3A] uppercase mb-6 leading-[0.95] drop-shadow-sm">
             {fp.heading || "SO MANY FLAVOURS WHAT'S YOUR PICK?"}
           </h1>
