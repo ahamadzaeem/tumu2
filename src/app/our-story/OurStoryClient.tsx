@@ -77,7 +77,7 @@ export default function OurStoryClient() {
 
             <div className="flex flex-col gap-4 text-[#162B3A] text-base sm:text-lg lg:text-[19px] leading-relaxed font-semibold">
               <p>{story.section1?.p1}</p>
-              <p className="text-[#DB3E59] font-bold">{story.section1?.p2}</p>
+              <p className="text-[#DB3E59] font-bold uppercase">{story.section1?.p2}</p>
               <p>{story.section1?.p3}</p>
               <p className="text-lg sm:text-xl lg:text-2xl font-black uppercase text-[#162B3A] tracking-tight pt-2">
                 {story.section1?.tagline || "HOT. CRISPY. SWEET. CREAMY. SIMPLY TUMU."}
