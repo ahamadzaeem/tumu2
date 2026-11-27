@@ -231,7 +231,7 @@ export default function FranchisePage() {
             className="lg:col-span-6 relative flex items-center justify-center"
           >
             {/* Solid Brand Teal Finger/Capsule Shape Behind Outlet (Different Angle & Brand Color) */}
-            <div className="absolute -right-24 sm:-right-28 lg:-right-32 top-1/2 -translate-y-1/2 w-[380px] sm:w-[500px] lg:w-[620px] h-[150px] sm:h-[200px] lg:h-[240px] bg-[#28B4AB] rounded-full rotate-[22deg] pointer-events-none z-0" />
+            <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[460px] sm:w-[620px] lg:w-[760px] h-[170px] sm:h-[220px] lg:h-[260px] bg-[#28B4AB] rounded-full rotate-[24deg] pointer-events-none z-0" />
 
             <div className="relative z-10 w-full aspect-[772/650] max-w-[620px]">
               <Image
