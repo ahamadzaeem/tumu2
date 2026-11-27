@@ -722,7 +722,7 @@ export default function FranchisePage() {
               FREQUENTLY ASKED
             </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-4 whitespace-nowrap text-[#DB3E59]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none mb-4 whitespace-nowrap text-[#162B3A]">
               QUESTIONS
             </h2>
 
